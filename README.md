@@ -1,6 +1,6 @@
 # bookworm
 
-- Book Worm is a app for writing and reading Books. idea from Amir Salar Soleymani
+- Book Worm is a app for writing and reading Books. idea from "Amir Salar Soleymani".
 
 ## Technology
 
@@ -28,4 +28,4 @@
 ## Todo list
 
 - [ ] change menu depend on login status
-- [ ] diffrence layout depend on screen, mobile and monitor.
+- [ ] difference layout depend on screen, mobile and monitor.
