@@ -1,4 +1,4 @@
-# bookworm
+# Book Worm
 
 - Book Worm is a app for writing and reading Books. idea from "Amir Salar Soleymani".
 
@@ -7,6 +7,7 @@
 - Single Page Application with [ReactJS](https://reactjs.org/) Framework.
 - [Create React App](https://create-react-app.dev/)
 - [Material UI](https://material-ui.com/)
+- [Vazir font](https://github.com/rastikerdar/vazir-font)
 - Responsive design with mobile lead
 
 ## Pages
