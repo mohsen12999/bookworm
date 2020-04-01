@@ -8,6 +8,7 @@
 - [Create React App](https://create-react-app.dev/)
 - [Material UI](https://material-ui.com/)
 - [Vazir font](https://github.com/rastikerdar/vazir-font)
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - Responsive design with mobile lead
 
 ## Pages
