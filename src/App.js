@@ -1,23 +1,17 @@
 import React from "react";
-import "./App.css";
+import Index from "./pages/Index";
+import { AuthContext } from "./contexts/AuthContext";
+import MainLayout from "./components/MainLayout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <AuthContext.Provider>
+        <MainLayout>
+          <Index />
+        </MainLayout>
+      </AuthContext.Provider>
+    </React.Fragment>
   );
 }
 
