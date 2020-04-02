@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 class AuthContextProvider extends React.Component {
   state = {
     username: "",
+    avatar: "",
     isAuthenticated: false
   };
   toggleAuth = () => {

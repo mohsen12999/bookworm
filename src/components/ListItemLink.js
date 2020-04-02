@@ -33,7 +33,7 @@ function ListItemLink(props) {
       React.forwardRef((linkProps, ref) => (
         <Link ref={ref} to={enable ? to : "/login"} {...linkProps} />
       )),
-    [to]
+    [to, enable]
   );
 
   const match = useRouteMatch({ path: to, exact: exactMatch });
