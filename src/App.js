@@ -1,16 +1,19 @@
 import React from "react";
 import Index from "./pages/Index";
-import { AuthContext } from "./contexts/AuthContext";
+import AuthContextProvider from "./contexts/AuthContext";
 import MainLayout from "./components/MainLayout";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
     <React.Fragment>
-      <AuthContext.Provider>
-        <MainLayout>
-          <Index />
-        </MainLayout>
-      </AuthContext.Provider>
+      <Router>
+        <AuthContextProvider>
+          <MainLayout>
+            <Index />
+          </MainLayout>
+        </AuthContextProvider>
+      </Router>
     </React.Fragment>
   );
 }
