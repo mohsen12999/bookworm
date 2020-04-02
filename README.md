@@ -10,6 +10,7 @@
 - [Vazir font](https://github.com/rastikerdar/vazir-font)
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - Responsive design with mobile lead
+- inspire from [printpress theme](https://printpress.cmsmasters.net/) , [printpress theme](https://printpress.cmsmasters.net/default/)
 
 ## Pages
 
