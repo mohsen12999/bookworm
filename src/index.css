@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* material-ui persian style */
+
+form.persian-form .MuiInputLabel-formControl {
+  left: unset !important;
+  right: 0 !important;
+}
+
+form.persian-form .MuiInputLabel-shrink {
+  transform-origin: top right !important;
+}
+
+form.persian-form .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(-4px, -6px) scale(0.75) !important;
+}
+
+form.persian-form .MuiInputLabel-outlined {
+  transform: translate(-14px, 20px) scale(1) !important;
+}
+
+form.persian-form input {
+  direction: rtl !important;
+}
