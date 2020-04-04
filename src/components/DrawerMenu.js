@@ -1,10 +1,18 @@
 import React from "react";
 import Divider from "@material-ui/core/Divider";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
+
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark";
+import ViewStreamIcon from "@material-ui/icons/ViewStream";
+import StreetviewIcon from "@material-ui/icons/Streetview";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import NoteIcon from "@material-ui/icons/Note";
 
 import ListItemLink from "./ListItemLink";
 import { AuthContext } from "../contexts/AuthContext";
@@ -25,15 +33,51 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const main_menu = [
-  { id: 11, title: "صفحه اصلی", url: "/", exactMatch: true },
-  { id: 12, title: "لیست کتاب ها", url: "/books", exactMatch: false },
-  { id: 13, title: "لیست مقالات", url: "/blog", exactMatch: false },
-  { id: 19, title: "درباره ما", url: "/about", exactMatch: false }
+  {
+    id: 11,
+    title: "صفحه اصلی",
+    url: "/",
+    exactMatch: true,
+    icon: <ViewStreamIcon />
+  },
+  {
+    id: 12,
+    title: "لیست کتاب ها",
+    url: "/books",
+    exactMatch: false,
+    icon: <LibraryBooksIcon />
+  },
+  {
+    id: 13,
+    title: "لیست مقالات",
+    url: "/blog",
+    exactMatch: false,
+    icon: <CollectionsBookmarkIcon />
+  },
+  {
+    id: 19,
+    title: "درباره ما",
+    url: "/about",
+    exactMatch: false,
+    icon: <StreetviewIcon />
+  }
 ];
 
 const admin_menu = [
-  { id: 21, title: "کتاب های من", url: "/mybook", exactMatch: false },
-  { id: 22, title: "نوشته های من", url: "/mynote", exactMatch: false }
+  {
+    id: 21,
+    title: "کتاب های من",
+    url: "/mybook",
+    exactMatch: false,
+    icon: <MenuBookIcon />
+  },
+  {
+    id: 22,
+    title: "نوشته های من",
+    url: "/mynote",
+    exactMatch: false,
+    icon: <NoteIcon />
+  }
 ];
 
 // TODO: add avatar to menu when login
@@ -55,7 +99,7 @@ const DrawerMenu = () => {
             {main_menu.map(menu => (
               <ListItemLink
                 key={menu.id}
-                icon={<InboxIcon />}
+                icon={menu.icon}
                 primary={menu.title}
                 to={menu.url}
                 enable={true}
@@ -68,7 +112,7 @@ const DrawerMenu = () => {
             {admin_menu.map(menu => (
               <ListItemLink
                 key={menu.id}
-                icon={<InboxIcon />}
+                icon={menu.icon}
                 primary={menu.title}
                 to={menu.url}
                 enable={context.isAuthenticated}
@@ -87,7 +131,7 @@ const DrawerMenu = () => {
             />
           ) : (
             <ListItemLink
-              icon={<InboxIcon />}
+              icon={<ExitToAppIcon />}
               primary="ورود"
               to="/login"
               enable={true}
