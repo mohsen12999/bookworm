@@ -15,3 +15,9 @@
     padding: 10px;
   }
 }
+
+.section-title {
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  text-align: right;
+}

@@ -6,6 +6,12 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
+import BookThumbnail from "../components/BookThumbnail";
+import AuthorThumbnail from "../components/AuthorThumbnail";
+import ArticleThumbnail from "../components/ArticleThumbnail";
+
+import { books, articles, authors, genres, getRandom } from "../services/data";
+
 import "./index.css";
 
 const useStyles = makeStyles(theme => ({
@@ -85,12 +91,7 @@ const useStyles = makeStyles(theme => ({
   // searchBtn: {
   //   marginTop: "2rem"
   // },
-  mainBanner: {
-    // marginTop: "10px",
-    // marginRight: "-14px",
-    // marginLeft: "-14px",
-    // background: "white"
-  },
+
   searchText: {
     width: "98%"
   },
@@ -104,8 +105,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+// TODO: footer
+
 const Index = () => {
   const classes = useStyles();
+  const rand_book = getRandom(books, 8);
+  const pop_books = rand_book.splice(0, 4);
+  const new_books = rand_book;
+
+  const best_authors = getRandom(authors, 4);
+  const best_genres = getRandom(genres, 6);
+
+  const last_articles = getRandom(articles, 3);
 
   return (
     <React.Fragment>
@@ -145,35 +156,76 @@ const Index = () => {
         </Grid>
       </form>
 
-      <Typography paragraph style={{ marginTop: "2em" }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
-        non enim praesent elementum facilisis leo vel. Risus at ultrices mi
-        tempus imperdiet. Semper risus in hendrerit gravida rutrum quisque non
-        tellus. Convallis convallis tellus id interdum velit laoreet id donec
-        ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
-        suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod
-        quis viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet
-        proin fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras
-        tincidunt lobortis feugiat vivamus at augue. At augue eget arcu dictum
-        varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt.
-        Lorem donec massa sapien faucibus et molestie ac.
+      <Typography variant="h5" component="h3" className="section-title">
+        پر بازدیدترین کتاب ها
+      </Typography>
+      <Grid container spacing={1}>
+        {pop_books.map(book => (
+          <Grid key={book.id} item xs={6} sm={3}>
+            <BookThumbnail
+              title={book.title}
+              img={book.img}
+              author={book.author}
+              price={book.price}
+            />
+          </Grid>
+        ))}
+      </Grid>
+
+      <Typography variant="h5" component="h3" className="section-title">
+        جدیدترین کتاب ها
+      </Typography>
+      <Grid container spacing={1}>
+        {new_books.map(book => (
+          <Grid key={book.id} item xs={6} sm={3}>
+            <BookThumbnail
+              title={book.title}
+              img={book.img}
+              author={book.author}
+              price={book.price}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Typography variant="h5" component="h3" className="section-title">
+        نویسندگان برتر
       </Typography>
 
-      <Typography paragraph>
-        Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-        ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum
-        integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi
-        lacus sed viverra tellus. Purus sit amet volutpat consequat mauris.
-        Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-        vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra
-        accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac.
-        Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique
-        senectus et. Adipiscing elit duis tristique sollicitudin nibh sit.
-        Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra
-        maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin
-        aliquam ultrices sagittis orci a.
+      <Grid container spacing={1}>
+        {best_authors.map(author => (
+          <Grid key={author.id} item xs={6} sm={3}>
+            <AuthorThumbnail title={author.title} img={author.img} />
+          </Grid>
+        ))}
+      </Grid>
+
+      <Typography variant="h5" component="h3" className="section-title">
+        موضوعات پر طرفدار
       </Typography>
+
+      <Grid container spacing={1}>
+        {best_genres.map(genre => (
+          <Grid key={genre.id} item xs={6} sm={2}>
+            <AuthorThumbnail title={genre.title} img={genre.img} />
+          </Grid>
+        ))}
+      </Grid>
+
+      <Typography variant="h5" component="h3" className="section-title">
+        مقالات
+      </Typography>
+
+      <Grid container spacing={1}>
+        {last_articles.map(article => (
+          <Grid key={article.id} item xs={6} sm={4}>
+            <ArticleThumbnail
+              title={article.title}
+              img={article.img}
+              author={article.author}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </React.Fragment>
   );
 };
