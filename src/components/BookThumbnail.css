@@ -1,0 +1,21 @@
+.book-thumb {
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 0 2px #e6e6e6;
+  margin: 2px;
+}
+
+.book-thumb img,
+.author-thumb img {
+  width: 100%;
+}
+
+.book-thumb p,
+.author-thumb p {
+  direction: rtl;
+}
+
+.author-thumb {
+  text-align: center;
+  background-color: white;
+}
