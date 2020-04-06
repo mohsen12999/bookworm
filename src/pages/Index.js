@@ -122,7 +122,7 @@ const Index = () => {
     <React.Fragment>
       <div className={classes.mainBanner}>
         <img
-          src="img/slider/slider1-skybook1-1368x599.jpg"
+          src="/img/slider/slider1-skybook1-1368x599.jpg"
           className={classes.imgSlider}
           alt="img"
         />
