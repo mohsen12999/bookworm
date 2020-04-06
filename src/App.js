@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Index from "./pages/Index";
 import BookList from "./pages/BookList";
+import SingleBook from "./pages/SingleBook";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <AuthContextProvider>
           <MainLayout>
             <Switch>
+              <Route path="/book/:id">
+                <SingleBook />
+              </Route>
               <Route path="/about">
                 <Index />
               </Route>
