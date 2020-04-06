@@ -1,6 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
+import { useParams } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -30,11 +32,13 @@ const useStyles = makeStyles(theme => ({
 // TODO: Book Author
 // TODO: Book Abstract
 
-const Index = () => {
+const SingleBook = () => {
   const classes = useStyles();
+  let { id } = useParams();
 
   return (
     <React.Fragment>
+      <h1>{id}</h1>
       <div className={classes.bidSlider}>
         <img
           src="/img/slider/slider-book.png"
@@ -81,4 +85,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default SingleBook;
