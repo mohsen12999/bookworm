@@ -163,6 +163,7 @@ const Index = () => {
         {pop_books.map(book => (
           <Grid key={book.id} item xs={6} sm={3}>
             <BookThumbnail
+              id={book.id}
               title={book.title}
               img={book.img}
               author={book.author}
@@ -179,6 +180,7 @@ const Index = () => {
         {new_books.map(book => (
           <Grid key={book.id} item xs={6} sm={3}>
             <BookThumbnail
+              id={book.id}
               title={book.title}
               img={book.img}
               author={book.author}
