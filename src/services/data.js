@@ -120,9 +120,63 @@ export const books = [
     id: 14,
     title: "نقاشی دیجیتال برای طراحان گرافیک",
     author: "الینور فیتزجرالد",
-    img: "/img/book/shop-2-580x925.jpg",
+    img: "/img/book/shop-3-580x925.jpg",
     genre: 2,
     price: 1.9,
+    date: "2020-01-01T23:28:56.782Z"
+  },
+  {
+    id: 15,
+    title: "همه چیز در مورد استیک",
+    author: "سرآشپز ایزابل مرکادو",
+    img: "/img/book/shop-4-580x925.jpg",
+    genre: 2,
+    price: 3.9,
+    date: "2020-01-01T23:28:56.782Z"
+  },
+  {
+    id: 16,
+    title: "کوه هایی که اعتقاد را می سازد",
+    author: "آلفردو توررس",
+    img: "/img/book/shop-5-580x925.jpg",
+    genre: 2,
+    price: 2.4,
+    date: "2020-01-01T23:28:56.782Z"
+  },
+  {
+    id: 17,
+    title: "کتاب دعا",
+    author: "جوزپین ویلیامز",
+    img: "/img/book/shop-7-580x925.jpg",
+    genre: 2,
+    price: 1.9,
+    date: "2020-01-01T23:28:56.782Z"
+  },
+  {
+    id: 18,
+    title: "فشن مینیمال برای مینیمال ها",
+    author: "کیتی ری جانسون",
+    img: "/img/book/shop-11-580x925.jpg",
+    genre: 4,
+    price: 1.9,
+    date: "2020-01-01T23:28:56.782Z"
+  },
+  {
+    id: 19,
+    title: "کلاس نویسندگی",
+    author: "نلی رز",
+    img: "/img/book/shop-13-580x925.jpg",
+    genre: 2,
+    price: 3.3,
+    date: "2020-01-01T23:28:56.782Z"
+  },
+  {
+    id: 14,
+    title: "پیام مخفی بازنشده",
+    author: "ریچارد سانچز",
+    img: "/img/book/shop-19-580x925.jpg",
+    genre: 2,
+    price: 4.9,
     date: "2020-01-01T23:28:56.782Z"
   }
 ];
