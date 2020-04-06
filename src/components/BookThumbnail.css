@@ -3,6 +3,14 @@
   background-color: white;
   box-shadow: 0 0 2px #e6e6e6;
   margin: 2px;
+  text-decoration: none;
+  display: block;
+  transition: all 500ms;
+}
+
+.book-thumb:hover {
+  box-shadow: 0 0 4px lightslategray;
+  transition: all 500ms;
 }
 
 .book-thumb img,
@@ -13,6 +21,7 @@
 .book-thumb p,
 .author-thumb p {
   direction: rtl;
+  color: black;
 }
 
 .author-thumb {
