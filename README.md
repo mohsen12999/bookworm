@@ -33,3 +33,4 @@
 - [ ] change menu depend on login status
 - [ ] difference layout depend on screen, mobile and monitor.
 - [ ] install button if not installed and can installed
+- [ ] footer for index page
