@@ -1,8 +1,10 @@
 import React from "react";
-import Index from "./pages/Index";
 import AuthContextProvider from "./contexts/AuthContext";
 import MainLayout from "./components/MainLayout";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Index from "./pages/Index";
+import BookList from "./pages/BookList";
 
 function App() {
   return (
@@ -10,7 +12,20 @@ function App() {
       <Router>
         <AuthContextProvider>
           <MainLayout>
-            <Index />
+            <Switch>
+              <Route path="/about">
+                <Index />
+              </Route>
+              <Route path="/blog">
+                <Index />
+              </Route>
+              <Route path="/books">
+                <BookList />
+              </Route>
+              <Route path="/">
+                <Index />
+              </Route>
+            </Switch>
           </MainLayout>
         </AuthContextProvider>
       </Router>
