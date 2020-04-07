@@ -1,6 +1,7 @@
 # Book Worm
 
 - Book Worm is a app for writing and reading Books. idea from "Amir Salar Soleymani".
+- [link to see](https://mohsen12999.github.io/books)
 
 ## Technology
 
@@ -11,6 +12,7 @@
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - Responsive design with mobile lead
 - inspire from [printpress theme](https://printpress.cmsmasters.net/) , [printpress theme](https://printpress.cmsmasters.net/default/)
+- deploy app as github page with [gh-page](https://www.npmjs.com/package/gh-pages) with help of [Deploying a React App\* to GitHub Pages](https://github.com/gitname/react-gh-pages)
 
 ## Pages
 
