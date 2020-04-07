@@ -7,7 +7,10 @@ import "./BookThumbnail.css";
 
 const BookThumbnail = props => (
   <Link to={"/book/" + props.id} className="book-thumb">
-    <img src={props.img} alt={props.title + " - " + props.author} />
+    <img
+      src={process.env.PUBLIC_URL + props.img}
+      alt={props.title + " - " + props.author}
+    />
     <p>{props.title}</p>
     <p>{props.author}</p>
     <p className="persian-number">{props.price} هزار تومان</p>

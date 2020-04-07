@@ -60,7 +60,11 @@ const SingleBook = () => {
     <React.Fragment>
       <div className="big-book-banner">
         <div>
-          <img src={book.img} className="book-img" alt={book.title} />
+          <img
+            src={process.env.PUBLIC_URL + book.img}
+            className="book-img"
+            alt={book.title}
+          />
         </div>
         <div>
           <div className="book-text">

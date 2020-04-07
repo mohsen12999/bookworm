@@ -6,7 +6,10 @@ import "./BookThumbnail.css";
 
 const AuthorThumbnail = props => (
   <div className="author-thumb">
-    <img src={props.img} alt={props.title + " - " + props.author} />
+    <img
+      src={process.env.PUBLIC_URL + props.img}
+      alt={props.title + " - " + props.author}
+    />
     <p>{props.title}</p>
   </div>
 );
