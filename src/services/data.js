@@ -182,17 +182,17 @@ export const books = [
 ];
 
 export const genres = [
-  { id: 1, title: "جنگی", img: "img/genre/Action.jpg", count: 0 },
-  { id: 2, title: "ماجراجویی", img: "img/genre/Adventure.jpg", count: 0 },
-  { id: 3, title: "هنر", img: "img/genre/Art.jpg", count: 0 },
-  { id: 4, title: "زندگی نامه", img: "img/genre/Biography.jpg", count: 0 },
-  { id: 5, title: "خردسالان", img: "img/genre/Children.jpg", count: 0 },
-  { id: 6, title: "فیلم نامه", img: "img/genre/Movie.jpg", count: 0 },
-  { id: 7, title: "رازآلود", img: "img/genre/Mystery.jpg", count: 0 },
-  { id: 8, title: "روانشناسی", img: "img/genre/Relationship.jpg", count: 0 },
-  { id: 9, title: "عشقی", img: "img/genre/Romance.jpg", count: 0 },
-  { id: 10, title: "علمی تخیلی", img: "img/genre/Science.jpg", count: 0 },
-  { id: 11, title: "سایر", img: "img/genre/Other.jpg", count: 0 }
+  { id: 1, title: "جنگی", img: "/img/genre/Action.jpg", count: 0 },
+  { id: 2, title: "ماجراجویی", img: "/img/genre/Adventure.jpg", count: 0 },
+  { id: 3, title: "هنر", img: "/img/genre/Art.jpg", count: 0 },
+  { id: 4, title: "زندگی نامه", img: "/img/genre/Biography.jpg", count: 0 },
+  { id: 5, title: "خردسالان", img: "/img/genre/Children.jpg", count: 0 },
+  { id: 6, title: "فیلم نامه", img: "/img/genre/Movie.jpg", count: 0 },
+  { id: 7, title: "رازآلود", img: "/img/genre/Mystery.jpg", count: 0 },
+  { id: 8, title: "روانشناسی", img: "/img/genre/Relationship.jpg", count: 0 },
+  { id: 9, title: "عشقی", img: "/img/genre/Romance.jpg", count: 0 },
+  { id: 10, title: "علمی تخیلی", img: "/img/genre/Science.jpg", count: 0 },
+  { id: 11, title: "سایر", img: "/img/genre/Other.jpg", count: 0 }
 ];
 
 export const articles = [
