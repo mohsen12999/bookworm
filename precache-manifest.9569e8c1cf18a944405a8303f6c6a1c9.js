@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1be3b5e1037e7075bb167a757383d9b2",
+    "revision": "bb043261709044604f563a4fe86f85ca",
     "url": "/bookworm/index.html"
   },
   {
-    "revision": "d4006a79bfe1ef2d2f90",
+    "revision": "439904f52dafadf73c19",
     "url": "/bookworm/static/css/main.46ed47f6.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bookworm/static/js/2.8c170fea.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d4006a79bfe1ef2d2f90",
-    "url": "/bookworm/static/js/main.2da9c205.chunk.js"
+    "revision": "439904f52dafadf73c19",
+    "url": "/bookworm/static/js/main.71ea8edc.chunk.js"
   },
   {
     "revision": "097bdb66458ff04fd875",
