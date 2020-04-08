@@ -23,14 +23,14 @@ const BookList = () => {
   const [sort, setSort] = React.useState("new");
   const [filter, setFilter] = React.useState("");
 
-  const handleChangeSort = event => {
+  const handleChangeSort = (event) => {
     event.preventDefault();
     const newSort = event.target.value;
     setSort(newSort);
     makeNewList(filter, newSort);
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     event.preventDefault();
     const newFilter = event.target.value;
     setFilter(newFilter);
@@ -40,20 +40,19 @@ const BookList = () => {
   const makeNewList = (newFilter, newSort) => {
     const filteredBook =
       newFilter.length === 0
-        ? bookList
-        : bookList.filter(
-            book =>
+        ? [...bookList]
+        : [...bookList].filter(
+            (book) =>
               book.title.indexOf(newFilter) >= 0 ||
               book.author.indexOf(newFilter) >= 0
           );
 
     const sortedBook =
       newSort === "new"
-        ? filteredBook.sort((a, b) => a.id < b.id)
+        ? [...filteredBook].sort((a, b) => a.id < b.id)
         : newSort === "exp"
-        ? filteredBook.sort((a, b) => a.price < b.price)
-        : filteredBook.sort((a, b) => a.price > b.price);
-
+        ? [...filteredBook].sort((a, b) => a.price < b.price)
+        : [...filteredBook].sort((a, b) => a.price > b.price);
     setFilteredBooks(sortedBook);
   };
 
@@ -96,7 +95,7 @@ const BookList = () => {
       </div>
 
       <Grid container spacing={1}>
-        {filteredBooks.map(book => (
+        {filteredBooks.map((book) => (
           <Grid key={book.id} item xs={6} sm={3}>
             <BookThumbnail
               id={book.id}
