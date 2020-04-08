@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import BookList from "./pages/BookList";
 import SingleBook from "./pages/SingleBook";
 import BlogList from "./pages/BlogList";
+import SingleBlog from "./pages/SingleBlog";
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         <AuthContextProvider>
           <MainLayout>
             <Switch>
+              <Route path="/blog/:id">
+                <SingleBlog />
+              </Route>
               <Route path="/book/:id">
                 <SingleBook />
               </Route>

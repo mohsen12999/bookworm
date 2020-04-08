@@ -1,10 +1,8 @@
 import React from "react";
 
-import "./BookThumbnail.css";
-// TODO: new book banner
-// TODO: sale banner
+// TODO: new Author banner
 
-const AuthorThumbnail = props => (
+const AuthorThumbnail = (props) => (
   <div className="author-thumb">
     <img
       src={process.env.PUBLIC_URL + props.img}

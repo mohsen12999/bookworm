@@ -14,7 +14,7 @@ import { books, articles, authors, genres, getRandom } from "../services/data";
 
 import "./index.css";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   // root: {
   //   display: "flex"
   // },
@@ -93,16 +93,16 @@ const useStyles = makeStyles(theme => ({
   // },
 
   searchText: {
-    width: "98%"
+    width: "98%",
   },
   grid_item: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   imgSlider: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 }));
 
 // TODO: footer
@@ -162,7 +162,7 @@ const Index = () => {
         پر بازدیدترین کتاب ها
       </Typography>
       <Grid container spacing={1}>
-        {pop_books.map(book => (
+        {pop_books.map((book) => (
           <Grid key={book.id} item xs={6} sm={3}>
             <BookThumbnail
               id={book.id}
@@ -179,7 +179,7 @@ const Index = () => {
         جدیدترین کتاب ها
       </Typography>
       <Grid container spacing={1}>
-        {new_books.map(book => (
+        {new_books.map((book) => (
           <Grid key={book.id} item xs={6} sm={3}>
             <BookThumbnail
               id={book.id}
@@ -196,7 +196,7 @@ const Index = () => {
       </Typography>
 
       <Grid container spacing={1}>
-        {best_authors.map(author => (
+        {best_authors.map((author) => (
           <Grid key={author.id} item xs={6} sm={3}>
             <AuthorThumbnail title={author.title} img={author.img} />
           </Grid>
@@ -208,7 +208,7 @@ const Index = () => {
       </Typography>
 
       <Grid container spacing={1}>
-        {best_genres.map(genre => (
+        {best_genres.map((genre) => (
           <Grid key={genre.id} item xs={6} sm={2}>
             <AuthorThumbnail title={genre.title} img={genre.img} />
           </Grid>
@@ -220,9 +220,10 @@ const Index = () => {
       </Typography>
 
       <Grid container spacing={1}>
-        {last_articles.map(article => (
+        {last_articles.map((article) => (
           <Grid key={article.id} item xs={6} sm={4}>
             <ArticleThumbnail
+              id={article.id}
               title={article.title}
               img={article.img}
               author={article.author}

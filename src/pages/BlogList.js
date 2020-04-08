@@ -28,7 +28,8 @@ const BlogList = () => (
         </div>
 
         <Typography component="p">
-          خلاصه مقاله، یک یا دوخط جدا از متن اصلی و جدا هست.
+          خلاصه مقاله، یک یا دوخط جدا از متن اصلی و مستقل هست. مفاهیم اصلی نوشته
+          را بیان می نماید.
         </Typography>
         <div className="post-btn">
           <Button
