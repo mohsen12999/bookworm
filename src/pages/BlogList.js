@@ -9,6 +9,8 @@ import { articles } from "../services/data";
 
 import "./BlogList.css";
 
+// TODO: blog time -> یکشنبه 8 اسفند
+// Todo: blog subject
 const BlogList = () => (
   <Container maxWidth="sm">
     {articles.map((post) => (
