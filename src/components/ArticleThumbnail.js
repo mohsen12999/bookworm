@@ -1,18 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import "./BookThumbnail.css";
-// TODO: new book banner
-// TODO: sale banner
+import "./ArticleThumbnail.css";
 
-const ArticleThumbnail = props => (
-  <div className="author-thumb">
+// TODO: new article banner
+
+const ArticleThumbnail = (props) => (
+  <Link className="author-thumb" to={"/blog/" + props.id}>
     <img
       src={process.env.PUBLIC_URL + props.img}
       alt={props.title + " - " + props.author}
     />
     <p>{props.title}</p>
     <p>{props.author}</p>
-  </div>
+  </Link>
 );
 
 export default ArticleThumbnail;
