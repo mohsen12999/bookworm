@@ -17,19 +17,19 @@ import NoteIcon from "@material-ui/icons/Note";
 import ListItemLink from "./ListItemLink";
 import { AuthContext } from "../contexts/AuthContext";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   menuItem: {
-    direction: "rtl"
+    direction: "rtl",
   },
   menuItemText: {
-    textAlign: "right"
+    textAlign: "right",
   },
   menuTitle: {
     textAlign: "center",
-    fontSize: "1.25rem"
-  }
+    fontSize: "1.25rem",
+  },
 }));
 
 const main_menu = [
@@ -38,29 +38,29 @@ const main_menu = [
     title: "صفحه اصلی",
     url: "/",
     exactMatch: true,
-    icon: <ViewStreamIcon />
+    icon: <ViewStreamIcon />,
   },
   {
     id: 12,
     title: "لیست کتاب ها",
     url: "/books",
     exactMatch: false,
-    icon: <LibraryBooksIcon />
+    icon: <LibraryBooksIcon />,
   },
   {
     id: 13,
     title: "لیست مقالات",
-    url: "/blog",
+    url: "/blogs",
     exactMatch: false,
-    icon: <CollectionsBookmarkIcon />
+    icon: <CollectionsBookmarkIcon />,
   },
   {
     id: 19,
     title: "درباره ما",
     url: "/about",
     exactMatch: false,
-    icon: <StreetviewIcon />
-  }
+    icon: <StreetviewIcon />,
+  },
 ];
 
 const admin_menu = [
@@ -69,15 +69,15 @@ const admin_menu = [
     title: "کتاب های من",
     url: "/mybook",
     exactMatch: false,
-    icon: <MenuBookIcon />
+    icon: <MenuBookIcon />,
   },
   {
     id: 22,
     title: "نوشته های من",
     url: "/mynote",
     exactMatch: false,
-    icon: <NoteIcon />
-  }
+    icon: <NoteIcon />,
+  },
 ];
 
 // TODO: add avatar to menu when login
@@ -87,7 +87,7 @@ const DrawerMenu = () => {
 
   return (
     <AuthContext.Consumer>
-      {context => (
+      {(context) => (
         <div>
           <List>
             <ListItem>
@@ -96,7 +96,7 @@ const DrawerMenu = () => {
           </List>
           <Divider />
           <List>
-            {main_menu.map(menu => (
+            {main_menu.map((menu) => (
               <ListItemLink
                 key={menu.id}
                 icon={menu.icon}
@@ -109,7 +109,7 @@ const DrawerMenu = () => {
           </List>
           <Divider />
           <List>
-            {admin_menu.map(menu => (
+            {admin_menu.map((menu) => (
               <ListItemLink
                 key={menu.id}
                 icon={menu.icon}

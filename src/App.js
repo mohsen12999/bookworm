@@ -21,7 +21,7 @@ function App() {
               <Route path="/about">
                 <Index />
               </Route>
-              <Route path="/blog">
+              <Route path="/blogs">
                 <BlogList />
               </Route>
               <Route path="/books">
