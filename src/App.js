@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BookList from "./pages/BookList";
 import SingleBook from "./pages/SingleBook";
+import BlogList from "./pages/BlogList";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
                 <Index />
               </Route>
               <Route path="/blog">
-                <Index />
+                <BlogList />
               </Route>
               <Route path="/books">
                 <BookList />
