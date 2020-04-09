@@ -66,13 +66,20 @@ const main_menu = [
 const admin_menu = [
   {
     id: 21,
+    title: "داشبورد",
+    url: "/dashboard",
+    exactMatch: false,
+    icon: <MenuBookIcon />,
+  },
+  {
+    id: 22,
     title: "کتاب های من",
     url: "/mybook",
     exactMatch: false,
     icon: <MenuBookIcon />,
   },
   {
-    id: 22,
+    id: 23,
     title: "نوشته های من",
     url: "/mynote",
     exactMatch: false,
