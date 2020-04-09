@@ -9,6 +9,7 @@ import SingleBook from "./pages/SingleBook";
 import BlogList from "./pages/BlogList";
 import SingleBlog from "./pages/SingleBlog";
 import Login from "./pages/admin/Login";
+import Logout from "./pages/admin/Logout";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
               <Route path="/login">
                 <Login />
               </Route>
+              <Route path="/logout">
+                <Logout />
+              </Route>
+
               <Route path="/blog/:id">
                 <SingleBlog />
               </Route>
