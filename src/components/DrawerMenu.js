@@ -15,6 +15,7 @@ import MenuBookIcon from "@material-ui/icons/MenuBook";
 import NoteIcon from "@material-ui/icons/Note";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
+import CreditCardIcon from "@material-ui/icons/CreditCard";
 
 import ListItemLink from "./ListItemLink";
 import { AuthContext } from "../contexts/AuthContext";
@@ -93,6 +94,13 @@ const admin_menu = [
     url: "/myblog",
     exactMatch: false,
     icon: <SpeakerNotesIcon />,
+  },
+  {
+    id: 25,
+    title: "کیف پول",
+    url: "/wallet",
+    exactMatch: false,
+    icon: <CreditCardIcon />,
   },
 ];
 
