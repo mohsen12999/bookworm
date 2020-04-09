@@ -8,6 +8,8 @@ import { articles } from "../services/data";
 
 import "./SingleBlog.css";
 
+// TODO: difference for own book and other book - load chapter for own book and show chapter
+
 const SingleBlog = () => {
   const { id } = useParams();
   const article = articles.find((art) => art.id === Number(id));
