@@ -13,6 +13,8 @@ import StreetviewIcon from "@material-ui/icons/Streetview";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import NoteIcon from "@material-ui/icons/Note";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
 
 import ListItemLink from "./ListItemLink";
 import { AuthContext } from "../contexts/AuthContext";
@@ -69,7 +71,7 @@ const admin_menu = [
     title: "داشبورد",
     url: "/dashboard",
     exactMatch: false,
-    icon: <MenuBookIcon />,
+    icon: <DashboardIcon />,
   },
   {
     id: 22,
@@ -84,6 +86,13 @@ const admin_menu = [
     url: "/mynote",
     exactMatch: false,
     icon: <NoteIcon />,
+  },
+  {
+    id: 24,
+    title: "مقاله های من",
+    url: "/myblog",
+    exactMatch: false,
+    icon: <SpeakerNotesIcon />,
   },
 ];
 
