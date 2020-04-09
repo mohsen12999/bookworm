@@ -4,9 +4,13 @@ export const AuthContext = createContext();
 
 class AuthContextProvider extends React.Component {
   state = {
-    username: "",
-    avatar: "",
     isAuthenticated: false,
+    token: "",
+    username: "mohsen",
+    boughtBook: [1, 7, 18],
+    writtenBooks: [],
+    article: [],
+    wallet: 5000,
   };
 
   Login = () => {
