@@ -37,3 +37,9 @@
 - [ ] install button if not installed and can installed
 - [ ] footer for index page
 - [ ] blog subject
+- [ ] difference style for bought book in book list
+
+## future feather
+
+- [ ] favorite book
+- [ ] like and rate to book
