@@ -16,6 +16,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import MyBook from "./pages/admin/MyBook";
 import MyNote from "./pages/admin/MyNote";
 import MyBlog from "./pages/admin/MyBlog";
+import Wallet from "./pages/admin/Wallet";
 
 import PrivateRouteLayout from "./components/PrivateRouteLayout";
 
@@ -44,6 +45,11 @@ function App() {
               <Route path="/myblog">
                 <PrivateRouteLayout>
                   <MyBlog />
+                </PrivateRouteLayout>
+              </Route>
+              <Route path="/wallet">
+                <PrivateRouteLayout>
+                  <Wallet />
                 </PrivateRouteLayout>
               </Route>
 
