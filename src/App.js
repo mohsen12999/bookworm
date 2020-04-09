@@ -27,6 +27,17 @@ function App() {
         <AuthContextProvider>
           <MainLayout>
             <Switch>
+              <Route path="/newblog">
+                <PrivateRouteLayout>
+                  <MyBlog />
+                </PrivateRouteLayout>
+              </Route>
+              <Route path="/newnote">
+                <PrivateRouteLayout>
+                  <MyNote />
+                </PrivateRouteLayout>
+              </Route>
+
               <Route path="/dashboard">
                 <PrivateRouteLayout>
                   <Dashboard />
@@ -66,6 +77,7 @@ function App() {
               <Route path="/book/:id">
                 <SingleBook />
               </Route>
+
               <Route path="/about">
                 <Index />
               </Route>
