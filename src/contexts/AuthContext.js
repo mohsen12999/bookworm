@@ -6,15 +6,26 @@ class AuthContextProvider extends React.Component {
   state = {
     username: "",
     avatar: "",
-    isAuthenticated: false
+    isAuthenticated: false,
   };
-  toggleAuth = () => {
-    this.setState({ isAuthenticated: !this.state.isAuthenticated });
+
+  Login = () => {
+    this.setState({
+      ...this.state,
+      isAuthenticated: true,
+    });
   };
+  Logout = () => {
+    this.setState({
+      ...this.state,
+      isAuthenticated: false,
+    });
+  };
+
   render() {
     return (
       <AuthContext.Provider
-        value={{ ...this.state, toggleAuth: this.toggleAuth }}
+        value={{ ...this.state, Login: this.Login, Logout: this.Logout }}
       >
         {this.props.children}
       </AuthContext.Provider>
