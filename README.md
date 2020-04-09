@@ -43,3 +43,5 @@
 
 - [ ] favorite book
 - [ ] like and rate to book
+- [ ] can track update message for bought book (new chapter or change in chapter) and favorite writer (new book)
+- [ ] ticket system for user
