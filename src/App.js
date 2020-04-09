@@ -8,8 +8,16 @@ import BookList from "./pages/BookList";
 import SingleBook from "./pages/SingleBook";
 import BlogList from "./pages/BlogList";
 import SingleBlog from "./pages/SingleBlog";
+
 import Login from "./pages/admin/Login";
 import Logout from "./pages/admin/Logout";
+
+import Dashboard from "./pages/admin/Dashboard";
+import MyBook from "./pages/admin/MyBook";
+import MyNote from "./pages/admin/MyNote";
+import MyBlog from "./pages/admin/MyBlog";
+
+import PrivateRouteLayout from "./components/PrivateRouteLayout";
 
 function App() {
   return (
@@ -18,6 +26,27 @@ function App() {
         <AuthContextProvider>
           <MainLayout>
             <Switch>
+              <Route path="/dashboard">
+                <PrivateRouteLayout>
+                  <Dashboard />
+                </PrivateRouteLayout>
+              </Route>
+              <Route path="/mybook">
+                <PrivateRouteLayout>
+                  <MyBook />
+                </PrivateRouteLayout>
+              </Route>
+              <Route path="/mynote">
+                <PrivateRouteLayout>
+                  <MyNote />
+                </PrivateRouteLayout>
+              </Route>
+              <Route path="/myblog">
+                <PrivateRouteLayout>
+                  <MyBlog />
+                </PrivateRouteLayout>
+              </Route>
+
               <Route path="/login">
                 <Login />
               </Route>
