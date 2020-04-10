@@ -15,101 +15,101 @@ import { AuthContext } from "../contexts/AuthContext";
 
 import "./index.css";
 
-const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   display: "flex"
-  // },
-  // drawer: {
-  //   [theme.breakpoints.up("sm")]: {
-  //     flexShrink: 0
-  //   }
-  // },
-  // appBar: {
-  //   [theme.breakpoints.up("sm")]: {
-  //     // width: `calc(100% - ${drawerWidth}px)`,
-  //     // marginLeft: drawerWidth
-  //     zIndex: 1201
-  //   }
-  // },
-  // menuButton: {
-  //   marginRight: theme.spacing(2),
-  //   [theme.breakpoints.up("sm")]: {
-  //     display: "none"
-  //   }
-  // },
-  // // necessary for content to be below app bar
-  // toolbar: theme.mixins.toolbar,
-  // drawerPaper: {
-  //   width: drawerWidth
-  // },
-  // content: {
-  //   flexGrow: 1,
-  //   padding: theme.spacing(3)
-  // },
-  // title: {
-  //   flexGrow: 1,
-  //   textAlign: "right",
-  //   // marginRight: drawerWidth
-  //   [theme.breakpoints.up("sm")]: {
-  //     textAlign: "center",
-  //     fontSize: "2rem"
-  //   }
-  // }
-  // bidSlider: {
-  //   background: "lightgray",
-  //   display: "display",
-  //   [theme.breakpoints.up("sm")]: {
-  //     display: "flex"
-  //   }
-  // },
-  // image: {
-  //   width: "100%",
-  //   [theme.breakpoints.up("sm")]: {
-  //     width: "50%"
-  //   }
-  // },
-  // imageSpan: {
-  //   flexGrow: "1",
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   direction: "rtl"
-  // }
-  // search_div: {
-  //   background: "lightgray",
-  //   textAlign: "center",
-  //   paddingTop: "2em",
-  //   paddingBottom: "2em",
-  //   direction: "rtl"
-  // },
-  // searchText: {
-  //   //display: "block"
-  //   width: "80%",
-  //   [theme.breakpoints.up("sm")]: {
-  //     width: "50%"
-  //   }
-  // },
-  // searchBtn: {
-  //   marginTop: "2rem"
-  // },
+// const useStyles = makeStyles((theme) => ({
+// root: {
+//   display: "flex"
+// },
+// drawer: {
+//   [theme.breakpoints.up("sm")]: {
+//     flexShrink: 0
+//   }
+// },
+// appBar: {
+//   [theme.breakpoints.up("sm")]: {
+//     // width: `calc(100% - ${drawerWidth}px)`,
+//     // marginLeft: drawerWidth
+//     zIndex: 1201
+//   }
+// },
+// menuButton: {
+//   marginRight: theme.spacing(2),
+//   [theme.breakpoints.up("sm")]: {
+//     display: "none"
+//   }
+// },
+// // necessary for content to be below app bar
+// toolbar: theme.mixins.toolbar,
+// drawerPaper: {
+//   width: drawerWidth
+// },
+// content: {
+//   flexGrow: 1,
+//   padding: theme.spacing(3)
+// },
+// title: {
+//   flexGrow: 1,
+//   textAlign: "right",
+//   // marginRight: drawerWidth
+//   [theme.breakpoints.up("sm")]: {
+//     textAlign: "center",
+//     fontSize: "2rem"
+//   }
+// }
+// bidSlider: {
+//   background: "lightgray",
+//   display: "display",
+//   [theme.breakpoints.up("sm")]: {
+//     display: "flex"
+//   }
+// },
+// image: {
+//   width: "100%",
+//   [theme.breakpoints.up("sm")]: {
+//     width: "50%"
+//   }
+// },
+// imageSpan: {
+//   flexGrow: "1",
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   direction: "rtl"
+// }
+// search_div: {
+//   background: "lightgray",
+//   textAlign: "center",
+//   paddingTop: "2em",
+//   paddingBottom: "2em",
+//   direction: "rtl"
+// },
+// searchText: {
+//   //display: "block"
+//   width: "80%",
+//   [theme.breakpoints.up("sm")]: {
+//     width: "50%"
+//   }
+// },
+// searchBtn: {
+//   marginTop: "2rem"
+// },
 
-  searchText: {
-    width: "98%",
-  },
-  grid_item: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  imgSlider: {
-    width: "100%",
-  },
-}));
+// searchText: {
+//   width: "98%",
+// },
+// grid_item: {
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+// },
+// imgSlider: {
+//   width: "100%",
+// },
+// }));
 
 // TODO: footer
 
 const Index = () => {
-  const classes = useStyles();
+  //const classes = useStyles();
   const rand_book = getRandom(books, 8);
   const pop_books = rand_book.splice(0, 4);
   const new_books = rand_book;
@@ -121,35 +121,35 @@ const Index = () => {
 
   return (
     <React.Fragment>
-      <div className={classes.mainBanner}>
+      <div className="main-banner">
         <img
           src={
             process.env.PUBLIC_URL + "/img/slider/slider1-skybook1-1368x599.jpg"
           }
-          className={classes.imgSlider}
+          className="img-slider"
           alt="img"
         />
       </div>
       <form className="search-grid persian-form">
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={3} className={classes.grid_item}>
+          <Grid item xs={12} sm={3} className="grid-item">
             <Typography variant="h5" component="h2">
               جستجوی کتاب
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={6} className={classes.grid_item}>
+          <Grid item xs={12} sm={6} className="grid-item">
             <TextField
-              className={classes.searchText}
+              className="search-text"
               id="standard-basic"
               variant="outlined"
               label="جستجوی عنوان کتاب، نویسنده یا موضوع"
             />
           </Grid>
-          <Grid item xs={12} sm={2} className={classes.grid_item}>
+          <Grid item xs={12} sm={2} className="grid-item">
             <Button
               variant="contained"
               color="primary"
-              className={classes.searchBtn}
+              className="search-btn"
               size="large"
               type="submit"
             >

@@ -21,3 +21,21 @@
   margin-bottom: 1rem !important;
   text-align: right;
 }
+
+.main-banner .img-slider {
+  width: 100%;
+}
+
+.search-grid .grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-grid .search-text {
+  width: 98%;
+}
+/* 
+.search-grid .search-btn {
+  margin-top: 2rem;
+} */
