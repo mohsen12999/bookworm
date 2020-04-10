@@ -46,3 +46,4 @@
 - [ ] user can track update message for bought book (new chapter or change in chapter) and favorite writer (new book).
 - [ ] ticket system for support user, track error, and new feature.
 - [ ] find and show new, sale, trend and top book.
+- [ ] free and none free chapter for books
