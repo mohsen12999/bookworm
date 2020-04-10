@@ -39,7 +39,7 @@
 - [ ] blog subject.
 - [ ] difference style for bought book in book list.
 
-## future feather
+## future feature
 
 - [ ] user can choose and see favorite book.
 - [ ] user can like and rate to the books.
