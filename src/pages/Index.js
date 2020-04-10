@@ -3,7 +3,6 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import BookThumbnail from "../components/BookThumbnail";
@@ -14,97 +13,6 @@ import { books, articles, authors, genres, getRandom } from "../services/data";
 import { AuthContext } from "../contexts/AuthContext";
 
 import "./index.css";
-
-// const useStyles = makeStyles((theme) => ({
-// root: {
-//   display: "flex"
-// },
-// drawer: {
-//   [theme.breakpoints.up("sm")]: {
-//     flexShrink: 0
-//   }
-// },
-// appBar: {
-//   [theme.breakpoints.up("sm")]: {
-//     // width: `calc(100% - ${drawerWidth}px)`,
-//     // marginLeft: drawerWidth
-//     zIndex: 1201
-//   }
-// },
-// menuButton: {
-//   marginRight: theme.spacing(2),
-//   [theme.breakpoints.up("sm")]: {
-//     display: "none"
-//   }
-// },
-// // necessary for content to be below app bar
-// toolbar: theme.mixins.toolbar,
-// drawerPaper: {
-//   width: drawerWidth
-// },
-// content: {
-//   flexGrow: 1,
-//   padding: theme.spacing(3)
-// },
-// title: {
-//   flexGrow: 1,
-//   textAlign: "right",
-//   // marginRight: drawerWidth
-//   [theme.breakpoints.up("sm")]: {
-//     textAlign: "center",
-//     fontSize: "2rem"
-//   }
-// }
-// bidSlider: {
-//   background: "lightgray",
-//   display: "display",
-//   [theme.breakpoints.up("sm")]: {
-//     display: "flex"
-//   }
-// },
-// image: {
-//   width: "100%",
-//   [theme.breakpoints.up("sm")]: {
-//     width: "50%"
-//   }
-// },
-// imageSpan: {
-//   flexGrow: "1",
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   direction: "rtl"
-// }
-// search_div: {
-//   background: "lightgray",
-//   textAlign: "center",
-//   paddingTop: "2em",
-//   paddingBottom: "2em",
-//   direction: "rtl"
-// },
-// searchText: {
-//   //display: "block"
-//   width: "80%",
-//   [theme.breakpoints.up("sm")]: {
-//     width: "50%"
-//   }
-// },
-// searchBtn: {
-//   marginTop: "2rem"
-// },
-
-// searchText: {
-//   width: "98%",
-// },
-// grid_item: {
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-// },
-// imgSlider: {
-//   width: "100%",
-// },
-// }));
 
 // TODO: footer
 
