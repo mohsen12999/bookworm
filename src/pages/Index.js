@@ -11,6 +11,7 @@ import AuthorThumbnail from "../components/AuthorThumbnail";
 import ArticleThumbnail from "../components/ArticleThumbnail";
 
 import { books, articles, authors, genres, getRandom } from "../services/data";
+import { AuthContext } from "../contexts/AuthContext";
 
 import "./index.css";
 
@@ -162,34 +163,52 @@ const Index = () => {
         پر بازدیدترین کتاب ها
       </Typography>
       <Grid container spacing={1}>
-        {pop_books.map((book) => (
-          <Grid key={book.id} item xs={6} sm={3}>
-            <BookThumbnail
-              id={book.id}
-              title={book.title}
-              img={book.img}
-              author={book.author}
-              price={book.price}
-            />
-          </Grid>
-        ))}
+        <AuthContext.Consumer>
+          {(context) =>
+            pop_books.map((book) => {
+              const owned =
+                context.isAuthenticated && context.boughtBook.includes(book.id);
+              return (
+                <Grid key={book.id} item xs={6} sm={3}>
+                  <BookThumbnail
+                    id={book.id}
+                    title={book.title}
+                    img={book.img}
+                    author={book.author}
+                    price={book.price}
+                    owned={owned}
+                  />
+                </Grid>
+              );
+            })
+          }
+        </AuthContext.Consumer>
       </Grid>
 
       <Typography variant="h5" component="h3" className="section-title">
         جدیدترین کتاب ها
       </Typography>
       <Grid container spacing={1}>
-        {new_books.map((book) => (
-          <Grid key={book.id} item xs={6} sm={3}>
-            <BookThumbnail
-              id={book.id}
-              title={book.title}
-              img={book.img}
-              author={book.author}
-              price={book.price}
-            />
-          </Grid>
-        ))}
+        <AuthContext.Consumer>
+          {(context) =>
+            new_books.map((book) => {
+              const owned =
+                context.isAuthenticated && context.boughtBook.includes(book.id);
+              return (
+                <Grid key={book.id} item xs={6} sm={3}>
+                  <BookThumbnail
+                    id={book.id}
+                    title={book.title}
+                    img={book.img}
+                    author={book.author}
+                    price={book.price}
+                    owned={owned}
+                  />
+                </Grid>
+              );
+            })
+          }
+        </AuthContext.Consumer>
       </Grid>
       <Typography variant="h5" component="h3" className="section-title">
         نویسندگان برتر
