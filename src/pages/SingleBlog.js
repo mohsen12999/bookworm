@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 
 import { useParams } from "react-router-dom";
 
-import { articles } from "../services/data";
+import { getArticle } from "../services/data";
 
 import "./SingleBlog.css";
 
@@ -12,7 +12,7 @@ import "./SingleBlog.css";
 
 const SingleBlog = () => {
   const { id } = useParams();
-  const article = articles.find((art) => art.id === Number(id));
+  const article = getArticle(id);
 
   return (
     <Paper className="single-blog-page">
