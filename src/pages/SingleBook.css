@@ -48,3 +48,7 @@
     width: 100%;
   }
 }
+
+.locked-chapter:hover {
+  cursor: no-drop;
+}
