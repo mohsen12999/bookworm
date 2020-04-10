@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/bookworm/static/css/main.43d5e726.chunk.css",
-    "main.js": "/bookworm/static/js/main.93d075a6.chunk.js",
-    "main.js.map": "/bookworm/static/js/main.93d075a6.chunk.js.map",
+    "main.css": "/bookworm/static/css/main.dcf02236.chunk.css",
+    "main.js": "/bookworm/static/js/main.fc1cb108.chunk.js",
+    "main.js.map": "/bookworm/static/js/main.fc1cb108.chunk.js.map",
     "runtime-main.js": "/bookworm/static/js/runtime-main.0b6cd3c3.js",
     "runtime-main.js.map": "/bookworm/static/js/runtime-main.0b6cd3c3.js.map",
-    "static/js/2.c456812e.chunk.js": "/bookworm/static/js/2.c456812e.chunk.js",
-    "static/js/2.c456812e.chunk.js.map": "/bookworm/static/js/2.c456812e.chunk.js.map",
+    "static/js/2.75074e6a.chunk.js": "/bookworm/static/js/2.75074e6a.chunk.js",
+    "static/js/2.75074e6a.chunk.js.map": "/bookworm/static/js/2.75074e6a.chunk.js.map",
     "index.html": "/bookworm/index.html",
-    "precache-manifest.2f0bd12c89ae49825e760572ed1c1406.js": "/bookworm/precache-manifest.2f0bd12c89ae49825e760572ed1c1406.js",
+    "precache-manifest.61be7dc2bf9968529064132482754dd0.js": "/bookworm/precache-manifest.61be7dc2bf9968529064132482754dd0.js",
     "service-worker.js": "/bookworm/service-worker.js",
-    "static/css/main.43d5e726.chunk.css.map": "/bookworm/static/css/main.43d5e726.chunk.css.map",
-    "static/js/2.c456812e.chunk.js.LICENSE.txt": "/bookworm/static/js/2.c456812e.chunk.js.LICENSE.txt"
+    "static/css/main.dcf02236.chunk.css.map": "/bookworm/static/css/main.dcf02236.chunk.css.map",
+    "static/js/2.75074e6a.chunk.js.LICENSE.txt": "/bookworm/static/js/2.75074e6a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0b6cd3c3.js",
-    "static/js/2.c456812e.chunk.js",
-    "static/css/main.43d5e726.chunk.css",
-    "static/js/main.93d075a6.chunk.js"
+    "static/js/2.75074e6a.chunk.js",
+    "static/css/main.dcf02236.chunk.css",
+    "static/js/main.fc1cb108.chunk.js"
   ]
 }
