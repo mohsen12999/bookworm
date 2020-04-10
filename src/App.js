@@ -8,6 +8,7 @@ import BookList from "./pages/BookList";
 import SingleBook from "./pages/SingleBook";
 import BlogList from "./pages/BlogList";
 import SingleBlog from "./pages/SingleBlog";
+import ReadBook from "./pages/ReadBook";
 
 import Login from "./pages/admin/Login";
 import Logout from "./pages/admin/Logout";
@@ -73,6 +74,9 @@ function App() {
 
               <Route path="/blog/:id">
                 <SingleBlog />
+              </Route>
+              <Route path="/read/:id">
+                <ReadBook />
               </Route>
               <Route path="/book/:id">
                 <SingleBook />
