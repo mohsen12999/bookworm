@@ -226,6 +226,11 @@ export const articles = [
   },
 ];
 
+export const getBook = (id) => books.find((book) => book.id === Number(id));
+
+export const getArticle = (id) =>
+  articles.find((article) => article.id === Number(id));
+
 export const authors = [
   {
     id: 1,
