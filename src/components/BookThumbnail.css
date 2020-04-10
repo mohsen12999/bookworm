@@ -6,6 +6,7 @@
   text-decoration: none;
   display: block;
   transition: all 500ms;
+  position: relative;
 }
 
 .book-thumb:hover {
@@ -27,4 +28,14 @@
 .author-thumb {
   text-align: center;
   background-color: white;
+}
+
+.fab-btn {
+  position: absolute !important;
+  top: 5px !important;
+  right: 3px !important;
+}
+
+.fab-btn .fab-extended-icon {
+  margin-left: 3px;
 }
