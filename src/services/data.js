@@ -226,11 +226,6 @@ export const articles = [
   },
 ];
 
-export const getBook = (id) => books.find((book) => book.id === Number(id));
-
-export const getArticle = (id) =>
-  articles.find((article) => article.id === Number(id));
-
 export const authors = [
   {
     id: 1,
@@ -244,6 +239,27 @@ export const authors = [
   { id: 5, title: "شاهین نجفی", img: "/img/user/profile-5t.jpg", count: 0 },
   { id: 6, title: "محسن نامجو", img: "/img/user/profile-6t.jpg", count: 0 },
 ];
+
+export const chapters = [
+  { id: 100, title: "فصل اول: مقدمه", free: true, book_id: 3, body: "" },
+  { id: 102, title: "فصل دوم: افتتاحیه", free: false, book_id: 3, body: "" },
+  { id: 103, title: "فصل سوم: اتفاق", free: false, book_id: 3, body: "" },
+  { id: 104, title: "فصل چهارم: مرگ", free: false, book_id: 3, body: "" },
+  { id: 105, title: "فصل پنجم: رستگاری", free: false, book_id: 3, body: "" },
+];
+
+export const subjects = [
+  { id: 1, title: "خبر" },
+  { id: 2, title: "نقد کتاب" },
+  { id: 3, title: "آموزش" },
+];
+
+export const getBook = (id) => books.find((book) => book.id === Number(id));
+
+export const getArticle = (id) =>
+  articles.find((article) => article.id === Number(id));
+
+export const getBookChapter = (id) => chapters;
 
 export const getRandom = (arr, count) => {
   let result = new Array(count);
