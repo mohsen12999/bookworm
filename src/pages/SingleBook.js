@@ -12,7 +12,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { getBook, getBookChapter } from "../services/data";
 import { AuthContext } from "../contexts/AuthContext";
@@ -101,11 +101,25 @@ const SingleBook = () => {
                           }
                           aria-label="خواندن"
                         >
-                          <TableCell component="th" scope="row" align="right">
-                            {chapter.title}
+                          <TableCell
+                            component="td"
+                            scope="row"
+                            align="right"
+                            className="chapter-title"
+                          >
+                            {chapter.free || owned ? (
+                              <Link
+                                to={"/read/" + chapter.id}
+                                className="chapter-link"
+                              >
+                                {chapter.title}
+                              </Link>
+                            ) : (
+                              chapter.title
+                            )}
                           </TableCell>
                         </Tooltip>
-                        <TableCell component="th" scope="row" align="left">
+                        <TableCell component="td" scope="row" align="left">
                           {chapter.free || owned ? (
                             <LockOpenIcon />
                           ) : (
