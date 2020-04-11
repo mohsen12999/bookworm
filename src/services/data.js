@@ -268,12 +268,19 @@ export const getSingleChapter = (book_id, chapter_id) => {
     return { chapter: undefined };
   }
   const chapterIndex = chapters.indexOf(chapter);
-  const prev = chapterIndex === 0 ? undefined : chapters[chapterIndex - 1].id;
-  const next =
+  const prev_id =
+    chapterIndex === 0 ? undefined : chapters[chapterIndex - 1].id;
+  const prev_title =
+    chapterIndex === 0 ? undefined : chapters[chapterIndex - 1].title;
+  const next_id =
     chapterIndex === chapters.length - 1
       ? undefined
       : chapters[chapterIndex + 1].id;
-  return { chapter, prev, next };
+  const next_title =
+    chapterIndex === chapters.length - 1
+      ? undefined
+      : chapters[chapterIndex + 1].title;
+  return { chapter, prev_id, prev_title, next_id, next_title };
 };
 
 export const getRandom = (arr, count) => {
