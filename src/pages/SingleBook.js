@@ -14,28 +14,24 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 import { useParams, Link } from "react-router-dom";
 
-import { getBook, getBookChapter } from "../services/data";
+import { getBook, getBookChapters } from "../services/data";
 import { AuthContext } from "../contexts/AuthContext";
 
 import "./SingleBook.css";
 
-// TODO: Book Name
-// TODO: Book Author
-// TODO: Book Abstract
-// TODO: Can Read(Auth & Buy)
-// TODO: Link to chapter
+// TODO: not find book
+// TODO: Book Name, Author, Abstract, chapter list
 
 const SingleBook = () => {
-  let { id } = useParams();
-  const book = getBook(id);
-  const chapters = getBookChapter(id);
+  let { book_id } = useParams();
+  const book = getBook(book_id);
+  const chapters = getBookChapters(book_id);
 
   return (
     <AuthContext.Consumer>
       {(context) => {
         const owned =
           context.isAuthenticated && context.boughtBook.includes(book.id);
-        console.log(owned);
         return (
           <React.Fragment>
             <div className="big-book-banner">
@@ -109,7 +105,7 @@ const SingleBook = () => {
                           >
                             {chapter.free || owned ? (
                               <Link
-                                to={"/read/" + chapter.id}
+                                to={"/read/" + book_id + "/" + chapter.id}
                                 className="chapter-link"
                               >
                                 {chapter.title}
