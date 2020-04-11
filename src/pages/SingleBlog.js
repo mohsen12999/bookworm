@@ -8,11 +8,11 @@ import { getArticle } from "../services/data";
 
 import "./SingleBlog.css";
 
-// TODO: difference for own book and other book - load chapter for own book and show chapter
+// TODO: not find blog
 
 const SingleBlog = () => {
-  const { id } = useParams();
-  const article = getArticle(id);
+  const { blog_id } = useParams();
+  const article = getArticle(blog_id);
 
   return (
     <Paper className="single-blog-page">
