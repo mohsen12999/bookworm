@@ -32,12 +32,14 @@
 
 ## Todo list
 
-- [ ] change menu depend on login status.
-- [ ] difference layout depend on screen, mobile and monitor.
+- [x] change menu depend on login status.
+- [x] difference layout depend on screen, mobile and monitor.
 - [ ] install button if not installed and can installed
 - [ ] footer for index page.
 - [ ] blog subject.
-- [ ] difference style for bought book in book list.
+- [x] difference style for bought book in book list.
+- [ ] nested list in menu for last reading book.
+- [ ] prevent access directly to not bought book's chapter
 
 ## future feature
 
