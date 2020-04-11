@@ -241,7 +241,7 @@ export const authors = [
 ];
 
 export const chapters = [
-  { id: 100, title: "فصل اول: مقدمه", free: true, book_id: 3, body: "" },
+  { id: 101, title: "فصل اول: مقدمه", free: true, book_id: 3, body: "" },
   { id: 102, title: "فصل دوم: افتتاحیه", free: false, book_id: 3, body: "" },
   { id: 103, title: "فصل سوم: اتفاق", free: false, book_id: 3, body: "" },
   { id: 104, title: "فصل چهارم: مرگ", free: false, book_id: 3, body: "" },
@@ -259,7 +259,22 @@ export const getBook = (id) => books.find((book) => book.id === Number(id));
 export const getArticle = (id) =>
   articles.find((article) => article.id === Number(id));
 
-export const getBookChapter = (id) => chapters;
+export const getBookChapters = (id) => chapters;
+
+export const getSingleChapter = (book_id, chapter_id) => {
+  // get all chapter base on book id
+  const chapter = chapters.find((chap) => chap.id === Number(chapter_id));
+  if (!chapter) {
+    return { chapter: undefined };
+  }
+  const chapterIndex = chapters.indexOf(chapter);
+  const prev = chapterIndex === 0 ? undefined : chapters[chapterIndex - 1].id;
+  const next =
+    chapterIndex === chapters.length - 1
+      ? undefined
+      : chapters[chapterIndex + 1].id;
+  return { chapter, prev, next };
+};
 
 export const getRandom = (arr, count) => {
   let result = new Array(count);
