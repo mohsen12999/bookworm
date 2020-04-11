@@ -13,37 +13,37 @@ import DrawerMenu from "./DrawerMenu";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
-      flexShrink: 0
-    }
+      flexShrink: 0,
+    },
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
       // width: `calc(100% - ${drawerWidth}px)`,
       // marginLeft: drawerWidth
-      zIndex: 1201
-    }
+      zIndex: 1201,
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
-      display: "none"
-    }
+      display: "none",
+    },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   title: {
     flexGrow: 1,
@@ -51,12 +51,12 @@ const useStyles = makeStyles(theme => ({
     // marginRight: drawerWidth
     [theme.breakpoints.up("sm")]: {
       textAlign: "center",
-      fontSize: "2rem"
-    }
-  }
+      fontSize: "2rem",
+    },
+  },
 }));
 
-const MainLayout = props => {
+const MainLayout = (props) => {
   const { container } = props;
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -101,10 +101,10 @@ const MainLayout = props => {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true // Better open performance on mobile.
+              keepMounted: true, // Better open performance on mobile.
             }}
           >
             <DrawerMenu />
@@ -113,7 +113,7 @@ const MainLayout = props => {
         <Hidden xsDown implementation="css">
           <Drawer
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaper,
             }}
             anchor="right"
             variant="permanent"
