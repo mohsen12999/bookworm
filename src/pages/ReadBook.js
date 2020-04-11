@@ -10,7 +10,6 @@ import { getSingleChapter } from "../services/data";
 
 import "./ReadBook.css";
 
-// TODO: prev and next chapter
 // TODO: back to book page
 
 const ReadBook = (props) => {
@@ -22,6 +21,14 @@ const ReadBook = (props) => {
     next_id,
     next_title,
   } = getSingleChapter(book_id, chapter_id);
+
+  React.useEffect(() => {
+    const anchor = document.querySelector("#chapter-title");
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [book_id, chapter_id]);
 
   return (
     <div className="chapter-page">
