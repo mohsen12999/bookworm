@@ -72,13 +72,13 @@ function App() {
                 <Logout />
               </Route>
 
-              <Route path="/blog/:id">
+              <Route path="/blog/:blog_id">
                 <SingleBlog />
               </Route>
-              <Route path="/read/:id">
+              <Route path="/read/:book_id/:chapter_id">
                 <ReadBook />
               </Route>
-              <Route path="/book/:id">
+              <Route path="/book/:book_id">
                 <SingleBook />
               </Route>
 
