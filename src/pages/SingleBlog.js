@@ -5,12 +5,13 @@ import Typography from "@material-ui/core/Typography";
 import { useParams } from "react-router-dom";
 
 import { getArticle } from "../services/data";
+import ScrollTop from "../components/ScrollTop";
 
 import "./SingleBlog.css";
 
 // TODO: not find blog
 
-const SingleBlog = () => {
+const SingleBlog = (props) => {
   const { blog_id } = useParams();
   const article = getArticle(blog_id);
 
@@ -18,6 +19,7 @@ const SingleBlog = () => {
     <Paper className="single-blog-page">
       <div className="article-intro">
         <img
+          id="article-img"
           className="article-img"
           src={process.env.PUBLIC_URL + article.img}
           alt={article.title}
@@ -63,6 +65,8 @@ const SingleBlog = () => {
       <Typography component="p" className="article-post-time">
         تاریخ انتشار: {new Date(article.date).toLocaleString("fa-IR")}
       </Typography>
+
+      <ScrollTop {...props} target_id="article-img" />
     </Paper>
   );
 };
