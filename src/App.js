@@ -9,6 +9,7 @@ import SingleBook from "./pages/SingleBook";
 import BlogList from "./pages/BlogList";
 import SingleBlog from "./pages/SingleBlog";
 import ReadBook from "./pages/ReadBook";
+import About from "./pages/About";
 
 import Login from "./pages/admin/Login";
 import Logout from "./pages/admin/Logout";
@@ -83,7 +84,7 @@ function App() {
               </Route>
 
               <Route path="/about">
-                <Index />
+                <About />
               </Route>
               <Route path="/blogs">
                 <BlogList />
