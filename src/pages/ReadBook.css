@@ -20,3 +20,7 @@
   text-align: justify;
   text-indent: 3%;
 }
+
+.chapter-page .chapter-change.disabled {
+  cursor: no-drop;
+}
