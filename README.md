@@ -40,6 +40,7 @@
 - [x] difference style for bought book in book list.
 - [ ] nested list in menu for last reading book.
 - [ ] prevent access directly to not bought book's chapter
+- [ ] profile page can upload user photo -> serialize in db
 
 ## future feature
 
