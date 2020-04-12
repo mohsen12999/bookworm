@@ -15,6 +15,7 @@ import Login from "./pages/admin/Login";
 import Logout from "./pages/admin/Logout";
 
 import Dashboard from "./pages/admin/Dashboard";
+import Profile from "./pages/admin/Profile";
 import MyBook from "./pages/admin/MyBook";
 import MyNote from "./pages/admin/MyNote";
 import MyBlog from "./pages/admin/MyBlog";
@@ -43,6 +44,11 @@ function App() {
               <Route path="/dashboard">
                 <PrivateRouteLayout>
                   <Dashboard />
+                </PrivateRouteLayout>
+              </Route>
+              <Route path="/profile">
+                <PrivateRouteLayout>
+                  <Profile />
                 </PrivateRouteLayout>
               </Route>
               <Route path="/mybook">
