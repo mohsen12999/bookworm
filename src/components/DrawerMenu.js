@@ -3,7 +3,6 @@ import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { makeStyles } from "@material-ui/core/styles";
 
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
@@ -18,22 +17,8 @@ import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 
 import ListItemLink from "./ListItemLink";
+import ReadingBookMenu from "./ReadingBookMenu";
 import { AuthContext } from "../contexts/AuthContext";
-
-const useStyles = makeStyles((theme) => ({
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  menuItem: {
-    direction: "rtl",
-  },
-  menuItemText: {
-    textAlign: "right",
-  },
-  menuTitle: {
-    textAlign: "center",
-    fontSize: "1.25rem",
-  },
-}));
 
 const main_menu = [
   {
@@ -111,18 +96,16 @@ const admin_menu = [
   },
 ];
 
-// TODO: add avatar to menu when login
+// TODO: last book
 
 const DrawerMenu = () => {
-  const classes = useStyles();
-
   return (
     <AuthContext.Consumer>
       {(context) => (
         <div>
           <List>
             <ListItem>
-              <ListItemText primary="منو" className={classes.menuTitle} />
+              <ListItemText primary="منو" className="menu-title" />
             </ListItem>
           </List>
           <Divider />
@@ -151,7 +134,10 @@ const DrawerMenu = () => {
               />
             ))}
           </List>
+
+          <ReadingBookMenu />
           <Divider />
+
           {context.isAuthenticated ? (
             <ListItemLink
               icon={<InboxIcon />}

@@ -11,6 +11,8 @@ class AuthContextProvider extends React.Component {
     writtenBooks: [],
     article: [],
     wallet: 5000,
+    lastBookId: 7,
+    lastChapterId: 103,
   };
 
   Login = () => {

@@ -5,28 +5,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles(theme => ({
-  link: {
-    direction: "rtl"
-  },
-  linkText: {
-    textAlign: "right"
-  },
-  disableLink: {
-    direction: "rtl",
-    color: "gray"
-  },
-  activeLink: {
-    direction: "rtl",
-    background: "aliceblue"
-  }
-}));
+import "./ListItemLink.css";
 
 function ListItemLink(props) {
   const { icon, primary, to, enable, exactMatch } = props;
-  const classes = useStyles();
 
   const renderLink = React.useMemo(
     () =>
@@ -47,18 +29,12 @@ function ListItemLink(props) {
         <ListItem
           button
           component={renderLink}
-          className={
-            match
-              ? classes.activeLink
-              : enable
-              ? classes.link
-              : classes.disableLink
-          }
+          className={match ? "active-link" : enable ? "link" : "disable-link"}
         >
           <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText
             primary={primary}
-            className={classes.linkText}
+            className="link-text"
             //style={{ textAlign: "right" }}
           />
         </ListItem>
