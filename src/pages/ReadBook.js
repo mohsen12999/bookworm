@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Redirect } from "react-router-dom";
 
 import ScrollTop from "../components/ScrollTop";
 import { getSingleChapter } from "../services/data";
@@ -14,14 +14,15 @@ import "./ReadBook.css";
 
 // TODO: not found chapter
 // TODO: back to book page
-// TODO: own this chapter
-// TODO: can go to pre or next chapter
 
 const ReadBook = (props) => {
   const { book_id, chapter_id } = useParams();
+  const bookId = Number(book_id);
+  const chapterId = Number(chapter_id);
+
   const { chapter, prev_chapter, next_chapter } = getSingleChapter(
-    book_id,
-    chapter_id
+    bookId,
+    chapterId
   );
 
   React.useEffect(() => {
@@ -30,14 +31,25 @@ const ReadBook = (props) => {
     if (anchor) {
       anchor.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, [book_id, chapter_id]);
+  }, [bookId, chapterId]);
 
   return (
     <AuthContext.Consumer>
       {(context) => {
         const owned =
-          context.isAuthenticated && context.boughtBook.includes(book_id);
-        // TODO: if (!owned && !chapter.free) -> redirect
+          context.isAuthenticated && context.boughtBooks.includes(bookId);
+
+        if (!(owned || chapter.free)) {
+          return <Redirect to={"/book/" + bookId} />;
+        }
+
+        if (
+          context.lastBookId !== bookId ||
+          context.lastChapterId !== chapterId
+        ) {
+          context.SetLastBookReading(bookId, chapterId);
+        }
+
         return (
           <div className="chapter-page">
             {prev_chapter &&
@@ -51,7 +63,7 @@ const ReadBook = (props) => {
                     color="primary"
                     className="chapter-change"
                     component={Link}
-                    to={"/read/" + book_id + "/" + prev_chapter.id}
+                    to={"/read/" + bookId + "/" + prev_chapter.id}
                   >
                     فصل قبل - {prev_chapter.title}
                   </Button>
@@ -133,7 +145,7 @@ const ReadBook = (props) => {
                     color="primary"
                     className="chapter-change"
                     component={Link}
-                    to={"/read/" + book_id + "/" + next_chapter.id}
+                    to={"/read/" + bookId + "/" + next_chapter.id}
                   >
                     فصل بعد - {next_chapter.title}
                   </Button>

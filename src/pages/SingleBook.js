@@ -31,7 +31,7 @@ const SingleBook = () => {
     <AuthContext.Consumer>
       {(context) => {
         const owned =
-          context.isAuthenticated && context.boughtBook.includes(book.id);
+          context.isAuthenticated && context.boughtBooks.includes(book.id);
         return (
           <React.Fragment>
             <div className="big-book-banner">

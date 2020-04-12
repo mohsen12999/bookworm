@@ -13,7 +13,7 @@ const MyBook = () => (
   <AuthContext.Consumer>
     {(context) => {
       const myBook = books.filter((book) =>
-        context.boughtBook.includes(book.id)
+        context.boughtBooks.includes(book.id)
       );
       return (
         <div>

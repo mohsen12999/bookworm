@@ -7,7 +7,7 @@ class AuthContextProvider extends React.Component {
     isAuthenticated: false,
     token: "",
     username: "mohsen",
-    boughtBook: [1, 7, 18],
+    boughtBooks: [1, 7, 18],
     writtenBooks: [],
     article: [],
     wallet: 5000,
@@ -16,22 +16,41 @@ class AuthContextProvider extends React.Component {
   };
 
   Login = () => {
-    this.setState({
-      ...this.state,
-      isAuthenticated: true,
-    });
+    // Login after 500ms
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        isAuthenticated: true,
+      });
+    }, 500);
   };
   Logout = () => {
+    // Logout after 500ms
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        isAuthenticated: false,
+      });
+    }, 500);
+  };
+
+  SetLastBookReading = (book_id, chapter_id) => {
     this.setState({
       ...this.state,
-      isAuthenticated: false,
+      lastBookId: Number(book_id),
+      lastChapterId: Number(chapter_id),
     });
   };
 
   render() {
     return (
       <AuthContext.Provider
-        value={{ ...this.state, Login: this.Login, Logout: this.Logout }}
+        value={{
+          ...this.state,
+          Login: this.Login,
+          Logout: this.Logout,
+          SetLastBookReading: this.SetLastBookReading,
+        }}
       >
         {this.props.children}
       </AuthContext.Provider>

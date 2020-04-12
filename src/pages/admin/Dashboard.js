@@ -32,9 +32,9 @@ const Dashboard = () => (
                   کتاب های خریده شدۀ شما:
                 </Typography>
                 <Typography variant="h5" component="h2">
-                  {context.boughtBook.length === 0
+                  {context.boughtBooks.length === 0
                     ? "شما کتابی ندارید."
-                    : "شما " + context.boughtBook.length + " کتاب دارید."}
+                    : "شما " + context.boughtBooks.length + " کتاب دارید."}
                 </Typography>
               </CardContent>
               <CardActions>

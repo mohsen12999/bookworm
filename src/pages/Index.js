@@ -75,7 +75,8 @@ const Index = () => {
           {(context) =>
             pop_books.map((book) => {
               const owned =
-                context.isAuthenticated && context.boughtBook.includes(book.id);
+                context.isAuthenticated &&
+                context.boughtBooks.includes(book.id);
               return (
                 <Grid key={book.id} item xs={6} sm={3}>
                   <BookThumbnail
@@ -101,7 +102,8 @@ const Index = () => {
           {(context) =>
             new_books.map((book) => {
               const owned =
-                context.isAuthenticated && context.boughtBook.includes(book.id);
+                context.isAuthenticated &&
+                context.boughtBooks.includes(book.id);
               return (
                 <Grid key={book.id} item xs={6} sm={3}>
                   <BookThumbnail
