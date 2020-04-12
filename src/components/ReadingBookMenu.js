@@ -30,7 +30,7 @@ const SubMenuListItemLink = (props) => {
       React.forwardRef((linkProps, ref) => (
         <Link ref={ref} to={dest} {...linkProps} />
       )),
-    [book_id, chapter_id]
+    [dest]
   );
   return (
     <Tooltip title={"خواندن " + title} aria-label={"خواندن " + title}>
