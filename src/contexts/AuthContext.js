@@ -7,12 +7,14 @@ class AuthContextProvider extends React.Component {
     isAuthenticated: false,
     token: "",
     username: "mohsen",
+    mobile: "09113923310",
     boughtBooks: [1, 7, 18],
     writtenBooks: [],
     article: [],
     wallet: 5000,
     lastBookId: 7,
     lastChapterId: 103,
+    avatar: "/img/user/default-profile.jpg",
   };
 
   Login = () => {
