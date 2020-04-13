@@ -37,7 +37,7 @@
 - [x] difference style for bought book in book list.
 - [x] nested list in menu for last reading book.
 - [x] prevent access directly to not bought book's chapter
-- [ ] profile page can upload user photo -> serialize in db
+- [x] profile page can upload user photo -> serialize in db
 
 ## Remain page
 
@@ -60,3 +60,8 @@
 - [ ] find and show new, sale, trend and top book.
 - [ ] free and none free chapter for books
 - [ ] add avatar to menu when login
+
+## backend
+
+- [react laravel application](https://blog.pusher.com/react-laravel-application/)
+- [Setting up Laravel and React.js the right way (Using user authentication)](https://medium.com/@000kelvin/setting-up-laravel-and-react-js-the-right-way-using-user-authentication-1cfadf3194e)
