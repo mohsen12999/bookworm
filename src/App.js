@@ -21,6 +21,10 @@ import MyNote from "./pages/admin/MyNote";
 import MyBlog from "./pages/admin/MyBlog";
 import Wallet from "./pages/admin/Wallet";
 
+import EditNote from "./pages/admin/EditNote";
+import EditBlog from "./pages/admin/EditBlog";
+import EditChapter from "./pages/admin/EditChapter";
+
 import PrivateRouteLayout from "./components/PrivateRouteLayout";
 
 function App() {
@@ -30,14 +34,19 @@ function App() {
         <AuthContextProvider>
           <MainLayout>
             <Switch>
-              <Route path="/newblog">
+              <Route path="/blog/:blog_id?">
                 <PrivateRouteLayout>
-                  <MyBlog />
+                  <EditBlog />
                 </PrivateRouteLayout>
               </Route>
-              <Route path="/newnote">
+              <Route path="/note/:note_id?">
                 <PrivateRouteLayout>
-                  <MyNote />
+                  <EditNote />
+                </PrivateRouteLayout>
+              </Route>
+              <Route path="/chapter/:note_id/:chapter_id?">
+                <PrivateRouteLayout>
+                  <EditChapter />
                 </PrivateRouteLayout>
               </Route>
 
