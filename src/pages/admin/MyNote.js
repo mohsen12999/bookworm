@@ -61,7 +61,7 @@ const MyNote = () => {
             </Grid>
           </Grid>
 
-          {context.writtenBooks.length === 0 ? (
+          {/* {context.writtenBooks.length === 0 ? (
             <Typography variant="h6" component="h4" className="empty-msg">
               شما هنوز نوشته ای ندارید!
             </Typography>
@@ -149,7 +149,167 @@ const MyNote = () => {
                 </Table>
               </TableContainer>
             ))
-          )}
+          )} */}
+
+          <TableContainer component={Paper} className="note-table">
+            <Table aria-label="simple table">
+              <TableBody>
+                <TableRow hover>
+                  <TableCell component="td" scope="row" align="right">
+                    1
+                  </TableCell>
+                  <TableCell component="td" scope="row" align="right">
+                    نوشته اول
+                  </TableCell>
+                  <TableCell component="td" scope="row" align="center">
+                    1398/01/26 12:19
+                  </TableCell>
+                  <TableCell component="td" scope="row" align="center">
+                    ارسال برای انتشار
+                  </TableCell>
+                  <TableCell component="td" scope="row" align="left">
+                    <Tooltip title="تغییر نوشته">
+                      <IconButton
+                        color="primary"
+                        aria-label="edit note"
+                        component={Link}
+                        to={"/note/" + 1}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="حذف نوشته">
+                      <IconButton
+                        color="primary"
+                        aria-label="delete note"
+                        onClick={handlePopperClick}
+                      >
+                        <DeleteOutlineIcon />
+                      </IconButton>
+                    </Tooltip>
+
+                    <Popper id={idPopper} open={openPopper} anchorEl={anchorEl}>
+                      <Card className="popper-card">
+                        <CardActionArea>
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="h2"
+                            >
+                              حذف
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              color="textSecondary"
+                              component="p"
+                            >
+                              آیا از حذف نوشته اطمینان دارید؟
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                          <Button
+                            size="small"
+                            color="primary"
+                            onClick={(e) => {
+                              console.log("delete");
+                            }}
+                          >
+                            اطمینان از حذف
+                          </Button>
+                          <Button
+                            size="small"
+                            color="primary"
+                            onClick={handlePopperClick}
+                          >
+                            رد کردن
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Popper>
+                  </TableCell>
+                </TableRow>
+
+                <TableRow hover>
+                  <TableCell component="td" scope="row" align="right">
+                    2
+                  </TableCell>
+                  <TableCell component="td" scope="row" align="right">
+                    نوشته دوم
+                  </TableCell>
+                  <TableCell component="td" scope="row" align="center">
+                    1398/01/29 18:33
+                  </TableCell>
+                  <TableCell component="td" scope="row" align="center">
+                    ذخیره شده
+                  </TableCell>
+                  <TableCell component="td" scope="row" align="left">
+                    <Tooltip title="تغییر نوشته">
+                      <IconButton
+                        color="primary"
+                        aria-label="edit note"
+                        component={Link}
+                        to={"/note/" + 1}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="حذف نوشته">
+                      <IconButton
+                        color="primary"
+                        aria-label="delete note"
+                        onClick={handlePopperClick}
+                      >
+                        <DeleteOutlineIcon />
+                      </IconButton>
+                    </Tooltip>
+
+                    <Popper id={idPopper} open={openPopper} anchorEl={anchorEl}>
+                      <Card className="popper-card">
+                        <CardActionArea>
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="h2"
+                            >
+                              حذف
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              color="textSecondary"
+                              component="p"
+                            >
+                              آیا از حذف نوشته اطمینان دارید؟
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                          <Button
+                            size="small"
+                            color="primary"
+                            onClick={(e) => {
+                              console.log("delete");
+                            }}
+                          >
+                            اطمینان از حذف
+                          </Button>
+                          <Button
+                            size="small"
+                            color="primary"
+                            onClick={handlePopperClick}
+                          >
+                            رد کردن
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Popper>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       )}
     </AuthContext.Consumer>
