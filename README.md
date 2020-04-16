@@ -43,9 +43,10 @@
 
 - [ ] MyBlog
 - [ ] MyBook
-- [ ] NewBlog
-- [ ] NewBook
-- [ ] Profile
+- [ ] EditBlog
+- [ ] EditBook
+- [ ] EditChapter
+- [x] Profile
 - [ ] About
 
 ## future feature
