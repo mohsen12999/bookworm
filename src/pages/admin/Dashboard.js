@@ -92,7 +92,7 @@ const Dashboard = () => (
                   color="primary"
                   startIcon={<NoteAddIcon className="button-icon" />}
                   component={Link}
-                  to={"/newnote"}
+                  to={"/note"}
                 >
                   نوشته جدید
                 </Button>
