@@ -41,12 +41,13 @@
 
 ## Remain page
 
-- [ ] MyBlog
-- [ ] MyBook
+- [x] Profile
+- [x] MyBlog
+- [x] MyNote
 - [ ] EditBlog
 - [ ] EditBook
 - [ ] EditChapter
-- [x] Profile
+- [ ] Wallet
 - [ ] About
 
 ## future feature
