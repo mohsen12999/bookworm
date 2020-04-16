@@ -44,10 +44,10 @@
 - [x] Profile
 - [x] MyBlog
 - [x] MyNote
+- [x] Wallet
 - [ ] EditBlog
 - [ ] EditBook
 - [ ] EditChapter
-- [ ] Wallet
 - [ ] About
 
 ## future feature
