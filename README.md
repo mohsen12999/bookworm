@@ -11,9 +11,9 @@
 
 -   [ ] `php artisan make:model book --migration --resource --controller`
 
--   [ ] `composer require laravel/passport`
--   [ ] `php artisan migrate`
--   [ ] `php artisan passport:install`
+-   [x] `composer require laravel/passport`
+-   [x] `php artisan migrate`
+-   [x] `php artisan passport:install`
 
 ## Link
 
