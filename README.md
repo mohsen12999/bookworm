@@ -1,5 +1,13 @@
 # Worm book backend
 
+## command
+
+-   `laravel new .`
+-   `composer require laravel/ui`
+-   `php artisan ui react`
+-   `php artisan ui react --auth`
+-   `php artisan make:model book --migration --resource --controller`
+
 -   [] passport
 
 ## Link
