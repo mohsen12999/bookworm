@@ -2,13 +2,18 @@
 
 ## command
 
--   `laravel new .`
--   `composer require laravel/ui`
--   `php artisan ui react`
--   `php artisan ui react --auth`
--   `php artisan make:model book --migration --resource --controller`
+-   [x] `laravel new .`
 
--   [] passport
+-   [x] `composer require laravel/ui`
+-   [x] `php artisan ui react`
+-   [ ] `php artisan ui react --auth`
+-   [x] `npm install && npm run dev`
+
+-   [ ] `php artisan make:model book --migration --resource --controller`
+
+-   [ ] `composer require laravel/passport`
+-   [ ] `php artisan migrate`
+-   [ ] `php artisan passport:install`
 
 ## Link
 
@@ -22,3 +27,6 @@
 -   https://create-react-app.dev/docs/proxying-api-requests-in-development/
 -   https://github.com/mjsarfatti/create-react-app-laravel/
 -   https://blog.pusher.com/react-laravel-application/
+
+-   https://crosstechit.com/blog/2019/01/15/react-js-authentication-with-laravel-back-end/
+-   https://webomnizz.com/rest-api-and-passport-authentication-with-laravel/
