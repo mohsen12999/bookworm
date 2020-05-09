@@ -1,69 +1,79 @@
-# Book Worm
+<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-- Book Worm is a app for writing and reading Books. idea from "Amir Salar Soleymani".
-- [link to see](https://mohsen12999.github.io/bookworm)
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-## Technology
+## About Laravel
 
-- Single Page Application with [ReactJS](https://reactjs.org/) Framework.
-- [Create React App](https://create-react-app.dev/)
-- [Material UI](https://material-ui.com/)
-- [Vazir font](https://github.com/rastikerdar/vazir-font)
-- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
-- Responsive design with mobile lead
-- inspire from [printpress theme](https://printpress.cmsmasters.net/) , [printpress theme](https://printpress.cmsmasters.net/default/)
-- deploy app as github page with [gh-page](https://www.npmjs.com/package/gh-pages) with help of [Deploying a React App\* to GitHub Pages](https://github.com/gitname/react-gh-pages)
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## Pages
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-- Main page
-  - Index Page
-  - About us
-  - Book list
-  - Book info
-- Admin
-  - Login
-  - Profile -> info
-  - Book -> buying list
-  - Note -> writing list
-  - Factor
-  - Read book -> chapters
-  - Read Chapter
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Todo list
+## Learning Laravel
 
-- [x] change menu depend on login status.
-- [x] difference layout depend on screen, mobile and monitor.
-- [x] difference style for bought book in book list.
-- [x] nested list in menu for last reading book.
-- [x] prevent access directly to not bought book's chapter
-- [x] profile page can upload user photo -> serialize in db
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-## Remain page
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-- [x] Profile
-- [x] MyBlog
-- [x] MyNote
-- [x] Wallet
-- [ ] EditBlog
-- [ ] EditBook
-- [ ] EditChapter
-- [ ] About
+## Laravel Sponsors
 
-## future feature
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- [ ] footer for index page.
-- [ ] install button if not installed and can installed
-- [ ] blog subject.
-- [ ] user can choose and see favorite book.
-- [ ] user can like and rate to the books.
-- [ ] user can track update message for bought book (new chapter or change in chapter) and favorite writer (new book).
-- [ ] ticket system for support user, track error, and new feature.
-- [ ] find and show new, sale, trend and top book.
-- [ ] free and none free chapter for books
-- [ ] add avatar to menu when login
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- [UserInsights](https://userinsights.com)
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
+- [CodeBrisk](https://codebrisk.com)
+- [1Forge](https://1forge.com)
+- [TECPRESSO](https://tecpresso.co.jp/)
+- [Runtime Converter](http://runtimeconverter.com/)
+- [WebL'Agence](https://weblagence.com/)
+- [Invoice Ninja](https://www.invoiceninja.com)
+- [iMi digital](https://www.imi-digital.de/)
+- [Earthlink](https://www.earthlink.ro/)
+- [Steadfast Collective](https://steadfastcollective.com/)
+- [We Are The Robots Inc.](https://watr.mx/)
+- [Understand.io](https://www.understand.io/)
+- [Abdel Elrafa](https://abdelelrafa.com)
+- [Hyper Host](https://hyper.host)
+- [Appoly](https://www.appoly.co.uk)
+- [OP.GG](https://op.gg)
+- [云软科技](http://www.yunruan.ltd/)
 
-## backend
+## Contributing
 
-- [react laravel application](https://blog.pusher.com/react-laravel-application/)
-- [Setting up Laravel and React.js the right way (Using user authentication)](https://medium.com/@000kelvin/setting-up-laravel-and-react-js-the-right-way-using-user-authentication-1cfadf3194e)
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
