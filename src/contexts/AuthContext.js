@@ -4,9 +4,9 @@ export const AuthContext = createContext();
 
 class AuthContextProvider extends React.Component {
   state = {
-    isAuthenticated: false,
+    isAuthenticated: true,
     token: "",
-    username: "mohsen",
+    username: "محسن",
     mobile: "09113923310",
     boughtBooks: [1, 7, 18],
     writtenBooks: [],
