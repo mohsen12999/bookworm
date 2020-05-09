@@ -30,3 +30,4 @@
 
 -   https://crosstechit.com/blog/2019/01/15/react-js-authentication-with-laravel-back-end/
 -   https://webomnizz.com/rest-api-and-passport-authentication-with-laravel/
+-   https://laravel.com/docs/7.x/passport#upgrading
