@@ -1,5 +1,8 @@
 # Worm book backend
 
+-   for first time: `npm install && npm run dev && php artisan serve`
+-   `npm run dev && php artisan serve`
+
 ## command
 
 -   [x] `laravel new .`
@@ -38,3 +41,5 @@
 ## TODO
 
 -   [] user role
+-   [] free host
+-   [] free domain
