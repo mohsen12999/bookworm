@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChaptersTable extends Migration
+class CreateSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,13 @@ class CreateChaptersTable extends Migration
      */
     public function up()
     {
-        Schema::create('chapters', function (Blueprint $table) {
+        Schema::create('subjects', function (Blueprint $table) {
             $table->id();
 
             $table->string('title');
-            $table->text('description');
+            $table->tinyInteger('publish_status');
 
             $table->timestamps();
-
-            $table->softDeletes('deleted_at', 0);
-
-            $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books');
-
-            $table->tinyInteger('publish_status');
         });
     }
 
@@ -37,6 +30,6 @@ class CreateChaptersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chapters');
+        Schema::dropIfExists('subjects');
     }
 }
