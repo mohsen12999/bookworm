@@ -18,6 +18,8 @@ class CreatePostsTable extends Migration
             
             $table->string('title');
             $table->string('abstract')->nullable();
+            $table->string('foreign_author');
+            $table->string('img');
             $table->text('description');
 
             $table->timestamps();

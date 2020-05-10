@@ -18,6 +18,8 @@ class CreateBooksTable extends Migration
 
             $table->string('title');
             $table->string('abstract')->nullable();
+            $table->string('foreign_author');
+            $table->string('img');
             $table->unsignedDecimal('price', 8, 2);
 
             $table->timestamps();
