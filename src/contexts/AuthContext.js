@@ -1,22 +1,12 @@
 import React, { createContext, useState } from "react";
+import { GetData, RemoveToken, SaveToLocalStorage } from "../services/GetData";
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = (props) => {
-  const [contextValue, setContextValue] = useState({
-    isAuthenticated: true,
-    token: "",
-    username: "محسن",
-    mobile: "09113923310",
-    boughtBooks: [1, 7, 18],
-    writtenBooks: [],
-    article: [],
-    wallet: 5000,
-    lastBookId: 7,
-    lastChapterId: 103,
-    avatar: "/img/user/default-profile.jpg",
-  });
+  const [contextValue, setContextValue] = useState(GetData());
 
+  // TODO: Login
   const Login = () => {
     // Login after 500ms
     setTimeout(() => {
@@ -26,22 +16,32 @@ const AuthContextProvider = (props) => {
       });
     }, 500);
   };
+
   const Logout = () => {
-    // Logout after 500ms
-    setTimeout(() => {
-      setContextValue({
-        ...contextValue,
-        isAuthenticated: false,
-      });
-    }, 500);
+    const new_value = {
+      ...contextValue,
+      user: { isAuthenticated: false },
+    };
+
+    RemoveToken();
+    SaveToLocalStorage(new_value);
+
+    setContextValue(new_value);
   };
 
   const SetLastBookReading = (book_id, chapter_id) => {
-    setContextValue({
+    const new_value = {
       ...contextValue,
-      lastBookId: Number(book_id),
-      lastChapterId: Number(chapter_id),
-    });
+      user: {
+        ...contextValue.user,
+        lastBookId: Number(book_id),
+        lastChapterId: Number(chapter_id),
+      },
+    };
+
+    SaveToLocalStorage(new_value);
+
+    setContextValue(new_value);
   };
 
   return (
