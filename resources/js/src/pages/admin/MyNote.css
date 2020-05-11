@@ -1,0 +1,23 @@
+.note-grid-item {
+  direction: rtl;
+}
+
+.add-btn-grid-item {
+  direction: ltr;
+  text-align: left !important;
+}
+
+.note-table {
+  direction: rtl;
+  margin-top: 2rem;
+}
+
+.empty-msg {
+  direction: rtl;
+  margin-top: 3rem !important;
+  text-align: center !important;
+}
+
+.popper-card {
+  direction: rtl !important;
+}

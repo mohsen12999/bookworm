@@ -1,0 +1,17 @@
+.link {
+  direction: rtl;
+}
+
+.link-text {
+  text-align: right;
+}
+
+.disable-link {
+  direction: rtl;
+  color: gray !important;
+}
+
+.active-link {
+  direction: rtl;
+  background: aliceblue !important;
+}

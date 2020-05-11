@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
             'email' => Str::random(10) . '@gmail.com',
             'mobile' => '',
             'password' => Hash::make('123456'),
-            'avatar' => '/bookworm/img/user/profile-5t.jpg',
+            'avatar' => '/images/user/profile-5t.jpg',
             'role' => '10' // writer
         ]);
 
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
             'email' => Str::random(10) . '@gmail.com',
             'mobile' => '',
             'password' => Hash::make('123456'),
-            'avatar' => '/bookworm/img/user/profile-2t.jpg',
+            'avatar' => '/images/user/profile-2t.jpg',
             'role' => '10' // writer
         ]);
 
@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
             'email' => Str::random(10) . '@gmail.com',
             'mobile' => '',
             'password' => Hash::make('123456'),
-            'avatar' => '/bookworm/img/user/profile-3t.jpg',
+            'avatar' => '/images/user/profile-3t.jpg',
             'role' => '10' // writer
         ]);
 
@@ -83,7 +83,7 @@ class UserSeeder extends Seeder
             'email' => Str::random(10) . '@gmail.com',
             'mobile' => '',
             'password' => Hash::make('123456'),
-            'avatar' => '/bookworm/img/user/profile-1t.jpg',
+            'avatar' => '/images/user/profile-1t.jpg',
             'role' => '10' // writer
         ]);
     }

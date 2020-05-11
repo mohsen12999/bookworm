@@ -1,0 +1,12 @@
+.menu-item {
+  direction: rtl;
+}
+
+.menu-item-text {
+  text-align: right;
+}
+
+.menu-title {
+  text-align: center;
+  font-size: 1.25rem;
+}
