@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBooksTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
 
             $table->string('title');
             $table->string('abstract')->nullable();
             $table->string('foreign_author')->nullable();
             $table->string('img')->nullable();
-            $table->unsignedDecimal('price', 8, 2);
+            $table->text('description')->nullable();
 
-            $table->unsignedInteger('view_count')->default(0);
+            $table->unsignedInteger('view')->default(0);
 
             $table->timestamps();
 
@@ -30,8 +30,8 @@ class CreateBooksTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('genre_id');
-            $table->foreign('genre_id')->references('id')->on('genres');
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects');
 
             $table->tinyInteger('publish_status')->default(0);
         });
@@ -44,6 +44,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('posts');
     }
 }
