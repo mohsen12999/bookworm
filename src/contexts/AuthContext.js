@@ -1,9 +1,9 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
-class AuthContextProvider extends React.Component {
-  state = {
+const AuthContextProvider = (props) => {
+  const [contextValue, setContextValue] = useState({
     isAuthenticated: true,
     token: "",
     username: "محسن",
@@ -15,49 +15,47 @@ class AuthContextProvider extends React.Component {
     lastBookId: 7,
     lastChapterId: 103,
     avatar: "/img/user/default-profile.jpg",
-  };
+  });
 
-  Login = () => {
+  const Login = () => {
     // Login after 500ms
     setTimeout(() => {
-      this.setState({
-        ...this.state,
+      setContextValue({
+        ...contextValue,
         isAuthenticated: true,
       });
     }, 500);
   };
-  Logout = () => {
+  const Logout = () => {
     // Logout after 500ms
     setTimeout(() => {
-      this.setState({
-        ...this.state,
+      setContextValue({
+        ...contextValue,
         isAuthenticated: false,
       });
     }, 500);
   };
 
-  SetLastBookReading = (book_id, chapter_id) => {
-    this.setState({
-      ...this.state,
+  const SetLastBookReading = (book_id, chapter_id) => {
+    setContextValue({
+      ...contextValue,
       lastBookId: Number(book_id),
       lastChapterId: Number(chapter_id),
     });
   };
 
-  render() {
-    return (
-      <AuthContext.Provider
-        value={{
-          ...this.state,
-          Login: this.Login,
-          Logout: this.Logout,
-          SetLastBookReading: this.SetLastBookReading,
-        }}
-      >
-        {this.props.children}
-      </AuthContext.Provider>
-    );
-  }
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        ...contextValue,
+        Login,
+        Logout,
+        SetLastBookReading,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
+  );
+};
 
 export default AuthContextProvider;
