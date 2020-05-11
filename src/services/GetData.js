@@ -1,10 +1,12 @@
 import axios from "axios";
 import { books, articles, genres, authors, subjects, chapters } from "./data";
 
-const GET_DATA_URL = "/api/get_data";
+const GET_DATA_URL = "/api/get_data"; // TODO: renew Token
+
+const TOKEN = "token";
 
 export const GetData = async () => {
-  const token = localStorage.getItem("token") ?? "";
+  const token = localStorage.getItem(TOKEN) ?? "";
 
   fakeFillLocalStorage();
 
@@ -29,7 +31,7 @@ export const GetData = async () => {
 };
 
 export const RemoveToken = () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem(TOKEN);
 };
 
 export const SaveToLocalStorage = (appData) => {
