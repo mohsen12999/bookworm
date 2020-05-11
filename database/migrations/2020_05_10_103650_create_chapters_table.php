@@ -17,7 +17,7 @@ class CreateChaptersTable extends Migration
             $table->id();
 
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
 
             $table->timestamps();
 

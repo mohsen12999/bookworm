@@ -15,10 +15,10 @@ class AddColomnToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('mobile');
-            $table->string('avatar');
-            $table->unsignedDecimal('wallet', 8, 2)->default(0);;
-            $table->tinyInteger('role')->default(0);;
+            $table->string('mobile')->nullable();
+            $table->string('avatar')->nullable();
+            $table->unsignedDecimal('wallet', 8, 2)->default(0);
+            $table->tinyInteger('role')->default(0);
         });
     }
 

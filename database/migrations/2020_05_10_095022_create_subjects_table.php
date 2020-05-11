@@ -17,7 +17,10 @@ class CreateSubjectsTable extends Migration
             $table->id();
 
             $table->string('title');
-            $table->tinyInteger('publish_status');
+            $table->string('abstract')->nullable();
+            $table->string('img')->nullable();
+
+            $table->tinyInteger('publish_status')->default(0);
 
             $table->timestamps();
         });

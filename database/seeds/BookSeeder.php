@@ -95,7 +95,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "آموزش طراحی گرافیک",
             "foreign_author" => "مکدوول",
             "img" => "/img/book/shop-6-580x925.jpg",
@@ -105,7 +104,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "زیر دره ها",
             "foreign_author" => "هری ریکت",
             "img" => "/img/book/shop-22-580x925.jpg",
@@ -115,7 +113,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "زندگی شهری",
             "foreign_author" => "ویکتوریا جونز",
             "img" => "/img/book/shop-14-580x925.jpg",
@@ -125,7 +122,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "مردم، پرتره ها و تصاویر",
             "foreign_author" => "دوروتی میچل",
             "img" => "/img/book/shop-2-580x925.jpg",
@@ -135,7 +131,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "نقاشی دیجیتال برای طراحان گرافیک",
             "foreign_author" => "الینور فیتزجرالد",
             "img" => "/img/book/shop-3-580x925.jpg",
@@ -145,7 +140,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "همه چیز در مورد استیک",
             "foreign_author" => "سرآشپز ایزابل مرکادو",
             "img" => "/img/book/shop-4-580x925.jpg",
@@ -155,7 +149,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "کوه هایی که اعتقاد را می سازد",
             "foreign_author" => "آلفردو توررس",
             "img" => "/img/book/shop-5-580x925.jpg",
@@ -165,7 +158,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "کتاب دعا",
             "foreign_author" => "جوزپین ویلیامز",
             "img" => "/img/book/shop-7-580x925.jpg",
@@ -175,7 +167,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "فشن مینیمال برای مینیمال ها",
             "foreign_author" => "کیتی ری جانسون",
             "img" => "/img/book/shop-11-580x925.jpg",
@@ -185,7 +176,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "کلاس نویسندگی",
             "foreign_author" => "نلی رز",
             "img" => "/img/book/shop-13-580x925.jpg",
@@ -195,7 +185,6 @@ class BookSeeder extends Seeder
         ]);
 
         DB::table('books')->insert([
-
             "title" => "پیام مخفی بازنشده",
             "foreign_author" => "ریچارد سانچز",
             "img" => "/img/book/shop-19-580x925.jpg",
