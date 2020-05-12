@@ -10,7 +10,13 @@ export const GetData = async () => {
     fakeFillLocalStorage();
 
     const publicData = await getPublicData();
-    publicData["user"] = await getPrivateData();
+    const privateData = await getPrivateData();
+    if (privateData) {
+        publicData["user"] = privateData["user"];
+        publicData["chapter"] = privateData["chapter"];
+    } else {
+        publicData["user"] = { isAuthenticated: false };
+    }
 };
 
 const getPublicData = async () => {
@@ -42,7 +48,7 @@ const getPublicData = async () => {
 const getPrivateData = async () => {
     const token = localStorage.getItem(TOKEN);
     if (!token) {
-        return { isAuthenticated: false };
+        return undefined;
     }
     try {
         const response = await axios.post(
@@ -54,9 +60,9 @@ const getPrivateData = async () => {
                 }
             }
         );
-        publicData["user"] = await response.json();
+        return await response.json();
     } catch (error) {
-        return { isAuthenticated: false };
+        return undefined;
     }
 };
 

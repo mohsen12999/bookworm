@@ -62,18 +62,39 @@ class PublicController extends Controller
         $writtenBooks = Book::where('user_id', $user->id)->get();
         $writtenPosts = Post::where('user_id', $user->id)->get();
 
+        $chapters = Chapter::public_chapter()->get();
+        $free_books_id = Book::public_book()->free_book()->select('id')->get()->toArray();
+
+        $free_books_id_arr = array_map(function ($val) {
+            return $val["id"];
+        }, $free_books_id);
+
+        $bought_book = $bought->toArray();
+        $bought_book_id_arr = array_map(function ($val) {
+            return $val["id"];
+        }, $bought_book);
+
+        foreach ($chapters as $chapter) {
+            if ($chapter->free_chapter == 0 && !in_array($chapter->book_id, $free_books_id_arr) && !in_array($chapter->book_id, $bought_book_id_arr)) {
+                $chapter->description = NULL; // not send [not-free chapter] and [not-free book chapter] description
+            }
+        }
+
         return response()->json([
-            'isAuthenticated' => true,
-            'name' => $user->name,
-            'email' => $user->email,
-            'mobile' => $user->mobile,
-            'avatar' => $user->avatar,
-            'wallet' => $user->wallet,
-            'role' => $user->role,
-            'factors' => $factors,
-            'boughtBook' => $bought,
-            'writtenBooks' => $writtenBooks,
-            'writtenPosts' => $writtenPosts
+            'chapters' => $chapters,
+            'user' => [
+                'isAuthenticated' => true,
+                'name' => $user->name,
+                'email' => $user->email,
+                'mobile' => $user->mobile,
+                'avatar' => $user->avatar,
+                'wallet' => $user->wallet,
+                'role' => $user->role,
+                'factors' => $factors,
+                'boughtBook' => $bought,
+                'writtenBooks' => $writtenBooks,
+                'writtenPosts' => $writtenPosts
+            ]
         ], 200);
     }
 }
