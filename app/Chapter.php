@@ -10,13 +10,13 @@ class Chapter extends Model
     //
     use SoftDeletes;
 
-    public function scopePublic_book($query)
+    public function scopePublic_chapter($query)
     {
         return $query->where('publish_status', 100);
     }
 
-    public function scopeFree_book($query)
+    public function scopeFree_chapter($query)
     {
-        return $query->where('price', 0);
+        return $query->where('free_chapter', 1);
     }
 }
