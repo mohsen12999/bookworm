@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', 'Admin\AuthController@register');
 Route::post('login', 'Admin\AuthController@login');
 
-Route::middleware('auth:api')->group(function() {
+Route::get('/get_data', 'Admin\PublicController@getPublicData');
 
-    Route::get('user/{userId}/detail', 'Admin\UserController@show');
+Route::middleware('auth:api')->group(function () {
+
+    Route::get('user/{userId}/detail', 'Admin\AuthController@userInfo');
 });
-
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
