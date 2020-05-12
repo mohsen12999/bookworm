@@ -29,6 +29,7 @@ class CreateChaptersTable extends Migration
             $table->tinyInteger('publish_status')->default(0);
 
             $table->boolean('free_chapter')->default(0);
+            $table->tinyInteger('chapter_order')->default(0);
         });
     }
 
