@@ -13,7 +13,7 @@ class AuthController extends Controller
     //
     protected function generateAccessToken($user)
     {
-        $token = $user->createToken($user->email.'-'.now());
+        $token = $user->createToken($user->email . '-' . now());
 
         return $token->accessToken;
     }
@@ -22,16 +22,16 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required', 
-            'email' => 'required|email', 
+            'name' => 'required',
+            'email' => 'required|email',
             'password' => 'required|min:6',
             `confirm_password` => `required|same:password`
         ]);
 
 
         $user = User::create([
-            'name' => $request->name, 
-            'email' => $request->email, 
+            'name' => $request->name,
+            'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
 
@@ -41,18 +41,29 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email', 
+            'email' => 'required|email|exists:users,email',
             'password' => 'required'
         ]);
 
-        if( Auth::attempt(['email'=>$request->email, 'password'=>$request->password]) ) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
 
-            $token = $user->createToken($user->email.'-'.now());
+            $token = $user->createToken($user->email . '-' . now());
 
             return response()->json([
                 'token' => $token->accessToken
             ]);
         }
+    }
+
+    public function userInfo(Request $request, $userId)
+    {
+        $user = User::find($userId);
+
+        if ($user) {
+            return response()->json($user);
+        }
+
+        return response()->json(['message' => 'User not found!'], 404);
     }
 }
