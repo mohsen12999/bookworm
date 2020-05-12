@@ -26,7 +26,9 @@ class CreateChaptersTable extends Migration
             $table->unsignedBigInteger('book_id');
             $table->foreign('book_id')->references('id')->on('books');
 
-            $table->tinyInteger('publish_status');
+            $table->tinyInteger('publish_status')->default(0);
+
+            $table->boolean('free_chapter')->default(0);
         });
     }
 
