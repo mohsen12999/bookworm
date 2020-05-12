@@ -9,4 +9,9 @@ class Post extends Model
 {
     //
     use SoftDeletes;
+
+    public function scopePublic_post($query)
+    {
+        return $query->where('publish_status', 100);
+    }
 }
