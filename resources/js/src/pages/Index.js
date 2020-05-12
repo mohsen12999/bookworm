@@ -61,8 +61,6 @@ const Index = () => {
 
             <AuthContext.Consumer>
                 {context => {
-                    console.log(context);
-
                     const books = context.books;
                     const rand_book = getRandom(books, 8);
                     const pop_books = rand_book.splice(0, 4);
@@ -71,7 +69,7 @@ const Index = () => {
                     const best_authors = getRandom(context.authors, 4);
                     const best_genres = getRandom(context.genres, 6);
 
-                    const last_articles = getRandom(context.articles, 3);
+                    const last_articles = getRandom(context.posts, 3);
 
                     return (
                         <React.Fragment>
@@ -140,8 +138,8 @@ const Index = () => {
                                 {best_authors.map(author => (
                                     <Grid key={author.id} item xs={6} sm={3}>
                                         <AuthorThumbnail
-                                            title={author.title}
-                                            img={author.img}
+                                            title={author.name}
+                                            img={author.avatar}
                                         />
                                     </Grid>
                                 ))}
