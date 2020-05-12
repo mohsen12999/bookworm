@@ -10,7 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import BookThumbnail from "../components/BookThumbnail";
 
-import { books } from "../services/data";
+//import { books } from "../services/data";
 import { AuthContext } from "../contexts/AuthContext";
 
 import "./BookList.css";
@@ -18,9 +18,9 @@ import "./BookList.css";
 // TODO: error in Select
 
 const BookList = () => {
-  const bookList = books.sort((a, b) => a.id < b.id);
-
-  const [filteredBooks, setFilteredBooks] = React.useState(bookList);
+  //const bookList = books.sort((a, b) => a.id < b.id);
+  const [bookList, setBookList] = React.useState([]);
+  const [filteredBooks, setFilteredBooks] = React.useState([]);
   const [sort, setSort] = React.useState("new");
   const [filter, setFilter] = React.useState("");
 
@@ -96,25 +96,30 @@ const BookList = () => {
       </div>
       <Grid container spacing={1}>
         <AuthContext.Consumer>
-          {(context) =>
-            filteredBooks.map((book) => {
-              const owned =
-                context.isAuthenticated &&
-                context.boughtBooks.includes(book.id);
-              return (
-                <Grid key={book.id} item xs={6} sm={3}>
-                  <BookThumbnail
-                    id={book.id}
-                    title={book.title}
-                    img={book.img}
-                    author={book.author}
-                    price={book.price}
-                    owned={owned}
-                  />
-                </Grid>
-              );
-            })
-          }
+          {(context) => {
+            if (context.books) {
+              setBookList({ ...context.books });
+              setFilteredBooks(context.books.sort((a, b) => a.id < b.id));
+
+              filteredBooks.map((book) => {
+                const owned =
+                  context.isAuthenticated &&
+                  context.boughtBooks.includes(book.id);
+                return (
+                  <Grid key={book.id} item xs={6} sm={3}>
+                    <BookThumbnail
+                      id={book.id}
+                      title={book.title}
+                      img={book.img}
+                      author={book.author}
+                      price={book.price}
+                      owned={owned}
+                    />
+                  </Grid>
+                );
+              });
+            }
+          }}
         </AuthContext.Consumer>
       </Grid>
     </div>

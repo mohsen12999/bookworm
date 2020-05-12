@@ -14,7 +14,7 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 import { useParams, Link } from "react-router-dom";
 
-import { getBook, getBookChapters } from "../services/data";
+// import { getBook, getBookChapters } from "../services/data";
 import { AuthContext } from "../contexts/AuthContext";
 
 import "./SingleBook.css";
@@ -24,12 +24,13 @@ import "./SingleBook.css";
 
 const SingleBook = () => {
     let { book_id } = useParams();
-    const book = getBook(book_id);
-    const chapters = getBookChapters(book_id);
 
     return (
         <AuthContext.Consumer>
             {context => {
+                const book = context.GetBook(book_id);
+                const chapters = context.GetChapters(book_id);
+
                 const owned =
                     context.isAuthenticated &&
                     context.boughtBooks.includes(book.id);

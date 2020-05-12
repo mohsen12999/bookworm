@@ -72257,9 +72257,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Tooltip__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/Tooltip */ "./node_modules/@material-ui/core/esm/Tooltip/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
-/* harmony import */ var _services_data__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../services/data */ "./resources/js/src/services/data.js");
-/* harmony import */ var _ReadingBookMenu_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./ReadingBookMenu.css */ "./resources/js/src/components/ReadingBookMenu.css");
-/* harmony import */ var _ReadingBookMenu_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_ReadingBookMenu_css__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _ReadingBookMenu_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./ReadingBookMenu.css */ "./resources/js/src/components/ReadingBookMenu.css");
+/* harmony import */ var _ReadingBookMenu_css__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_ReadingBookMenu_css__WEBPACK_IMPORTED_MODULE_15__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -72288,7 +72287,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
-
+ //import { getBook, getBookChapters } from "../services/data";
 
 
 
@@ -72340,8 +72339,8 @@ var ReadingBookMenu = function ReadingBookMenu(props) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
     }
 
-    var book = Object(_services_data__WEBPACK_IMPORTED_MODULE_15__["getBook"])(context.lastBookId);
-    var chapters = Object(_services_data__WEBPACK_IMPORTED_MODULE_15__["getBookChapters"])(context.lastBookId);
+    var book = context.GetBook(context.lastBookId);
+    var chapters = context.GetChapters(context.lastBookId);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
       className: "menu-item",
       button: true,
@@ -72448,14 +72447,22 @@ var ScrollTop = function ScrollTop(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthContext", function() { return AuthContext; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _services_GetData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/GetData */ "./resources/js/src/services/GetData.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_GetData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/GetData */ "./resources/js/src/services/GetData.js");
+
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -72471,14 +72478,45 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var AuthContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])();
+var AuthContext = Object(react__WEBPACK_IMPORTED_MODULE_1__["createContext"])();
 
 var AuthContextProvider = function AuthContextProvider(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_services_GetData__WEBPACK_IMPORTED_MODULE_1__["GetData"])()),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       contextValue = _useState2[0],
-      setContextValue = _useState2[1]; // TODO: Login
+      setContextValue = _useState2[1];
 
+  react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
+    var fillContext = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var appData;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["GetData"])();
+
+              case 2:
+                appData = _context.sent;
+                console.log("appData  ", appData);
+                setContextValue(appData);
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function fillContext() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    fillContext();
+  }, []); // TODO: Login
 
   var Login = function Login() {
     // Login after 500ms
@@ -72496,8 +72534,8 @@ var AuthContextProvider = function AuthContextProvider(props) {
       }
     });
 
-    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_1__["RemoveToken"])();
-    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_1__["SaveToLocalStorage"])(new_value);
+    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["RemoveToken"])();
+    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SaveToLocalStorage"])(new_value);
     setContextValue(new_value);
   };
 
@@ -72509,15 +72547,59 @@ var AuthContextProvider = function AuthContextProvider(props) {
       })
     });
 
-    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_1__["SaveToLocalStorage"])(new_value);
+    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SaveToLocalStorage"])(new_value);
     setContextValue(new_value);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AuthContext.Provider, {
+  var GetBook = function GetBook(book_id) {
+    return contextValue.books.find(function (book) {
+      return book.id === Number(book_id);
+    });
+  };
+
+  var GetChapters = function GetChapters(book_id) {
+    return contextValue.chapters.find(function (chapter) {
+      return chapter.book_id === Number(book_id);
+    });
+  };
+
+  var GetSingleChapter = function GetSingleChapter(book_id, chapter_id) {
+    // get all chapter base on book id
+    var chapter = contextValue.chapters.find(function (chap) {
+      return chap.id === Number(chapter_id);
+    });
+
+    if (!chapter || !chapter.book_id || chapter.book_id !== Number(book_id)) {
+      return {
+        chapter: undefined
+      };
+    }
+
+    var chapterIndex = contextValue.chapters.indexOf(chapter);
+    var prev_chapter = chapterIndex === 0 ? undefined : contextValue.chapters[chapterIndex - 1];
+    var next_chapter = chapterIndex === contextValue.chapters.length - 1 ? undefined : contextValue.chapters[chapterIndex + 1];
+    return {
+      chapter: chapter,
+      prev_chapter: prev_chapter,
+      next_chapter: next_chapter
+    };
+  };
+
+  var GetPost = function GetPost(post_id) {
+    return contextValue.posts.find(function (post) {
+      return post.id === Number(post_id);
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(AuthContext.Provider, {
     value: _objectSpread(_objectSpread({}, contextValue), {}, {
       Login: Login,
       Logout: Logout,
-      SetLastBookReading: SetLastBookReading
+      SetLastBookReading: SetLastBookReading,
+      GetBook: GetBook,
+      GetChapters: GetChapters,
+      GetSingleChapter: GetSingleChapter,
+      GetPost: GetPost
     })
   }, props.children);
 };
@@ -72623,7 +72705,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _services_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/data */ "./resources/js/src/services/data.js");
+/* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
 /* harmony import */ var _BlogList_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BlogList.css */ "./resources/js/src/pages/BlogList.css");
 /* harmony import */ var _BlogList_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_BlogList_css__WEBPACK_IMPORTED_MODULE_7__);
 
@@ -72631,6 +72713,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import { articles } from "../services/data";
 
 
  // TODO: blog time -> یکشنبه 8 اسفند
@@ -72639,33 +72722,35 @@ __webpack_require__.r(__webpack_exports__);
 var BlogList = function BlogList() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_2__["default"], {
     maxWidth: "sm"
-  }, _services_data__WEBPACK_IMPORTED_MODULE_6__["articles"].map(function (post) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      key: post.id,
-      className: "single-post-paper"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      className: "post-img",
-      src: post.img,
-      alt: post.title
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "post-first-row"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      variant: "h5",
-      component: "h3",
-      className: "post-title"
-    }, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      component: "p",
-      className: "post-time"
-    }, new Date(post.date).toLocaleString("fa-IR"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      component: "p"
-    }, "\u062E\u0644\u0627\u0635\u0647 \u0645\u0642\u0627\u0644\u0647\u060C \u06CC\u06A9 \u06CC\u0627 \u062F\u0648\u062E\u0637 \u062C\u062F\u0627 \u0627\u0632 \u0645\u062A\u0646 \u0627\u0635\u0644\u06CC \u0648 \u0645\u0633\u062A\u0642\u0644 \u0647\u0633\u062A. \u0645\u0641\u0627\u0647\u06CC\u0645 \u0627\u0635\u0644\u06CC \u0646\u0648\u0634\u062A\u0647 \u0631\u0627 \u0628\u06CC\u0627\u0646 \u0645\u06CC \u0646\u0645\u0627\u06CC\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "post-btn"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      variant: "contained",
-      color: "primary",
-      component: react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"],
-      to: "/blog/" + post.id
-    }, "\u062E\u0648\u0627\u0646\u062F\u0646 \u0645\u0637\u0644\u0628")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_6__["AuthContext"].Consumer, null, function (context) {
+    return context.posts && context.posts.map(function (post) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        key: post.id,
+        className: "single-post-paper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "post-img",
+        src: post.img,
+        alt: post.title
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-first-row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        variant: "h5",
+        component: "h3",
+        className: "post-title"
+      }, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        component: "p",
+        className: "post-time"
+      }, new Date(post.date).toLocaleString("fa-IR"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        component: "p"
+      }, "\u062E\u0644\u0627\u0635\u0647 \u0645\u0642\u0627\u0644\u0647\u060C \u06CC\u06A9 \u06CC\u0627 \u062F\u0648\u062E\u0637 \u062C\u062F\u0627 \u0627\u0632 \u0645\u062A\u0646 \u0627\u0635\u0644\u06CC \u0648 \u0645\u0633\u062A\u0642\u0644 \u0647\u0633\u062A. \u0645\u0641\u0627\u0647\u06CC\u0645 \u0627\u0635\u0644\u06CC \u0646\u0648\u0634\u062A\u0647 \u0631\u0627 \u0628\u06CC\u0627\u0646 \u0645\u06CC \u0646\u0645\u0627\u06CC\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-btn"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        variant: "contained",
+        color: "primary",
+        component: react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"],
+        to: "/blog/" + post.id
+      }, "\u062E\u0648\u0627\u0646\u062F\u0646 \u0645\u0637\u0644\u0628")));
+    });
   }));
 };
 
@@ -72722,10 +72807,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/index.js");
 /* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js");
 /* harmony import */ var _components_BookThumbnail__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/BookThumbnail */ "./resources/js/src/components/BookThumbnail.js");
-/* harmony import */ var _services_data__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../services/data */ "./resources/js/src/services/data.js");
-/* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
-/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./BookList.css */ "./resources/js/src/pages/BookList.css");
-/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
+/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./BookList.css */ "./resources/js/src/pages/BookList.css");
+/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_10__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -72754,30 +72844,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
+ //import { books } from "../services/data";
 
 
  // TODO: error in Select
 
 var BookList = function BookList() {
-  var bookList = _services_data__WEBPACK_IMPORTED_MODULE_9__["books"].sort(function (a, b) {
-    return a.id < b.id;
-  });
-
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(bookList),
+  //const bookList = books.sort((a, b) => a.id < b.id);
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState([]),
       _React$useState2 = _slicedToArray(_React$useState, 2),
-      filteredBooks = _React$useState2[0],
-      setFilteredBooks = _React$useState2[1];
+      bookList = _React$useState2[0],
+      setBookList = _React$useState2[1];
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState("new"),
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState([]),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
-      sort = _React$useState4[0],
-      setSort = _React$useState4[1];
+      filteredBooks = _React$useState4[0],
+      setFilteredBooks = _React$useState4[1];
 
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState("new"),
       _React$useState6 = _slicedToArray(_React$useState5, 2),
-      filter = _React$useState6[0],
-      setFilter = _React$useState6[1];
+      sort = _React$useState6[0],
+      setSort = _React$useState6[1];
+
+  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
+      _React$useState8 = _slicedToArray(_React$useState7, 2),
+      filter = _React$useState8[0],
+      setFilter = _React$useState8[1];
 
   var handleChangeSort = function handleChangeSort(event) {
     event.preventDefault();
@@ -72854,23 +72946,29 @@ var BookList = function BookList() {
   }, "\u0627\u0631\u0632\u0627\u0646 \u062A\u0631\u06CC\u0646")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     container: true,
     spacing: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_10__["AuthContext"].Consumer, null, function (context) {
-    return filteredBooks.map(function (book) {
-      var owned = context.isAuthenticated && context.boughtBooks.includes(book.id);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        key: book.id,
-        item: true,
-        xs: 6,
-        sm: 3
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_BookThumbnail__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        id: book.id,
-        title: book.title,
-        img: book.img,
-        author: book.author,
-        price: book.price,
-        owned: owned
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__["AuthContext"].Consumer, null, function (context) {
+    if (context.books) {
+      setBookList(_objectSpread({}, context.books));
+      setFilteredBooks(context.books.sort(function (a, b) {
+        return a.id < b.id;
       }));
-    });
+      filteredBooks.map(function (book) {
+        var owned = context.isAuthenticated && context.boughtBooks.includes(book.id);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          key: book.id,
+          item: true,
+          xs: 6,
+          sm: 3
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_BookThumbnail__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          id: book.id,
+          title: book.title,
+          img: book.img,
+          author: book.author,
+          price: book.price,
+          owned: owned
+        }));
+      });
+    }
   })));
 };
 
@@ -72896,7 +72994,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_BookThumbnail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/BookThumbnail */ "./resources/js/src/components/BookThumbnail.js");
 /* harmony import */ var _components_AuthorThumbnail__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/AuthorThumbnail */ "./resources/js/src/components/AuthorThumbnail.js");
 /* harmony import */ var _components_ArticleThumbnail__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/ArticleThumbnail */ "./resources/js/src/components/ArticleThumbnail.js");
-/* harmony import */ var _services_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../services/data */ "./resources/js/src/services/data.js");
+/* harmony import */ var _services_function__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../services/function */ "./resources/js/src/services/function.js");
 /* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./index.css */ "./resources/js/src/pages/index.css");
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_10__);
@@ -72907,6 +73005,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //import { books, articles, authors, genres, getRandom } from "../services/data";
 
 
 
@@ -72914,12 +73013,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var Index = function Index() {
   //const classes = useStyles();
-  var rand_book = Object(_services_data__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(_services_data__WEBPACK_IMPORTED_MODULE_8__["books"], 8);
-  var pop_books = rand_book.splice(0, 4);
-  var new_books = rand_book;
-  var best_authors = Object(_services_data__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(_services_data__WEBPACK_IMPORTED_MODULE_8__["authors"], 4);
-  var best_genres = Object(_services_data__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(_services_data__WEBPACK_IMPORTED_MODULE_8__["genres"], 6);
-  var last_articles = Object(_services_data__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(_services_data__WEBPACK_IMPORTED_MODULE_8__["articles"], 3);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main-banner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -72960,15 +73053,23 @@ var Index = function Index() {
     className: "search-btn",
     size: "large",
     type: "submit"
-  }, "\u062C\u0633\u062A\u062C\u0648")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "h5",
-    component: "h3",
-    className: "section-title"
-  }, "\u067E\u0631 \u0628\u0627\u0632\u062F\u06CC\u062F\u062A\u0631\u06CC\u0646 \u06A9\u062A\u0627\u0628 \u0647\u0627"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    container: true,
-    spacing: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__["AuthContext"].Consumer, null, function (context) {
-    return pop_books.map(function (book) {
+  }, "\u062C\u0633\u062A\u062C\u0648")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__["AuthContext"].Consumer, null, function (context) {
+    console.log(context);
+    var books = context.books;
+    var rand_book = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(books, 8);
+    var pop_books = rand_book.splice(0, 4);
+    var new_books = rand_book;
+    var best_authors = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(context.authors, 4);
+    var best_genres = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(context.genres, 6);
+    var last_articles = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(context.articles, 3);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "h5",
+      component: "h3",
+      className: "section-title"
+    }, "\u067E\u0631 \u0628\u0627\u0632\u062F\u06CC\u062F\u062A\u0631\u06CC\u0646 \u06A9\u062A\u0627\u0628 \u0647\u0627"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      container: true,
+      spacing: 1
+    }, pop_books.map(function (book) {
       var owned = context.isAuthenticated && context.boughtBooks.includes(book.id);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
         key: book.id,
@@ -72983,16 +73084,14 @@ var Index = function Index() {
         price: book.price,
         owned: owned
       }));
-    });
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "h5",
-    component: "h3",
-    className: "section-title"
-  }, "\u062C\u062F\u06CC\u062F\u062A\u0631\u06CC\u0646 \u06A9\u062A\u0627\u0628 \u0647\u0627"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    container: true,
-    spacing: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__["AuthContext"].Consumer, null, function (context) {
-    return new_books.map(function (book) {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "h5",
+      component: "h3",
+      className: "section-title"
+    }, "\u062C\u062F\u06CC\u062F\u062A\u0631\u06CC\u0646 \u06A9\u062A\u0627\u0628 \u0647\u0627"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      container: true,
+      spacing: 1
+    }, new_books.map(function (book) {
       var owned = context.isAuthenticated && context.boughtBooks.includes(book.id);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
         key: book.id,
@@ -73007,61 +73106,61 @@ var Index = function Index() {
         price: book.price,
         owned: owned
       }));
-    });
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "h5",
-    component: "h3",
-    className: "section-title"
-  }, "\u0646\u0648\u06CC\u0633\u0646\u062F\u06AF\u0627\u0646 \u0628\u0631\u062A\u0631"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    container: true,
-    spacing: 1
-  }, best_authors.map(function (author) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      key: author.id,
-      item: true,
-      xs: 6,
-      sm: 3
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AuthorThumbnail__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      title: author.title,
-      img: author.img
-    }));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "h5",
-    component: "h3",
-    className: "section-title"
-  }, "\u0645\u0648\u0636\u0648\u0639\u0627\u062A \u067E\u0631 \u0637\u0631\u0641\u062F\u0627\u0631"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    container: true,
-    spacing: 1
-  }, best_genres.map(function (genre) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      key: genre.id,
-      item: true,
-      xs: 6,
-      sm: 2
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AuthorThumbnail__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      title: genre.title,
-      img: genre.img
-    }));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    variant: "h5",
-    component: "h3",
-    className: "section-title"
-  }, "\u0645\u0642\u0627\u0644\u0627\u062A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    container: true,
-    spacing: 1
-  }, last_articles.map(function (article) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      key: article.id,
-      item: true,
-      xs: 6,
-      sm: 4
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ArticleThumbnail__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      id: article.id,
-      title: article.title,
-      img: article.img,
-      author: article.author
-    }));
-  })));
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "h5",
+      component: "h3",
+      className: "section-title"
+    }, "\u0646\u0648\u06CC\u0633\u0646\u062F\u06AF\u0627\u0646 \u0628\u0631\u062A\u0631"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      container: true,
+      spacing: 1
+    }, best_authors.map(function (author) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        key: author.id,
+        item: true,
+        xs: 6,
+        sm: 3
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AuthorThumbnail__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        title: author.title,
+        img: author.img
+      }));
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "h5",
+      component: "h3",
+      className: "section-title"
+    }, "\u0645\u0648\u0636\u0648\u0639\u0627\u062A \u067E\u0631 \u0637\u0631\u0641\u062F\u0627\u0631"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      container: true,
+      spacing: 1
+    }, best_genres.map(function (genre) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        key: genre.id,
+        item: true,
+        xs: 6,
+        sm: 2
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AuthorThumbnail__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        title: genre.title,
+        img: genre.img
+      }));
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "h5",
+      component: "h3",
+      className: "section-title"
+    }, "\u0645\u0642\u0627\u0644\u0627\u062A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      container: true,
+      spacing: 1
+    }, last_articles.map(function (article) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        key: article.id,
+        item: true,
+        xs: 6,
+        sm: 4
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ArticleThumbnail__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        id: article.id,
+        title: article.title,
+        img: article.img,
+        author: article.author
+      }));
+    })));
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
@@ -73115,10 +73214,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Tooltip__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Tooltip */ "./node_modules/@material-ui/core/esm/Tooltip/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_ScrollTop__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/ScrollTop */ "./resources/js/src/components/ScrollTop.js");
-/* harmony import */ var _services_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../services/data */ "./resources/js/src/services/data.js");
-/* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
-/* harmony import */ var _ReadBook_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ReadBook.css */ "./resources/js/src/pages/ReadBook.css");
-/* harmony import */ var _ReadBook_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_ReadBook_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
+/* harmony import */ var _ReadBook_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ReadBook.css */ "./resources/js/src/pages/ReadBook.css");
+/* harmony import */ var _ReadBook_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_ReadBook_css__WEBPACK_IMPORTED_MODULE_8__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
@@ -73127,7 +73225,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
-
+ //import { getSingleChapter } from "../services/data";
 
 
  // TODO: not found chapter
@@ -73136,15 +73234,14 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 var ReadBook = function ReadBook(props) {
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["useParams"])(),
       book_id = _useParams.book_id,
-      chapter_id = _useParams.chapter_id;
+      chapter_id = _useParams.chapter_id; // const [chapterId, setChapter] = React.useState(Number(chapter_id));
+  // const bookId = Number(book_id);
+  // const chapterId = Number(chapter_id);
+  // const { chapter, prev_chapter, next_chapter } = getSingleChapter(
+  //   bookId,
+  //   chapterId
+  // );
 
-  var bookId = Number(book_id);
-  var chapterId = Number(chapter_id);
-
-  var _getSingleChapter = Object(_services_data__WEBPACK_IMPORTED_MODULE_7__["getSingleChapter"])(bookId, chapterId),
-      chapter = _getSingleChapter.chapter,
-      prev_chapter = _getSingleChapter.prev_chapter,
-      next_chapter = _getSingleChapter.next_chapter;
 
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
     var anchor = document.querySelector("#chapter-title");
@@ -73155,18 +73252,23 @@ var ReadBook = function ReadBook(props) {
         block: "center"
       });
     }
-  }, [bookId, chapterId]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_8__["AuthContext"].Consumer, null, function (context) {
-    var owned = context.isAuthenticated && context.boughtBooks.includes(bookId);
+  }, [chapter_id]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_7__["AuthContext"].Consumer, null, function (context) {
+    var _context$GetSingleCha = context.GetSingleChapter(book_id, chapter_id),
+        chapter = _context$GetSingleCha.chapter,
+        prev_chapter = _context$GetSingleCha.prev_chapter,
+        next_chapter = _context$GetSingleCha.next_chapter;
+
+    var owned = context.isAuthenticated && context.boughtBooks.includes(Number(book_id));
 
     if (!(owned || chapter.free)) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Redirect"], {
-        to: "/book/" + bookId
+        to: "/book/" + book_id
       });
     }
 
-    if (context.lastBookId !== bookId || context.lastChapterId !== chapterId) {
-      context.SetLastBookReading(bookId, chapterId);
+    if (context.lastBookId !== Number(book_id) || context.lastChapterId !== Number(chapter_id)) {
+      context.SetLastBookReading(book_id, chapter_id);
     }
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73179,7 +73281,7 @@ var ReadBook = function ReadBook(props) {
       color: "primary",
       className: "chapter-change",
       component: react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"],
-      to: "/read/" + bookId + "/" + prev_chapter.id
+      to: "/read/" + book_id + "/" + prev_chapter.id
     }, "\u0641\u0635\u0644 \u0642\u0628\u0644 - ", prev_chapter.title)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Tooltip__WEBPACK_IMPORTED_MODULE_4__["default"], {
       title: "برای دسترسی به فصل قبل می بایست کتاب را خریداری نمائید"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -73211,7 +73313,7 @@ var ReadBook = function ReadBook(props) {
       color: "primary",
       className: "chapter-change",
       component: react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"],
-      to: "/read/" + bookId + "/" + next_chapter.id
+      to: "/read/" + book_id + "/" + next_chapter.id
     }, "\u0641\u0635\u0644 \u0628\u0639\u062F - ", next_chapter.title)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Tooltip__WEBPACK_IMPORTED_MODULE_4__["default"], {
       title: "برای دسترسی به فصل بعد می بایست کتاب را خریداری نمائید"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -73272,8 +73374,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _services_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/data */ "./resources/js/src/services/data.js");
-/* harmony import */ var _components_ScrollTop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/ScrollTop */ "./resources/js/src/components/ScrollTop.js");
+/* harmony import */ var _components_ScrollTop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ScrollTop */ "./resources/js/src/components/ScrollTop.js");
+/* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
 /* harmony import */ var _SingleBlog_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SingleBlog.css */ "./resources/js/src/pages/SingleBlog.css");
 /* harmony import */ var _SingleBlog_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_SingleBlog_css__WEBPACK_IMPORTED_MODULE_6__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -73282,6 +73384,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+ //import { getArticle } from "../services/data";
 
 
  // TODO: not find blog
@@ -73290,37 +73393,36 @@ var SingleBlog = function SingleBlog(props) {
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["useParams"])(),
       blog_id = _useParams.blog_id;
 
-  var article = Object(_services_data__WEBPACK_IMPORTED_MODULE_4__["getArticle"])(blog_id);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    className: "single-blog-page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "article-intro"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    id: "article-img",
-    className: "article-img",
-    src: article.img,
-    alt: article.title
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    variant: "h4",
-    className: "article-title"
-  }, article.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    paragraph: true,
-    className: "article-author"
-  }, "\u0646\u0648\u0634\u062A\u0647 ", article.author)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    paragraph: true,
-    className: "article-abstract"
-  }, "\u062E\u0644\u0627\u0635\u0647 \u0645\u0642\u0627\u0644\u0647\u060C \u06CC\u06A9 \u06CC\u0627 \u062F\u0648\u062E\u0637 \u062C\u062F\u0627 \u0627\u0632 \u0645\u062A\u0646 \u0627\u0635\u0644\u06CC \u0648 \u0645\u0633\u062A\u0642\u0644 \u0647\u0633\u062A. \u0645\u0641\u0627\u0647\u06CC\u0645 \u0627\u0635\u0644\u06CC \u0646\u0648\u0634\u062A\u0647 \u0631\u0627 \u0628\u06CC\u0627\u0646 \u0645\u06CC \u0646\u0645\u0627\u06CC\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    paragraph: true,
-    className: "article-body"
-  }, "\u0644\u0648\u0631\u0645 \u0627\u06CC\u067E\u0633\u0648\u0645 \u0645\u062A\u0646 \u0633\u0627\u062E\u062A\u06AF\u06CC \u0628\u0627 \u062A\u0648\u0644\u06CC\u062F \u0633\u0627\u062F\u06AF\u06CC \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \u0627\u0632 \u0635\u0646\u0639\u062A \u0686\u0627\u067E\u060C \u0648 \u0628\u0627 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0627\u0632 \u0637\u0631\u0627\u062D\u0627\u0646 \u06AF\u0631\u0627\u0641\u06CC\u06A9 \u0627\u0633\u062A\u060C \u0686\u0627\u067E\u06AF\u0631\u0647\u0627 \u0648 \u0645\u062A\u0648\u0646 \u0628\u0644\u06A9\u0647 \u0631\u0648\u0632\u0646\u0627\u0645\u0647 \u0648 \u0645\u062C\u0644\u0647 \u062F\u0631 \u0633\u062A\u0648\u0646 \u0648 \u0633\u0637\u0631\u0622\u0646\u0686\u0646\u0627\u0646 \u06A9\u0647 \u0644\u0627\u0632\u0645 \u0627\u0633\u062A\u060C \u0648 \u0628\u0631\u0627\u06CC \u0634\u0631\u0627\u06CC\u0637 \u0641\u0639\u0644\u06CC \u062A\u06A9\u0646\u0648\u0644\u0648\u0698\u06CC \u0645\u0648\u0631\u062F \u0646\u06CC\u0627\u0632\u060C \u0648 \u06A9\u0627\u0631\u0628\u0631\u062F\u0647\u0627\u06CC \u0645\u062A\u0646\u0648\u0639 \u0628\u0627 \u0647\u062F\u0641 \u0628\u0647\u0628\u0648\u062F \u0627\u0628\u0632\u0627\u0631\u0647\u0627\u06CC \u06A9\u0627\u0631\u0628\u0631\u062F\u06CC \u0645\u06CC \u0628\u0627\u0634\u062F\u060C \u06A9\u062A\u0627\u0628\u0647\u0627\u06CC \u0632\u06CC\u0627\u062F\u06CC \u062F\u0631 \u0634\u0635\u062A \u0648 \u0633\u0647 \u062F\u0631\u0635\u062F \u06AF\u0630\u0634\u062A\u0647 \u062D\u0627\u0644 \u0648 \u0622\u06CC\u0646\u062F\u0647\u060C \u0634\u0646\u0627\u062E\u062A \u0641\u0631\u0627\u0648\u0627\u0646 \u062C\u0627\u0645\u0639\u0647 \u0648 \u0645\u062A\u062E\u0635\u0635\u0627\u0646 \u0631\u0627 \u0645\u06CC \u0637\u0644\u0628\u062F\u060C \u062A\u0627 \u0628\u0627 \u0646\u0631\u0645 \u0627\u0641\u0632\u0627\u0631\u0647\u0627 \u0634\u0646\u0627\u062E\u062A \u0628\u06CC\u0634\u062A\u0631\u06CC \u0631\u0627 \u0628\u0631\u0627\u06CC \u0637\u0631\u0627\u062D\u0627\u0646 \u0631\u0627\u06CC\u0627\u0646\u0647 \u0627\u06CC \u0639\u0644\u06CC \u0627\u0644\u062E\u0635\u0648\u0635 \u0637\u0631\u0627\u062D\u0627\u0646 \u062E\u0644\u0627\u0642\u06CC\u060C \u0648 \u0641\u0631\u0647\u0646\u06AF \u067E\u06CC\u0634\u0631\u0648 \u062F\u0631 \u0632\u0628\u0627\u0646 \u0641\u0627\u0631\u0633\u06CC \u0627\u06CC\u062C\u0627\u062F \u06A9\u0631\u062F\u060C \u062F\u0631 \u0627\u06CC\u0646 \u0635\u0648\u0631\u062A \u0645\u06CC \u062A\u0648\u0627\u0646 \u0627\u0645\u06CC\u062F \u062F\u0627\u0634\u062A \u06A9\u0647 \u062A\u0645\u0627\u0645 \u0648 \u062F\u0634\u0648\u0627\u0631\u06CC \u0645\u0648\u062C\u0648\u062F \u062F\u0631 \u0627\u0631\u0627\u0626\u0647 \u0631\u0627\u0647\u06A9\u0627\u0631\u0647\u0627\u060C \u0648 \u0634\u0631\u0627\u06CC\u0637 \u0633\u062E\u062A \u062A\u0627\u06CC\u067E \u0628\u0647 \u067E\u0627\u06CC\u0627\u0646 \u0631\u0633\u062F \u0648 \u0632\u0645\u0627\u0646 \u0645\u0648\u0631\u062F \u0646\u06CC\u0627\u0632 \u0634\u0627\u0645\u0644 \u062D\u0631\u0648\u0641\u0686\u06CC\u0646\u06CC \u062F\u0633\u062A\u0627\u0648\u0631\u062F\u0647\u0627\u06CC \u0627\u0635\u0644\u06CC\u060C \u0648 \u062C\u0648\u0627\u0628\u06AF\u0648\u06CC \u0633\u0648\u0627\u0644\u0627\u062A \u067E\u06CC\u0648\u0633\u062A\u0647 \u0627\u0647\u0644 \u062F\u0646\u06CC\u0627\u06CC \u0645\u0648\u062C\u0648\u062F \u0637\u0631\u0627\u062D\u06CC \u0627\u0633\u0627\u0633\u0627 \u0645\u0648\u0631\u062F \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0642\u0631\u0627\u0631 \u06AF\u06CC\u0631\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    paragraph: true,
-    className: "article-body"
-  }, "\u0644\u0648\u0631\u0645 \u0627\u06CC\u067E\u0633\u0648\u0645 \u0645\u062A\u0646 \u0633\u0627\u062E\u062A\u06AF\u06CC \u0628\u0627 \u062A\u0648\u0644\u06CC\u062F \u0633\u0627\u062F\u06AF\u06CC \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \u0627\u0632 \u0635\u0646\u0639\u062A \u0686\u0627\u067E\u060C \u0648 \u0628\u0627 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0627\u0632 \u0637\u0631\u0627\u062D\u0627\u0646 \u06AF\u0631\u0627\u0641\u06CC\u06A9 \u0627\u0633\u062A\u060C \u0686\u0627\u067E\u06AF\u0631\u0647\u0627 \u0648 \u0645\u062A\u0648\u0646 \u0628\u0644\u06A9\u0647 \u0631\u0648\u0632\u0646\u0627\u0645\u0647 \u0648 \u0645\u062C\u0644\u0647 \u062F\u0631 \u0633\u062A\u0648\u0646 \u0648 \u0633\u0637\u0631\u0622\u0646\u0686\u0646\u0627\u0646 \u06A9\u0647 \u0644\u0627\u0632\u0645 \u0627\u0633\u062A\u060C \u0648 \u0628\u0631\u0627\u06CC \u0634\u0631\u0627\u06CC\u0637 \u0641\u0639\u0644\u06CC \u062A\u06A9\u0646\u0648\u0644\u0648\u0698\u06CC \u0645\u0648\u0631\u062F \u0646\u06CC\u0627\u0632\u060C \u0648 \u06A9\u0627\u0631\u0628\u0631\u062F\u0647\u0627\u06CC \u0645\u062A\u0646\u0648\u0639 \u0628\u0627 \u0647\u062F\u0641 \u0628\u0647\u0628\u0648\u062F \u0627\u0628\u0632\u0627\u0631\u0647\u0627\u06CC \u06A9\u0627\u0631\u0628\u0631\u062F\u06CC \u0645\u06CC \u0628\u0627\u0634\u062F\u060C \u06A9\u062A\u0627\u0628\u0647\u0627\u06CC \u0632\u06CC\u0627\u062F\u06CC \u062F\u0631 \u0634\u0635\u062A \u0648 \u0633\u0647 \u062F\u0631\u0635\u062F \u06AF\u0630\u0634\u062A\u0647 \u062D\u0627\u0644 \u0648 \u0622\u06CC\u0646\u062F\u0647\u060C \u0634\u0646\u0627\u062E\u062A \u0641\u0631\u0627\u0648\u0627\u0646 \u062C\u0627\u0645\u0639\u0647 \u0648 \u0645\u062A\u062E\u0635\u0635\u0627\u0646 \u0631\u0627 \u0645\u06CC \u0637\u0644\u0628\u062F\u060C \u062A\u0627 \u0628\u0627 \u0646\u0631\u0645 \u0627\u0641\u0632\u0627\u0631\u0647\u0627 \u0634\u0646\u0627\u062E\u062A \u0628\u06CC\u0634\u062A\u0631\u06CC \u0631\u0627 \u0628\u0631\u0627\u06CC \u0637\u0631\u0627\u062D\u0627\u0646 \u0631\u0627\u06CC\u0627\u0646\u0647 \u0627\u06CC \u0639\u0644\u06CC \u0627\u0644\u062E\u0635\u0648\u0635 \u0637\u0631\u0627\u062D\u0627\u0646 \u062E\u0644\u0627\u0642\u06CC\u060C \u0648 \u0641\u0631\u0647\u0646\u06AF \u067E\u06CC\u0634\u0631\u0648 \u062F\u0631 \u0632\u0628\u0627\u0646 \u0641\u0627\u0631\u0633\u06CC \u0627\u06CC\u062C\u0627\u062F \u06A9\u0631\u062F\u060C \u062F\u0631 \u0627\u06CC\u0646 \u0635\u0648\u0631\u062A \u0645\u06CC \u062A\u0648\u0627\u0646 \u0627\u0645\u06CC\u062F \u062F\u0627\u0634\u062A \u06A9\u0647 \u062A\u0645\u0627\u0645 \u0648 \u062F\u0634\u0648\u0627\u0631\u06CC \u0645\u0648\u062C\u0648\u062F \u062F\u0631 \u0627\u0631\u0627\u0626\u0647 \u0631\u0627\u0647\u06A9\u0627\u0631\u0647\u0627\u060C \u0648 \u0634\u0631\u0627\u06CC\u0637 \u0633\u062E\u062A \u062A\u0627\u06CC\u067E \u0628\u0647 \u067E\u0627\u06CC\u0627\u0646 \u0631\u0633\u062F \u0648 \u0632\u0645\u0627\u0646 \u0645\u0648\u0631\u062F \u0646\u06CC\u0627\u0632 \u0634\u0627\u0645\u0644 \u062D\u0631\u0648\u0641\u0686\u06CC\u0646\u06CC \u062F\u0633\u062A\u0627\u0648\u0631\u062F\u0647\u0627\u06CC \u0627\u0635\u0644\u06CC\u060C \u0648 \u062C\u0648\u0627\u0628\u06AF\u0648\u06CC \u0633\u0648\u0627\u0644\u0627\u062A \u067E\u06CC\u0648\u0633\u062A\u0647 \u0627\u0647\u0644 \u062F\u0646\u06CC\u0627\u06CC \u0645\u0648\u062C\u0648\u062F \u0637\u0631\u0627\u062D\u06CC \u0627\u0633\u0627\u0633\u0627 \u0645\u0648\u0631\u062F \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u0642\u0631\u0627\u0631 \u06AF\u06CC\u0631\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    component: "p",
-    className: "article-post-time"
-  }, "\u062A\u0627\u0631\u06CC\u062E \u0627\u0646\u062A\u0634\u0627\u0631: ", new Date(article.date).toLocaleString("fa-IR")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ScrollTop__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({}, props, {
-    target_id: "article-img"
-  })));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_5__["AuthContext"].Consumer, null, function (context) {
+    var article = context.GetPost(blog_id);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      className: "single-blog-page"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "article-intro"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      id: "article-img",
+      className: "article-img",
+      src: article.img,
+      alt: article.title
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      variant: "h4",
+      className: "article-title"
+    }, article.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      paragraph: true,
+      className: "article-author"
+    }, "\u0646\u0648\u0634\u062A\u0647 ", article.author)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      paragraph: true,
+      className: "article-abstract"
+    }, article["abstract"]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      paragraph: true,
+      className: "article-body"
+    }, article.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      component: "p",
+      className: "article-post-time"
+    }, "\u062A\u0627\u0631\u06CC\u062E \u0627\u0646\u062A\u0634\u0627\u0631:", " ", new Date(article.date).toLocaleString("fa-IR")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ScrollTop__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({}, props, {
+      target_id: "article-img"
+    })));
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SingleBlog);
@@ -73384,10 +73486,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_LockOpen__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/LockOpen */ "./node_modules/@material-ui/icons/LockOpen.js");
 /* harmony import */ var _material_ui_icons_LockOpen__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_LockOpen__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _services_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../services/data */ "./resources/js/src/services/data.js");
-/* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
-/* harmony import */ var _SingleBook_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./SingleBook.css */ "./resources/js/src/pages/SingleBook.css");
-/* harmony import */ var _SingleBook_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_SingleBook_css__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
+/* harmony import */ var _SingleBook_css__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./SingleBook.css */ "./resources/js/src/pages/SingleBook.css");
+/* harmony import */ var _SingleBook_css__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_SingleBook_css__WEBPACK_IMPORTED_MODULE_15__);
 
 
 
@@ -73401,7 +73502,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // import { getBook, getBookChapters } from "../services/data";
 
 
  // TODO: not find book
@@ -73411,9 +73512,9 @@ var SingleBook = function SingleBook() {
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["useParams"])(),
       book_id = _useParams.book_id;
 
-  var book = Object(_services_data__WEBPACK_IMPORTED_MODULE_14__["getBook"])(book_id);
-  var chapters = Object(_services_data__WEBPACK_IMPORTED_MODULE_14__["getBookChapters"])(book_id);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_15__["AuthContext"].Consumer, null, function (context) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_14__["AuthContext"].Consumer, null, function (context) {
+    var book = context.GetBook(book_id);
+    var chapters = context.GetChapters(book_id);
     var owned = context.isAuthenticated && context.boughtBooks.includes(book.id);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "big-book-banner"
@@ -74098,20 +74199,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
 /* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
 /* harmony import */ var _components_BookThumbnail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/BookThumbnail */ "./resources/js/src/components/BookThumbnail.js");
-/* harmony import */ var _services_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/data */ "./resources/js/src/services/data.js");
-/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../BookList.css */ "./resources/js/src/pages/BookList.css");
-/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../BookList.css */ "./resources/js/src/pages/BookList.css");
+/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
-
+ //import { books } from "../../services/data";
 
 
 
 var MyBook = function MyBook() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_3__["AuthContext"].Consumer, null, function (context) {
-    var myBook = _services_data__WEBPACK_IMPORTED_MODULE_5__["books"].filter(function (book) {
+    var myBook = context.books.filter(function (book) {
       return context.boughtBooks.includes(book.id);
     });
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -74816,7 +74916,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data */ "./resources/js/src/services/data.js");
+/* harmony import */ var _fakeData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fakeData */ "./resources/js/src/services/fakeData.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -74830,7 +74930,7 @@ var GET_PRIVATE_DATA_URL = "/api/private_data";
 var TOKEN = "token";
 var GetData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var publicData;
+    var publicData, privateData;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -74845,9 +74945,20 @@ var GetData = /*#__PURE__*/function () {
             return getPrivateData();
 
           case 6:
-            publicData["user"] = _context.sent;
+            privateData = _context.sent;
 
-          case 7:
+            if (privateData) {
+              publicData["user"] = privateData["user"];
+              publicData["chapter"] = privateData["chapter"];
+            } else {
+              publicData["user"] = {
+                isAuthenticated: false
+              };
+            }
+
+            return _context.abrupt("return", publicData);
+
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -74873,19 +74984,14 @@ var getPublicData = /*#__PURE__*/function () {
 
           case 3:
             response = _context2.sent;
-            _context2.next = 6;
-            return response.json();
-
-          case 6:
-            appData = _context2.sent;
+            appData = response.data;
             SaveToLocalStorage(appData);
-            console.log("appData", appData);
             return _context2.abrupt("return", appData);
 
-          case 12:
-            _context2.prev = 12;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
-            console.log("error:   ", _context2.t0);
+            console.log("error:  getPublicData - ", _context2.t0);
             return _context2.abrupt("return", localStorage.getItem("appData") ? JSON.parse(localStorage.getItem("appData")) : {
               user: {
                 isAuthenticated: false
@@ -74898,12 +75004,12 @@ var getPublicData = /*#__PURE__*/function () {
               authors: []
             });
 
-          case 16:
+          case 13:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 12]]);
+    }, _callee2, null, [[0, 9]]);
   }));
 
   return function getPublicData() {
@@ -74925,9 +75031,7 @@ var getPrivateData = /*#__PURE__*/function () {
               break;
             }
 
-            return _context3.abrupt("return", {
-              isAuthenticated: false
-            });
+            return _context3.abrupt("return", undefined);
 
           case 3:
             _context3.prev = 3;
@@ -74940,27 +75044,20 @@ var getPrivateData = /*#__PURE__*/function () {
 
           case 6:
             response = _context3.sent;
-            _context3.next = 9;
-            return response.json();
+            return _context3.abrupt("return", response.data);
 
-          case 9:
-            publicData["user"] = _context3.sent;
-            _context3.next = 15;
-            break;
-
-          case 12:
-            _context3.prev = 12;
+          case 10:
+            _context3.prev = 10;
             _context3.t0 = _context3["catch"](3);
-            return _context3.abrupt("return", {
-              isAuthenticated: false
-            });
+            console.log("error:  getPrivateData -  ", _context3.t0);
+            return _context3.abrupt("return", undefined);
 
-          case 15:
+          case 14:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[3, 12]]);
+    }, _callee3, null, [[3, 10]]);
   }));
 
   return function getPrivateData() {
@@ -74992,22 +75089,22 @@ var fakeFillLocalStorage = function fakeFillLocalStorage() {
       lastBookId: 7,
       lastChapterId: 103
     },
-    genres: _data__WEBPACK_IMPORTED_MODULE_2__["genres"],
-    books: _data__WEBPACK_IMPORTED_MODULE_2__["books"],
-    chapters: _data__WEBPACK_IMPORTED_MODULE_2__["chapters"],
-    subjects: _data__WEBPACK_IMPORTED_MODULE_2__["subjects"],
-    posts: _data__WEBPACK_IMPORTED_MODULE_2__["articles"],
-    authors: _data__WEBPACK_IMPORTED_MODULE_2__["authors"]
+    genres: _fakeData__WEBPACK_IMPORTED_MODULE_2__["genres"],
+    books: _fakeData__WEBPACK_IMPORTED_MODULE_2__["books"],
+    chapters: _fakeData__WEBPACK_IMPORTED_MODULE_2__["chapters"],
+    subjects: _fakeData__WEBPACK_IMPORTED_MODULE_2__["subjects"],
+    posts: _fakeData__WEBPACK_IMPORTED_MODULE_2__["articles"],
+    authors: _fakeData__WEBPACK_IMPORTED_MODULE_2__["authors"]
   };
   (_localStorage$getItem = localStorage.getItem("appData")) !== null && _localStorage$getItem !== void 0 ? _localStorage$getItem : SaveToLocalStorage(appData);
 };
 
 /***/ }),
 
-/***/ "./resources/js/src/services/data.js":
-/*!*******************************************!*\
-  !*** ./resources/js/src/services/data.js ***!
-  \*******************************************/
+/***/ "./resources/js/src/services/fakeData.js":
+/*!***********************************************!*\
+  !*** ./resources/js/src/services/fakeData.js ***!
+  \***********************************************/
 /*! exports provided: books, genres, articles, authors, chapters, subjects, getBook, getArticle, getBookChapters, getSingleChapter, getRandom */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -75374,6 +75471,42 @@ var getSingleChapter = function getSingleChapter(book_id, chapter_id) {
 };
 var getRandom = function getRandom(arr, count) {
   var result = new Array(count);
+  var len = arr.length;
+  var taken = new Array(len);
+
+  if (count > len) {
+    return arr;
+  }
+
+  while (count--) {
+    var rand = Math.floor(Math.random() * len);
+    result[count] = arr[rand in taken ? taken[rand] : rand];
+    taken[rand] = --len in taken ? taken[len] : len;
+  }
+
+  return result; // const shuffled = [...array].sort(() => 0.5 - Math.random())
+  // let selected = shuffled.slice(0, n);
+};
+
+/***/ }),
+
+/***/ "./resources/js/src/services/function.js":
+/*!***********************************************!*\
+  !*** ./resources/js/src/services/function.js ***!
+  \***********************************************/
+/*! exports provided: getRandom */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRandom", function() { return getRandom; });
+var getRandom = function getRandom(arr, count) {
+  var result = new Array(count);
+
+  if (!arr) {
+    return [];
+  }
+
   var len = arr.length;
   var taken = new Array(len);
 

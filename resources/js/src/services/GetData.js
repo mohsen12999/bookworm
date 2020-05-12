@@ -1,5 +1,12 @@
 import axios from "axios";
-import { books, articles, genres, authors, subjects, chapters } from "./data";
+import {
+    books,
+    articles,
+    genres,
+    authors,
+    subjects,
+    chapters
+} from "./fakeData";
 
 const GET_PUBLIC_DATA_URL = "/api/get_data";
 const GET_PRIVATE_DATA_URL = "/api/private_data";
@@ -17,19 +24,19 @@ export const GetData = async () => {
     } else {
         publicData["user"] = { isAuthenticated: false };
     }
+
+    return publicData;
 };
 
 const getPublicData = async () => {
     try {
         const response = await axios.get(GET_PUBLIC_DATA_URL);
-        const appData = await response.json();
+        const appData = response.data;
         SaveToLocalStorage(appData);
-
-        console.log("appData", appData);
 
         return appData;
     } catch (error) {
-        console.log("error:   ", error);
+        console.log("error:  getPublicData - ", error);
 
         return localStorage.getItem("appData")
             ? JSON.parse(localStorage.getItem("appData"))
@@ -60,8 +67,9 @@ const getPrivateData = async () => {
                 }
             }
         );
-        return await response.json();
+        return response.data;
     } catch (error) {
+        console.log("error:  getPrivateData -  ", error);
         return undefined;
     }
 };

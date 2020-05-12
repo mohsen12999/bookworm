@@ -7,7 +7,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { useParams, Link, Redirect } from "react-router-dom";
 
 import ScrollTop from "../components/ScrollTop";
-import { getSingleChapter } from "../services/data";
+//import { getSingleChapter } from "../services/data";
 import { AuthContext } from "../contexts/AuthContext";
 
 import "./ReadBook.css";
@@ -17,13 +17,14 @@ import "./ReadBook.css";
 
 const ReadBook = (props) => {
   const { book_id, chapter_id } = useParams();
-  const bookId = Number(book_id);
-  const chapterId = Number(chapter_id);
+  // const [chapterId, setChapter] = React.useState(Number(chapter_id));
+  // const bookId = Number(book_id);
+  // const chapterId = Number(chapter_id);
 
-  const { chapter, prev_chapter, next_chapter } = getSingleChapter(
-    bookId,
-    chapterId
-  );
+  // const { chapter, prev_chapter, next_chapter } = getSingleChapter(
+  //   bookId,
+  //   chapterId
+  // );
 
   React.useEffect(() => {
     const anchor = document.querySelector("#chapter-title");
@@ -31,23 +32,30 @@ const ReadBook = (props) => {
     if (anchor) {
       anchor.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, [bookId, chapterId]);
+  }, [chapter_id]);
 
   return (
     <AuthContext.Consumer>
       {(context) => {
+        const {
+          chapter,
+          prev_chapter,
+          next_chapter,
+        } = context.GetSingleChapter(book_id, chapter_id);
+
         const owned =
-          context.isAuthenticated && context.boughtBooks.includes(bookId);
+          context.isAuthenticated &&
+          context.boughtBooks.includes(Number(book_id));
 
         if (!(owned || chapter.free)) {
-          return <Redirect to={"/book/" + bookId} />;
+          return <Redirect to={"/book/" + book_id} />;
         }
 
         if (
-          context.lastBookId !== bookId ||
-          context.lastChapterId !== chapterId
+          context.lastBookId !== Number(book_id) ||
+          context.lastChapterId !== Number(chapter_id)
         ) {
-          context.SetLastBookReading(bookId, chapterId);
+          context.SetLastBookReading(book_id, chapter_id);
         }
 
         return (
@@ -63,7 +71,7 @@ const ReadBook = (props) => {
                     color="primary"
                     className="chapter-change"
                     component={Link}
-                    to={"/read/" + bookId + "/" + prev_chapter.id}
+                    to={"/read/" + book_id + "/" + prev_chapter.id}
                   >
                     فصل قبل - {prev_chapter.title}
                   </Button>
@@ -145,7 +153,7 @@ const ReadBook = (props) => {
                     color="primary"
                     className="chapter-change"
                     component={Link}
-                    to={"/read/" + bookId + "/" + next_chapter.id}
+                    to={"/read/" + book_id + "/" + next_chapter.id}
                   >
                     فصل بعد - {next_chapter.title}
                   </Button>
