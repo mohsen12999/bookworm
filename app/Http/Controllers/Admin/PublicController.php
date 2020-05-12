@@ -12,6 +12,9 @@ use App\Genre;
 use App\Subject;
 use App\Post;
 
+use App\Factor;
+use App\Bought;
+
 class PublicController extends Controller
 {
     //
@@ -33,6 +36,31 @@ class PublicController extends Controller
             'subjects' => $subjects,
             'posts' => $posts,
             'authors' => $authors,
+        ], 200);
+    }
+
+    public function getPrivateData(Request $request)
+    {
+        $user = $request->user();
+
+        $factors = Factor::where('user_id', $user->id);
+        $bought = Bought::where('user_id', $user->id);
+
+        $writtenBooks = Book::where('user_id', $user->id);
+        $writtenPosts = Post::where('user_id', $user->id);
+
+        return response()->json([
+            'isAuthenticated' => true,
+            'name' => $user->name,
+            'email' => $user->email,
+            'mobile' => $user->mobile,
+            'avatar' => $user->avatar,
+            'wallet' => $user->wallet,
+            'role' => $user->role,
+            'factors' => $factors,
+            'boughtBook' => $bought,
+            'writtenBooks' => $writtenBooks,
+            'writtenPosts' => $writtenPosts
         ], 200);
     }
 }
