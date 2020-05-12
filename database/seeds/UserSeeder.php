@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'name' => 'آرتور مورگان',
             'email' => Str::random(10) . '@gmail.com',
             'mobile' => '',
-            'avatar' => '',
+            'avatar' => '/images/user/profile-4t.jpg',
             'password' => Hash::make('123456'),
             'role' => '10' // writer
         ]);
