@@ -43,11 +43,11 @@ class PublicController extends Controller
     {
         $user = $request->user();
 
-        $factors = Factor::where('user_id', $user->id);
-        $bought = Bought::where('user_id', $user->id);
+        $factors = Factor::where('user_id', $user->id)->get();
+        $bought = Bought::where('user_id', $user->id)->get();
 
-        $writtenBooks = Book::where('user_id', $user->id);
-        $writtenPosts = Post::where('user_id', $user->id);
+        $writtenBooks = Book::where('user_id', $user->id)->get();
+        $writtenPosts = Post::where('user_id', $user->id)->get();
 
         return response()->json([
             'isAuthenticated' => true,
