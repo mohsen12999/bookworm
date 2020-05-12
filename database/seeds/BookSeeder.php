@@ -21,7 +21,8 @@ class BookSeeder extends Seeder
             "price" => 2.7,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -32,7 +33,8 @@ class BookSeeder extends Seeder
             "price" => 3.2,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -43,7 +45,8 @@ class BookSeeder extends Seeder
             "price" => 4.1,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -54,7 +57,8 @@ class BookSeeder extends Seeder
             "price" => 2.2,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -65,7 +69,8 @@ class BookSeeder extends Seeder
             "price" => 4.4,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -76,7 +81,8 @@ class BookSeeder extends Seeder
             "price" => 2.7,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -87,7 +93,8 @@ class BookSeeder extends Seeder
             "price" => 3.9,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -98,7 +105,8 @@ class BookSeeder extends Seeder
             "price" => 4.7,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -109,7 +117,8 @@ class BookSeeder extends Seeder
             "price" => 2.6,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -120,7 +129,8 @@ class BookSeeder extends Seeder
             "price" => 2.7,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -131,7 +141,8 @@ class BookSeeder extends Seeder
             "price" => 3.1,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -142,7 +153,8 @@ class BookSeeder extends Seeder
             "price" => 4.7,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -153,7 +165,8 @@ class BookSeeder extends Seeder
             "price" => 1.9,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -164,7 +177,8 @@ class BookSeeder extends Seeder
             "price" => 1.9,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -175,7 +189,8 @@ class BookSeeder extends Seeder
             "price" => 3.9,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -186,7 +201,8 @@ class BookSeeder extends Seeder
             "price" => 2.4,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -197,7 +213,8 @@ class BookSeeder extends Seeder
             "price" => 1.9,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -208,7 +225,8 @@ class BookSeeder extends Seeder
             "price" => 1.9,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -219,7 +237,8 @@ class BookSeeder extends Seeder
             "price" => 3.3,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
 
         DB::table('books')->insert([
@@ -230,7 +249,8 @@ class BookSeeder extends Seeder
             "price" => 4.9,
             "user_id" => 1,
             "view_count" => rand(0, 1000),
-            "created_at" => date("Y-m-d H:i:s")
+            "created_at" => date("Y-m-d H:i:s"),
+            "publish_status" => 100
         ]);
     }
 }
