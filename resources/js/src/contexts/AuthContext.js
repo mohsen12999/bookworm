@@ -1,61 +1,61 @@
 import React, { createContext, useState } from "react";
+import { GetData, RemoveToken, SaveToLocalStorage } from "../services/GetData";
 
 export const AuthContext = createContext();
 
-const AuthContextProvider = props => {
-    const [contextValue, setContextValue] = useState({
+const AuthContextProvider = (props) => {
+  const [contextValue, setContextValue] = useState(GetData());
+
+  // TODO: Login
+  const Login = () => {
+    // Login after 500ms
+    setTimeout(() => {
+      setContextValue({
+        ...contextValue,
         isAuthenticated: true,
-        token: "",
-        username: "محسن",
-        mobile: "09113923310",
-        boughtBooks: [1, 7, 18],
-        writtenBooks: [],
-        article: [],
-        wallet: 5000,
-        lastBookId: 7,
-        lastChapterId: 103,
-        avatar: "/img/user/default-profile.jpg"
-    });
+      });
+    }, 500);
+  };
 
-    const Login = () => {
-        // Login after 500ms
-        setTimeout(() => {
-            setContextValue({
-                ...contextValue,
-                isAuthenticated: true
-            });
-        }, 500);
-    };
-    const Logout = () => {
-        // Logout after 500ms
-        setTimeout(() => {
-            setContextValue({
-                ...contextValue,
-                isAuthenticated: false
-            });
-        }, 500);
+  const Logout = () => {
+    const new_value = {
+      ...contextValue,
+      user: { isAuthenticated: false },
     };
 
-    const SetLastBookReading = (book_id, chapter_id) => {
-        setContextValue({
-            ...contextValue,
-            lastBookId: Number(book_id),
-            lastChapterId: Number(chapter_id)
-        });
+    RemoveToken();
+    SaveToLocalStorage(new_value);
+
+    setContextValue(new_value);
+  };
+
+  const SetLastBookReading = (book_id, chapter_id) => {
+    const new_value = {
+      ...contextValue,
+      user: {
+        ...contextValue.user,
+        lastBookId: Number(book_id),
+        lastChapterId: Number(chapter_id),
+      },
     };
 
-    return (
-        <AuthContext.Provider
-            value={{
-                ...contextValue,
-                Login,
-                Logout,
-                SetLastBookReading
-            }}
-        >
-            {props.children}
-        </AuthContext.Provider>
-    );
+    SaveToLocalStorage(new_value);
+
+    setContextValue(new_value);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        ...contextValue,
+        Login,
+        Logout,
+        SetLastBookReading,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthContextProvider;
