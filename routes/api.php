@@ -22,6 +22,8 @@ Route::get('/get_data', 'Admin\PublicController@getPublicData');
 Route::middleware('auth:api')->group(function () {
 
     Route::get('user/{userId}/detail', 'Admin\AuthController@userInfo');
+
+    Route::post('/private_data', 'Admin\PublicController@getPrivateData');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
