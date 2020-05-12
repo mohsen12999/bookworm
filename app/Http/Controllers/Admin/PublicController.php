@@ -20,14 +20,27 @@ class PublicController extends Controller
     //
     public function getPublicData(Request $request)
     {
-        $genres = Genre::all();
-        $subjects = Subject::all();
+        $authors = User::author_user()->get();
 
-        $chapters = Chapter::public_chapter()->free_chapter()->get();
-        $books = Book::public_book()->get();
+        $subjects = Subject::all();
         $posts = Post::public_post()->get();
 
-        $authors = User::author_user()->get();
+        $genres = Genre::all();
+        $books = Book::public_book()->get();
+
+
+        $chapters = Chapter::public_chapter()->get();
+        $free_books_id = Book::public_book()->free_book()->select('id')->get()->toArray();
+
+        $free_books_id_arr = array_map(function ($val) {
+            return $val["id"];
+        }, $free_books_id);
+
+        foreach ($chapters as $chapter) {
+            if ($chapter->free_chapter == 0 && !in_array($chapter->book_id, $free_books_id_arr)) {
+                $chapter->description = NULL; // not send [not-free chapter] and [not-free book chapter] description
+            }
+        }
 
         return response()->json([
             'genres' => $genres,
