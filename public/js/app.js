@@ -72499,10 +72499,9 @@ var AuthContextProvider = function AuthContextProvider(props) {
 
               case 2:
                 appData = _context.sent;
-                console.log("appData  ", appData);
                 setContextValue(appData);
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -72740,7 +72739,7 @@ var BlogList = function BlogList() {
       }, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
         component: "p",
         className: "post-time"
-      }, new Date(post.date).toLocaleString("fa-IR"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, new Date(post.created_at).toLocaleString("fa-IR"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
         component: "p"
       }, "\u062E\u0644\u0627\u0635\u0647 \u0645\u0642\u0627\u0644\u0647\u060C \u06CC\u06A9 \u06CC\u0627 \u062F\u0648\u062E\u0637 \u062C\u062F\u0627 \u0627\u0632 \u0645\u062A\u0646 \u0627\u0635\u0644\u06CC \u0648 \u0645\u0633\u062A\u0642\u0644 \u0647\u0633\u062A. \u0645\u0641\u0627\u0647\u06CC\u0645 \u0627\u0635\u0644\u06CC \u0646\u0648\u0634\u062A\u0647 \u0631\u0627 \u0628\u06CC\u0627\u0646 \u0645\u06CC \u0646\u0645\u0627\u06CC\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-btn"
@@ -72810,12 +72809,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
 /* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./BookList.css */ "./resources/js/src/pages/BookList.css");
 /* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_10__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -72851,25 +72844,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var BookList = function BookList() {
   //const bookList = books.sort((a, b) => a.id < b.id);
+  //const [bookList, setBookList] = React.useState([]);
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState([]),
       _React$useState2 = _slicedToArray(_React$useState, 2),
-      bookList = _React$useState2[0],
-      setBookList = _React$useState2[1];
+      filteredBooks = _React$useState2[0],
+      setFilteredBooks = _React$useState2[1];
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState([]),
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState("new"),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
-      filteredBooks = _React$useState4[0],
-      setFilteredBooks = _React$useState4[1];
+      sort = _React$useState4[0],
+      setSort = _React$useState4[1];
 
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState("new"),
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
       _React$useState6 = _slicedToArray(_React$useState5, 2),
-      sort = _React$useState6[0],
-      setSort = _React$useState6[1];
-
-  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
-      _React$useState8 = _slicedToArray(_React$useState7, 2),
-      filter = _React$useState8[0],
-      setFilter = _React$useState8[1];
+      filter = _React$useState6[0],
+      setFilter = _React$useState6[1];
 
   var handleChangeSort = function handleChangeSort(event) {
     event.preventDefault();
@@ -72947,11 +72936,18 @@ var BookList = function BookList() {
     container: true,
     spacing: 1
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__["AuthContext"].Consumer, null, function (context) {
+    console.log(context, context.books, filteredBooks);
+
     if (context.books) {
-      setBookList(_objectSpread({}, context.books));
-      setFilteredBooks(context.books.sort(function (a, b) {
-        return a.id < b.id;
-      }));
+      if (bookList.length == 0) {
+        setFilteredBooks(context.books.sort(function (a, b) {
+          return a.id < b.id;
+        }));
+      } // setFilteredBooks(
+      //     context.books.sort((a, b) => a.id < b.id)
+      // );
+
+
       filteredBooks.map(function (book) {
         var owned = context.isAuthenticated && context.boughtBooks.includes(book.id);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -73054,14 +73050,13 @@ var Index = function Index() {
     size: "large",
     type: "submit"
   }, "\u062C\u0633\u062A\u062C\u0648")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__["AuthContext"].Consumer, null, function (context) {
-    console.log(context);
     var books = context.books;
     var rand_book = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(books, 8);
     var pop_books = rand_book.splice(0, 4);
     var new_books = rand_book;
     var best_authors = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(context.authors, 4);
     var best_genres = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(context.genres, 6);
-    var last_articles = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(context.articles, 3);
+    var last_articles = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(context.posts, 3);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
       variant: "h5",
       component: "h3",
@@ -73120,8 +73115,8 @@ var Index = function Index() {
         xs: 6,
         sm: 3
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AuthorThumbnail__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        title: author.title,
-        img: author.img
+        title: author.name,
+        img: author.avatar
       }));
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
       variant: "h5",
