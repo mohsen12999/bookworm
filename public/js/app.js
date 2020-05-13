@@ -28711,7 +28711,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* material-ui persian style */\r\n\r\n.persian-form .MuiInputLabel-formControl {\r\n    left: unset !important;\r\n    right: 0 !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-shrink {\r\n    transform-origin: top right !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-outlined.MuiInputLabel-shrink {\r\n    transform: translate(-4px, -6px) scale(0.75) !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-outlined {\r\n    transform: translate(-14px, 20px) scale(1) !important;\r\n}\r\n\r\nform.persian-form input {\r\n    direction: rtl !important;\r\n}\r\n", ""]);
+exports.push([module.i, "/* material-ui persian style */\r\n\r\n.persian-form .MuiInputLabel-formControl {\r\n    left: unset !important;\r\n    right: 0 !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-shrink {\r\n    transform-origin: top right !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-outlined.MuiInputLabel-shrink {\r\n    transform: translate(-4px, -6px) scale(0.75) !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-outlined {\r\n    transform: translate(-14px, 20px) scale(1) !important;\r\n}\r\n\r\nform.persian-form input {\r\n    direction: rtl !important;\r\n}\r\n\r\n.persian-form legend {\r\n    text-align: right !important;\r\n}\r\n", ""]);
 
 // exports
 
