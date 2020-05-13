@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
@@ -26,8 +27,19 @@ const Login = () => (
                             variant="h5"
                             className="login-title"
                         >
-                            فرم ورود به سایت
+                            فرم عضویت در سایت
                         </Typography>
+                        <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                                <AccountCircle />
+                            </Grid>
+                            <Grid item>
+                                <TextField
+                                    id="input-with-icon-grid"
+                                    label="نام"
+                                />
+                            </Grid>
+                        </Grid>
                         <Grid container spacing={1} alignItems="flex-end">
                             <Grid item>
                                 <AlternateEmailIcon />
@@ -51,6 +63,18 @@ const Login = () => (
                                 />
                             </Grid>
                         </Grid>
+                        <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                                <VisibilityOff />
+                            </Grid>
+                            <Grid item>
+                                <TextField
+                                    id="input-with-icon-grid"
+                                    label="password"
+                                    type="password again"
+                                />
+                            </Grid>
+                        </Grid>
                         <div className="login-btn">
                             <Button
                                 variant="outlined"
@@ -60,7 +84,7 @@ const Login = () => (
                                     context.Login();
                                 }}
                             >
-                                ورود به سایت
+                                ارسال اطلاعات
                             </Button>
                         </div>
                     </Paper>
