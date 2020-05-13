@@ -11,6 +11,7 @@ import SingleBlog from "./pages/SingleBlog";
 import ReadBook from "./pages/ReadBook";
 import About from "./pages/About";
 
+import Register from "./pages/admin/Register";
 import Login from "./pages/admin/Login";
 import Logout from "./pages/admin/Logout";
 
@@ -83,6 +84,9 @@ function App() {
                                 </PrivateRouteLayout>
                             </Route>
 
+                            <Route path="/register">
+                                <Register />
+                            </Route>
                             <Route path="/login">
                                 <Login />
                             </Route>

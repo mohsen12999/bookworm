@@ -15,150 +15,164 @@ import NoteIcon from "@material-ui/icons/Note";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
+import PersonIcon from "@material-ui/icons/Person";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 import ListItemLink from "./ListItemLink";
 import ReadingBookMenu from "./ReadingBookMenu";
 import { AuthContext } from "../contexts/AuthContext";
 
 const main_menu = [
-  {
-    id: 11,
-    title: "صفحه اصلی",
-    url: "/",
-    exactMatch: true,
-    icon: <ViewStreamIcon />,
-  },
-  {
-    id: 12,
-    title: "لیست کتاب ها",
-    url: "/books",
-    exactMatch: false,
-    icon: <LibraryBooksIcon />,
-  },
-  {
-    id: 13,
-    title: "لیست مقالات",
-    url: "/blogs",
-    exactMatch: false,
-    icon: <CollectionsBookmarkIcon />,
-  },
-  {
-    id: 19,
-    title: "درباره ما",
-    url: "/about",
-    exactMatch: false,
-    icon: <StreetviewIcon />,
-  },
+    {
+        id: 11,
+        title: "صفحه اصلی",
+        url: "/",
+        exactMatch: true,
+        icon: <ViewStreamIcon />
+    },
+    {
+        id: 12,
+        title: "لیست کتاب ها",
+        url: "/books",
+        exactMatch: false,
+        icon: <LibraryBooksIcon />
+    },
+    {
+        id: 13,
+        title: "لیست مقالات",
+        url: "/blogs",
+        exactMatch: false,
+        icon: <CollectionsBookmarkIcon />
+    },
+    {
+        id: 19,
+        title: "درباره ما",
+        url: "/about",
+        exactMatch: false,
+        icon: <StreetviewIcon />
+    }
 ];
 
 const admin_menu = [
-  {
-    id: 21,
-    title: "داشبورد",
-    url: "/dashboard",
-    exactMatch: false,
-    icon: <DashboardIcon />,
-  },
-  {
-    id: 22,
-    title: "پروفایل",
-    url: "/profile",
-    exactMatch: false,
-    icon: <MenuBookIcon />,
-  },
-  {
-    id: 23,
-    title: "کتاب های من",
-    url: "/mybook",
-    exactMatch: false,
-    icon: <MenuBookIcon />,
-  },
-  {
-    id: 24,
-    title: "نوشته های من",
-    url: "/mynote",
-    exactMatch: false,
-    icon: <NoteIcon />,
-  },
-  {
-    id: 25,
-    title: "مقاله های من",
-    url: "/myblog",
-    exactMatch: false,
-    icon: <SpeakerNotesIcon />,
-  },
-  {
-    id: 26,
-    title: "کیف پول",
-    url: "/wallet",
-    exactMatch: false,
-    icon: <CreditCardIcon />,
-  },
+    {
+        id: 21,
+        title: "داشبورد",
+        url: "/dashboard",
+        exactMatch: false,
+        icon: <DashboardIcon />
+    },
+    {
+        id: 22,
+        title: "پروفایل",
+        url: "/profile",
+        exactMatch: false,
+        icon: <MenuBookIcon />
+    },
+    {
+        id: 23,
+        title: "کتاب های من",
+        url: "/mybook",
+        exactMatch: false,
+        icon: <MenuBookIcon />
+    },
+    {
+        id: 24,
+        title: "نوشته های من",
+        url: "/mynote",
+        exactMatch: false,
+        icon: <NoteIcon />
+    },
+    {
+        id: 25,
+        title: "مقاله های من",
+        url: "/myblog",
+        exactMatch: false,
+        icon: <SpeakerNotesIcon />
+    },
+    {
+        id: 26,
+        title: "کیف پول",
+        url: "/wallet",
+        exactMatch: false,
+        icon: <CreditCardIcon />
+    }
 ];
 
 // TODO: last book
 
 const DrawerMenu = () => {
-  return (
-    <AuthContext.Consumer>
-      {(context) => (
-        <div>
-          <List>
-            <ListItem>
-              <ListItemText primary="منو" className="menu-title" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List>
-            {main_menu.map((menu) => (
-              <ListItemLink
-                key={menu.id}
-                icon={menu.icon}
-                primary={menu.title}
-                to={menu.url}
-                enable={true}
-                exactMatch={menu.exactMatch}
-              />
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {admin_menu.map((menu) => (
-              <ListItemLink
-                key={menu.id}
-                icon={menu.icon}
-                primary={menu.title}
-                to={menu.url}
-                enable={context.isAuthenticated}
-                exactMatch={menu.exactMatch}
-              />
-            ))}
-          </List>
+    return (
+        <AuthContext.Consumer>
+            {context => (
+                <div>
+                    <List>
+                        <ListItem>
+                            <ListItemText
+                                primary="منو"
+                                className="menu-title"
+                            />
+                        </ListItem>
+                    </List>
+                    <Divider />
+                    <List>
+                        {main_menu.map(menu => (
+                            <ListItemLink
+                                key={menu.id}
+                                icon={menu.icon}
+                                primary={menu.title}
+                                to={menu.url}
+                                enable={true}
+                                exactMatch={menu.exactMatch}
+                            />
+                        ))}
+                    </List>
+                    <Divider />
+                    <List>
+                        {admin_menu.map(menu => (
+                            <ListItemLink
+                                key={menu.id}
+                                icon={menu.icon}
+                                primary={menu.title}
+                                to={menu.url}
+                                enable={context.isAuthenticated}
+                                exactMatch={menu.exactMatch}
+                            />
+                        ))}
+                    </List>
 
-          <ReadingBookMenu />
-          <Divider />
+                    <ReadingBookMenu />
+                    <Divider />
 
-          {context.isAuthenticated ? (
-            <ListItemLink
-              icon={<InboxIcon />}
-              primary="خروج"
-              to="/logout"
-              enable={true}
-              exactMatch={false}
-            />
-          ) : (
-            <ListItemLink
-              icon={<ExitToAppIcon />}
-              primary="ورود"
-              to="/login"
-              enable={true}
-              exactMatch={false}
-            />
-          )}
-        </div>
-      )}
-    </AuthContext.Consumer>
-  );
+                    {context.isAuthenticated ? (
+                        <ListItemLink
+                            icon={<InboxIcon />}
+                            primary="خروج"
+                            to="/logout"
+                            enable={true}
+                            exactMatch={false}
+                        />
+                    ) : (
+                        <React.Fragment>
+                            <ListItemLink
+                                icon={<PersonIcon />}
+                                primary="ورود"
+                                to="/login"
+                                enable={true}
+                                exactMatch={false}
+                            />
+                            <ListItemLink
+                                icon={<PersonAddIcon />}
+                                primary="عضویت"
+                                to="/register"
+                                enable={true}
+                                exactMatch={false}
+                            />
+                        </React.Fragment>
+                    )}
+                </div>
+            )}
+        </AuthContext.Consumer>
+    );
 };
 
 export default DrawerMenu;
