@@ -106,9 +106,9 @@ const Dashboard = () => (
                   مقاله های نوشته شده توسط شما:
                 </Typography>
                 <Typography variant="h5" component="h2">
-                  {context.posts.length === 0
+                  {context.article.length === 0
                     ? "شما مقاله ای ننوشته اید."
-                    : "شما " + context.posts.length + " مقاله نوشته اید."}
+                    : "شما " + context.article.length + " مقاله نوشته اید."}
                 </Typography>
               </CardContent>
               <CardActions>

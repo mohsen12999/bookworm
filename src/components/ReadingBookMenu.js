@@ -14,7 +14,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { Link, useRouteMatch } from "react-router-dom";
 
 import { AuthContext } from "../contexts/AuthContext";
-import { getBook, getBookChapters } from "../services/data";
+//import { getBook, getBookChapters } from "../services/data";
 
 import "./ReadingBookMenu.css";
 
@@ -65,8 +65,8 @@ const ReadingBookMenu = (props) => {
           return <React.Fragment></React.Fragment>;
         }
 
-        const book = getBook(context.lastBookId);
-        const chapters = getBookChapters(context.lastBookId);
+        const book = context.GetBook(context.lastBookId);
+        const chapters = context.GetChapters(context.lastBookId);
         return (
           <React.Fragment>
             <Divider />

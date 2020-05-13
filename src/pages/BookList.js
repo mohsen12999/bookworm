@@ -10,7 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import BookThumbnail from "../components/BookThumbnail";
 
-import { books } from "../services/data";
+//import { books } from "../services/data";
 import { AuthContext } from "../contexts/AuthContext";
 
 import "./BookList.css";
@@ -18,47 +18,11 @@ import "./BookList.css";
 // TODO: error in Select
 
 const BookList = () => {
-  const bookList = books.sort((a, b) => a.id < b.id);
-
-  const [filteredBooks, setFilteredBooks] = React.useState(bookList);
   const [sort, setSort] = React.useState("new");
   const [filter, setFilter] = React.useState("");
 
-  const handleChangeSort = (event) => {
-    event.preventDefault();
-    const newSort = event.target.value;
-    setSort(newSort);
-    makeNewList(filter, newSort);
-  };
-
-  const handleInputChange = (event) => {
-    event.preventDefault();
-    const newFilter = event.target.value;
-    setFilter(newFilter);
-    makeNewList(newFilter, sort);
-  };
-
-  const makeNewList = (newFilter, newSort) => {
-    const filteredBook =
-      newFilter.length === 0
-        ? [...bookList]
-        : [...bookList].filter(
-            (book) =>
-              book.title.indexOf(newFilter) >= 0 ||
-              book.author.indexOf(newFilter) >= 0
-          );
-
-    const sortedBook =
-      newSort === "new"
-        ? [...filteredBook].sort((a, b) => a.id < b.id)
-        : newSort === "exp"
-        ? [...filteredBook].sort((a, b) => a.price < b.price)
-        : [...filteredBook].sort((a, b) => a.price > b.price);
-    setFilteredBooks(sortedBook);
-  };
-
   return (
-    <div>
+    <React.Fragment>
       <div className="search-filtered-book">
         <Grid container spacing={1}>
           <Grid item xs={12} sm={4} className="center-grid-item">
@@ -74,7 +38,7 @@ const BookList = () => {
               variant="outlined"
               label="جستجو"
               value={filter}
-              onChange={handleInputChange}
+              onChange={(e) => setFilter(e.target.value)}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -84,7 +48,7 @@ const BookList = () => {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={sort}
-                onChange={handleChangeSort}
+                onChange={(e) => setSort(e.target.value)}
               >
                 <MenuItem value={"new"}>جدیدترین</MenuItem>
                 <MenuItem value={"exp"}>گران ترین</MenuItem>
@@ -94,10 +58,13 @@ const BookList = () => {
           </Grid>
         </Grid>
       </div>
-      <Grid container spacing={1}>
+
+      <Grid container spacing={1} className="all-book-grid">
         <AuthContext.Consumer>
-          {(context) =>
-            filteredBooks.map((book) => {
+          {(context) => {
+            const filteredBooks = context.GetFilteredBook(sort, filter);
+
+            return filteredBooks.map((book) => {
               const owned =
                 context.isAuthenticated &&
                 context.boughtBooks.includes(book.id);
@@ -113,11 +80,11 @@ const BookList = () => {
                   />
                 </Grid>
               );
-            })
-          }
+            });
+          }}
         </AuthContext.Consumer>
       </Grid>
-    </div>
+    </React.Fragment>
   );
 };
 

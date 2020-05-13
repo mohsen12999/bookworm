@@ -1,21 +1,43 @@
 import axios from "axios";
-import { books, articles, genres, authors, subjects, chapters } from "./data";
+import {
+  books,
+  articles,
+  genres,
+  authors,
+  subjects,
+  chapters,
+} from "./fakeData";
 
-const GET_DATA_URL = "/api/get_data"; // TODO: renew Token
+const GET_PUBLIC_DATA_URL = "/api/get_data";
+const GET_PRIVATE_DATA_URL = "/api/private_data";
 
 const TOKEN = "token";
 
 export const GetData = async () => {
-  const token = localStorage.getItem(TOKEN) ?? "";
-
   fakeFillLocalStorage();
 
+  const publicData = await getPublicData();
+  const privateData = await getPrivateData();
+  if (privateData) {
+    publicData["user"] = privateData["user"];
+    publicData["chapter"] = privateData["chapter"];
+  } else {
+    publicData["user"] = { isAuthenticated: false };
+  }
+
+  return publicData;
+};
+
+const getPublicData = async () => {
   try {
-    const response = await axios.post(GET_DATA_URL, { token: token });
-    const appData = await response.json();
+    const response = await axios.get(GET_PUBLIC_DATA_URL);
+    const appData = response.data;
     SaveToLocalStorage(appData);
+
     return appData;
   } catch (error) {
+    console.log("error:  getPublicData - ", error);
+
     return localStorage.getItem("appData")
       ? JSON.parse(localStorage.getItem("appData"))
       : {
@@ -27,6 +49,28 @@ export const GetData = async () => {
           subjects: [],
           authors: [],
         };
+  }
+};
+
+const getPrivateData = async () => {
+  const token = localStorage.getItem(TOKEN);
+  if (!token) {
+    return undefined;
+  }
+  try {
+    const response = await axios.post(
+      GET_PRIVATE_DATA_URL,
+      {},
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log("error:  getPrivateData -  ", error);
+    return undefined;
   }
 };
 
@@ -42,15 +86,16 @@ const fakeFillLocalStorage = () => {
   const appData = {
     user: {
       isAuthenticated: true,
-      username: "محسن",
+      name: "محسن",
+      email: "mohsen@gmail.com",
       mobile: "09113923310",
+      avatar: "/images/user/default-profile.jpg",
+      wallet: 5000,
       boughtBooks: [1, 7, 18],
       writtenBooks: [],
-      posts: [],
-      wallet: 5000,
+      writtenPosts: [],
       lastBookId: 7,
       lastChapterId: 103,
-      avatar: "/img/user/default-profile.jpg",
     },
     genres: genres,
     books: books,
@@ -62,19 +107,3 @@ const fakeFillLocalStorage = () => {
 
   localStorage.getItem("appData") ?? SaveToLocalStorage(appData);
 };
-
-/*
-{
-    isAuthenticated: true,
-    token: "",
-    username: "محسن",
-    mobile: "09113923310",
-    boughtBooks: [1, 7, 18],
-    writtenBooks: [],
-    posts: [],
-    wallet: 5000,
-    lastBookId: 7,
-    lastChapterId: 103,
-    avatar: "/img/user/default-profile.jpg",
-  }
-*/

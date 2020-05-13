@@ -34,3 +34,7 @@
 .full-width {
   width: 100%;
 }
+
+.all-book-grid {
+  direction: rtl !important;
+}

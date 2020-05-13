@@ -14,7 +14,7 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 import { useParams, Link } from "react-router-dom";
 
-import { getBook, getBookChapters } from "../services/data";
+// import { getBook, getBookChapters } from "../services/data";
 import { AuthContext } from "../contexts/AuthContext";
 
 import "./SingleBook.css";
@@ -23,116 +23,134 @@ import "./SingleBook.css";
 // TODO: Book Name, Author, Abstract, chapter list
 
 const SingleBook = () => {
-  let { book_id } = useParams();
-  const book = getBook(book_id);
-  const chapters = getBookChapters(book_id);
+    let { book_id } = useParams();
 
-  return (
-    <AuthContext.Consumer>
-      {(context) => {
-        const owned =
-          context.isAuthenticated && context.boughtBooks.includes(book.id);
-        return (
-          <React.Fragment>
-            <div className="big-book-banner">
-              <div>
-                <img
-                  src={process.env.PUBLIC_URL + book.img}
-                  className="book-img"
-                  alt={book.title}
-                />
-              </div>
-              <div>
-                <div className="book-text">
-                  <Typography variant="h4">{book.title}</Typography>
-                  <Typography paragraph>نوشته {book.author}</Typography>
-                  {!owned && (
-                    <Button
-                      className="buy-book-btn"
-                      variant="contained"
-                      color="primary"
-                      endIcon={<ShoppingCartIcon />}
-                    >
-                      خرید کتاب
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </div>
+    return (
+        <AuthContext.Consumer>
+            {context => {
+                const book = context.GetBook(book_id);
+                const chapters = context.GetChapters(book_id);
 
-            <div className="book-abstract">
-              <Typography variant="h5" component="h4">
-                خلاصه کتاب
-              </Typography>
-              <Typography paragraph>چکیده یا خلاصه کتاب</Typography>
-            </div>
+                const owned =
+                    context.isAuthenticated &&
+                    context.boughtBooks.includes(book.id);
+                return (
+                    <React.Fragment>
+                        <div className="big-book-banner">
+                            <div>
+                                <img
+                                    src={book.img}
+                                    className="book-img"
+                                    alt={book.title}
+                                />
+                            </div>
+                            <div>
+                                <div className="book-text">
+                                    <Typography variant="h4">
+                                        {book.title}
+                                    </Typography>
+                                    <Typography paragraph>
+                                        نوشته {book.author}
+                                    </Typography>
+                                    {!owned && (
+                                        <Button
+                                            className="buy-book-btn"
+                                            variant="contained"
+                                            color="primary"
+                                            endIcon={<ShoppingCartIcon />}
+                                        >
+                                            خرید کتاب
+                                        </Button>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
 
-            <div className="book-chapters">
-              <Typography
-                variant="h5"
-                component="h4"
-                className="chapter-header"
-              >
-                فصل های کتاب
-              </Typography>
+                        <div className="book-abstract">
+                            <Typography variant="h5" component="h4">
+                                خلاصه کتاب
+                            </Typography>
+                            <Typography paragraph>
+                                چکیده یا خلاصه کتاب
+                            </Typography>
+                        </div>
 
-              <TableContainer component={Paper}>
-                <Table aria-label="simple table">
-                  <TableBody>
-                    {chapters.map((chapter) => (
-                      <TableRow
-                        key={chapter.id}
-                        hover
-                        className={
-                          chapter.free || owned
-                            ? "enable-chapter"
-                            : "locked-chapter"
-                        }
-                      >
-                        <Tooltip
-                          title={
-                            chapter.free || owned
-                              ? "خواندن فصل"
-                              : "برای خواندن این فصل باید کتاب را بخرید"
-                          }
-                          aria-label="خواندن"
-                        >
-                          <TableCell
-                            component="td"
-                            scope="row"
-                            align="right"
-                            className="chapter-title"
-                          >
-                            {chapter.free || owned ? (
-                              <Link
-                                to={"/read/" + book_id + "/" + chapter.id}
-                                className="chapter-link"
-                              >
-                                {chapter.title}
-                              </Link>
-                            ) : (
-                              chapter.title
-                            )}
-                          </TableCell>
-                        </Tooltip>
-                        <TableCell component="td" scope="row" align="left">
-                          {chapter.free || owned ? (
-                            <LockOpenIcon />
-                          ) : (
-                            <LockIcon />
-                          )}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </div>
-          </React.Fragment>
-        );
-      }}
-    </AuthContext.Consumer>
-  );
+                        <div className="book-chapters">
+                            <Typography
+                                variant="h5"
+                                component="h4"
+                                className="chapter-header"
+                            >
+                                فصل های کتاب
+                            </Typography>
+
+                            <TableContainer component={Paper}>
+                                <Table aria-label="simple table">
+                                    <TableBody>
+                                        {chapters.map(chapter => (
+                                            <TableRow
+                                                key={chapter.id}
+                                                hover
+                                                className={
+                                                    chapter.free || owned
+                                                        ? "enable-chapter"
+                                                        : "locked-chapter"
+                                                }
+                                            >
+                                                <Tooltip
+                                                    title={
+                                                        chapter.free || owned
+                                                            ? "خواندن فصل"
+                                                            : "برای خواندن این فصل باید کتاب را بخرید"
+                                                    }
+                                                    aria-label="خواندن"
+                                                >
+                                                    <TableCell
+                                                        component="td"
+                                                        scope="row"
+                                                        align="right"
+                                                        className="chapter-title"
+                                                    >
+                                                        {chapter.free ||
+                                                        owned ? (
+                                                            <Link
+                                                                to={
+                                                                    "/read/" +
+                                                                    book_id +
+                                                                    "/" +
+                                                                    chapter.id
+                                                                }
+                                                                className="chapter-link"
+                                                            >
+                                                                {chapter.title}
+                                                            </Link>
+                                                        ) : (
+                                                            chapter.title
+                                                        )}
+                                                    </TableCell>
+                                                </Tooltip>
+                                                <TableCell
+                                                    component="td"
+                                                    scope="row"
+                                                    align="left"
+                                                >
+                                                    {chapter.free || owned ? (
+                                                        <LockOpenIcon />
+                                                    ) : (
+                                                        <LockIcon />
+                                                    )}
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </div>
+                    </React.Fragment>
+                );
+            }}
+        </AuthContext.Consumer>
+    );
 };
 
 export default SingleBook;
