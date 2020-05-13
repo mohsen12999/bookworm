@@ -28699,6 +28699,25 @@ function toVal(mix) {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/src/app.css":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/src/app.css ***!
+  \******************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* material-ui persian style */\r\n\r\n.persian-form .MuiInputLabel-formControl {\r\n    left: unset !important;\r\n    right: 0 !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-shrink {\r\n    transform-origin: top right !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-outlined.MuiInputLabel-shrink {\r\n    transform: translate(-4px, -6px) scale(0.75) !important;\r\n}\r\n\r\n.persian-form .MuiInputLabel-outlined {\r\n    transform: translate(-14px, 20px) scale(1) !important;\r\n}\r\n\r\nform.persian-form input {\r\n    direction: rtl !important;\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/src/components/ArticleThumbnail.css":
 /*!******************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/src/components/ArticleThumbnail.css ***!
@@ -28825,7 +28844,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".section-title {\r\n  margin-top: 2rem !important;\r\n  margin-bottom: 1rem !important;\r\n  text-align: right;\r\n  direction: rtl;\r\n}\r\n\r\n.search-filtered-book {\r\n  flex-grow: 1;\r\n  direction: rtl;\r\n  background: #e8e8e8;\r\n  padding: 1em !important;\r\n  margin-bottom: 1rem !important;\r\n  text-align: center;\r\n  position: relative;\r\n}\r\n\r\n.center-grid-item {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.center-grid-item .search-input {\r\n  width: 75%;\r\n}\r\n\r\n@media screen and (max-width: 700px) {\r\n  .center-grid-item .search-input {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n.full-width {\r\n  width: 100%;\r\n}\r\n", ""]);
+exports.push([module.i, ".section-title {\r\n  margin-top: 2rem !important;\r\n  margin-bottom: 1rem !important;\r\n  text-align: right;\r\n  direction: rtl;\r\n}\r\n\r\n.search-filtered-book {\r\n  flex-grow: 1;\r\n  direction: rtl;\r\n  background: #e8e8e8;\r\n  padding: 1em !important;\r\n  margin-bottom: 1rem !important;\r\n  text-align: center;\r\n  position: relative;\r\n}\r\n\r\n.center-grid-item {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.center-grid-item .search-input {\r\n  width: 75%;\r\n}\r\n\r\n@media screen and (max-width: 700px) {\r\n  .center-grid-item .search-input {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n.full-width {\r\n  width: 100%;\r\n}\r\n\r\n.all-book-grid {\r\n  direction: rtl !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -71486,6 +71505,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_admin_EditBlog__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./pages/admin/EditBlog */ "./resources/js/src/pages/admin/EditBlog.js");
 /* harmony import */ var _pages_admin_EditChapter__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./pages/admin/EditChapter */ "./resources/js/src/pages/admin/EditChapter.js");
 /* harmony import */ var _components_PrivateRouteLayout__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/PrivateRouteLayout */ "./resources/js/src/components/PrivateRouteLayout.js");
+/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./app.css */ "./resources/js/src/app.css");
+/* harmony import */ var _app_css__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_app_css__WEBPACK_IMPORTED_MODULE_23__);
+
 
 
 
@@ -71581,6 +71603,36 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEB
 // Learn more about service workers: https://bit.ly/CRA-PWA
 
 _serviceWorker__WEBPACK_IMPORTED_MODULE_4__["unregister"]();
+
+/***/ }),
+
+/***/ "./resources/js/src/app.css":
+/*!**********************************!*\
+  !*** ./resources/js/src/app.css ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/postcss-loader/src??ref--6-2!./app.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/src/app.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -72454,6 +72506,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_GetData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/GetData */ "./resources/js/src/services/GetData.js");
 
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -72584,6 +72644,21 @@ var AuthContextProvider = function AuthContextProvider(props) {
     };
   };
 
+  var GetFilteredBook = function GetFilteredBook(sort, filter) {
+    if (!contextValue) return [];
+    var filteredBook = filter === "" ? _toConsumableArray(contextValue.books) : _toConsumableArray(contextValue.books).filter(function (book) {
+      return book.title.indexOf(filter) >= 0 || book.author.indexOf(filter) >= 0;
+    });
+    var sortedBook = sort === "new" ? _toConsumableArray(filteredBook).sort(function (a, b) {
+      return a.id < b.id;
+    }) : sort === "exp" ? _toConsumableArray(filteredBook).sort(function (a, b) {
+      return a.price < b.price;
+    }) : _toConsumableArray(filteredBook).sort(function (a, b) {
+      return a.price > b.price;
+    });
+    return sortedBook;
+  };
+
   var GetPost = function GetPost(post_id) {
     return contextValue.posts.find(function (post) {
       return post.id === Number(post_id);
@@ -72598,6 +72673,7 @@ var AuthContextProvider = function AuthContextProvider(props) {
       GetBook: GetBook,
       GetChapters: GetChapters,
       GetSingleChapter: GetSingleChapter,
+      GetFilteredBook: GetFilteredBook,
       GetPost: GetPost
     })
   }, props.children);
@@ -72809,14 +72885,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
 /* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./BookList.css */ "./resources/js/src/pages/BookList.css");
 /* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_10__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -72843,52 +72911,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // TODO: error in Select
 
 var BookList = function BookList() {
-  //const bookList = books.sort((a, b) => a.id < b.id);
-  //const [bookList, setBookList] = React.useState([]);
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState([]),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState("new"),
       _React$useState2 = _slicedToArray(_React$useState, 2),
-      filteredBooks = _React$useState2[0],
-      setFilteredBooks = _React$useState2[1];
+      sort = _React$useState2[0],
+      setSort = _React$useState2[1];
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState("new"),
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
-      sort = _React$useState4[0],
-      setSort = _React$useState4[1];
+      filter = _React$useState4[0],
+      setFilter = _React$useState4[1];
 
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(""),
-      _React$useState6 = _slicedToArray(_React$useState5, 2),
-      filter = _React$useState6[0],
-      setFilter = _React$useState6[1];
-
-  var handleChangeSort = function handleChangeSort(event) {
-    event.preventDefault();
-    var newSort = event.target.value;
-    setSort(newSort);
-    makeNewList(filter, newSort);
-  };
-
-  var handleInputChange = function handleInputChange(event) {
-    event.preventDefault();
-    var newFilter = event.target.value;
-    setFilter(newFilter);
-    makeNewList(newFilter, sort);
-  };
-
-  var makeNewList = function makeNewList(newFilter, newSort) {
-    var filteredBook = newFilter.length === 0 ? _toConsumableArray(bookList) : _toConsumableArray(bookList).filter(function (book) {
-      return book.title.indexOf(newFilter) >= 0 || book.author.indexOf(newFilter) >= 0;
-    });
-    var sortedBook = newSort === "new" ? _toConsumableArray(filteredBook).sort(function (a, b) {
-      return a.id < b.id;
-    }) : newSort === "exp" ? _toConsumableArray(filteredBook).sort(function (a, b) {
-      return a.price < b.price;
-    }) : _toConsumableArray(filteredBook).sort(function (a, b) {
-      return a.price > b.price;
-    });
-    setFilteredBooks(sortedBook);
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "search-filtered-book"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     container: true,
@@ -72912,7 +72945,9 @@ var BookList = function BookList() {
     variant: "outlined",
     label: "\u062C\u0633\u062A\u062C\u0648",
     value: filter,
-    onChange: handleInputChange
+    onChange: function onChange(e) {
+      return setFilter(e.target.value);
+    }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     item: true,
     xs: 12,
@@ -72925,7 +72960,9 @@ var BookList = function BookList() {
     labelId: "demo-simple-select-label",
     id: "demo-simple-select",
     value: sort,
-    onChange: handleChangeSort
+    onChange: function onChange(e) {
+      return setSort(e.target.value);
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_7__["default"], {
     value: "new"
   }, "\u062C\u062F\u06CC\u062F\u062A\u0631\u06CC\u0646"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -72934,37 +72971,26 @@ var BookList = function BookList() {
     value: "cheap"
   }, "\u0627\u0631\u0632\u0627\u0646 \u062A\u0631\u06CC\u0646")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     container: true,
-    spacing: 1
+    spacing: 1,
+    className: "all-book-grid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__["AuthContext"].Consumer, null, function (context) {
-    console.log(context, context.books, filteredBooks);
-
-    if (context.books) {
-      if (bookList.length == 0) {
-        setFilteredBooks(context.books.sort(function (a, b) {
-          return a.id < b.id;
-        }));
-      } // setFilteredBooks(
-      //     context.books.sort((a, b) => a.id < b.id)
-      // );
-
-
-      filteredBooks.map(function (book) {
-        var owned = context.isAuthenticated && context.boughtBooks.includes(book.id);
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          key: book.id,
-          item: true,
-          xs: 6,
-          sm: 3
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_BookThumbnail__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          id: book.id,
-          title: book.title,
-          img: book.img,
-          author: book.author,
-          price: book.price,
-          owned: owned
-        }));
-      });
-    }
+    var filteredBooks = context.GetFilteredBook(sort, filter);
+    return filteredBooks.map(function (book) {
+      var owned = context.isAuthenticated && context.boughtBooks.includes(book.id);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        key: book.id,
+        item: true,
+        xs: 6,
+        sm: 3
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_BookThumbnail__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        id: book.id,
+        title: book.title,
+        img: book.img,
+        author: book.author,
+        price: book.price,
+        owned: owned
+      }));
+    });
   })));
 };
 
@@ -73050,6 +73076,7 @@ var Index = function Index() {
     size: "large",
     type: "submit"
   }, "\u062C\u0633\u062A\u062C\u0648")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_9__["AuthContext"].Consumer, null, function (context) {
+    console.log(context);
     var books = context.books;
     var rand_book = Object(_services_function__WEBPACK_IMPORTED_MODULE_8__["getRandom"])(books, 8);
     var pop_books = rand_book.splice(0, 4);
@@ -75338,55 +75365,55 @@ var articles = [{
   title: "الهام بخشی طبیعت",
   author: "امیر سالار سلیمانی",
   img: "/images/blog/img-01.jpg",
-  date: "2020-01-09T08:16:12.782Z"
+  created_at: "2020-01-09T08:16:12.782Z"
 }, {
   id: 2,
   title: "فکر آزاد",
   author: "دکتر حسین فراهانی",
   img: "/images/blog/img-02.jpg",
-  date: "2020-01-17T12:42:33.782Z"
+  created_at: "2020-01-17T12:42:33.782Z"
 }, {
   id: 3,
   title: "تاثیر ورزش بر فعالیت ها",
   author: "محسن شعبانیان",
   img: "/images/blog/img-03.jpg",
-  date: "2020-02-05T09:06:02.782Z"
+  created_at: "2020-02-05T09:06:02.782Z"
 }, {
   id: 4,
   title: "هنر رقص در جوامع",
   author: "آرتور مورگان",
   img: "/images/blog/img-04.jpg",
-  date: "2020-02-07T13:39:07.782Z"
+  created_at: "2020-02-07T13:39:07.782Z"
 }];
 var authors = [{
   id: 1,
-  title: "گلشیفته فراهانی",
-  img: "/images/user/profile-1t.jpg",
+  name: "گلشیفته فراهانی",
+  avatar: "/images/user/profile-1t.jpg",
   count: 0
 }, {
   id: 2,
-  title: "علی عظیمی",
-  img: "/images/user/profile-2t.jpg",
+  name: "علی عظیمی",
+  avatar: "/images/user/profile-2t.jpg",
   count: 0
 }, {
   id: 3,
-  title: "سیمین بهبهانی",
-  img: "/images/user/profile-3t.jpg",
+  name: "سیمین بهبهانی",
+  avatar: "/images/user/profile-3t.jpg",
   count: 0
 }, {
   id: 4,
-  title: "سروش لشکری",
-  img: "/images/user/profile-4t.jpg",
+  name: "سروش لشکری",
+  avatar: "/images/user/profile-4t.jpg",
   count: 0
 }, {
   id: 5,
-  title: "شاهین نجفی",
-  img: "/images/user/profile-5t.jpg",
+  name: "شاهین نجفی",
+  avatar: "/images/user/profile-5t.jpg",
   count: 0
 }, {
   id: 6,
-  title: "محسن نامجو",
-  img: "/images/user/profile-6t.jpg",
+  name: "محسن نامجو",
+  avatar: "/images/user/profile-6t.jpg",
   count: 0
 }];
 var chapters = [{

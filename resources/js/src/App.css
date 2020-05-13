@@ -1,38 +1,26 @@
-.App {
-  text-align: center;
+/* material-ui persian style */
+
+.persian-form .MuiInputLabel-formControl {
+    left: unset !important;
+    right: 0 !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.persian-form .MuiInputLabel-shrink {
+    transform-origin: top right !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.persian-form .MuiInputLabel-outlined.MuiInputLabel-shrink {
+    transform: translate(-4px, -6px) scale(0.75) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.persian-form .MuiInputLabel-outlined {
+    transform: translate(-14px, 20px) scale(1) !important;
 }
 
-.App-link {
-  color: #61dafb;
+form.persian-form input {
+    direction: rtl !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.persian-form legend {
+    text-align: right !important;
 }
