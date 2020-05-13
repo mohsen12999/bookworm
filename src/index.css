@@ -34,3 +34,7 @@ code {
 form.persian-form input {
   direction: rtl !important;
 }
+
+.persian-form legend {
+  text-align: right !important;
+}
