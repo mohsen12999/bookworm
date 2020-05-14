@@ -3,7 +3,7 @@ import axios from "axios";
 const LOGIN_URL = "/api/login";
 const REG_URL = "/api/register";
 
-export const FetchLogin = async (user, password) => {
+export const FetchLogin = async (email, password) => {
     try {
         const response = await axios.post(LOGIN_URL);
         const data = response.data;
@@ -15,14 +15,14 @@ export const FetchLogin = async (user, password) => {
 };
 
 export const FetchRegister = async (
-    user,
+    name,
     email,
     password,
     password_confirmation
 ) => {
     try {
         const response = await axios.post(REG_URL, {
-            user,
+            name,
             email,
             password,
             password_confirmation
