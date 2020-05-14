@@ -4,7 +4,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark";
 import ViewStreamIcon from "@material-ui/icons/ViewStream";
@@ -15,6 +14,8 @@ import NoteIcon from "@material-ui/icons/Note";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
+import PersonIcon from "@material-ui/icons/Person";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 import ListItemLink from "./ListItemLink";
 import ReadingBookMenu from "./ReadingBookMenu";
@@ -140,20 +141,29 @@ const DrawerMenu = () => {
 
           {context.isAuthenticated ? (
             <ListItemLink
-              icon={<InboxIcon />}
+              icon={<ExitToAppIcon />}
               primary="خروج"
               to="/logout"
               enable={true}
               exactMatch={false}
             />
           ) : (
-            <ListItemLink
-              icon={<ExitToAppIcon />}
-              primary="ورود"
-              to="/login"
-              enable={true}
-              exactMatch={false}
-            />
+            <React.Fragment>
+              <ListItemLink
+                icon={<PersonIcon />}
+                primary="ورود"
+                to="/login"
+                enable={true}
+                exactMatch={false}
+              />
+              <ListItemLink
+                icon={<PersonAddIcon />}
+                primary="عضویت"
+                to="/register"
+                enable={true}
+                exactMatch={false}
+              />
+            </React.Fragment>
           )}
         </div>
       )}
