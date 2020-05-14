@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import DrawerMenu from "./DrawerMenu";
+import MySnackbar from "./MySnackbar";
 
 const drawerWidth = 240;
 
@@ -123,6 +124,7 @@ const MainLayout = (props) => {
           </Drawer>
         </Hidden>
       </nav>
+      <MySnackbar />
     </div>
   );
   //return <React.Fragment>{props.children}</React.Fragment>;
