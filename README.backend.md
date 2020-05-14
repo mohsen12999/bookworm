@@ -40,6 +40,7 @@
 
 ## TODO
 
--   [] user role
--   [] free host
--   [] free domain
+-   [ ] refresh token with every access via api
+-   [ ] user role
+-   [ ] free host
+-   [ ] free domain
