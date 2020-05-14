@@ -8,9 +8,6 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
 import { Redirect } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/AuthContext";
@@ -26,7 +23,6 @@ const Register = () => {
   const [invalidForm, setInvalidForm] = React.useState(true);
 
   const [redirect, setRedirect] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     setInvalidForm(
@@ -52,7 +48,6 @@ const Register = () => {
             className="login-page"
             onSubmit={(e) => {
               e.preventDefault();
-              setLoading(true);
               context
                 .Register(name, email, password, passwordAgain)
                 .then((res) => {
@@ -62,7 +57,6 @@ const Register = () => {
                   } else {
                     context.OpenSnackbar("اشکال در ثبت نام");
                   }
-                  setLoading(false);
                 });
             }}
           >
@@ -149,9 +143,6 @@ const Register = () => {
                 </Button>
               </div>
             </Paper>
-            <Backdrop style={{ zIndex: 1000, color: "#fff" }} open={loading}>
-              <CircularProgress color="inherit" />
-            </Backdrop>
           </form>
         )
       }

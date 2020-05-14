@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import DrawerMenu from "./DrawerMenu";
 import MySnackbar from "./MySnackbar";
+import MyBackdrop from "./MyBackdrop";
 
 const drawerWidth = 240;
 
@@ -125,6 +126,7 @@ const MainLayout = (props) => {
         </Hidden>
       </nav>
       <MySnackbar />
+      <MyBackdrop />
     </div>
   );
   //return <React.Fragment>{props.children}</React.Fragment>;
