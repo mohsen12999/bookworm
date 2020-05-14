@@ -74,6 +74,10 @@ const getPrivateData = async () => {
   }
 };
 
+export const AddToken = (token) => {
+  localStorage.setItem(TOKEN, token);
+};
+
 export const RemoveToken = () => {
   localStorage.removeItem(TOKEN);
 };

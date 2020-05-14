@@ -19,3 +19,12 @@
   margin-top: 2rem;
   text-align: center;
 }
+
+.error-message {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.rightText input {
+  text-align: right !important;
+}
