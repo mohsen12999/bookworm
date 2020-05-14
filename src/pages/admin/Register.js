@@ -44,7 +44,7 @@ const Register = () => {
             className="login-page"
             onSubmit={(e) => {
               e.preventDefault();
-              context.Login(name, email, password, passwordAgain);
+              context.Register(name, email, password, passwordAgain);
             }}
           >
             <Paper className="login-paper">

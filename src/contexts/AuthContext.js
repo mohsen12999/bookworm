@@ -1,5 +1,11 @@
 import React, { createContext, useState } from "react";
-import { GetData, RemoveToken, SaveToLocalStorage } from "../services/GetData";
+import {
+  GetData,
+  AddToken,
+  RemoveToken,
+  SaveToLocalStorage,
+} from "../services/GetData";
+import { FetchLogin, FetchRegister } from "../services/Auth";
 
 export const AuthContext = createContext();
 
@@ -15,15 +21,29 @@ const AuthContextProvider = (props) => {
     fillContext();
   }, []);
 
-  // TODO: Login
-  const Login = () => {
-    // Login after 500ms
-    setTimeout(() => {
-      setContextValue({
-        ...contextValue,
-        isAuthenticated: true,
-      });
-    }, 500);
+  const Login = async (name, password) => {
+    const loginResult = await FetchLogin(name, password);
+
+    AddToken(loginResult.token);
+
+    // TODO: add user info to context
+
+    // TODO: save context to local storage :SaveToLocalStorage
+
+    return loginResult.success;
+  };
+
+  const Register = async (name, email, password, passwordAgain) => {
+    const registerResult = await FetchRegister(
+      name,
+      email,
+      password,
+      passwordAgain
+    );
+
+    // TODO: redirect
+
+    return registerResult.success;
   };
 
   const Logout = () => {
@@ -105,6 +125,7 @@ const AuthContextProvider = (props) => {
     <AuthContext.Provider
       value={{
         ...contextValue,
+        Register,
         Login,
         Logout,
         SetLastBookReading,
