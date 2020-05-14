@@ -107,6 +107,12 @@ const fakeFillLocalStorage = () => {
     subjects: subjects,
     posts: articles,
     authors: authors,
+    // snackbar: {
+    //   open: true,
+    //   time: 120000,
+    //   //severity: "success",
+    //   message: "موفق بود و بس",
+    // },
   };
 
   localStorage.getItem("appData") ?? SaveToLocalStorage(appData);
