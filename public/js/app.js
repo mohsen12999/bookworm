@@ -29027,7 +29027,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".login-page {\r\n  width: 100%;\r\n  height: calc(100vh - 112px);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.login-page .login-paper {\r\n  padding: 4rem;\r\n}\r\n\r\n.login-page .login-paper .login-title {\r\n  text-align: center;\r\n  margin-bottom: 1rem;\r\n}\r\n\r\n.login-page .login-paper .login-btn {\r\n  margin-top: 2rem;\r\n  text-align: center;\r\n}\r\n", ""]);
+exports.push([module.i, ".login-page {\r\n  width: 100%;\r\n  height: calc(100vh - 112px);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.login-page .login-paper {\r\n  padding: 4rem;\r\n}\r\n\r\n.login-page .login-paper .login-title {\r\n  text-align: center;\r\n  margin-bottom: 1rem;\r\n}\r\n\r\n.login-page .login-paper .login-btn {\r\n  margin-top: 2rem;\r\n  text-align: center;\r\n}\r\n\r\n.error-message {\r\n  text-align: center;\r\n  margin-top: 4rem;\r\n}\r\n\r\n.rightText input {\r\n  text-align: right !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -72608,6 +72608,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_GetData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/GetData */ "./resources/js/src/services/GetData.js");
+/* harmony import */ var _services_Auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/Auth */ "./resources/js/src/services/Auth.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -72639,6 +72640,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -72679,16 +72681,64 @@ var AuthContextProvider = function AuthContextProvider(props) {
     }();
 
     fillContext();
-  }, []); // TODO: Login
+  }, []);
 
-  var Login = function Login() {
-    // Login after 500ms
-    setTimeout(function () {
-      setContextValue(_objectSpread(_objectSpread({}, contextValue), {}, {
-        isAuthenticated: true
-      }));
-    }, 500);
-  };
+  var Login = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(name, password) {
+      var loginResult;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return Object(_services_Auth__WEBPACK_IMPORTED_MODULE_3__["FetchLogin"])(name, password);
+
+            case 2:
+              loginResult = _context2.sent;
+              Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["AddToken"])(loginResult.token); // TODO: add user info to context
+              // TODO: save context to local storage :SaveToLocalStorage
+
+              return _context2.abrupt("return", loginResult.success);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function Login(_x, _x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var Register = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(name, email, password, passwordAgain) {
+      var registerResult;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return Object(_services_Auth__WEBPACK_IMPORTED_MODULE_3__["FetchRegister"])(name, email, password, passwordAgain);
+
+            case 2:
+              registerResult = _context3.sent;
+              return _context3.abrupt("return", registerResult.success);
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function Register(_x3, _x4, _x5, _x6) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
 
   var Logout = function Logout() {
     var new_value = _objectSpread(_objectSpread({}, contextValue), {}, {
@@ -72771,6 +72821,7 @@ var AuthContextProvider = function AuthContextProvider(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(AuthContext.Provider, {
     value: _objectSpread(_objectSpread({}, contextValue), {}, {
+      Register: Register,
       Login: Login,
       Logout: Logout,
       SetLastBookReading: SetLastBookReading,
@@ -74839,6 +74890,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contexts_AuthContext__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../contexts/AuthContext */ "./resources/js/src/contexts/AuthContext.js");
 /* harmony import */ var _Login_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Login.css */ "./resources/js/src/pages/admin/Login.css");
 /* harmony import */ var _Login_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_Login_css__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _services_function__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../services/function */ "./resources/js/src/services/function.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -74852,12 +74915,46 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Login = function Login() {
+
+
+var Register = function Register() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      name = _React$useState2[0],
+      setName = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      email = _React$useState4[0],
+      setEmail = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      password = _React$useState6[0],
+      setPassword = _React$useState6[1];
+
+  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
+      _React$useState8 = _slicedToArray(_React$useState7, 2),
+      passwordAgain = _React$useState8[0],
+      setPasswordAgain = _React$useState8[1];
+
+  var _React$useState9 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(true),
+      _React$useState10 = _slicedToArray(_React$useState9, 2),
+      invalidForm = _React$useState10[0],
+      setInvalidForm = _React$useState10[1];
+
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
+    setInvalidForm(!name || name.length < 4 || !email || !password || password.length < 6 || !Object(_services_function__WEBPACK_IMPORTED_MODULE_12__["CheckEmail"])(email) || password !== passwordAgain);
+  }, [name, email, password, passwordAgain]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_AuthContext__WEBPACK_IMPORTED_MODULE_10__["AuthContext"].Consumer, null, function (context) {
     return context.isAuthenticated ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Redirect"], {
       to: "/dashboard"
-    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "login-page"
+    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      className: "login-page",
+      onSubmit: function onSubmit(e) {
+        e.preventDefault();
+        context.Register(name, email, password, passwordAgain);
+      }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_1__["default"], {
       className: "login-paper"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -74874,7 +74971,15 @@ var Login = function Login() {
       item: true
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
       id: "input-with-icon-grid",
-      label: "\u0646\u0627\u0645"
+      label: "\u0646\u0627\u0645 \u0641\u0627\u0631\u0633\u06CC",
+      className: "rightText",
+      value: name,
+      onChange: function onChange(e) {
+        return setName(e.target.value);
+      },
+      required: true,
+      helperText: "\u062D\u062F\u0627\u0642\u0644 4 \u062D\u0631\u0641\u06CC",
+      error: name && name.length < 4
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
       container: true,
       spacing: 1,
@@ -74885,7 +74990,15 @@ var Login = function Login() {
       item: true
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
       id: "input-with-icon-grid",
-      label: "email"
+      label: "\u0627\u06CC\u0645\u06CC\u0644",
+      type: "email",
+      value: email,
+      onChange: function onChange(e) {
+        return setEmail(e.target.value);
+      },
+      required: true,
+      helperText: "\u0627\u06CC\u0645\u06CC\u0644 \u0645\u0639\u062A\u0628\u0631",
+      error: email && email.length < 4 && !Object(_services_function__WEBPACK_IMPORTED_MODULE_12__["CheckEmail"])(email)
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
       container: true,
       spacing: 1,
@@ -74896,8 +75009,15 @@ var Login = function Login() {
       item: true
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
       id: "input-with-icon-grid",
-      label: "password",
-      type: "password"
+      label: "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631",
+      type: "password",
+      value: password,
+      onChange: function onChange(e) {
+        return setPassword(e.target.value);
+      },
+      required: true,
+      helperText: "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u062D\u062F\u0627\u0642\u0644 6 \u062D\u0631\u0641\u06CC",
+      error: password && password.length < 6
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
       container: true,
       spacing: 1,
@@ -74908,22 +75028,27 @@ var Login = function Login() {
       item: true
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
       id: "input-with-icon-grid",
-      label: "password",
-      type: "password again"
+      label: "\u062A\u06A9\u0631\u0627\u0631 \u0631\u0645\u0632 \u0639\u0628\u0648\u0631",
+      type: "password",
+      value: passwordAgain,
+      onChange: function onChange(e) {
+        return setPasswordAgain(e.target.value);
+      },
+      required: true,
+      helperText: "\u0628\u0627 \u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u06CC\u06A9\u06CC \u0646\u06CC\u0633\u062A",
+      error: password && password !== passwordAgain
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "login-btn"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
       variant: "outlined",
       color: "primary",
-      onClick: function onClick(event) {
-        event.preventDefault();
-        context.Login();
-      }
+      type: "submit",
+      disabled: invalidForm
     }, "\u0627\u0631\u0633\u0627\u0644 \u0627\u0637\u0644\u0627\u0639\u0627\u062A"))));
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Login);
+/* harmony default export */ __webpack_exports__["default"] = (Register);
 
 /***/ }),
 
@@ -75140,16 +75265,126 @@ function unregister() {
 
 /***/ }),
 
+/***/ "./resources/js/src/services/Auth.js":
+/*!*******************************************!*\
+  !*** ./resources/js/src/services/Auth.js ***!
+  \*******************************************/
+/*! exports provided: FetchLogin, FetchRegister */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchLogin", function() { return FetchLogin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchRegister", function() { return FetchRegister; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var LOGIN_URL = "/api/login";
+var REG_URL = "/api/register";
+var FetchLogin = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(user, password) {
+    var response, data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(LOGIN_URL);
+
+          case 3:
+            response = _context.sent;
+            data = response.data;
+            return _context.abrupt("return", _objectSpread(_objectSpread({}, data), {}, {
+              success: true
+            }));
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+            return _context.abrupt("return", {
+              success: false,
+              error: _context.t0
+            });
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 8]]);
+  }));
+
+  return function FetchLogin(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+var FetchRegister = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(user, email, password, confirm_password) {
+    var response, data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(REG_URL);
+
+          case 3:
+            response = _context2.sent;
+            data = response.data;
+            return _context2.abrupt("return", _objectSpread(_objectSpread({}, data), {}, {
+              success: true
+            }));
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            return _context2.abrupt("return", {
+              success: false,
+              error: _context2.t0
+            });
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 8]]);
+  }));
+
+  return function FetchRegister(_x3, _x4, _x5, _x6) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
 /***/ "./resources/js/src/services/GetData.js":
 /*!**********************************************!*\
   !*** ./resources/js/src/services/GetData.js ***!
   \**********************************************/
-/*! exports provided: GetData, RemoveToken, SaveToLocalStorage */
+/*! exports provided: GetData, AddToken, RemoveToken, SaveToLocalStorage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetData", function() { return GetData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddToken", function() { return AddToken; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RemoveToken", function() { return RemoveToken; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SaveToLocalStorage", function() { return SaveToLocalStorage; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -75305,6 +75540,9 @@ var getPrivateData = /*#__PURE__*/function () {
   };
 }();
 
+var AddToken = function AddToken(token) {
+  localStorage.setItem(TOKEN, token);
+};
 var RemoveToken = function RemoveToken() {
   localStorage.removeItem(TOKEN);
 };
@@ -75734,12 +75972,13 @@ var getRandom = function getRandom(arr, count) {
 /*!***********************************************!*\
   !*** ./resources/js/src/services/function.js ***!
   \***********************************************/
-/*! exports provided: getRandom */
+/*! exports provided: getRandom, CheckEmail */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRandom", function() { return getRandom; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckEmail", function() { return CheckEmail; });
 var getRandom = function getRandom(arr, count) {
   var result = new Array(count);
 
@@ -75762,6 +76001,12 @@ var getRandom = function getRandom(arr, count) {
 
   return result; // const shuffled = [...array].sort(() => 0.5 - Math.random())
   // let selected = shuffled.slice(0, n);
+}; // eslint-disable-next-line
+
+var email_expression = /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([\t]*\r\n)?[\t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([\t]*\r\n)?[\t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i; // const email_exp = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
+
+var CheckEmail = function CheckEmail(email) {
+  return email_expression.test(String(email).toLowerCase());
 };
 
 /***/ }),
