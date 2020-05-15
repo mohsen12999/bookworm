@@ -5,7 +5,7 @@ const REG_URL = "/api/register";
 
 export const FetchLogin = async (email, password) => {
     try {
-        const response = await axios.post(LOGIN_URL);
+        const response = await axios.post(LOGIN_URL, { email, password });
         const data = response.data;
 
         return { ...data, success: true };
