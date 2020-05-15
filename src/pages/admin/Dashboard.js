@@ -16,12 +16,12 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 
 import { Link } from "react-router-dom";
 
-import { AuthContext } from "../../contexts/AuthContext";
+import { Context } from "../../contexts/Context";
 
 import "./Dashboard.css";
 
 const Dashboard = () => (
-  <AuthContext.Consumer>
+  <Context.Consumer>
     {(context) => (
       <div className="dashboard">
         <Grid container spacing={3} className="dashboard-grid">
@@ -32,9 +32,9 @@ const Dashboard = () => (
                   کتاب های خریده شدۀ شما:
                 </Typography>
                 <Typography variant="h5" component="h2">
-                  {context.boughtBooks.length === 0
+                  {context.user.boughtBooks.length === 0
                     ? "شما کتابی ندارید."
-                    : "شما " + context.boughtBooks.length + " کتاب دارید."}
+                    : "شما " + context.user.boughtBooks.length + " کتاب دارید."}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -69,9 +69,11 @@ const Dashboard = () => (
                   کتاب های نوشته شده توسط شما:
                 </Typography>
                 <Typography variant="h5" component="h2">
-                  {context.writtenBooks.length === 0
+                  {context.user.writtenBooks.length === 0
                     ? "شما کتابی ننوشته اید."
-                    : "شما " + context.writtenBooks.length + " کتاب نوشته اید."}
+                    : "شما " +
+                      context.user.writtenBooks.length +
+                      " کتاب نوشته اید."}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -106,9 +108,11 @@ const Dashboard = () => (
                   مقاله های نوشته شده توسط شما:
                 </Typography>
                 <Typography variant="h5" component="h2">
-                  {context.article.length === 0
+                  {context.user.writtenPosts.length === 0
                     ? "شما مقاله ای ننوشته اید."
-                    : "شما " + context.article.length + " مقاله نوشته اید."}
+                    : "شما " +
+                      context.user.writtenPosts.length +
+                      " مقاله نوشته اید."}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -147,7 +151,7 @@ const Dashboard = () => (
                   component="h2"
                   className="persian-number"
                 >
-                  {context.wallet} تومان
+                  {context.user.wallet} تومان
                 </Typography>
               </CardContent>
               <CardActions>
@@ -167,7 +171,7 @@ const Dashboard = () => (
         </Grid>
       </div>
     )}
-  </AuthContext.Consumer>
+  </Context.Consumer>
 );
 
 export default Dashboard;

@@ -13,104 +13,95 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Link, useRouteMatch } from "react-router-dom";
 
-import { AuthContext } from "../contexts/AuthContext";
+import { Context } from "../contexts/Context";
 //import { getBook, getBookChapters } from "../services/data";
 
 import "./ReadingBookMenu.css";
 
-const SubMenuListItemLink = props => {
-    const { title, book_id, chapter_id, enable } = props;
-    const dest = chapter_id
-        ? "/read/" + book_id + "/" + chapter_id
-        : "/book/" + book_id;
-    const match = useRouteMatch({ path: dest, exact: false });
+const SubMenuListItemLink = (props) => {
+  const { title, book_id, chapter_id, enable } = props;
+  const dest = chapter_id
+    ? "/read/" + book_id + "/" + chapter_id
+    : "/book/" + book_id;
+  const match = useRouteMatch({ path: dest, exact: false });
 
-    const renderLink = React.useMemo(
-        () =>
-            React.forwardRef((linkProps, ref) => (
-                <Link ref={ref} to={dest} {...linkProps} />
-            )),
-        [dest]
-    );
-    return (
-        <Tooltip title={"خواندن " + title} aria-label={"خواندن " + title}>
-            <ListItem
-                component={renderLink}
-                className={"menu-item sub-menu" + (match ? " active-link" : "")}
-                button
-            >
-                <ListItemIcon className="menu-item-icon">
-                    {enable ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-                </ListItemIcon>
-                <ListItemText className="menu-item-text" primary={title} />
-            </ListItem>
-        </Tooltip>
-    );
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef((linkProps, ref) => (
+        <Link ref={ref} to={dest} {...linkProps} />
+      )),
+    [dest]
+  );
+  return (
+    <Tooltip title={"خواندن " + title} aria-label={"خواندن " + title}>
+      <ListItem
+        component={renderLink}
+        className={"menu-item sub-menu" + (match ? " active-link" : "")}
+        button
+      >
+        <ListItemIcon className="menu-item-icon">
+          {enable ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        </ListItemIcon>
+        <ListItemText className="menu-item-text" primary={title} />
+      </ListItem>
+    </Tooltip>
+  );
 };
 
-const ReadingBookMenu = props => {
-    const [openList, setOpenList] = React.useState(true);
-    const handleClickOpenList = () => {
-        setOpenList(!openList);
-    };
+const ReadingBookMenu = (props) => {
+  const [openList, setOpenList] = React.useState(true);
+  const handleClickOpenList = () => {
+    setOpenList(!openList);
+  };
 
-    return (
-        <AuthContext.Consumer>
-            {context => {
-                if (
-                    !context.isAuthenticated ||
-                    context.lastBookId === undefined ||
-                    context.lastBookId == null
-                ) {
-                    return <React.Fragment></React.Fragment>;
-                }
+  return (
+    <Context.Consumer>
+      {(context) => {
+        if (
+          !context.admin.isAuthenticated ||
+          context.admin.lastBookId === undefined ||
+          context.admin.lastBookId == null
+        ) {
+          return <React.Fragment></React.Fragment>;
+        }
 
-                const book = context.GetBook(context.lastBookId);
-                const chapters = context.GetChapters(context.lastBookId);
+        const book = context.GetBook(context.admin.lastBookId);
+        const chapters = context.GetChapters(context.admin.lastBookId);
 
-                return (
-                    <React.Fragment>
-                        <Divider />
+        return (
+          <React.Fragment>
+            <Divider />
 
-                        <ListItem
-                            className="menu-item"
-                            button
-                            onClick={handleClickOpenList}
-                        >
-                            <ListItemIcon>
-                                <BookIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                                className="menu-item-text"
-                                primary={book.title}
-                            />
-                            {openList ? <ExpandLess /> : <ExpandMore />}
-                        </ListItem>
-                        <Collapse in={openList} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <SubMenuListItemLink
-                                    title="فهرست"
-                                    book_id={book.id}
-                                />
-                                {chapters.map(chapter => (
-                                    <SubMenuListItemLink
-                                        key={chapter.id}
-                                        title={chapter.title}
-                                        book_id={book.id}
-                                        chapter_id={chapter.id}
-                                        enable={
-                                            Number(context.lastChapterId) ===
-                                            chapter.id
-                                        }
-                                    />
-                                ))}
-                            </List>
-                        </Collapse>
-                    </React.Fragment>
-                );
-            }}
-        </AuthContext.Consumer>
-    );
+            <ListItem
+              className="menu-item"
+              button
+              onClick={handleClickOpenList}
+            >
+              <ListItemIcon>
+                <BookIcon />
+              </ListItemIcon>
+              <ListItemText className="menu-item-text" primary={book.title} />
+              {openList ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={openList} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <SubMenuListItemLink title="فهرست" book_id={book.id} />
+                {chapters.map((chapter) => (
+                  <SubMenuListItemLink
+                    key={chapter.id}
+                    title={chapter.title}
+                    book_id={book.id}
+                    chapter_id={chapter.id}
+                    enable={Number(context.admin.lastChapterId) === chapter.id}
+                  />
+                ))}
+              </List>
+            </Collapse>
+          </React.Fragment>
+        );
+      }}
+    </Context.Consumer>
+  );
 };
 
 export default ReadingBookMenu;

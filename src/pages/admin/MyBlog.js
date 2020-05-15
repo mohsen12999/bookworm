@@ -21,7 +21,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 import { Link } from "react-router-dom";
 
-import { AuthContext } from "../../contexts/AuthContext";
+import { Context } from "../../contexts/Context";
 
 import "./MyNote.css";
 
@@ -38,7 +38,7 @@ const MyBlog = () => {
   const idPopper = openPopper ? "simple-popper" : undefined;
 
   return (
-    <AuthContext.Consumer>
+    <Context.Consumer>
       {(context) => (
         <div>
           <Grid container spacing={1} className="note-grid-item">
@@ -61,7 +61,7 @@ const MyBlog = () => {
             </Grid>
           </Grid>
 
-          {context.writtenBooks.length === 0 ? (
+          {context.user.writtenBooks.length === 0 ? (
             <Typography variant="h6" component="h4" className="empty-msg">
               شما هنوز مقاله ای ندارید!
             </Typography>
@@ -152,7 +152,7 @@ const MyBlog = () => {
           )}
         </div>
       )}
-    </AuthContext.Consumer>
+    </Context.Consumer>
   );
 };
 

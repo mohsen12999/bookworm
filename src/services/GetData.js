@@ -12,6 +12,8 @@ const GET_PUBLIC_DATA_URL = "/api/get_data";
 const GET_PRIVATE_DATA_URL = "/api/private_data";
 
 const TOKEN = "token";
+const PUBLIC_DATA = "publicData";
+const PRIVATE_DATA = "privateData";
 
 export const GetData = async () => {
   fakeFillLocalStorage();
@@ -19,20 +21,18 @@ export const GetData = async () => {
   const publicData = await getPublicData();
   const privateData = await getPrivateData();
   if (privateData) {
-    publicData["user"] = privateData["user"];
+    //publicData["user"] = privateData["user"];
     publicData["chapter"] = privateData["chapter"];
-  } else {
-    publicData["user"] = { isAuthenticated: false };
+    return { publicData: publicData, privateData: privateData["user"] };
   }
-
-  return publicData;
+  return { publicData: publicData, privateData: { isAuthenticated: false } };
 };
 
 const getPublicData = async () => {
   try {
     const response = await axios.get(GET_PUBLIC_DATA_URL);
     const appData = response.data;
-    SaveToLocalStorage(appData);
+    SavePublicDataToLocalStorage(appData);
 
     return appData;
   } catch (error) {
@@ -82,25 +82,20 @@ export const RemoveToken = () => {
   localStorage.removeItem(TOKEN);
 };
 
-export const SaveToLocalStorage = (appData) => {
-  localStorage.setItem("appData", JSON.stringify(appData));
+export const SavePublicDataToLocalStorage = (appData) => {
+  localStorage.setItem(PUBLIC_DATA, JSON.stringify(appData));
+};
+
+export const SavePrivateDataToLocalStorage = (appData) => {
+  localStorage.setItem(PRIVATE_DATA, JSON.stringify(appData));
+};
+
+export const RemovePrivateDataFromLocalStorage = () => {
+  localStorage.removeItem(PRIVATE_DATA);
 };
 
 const fakeFillLocalStorage = () => {
   const appData = {
-    user: {
-      isAuthenticated: true,
-      name: "محسن",
-      email: "mohsen@gmail.com",
-      mobile: "09113923310",
-      avatar: "/images/user/default-profile.jpg",
-      wallet: 5000,
-      boughtBooks: [1, 7, 18],
-      writtenBooks: [],
-      writtenPosts: [],
-      lastBookId: 7,
-      lastChapterId: 103,
-    },
     genres: genres,
     books: books,
     chapters: chapters,
@@ -115,5 +110,21 @@ const fakeFillLocalStorage = () => {
     // },
   };
 
-  localStorage.getItem("appData") ?? SaveToLocalStorage(appData);
+  const adminData = {
+    isAuthenticated: true,
+    name: "محسن",
+    email: "mohsen@gmail.com",
+    mobile: "09113923310",
+    avatar: "/images/user/default-profile.jpg",
+    wallet: 5000,
+    boughtBooks: [1, 7, 18],
+    writtenBooks: [],
+    writtenPosts: [],
+    lastBookId: 7,
+    lastChapterId: 103,
+  };
+
+  localStorage.getItem(PUBLIC_DATA) ?? SavePublicDataToLocalStorage(appData);
+  localStorage.getItem(PRIVATE_DATA) ??
+    SavePrivateDataToLocalStorage(adminData);
 };

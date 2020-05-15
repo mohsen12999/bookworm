@@ -1,5 +1,5 @@
 import React from "react";
-import AuthContextProvider from "./contexts/AuthContext";
+import ContextProvider from "./contexts/Context";
 import MainLayout from "./components/MainLayout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -32,7 +32,7 @@ function App() {
   return (
     <React.Fragment>
       <Router>
-        <AuthContextProvider>
+        <ContextProvider>
           <MainLayout>
             <Switch>
               <Route path="/blog/:blog_id?">
@@ -116,7 +116,7 @@ function App() {
               </Route>
             </Switch>
           </MainLayout>
-        </AuthContextProvider>
+        </ContextProvider>
       </Router>
     </React.Fragment>
   );

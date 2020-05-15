@@ -8,7 +8,7 @@ import { useParams, Link, Redirect } from "react-router-dom";
 
 import ScrollTop from "../components/ScrollTop";
 //import { getSingleChapter } from "../services/data";
-import { AuthContext } from "../contexts/AuthContext";
+import { Context } from "../contexts/Context";
 
 import "./ReadBook.css";
 
@@ -35,7 +35,7 @@ const ReadBook = (props) => {
   }, [chapter_id]);
 
   return (
-    <AuthContext.Consumer>
+    <Context.Consumer>
       {(context) => {
         const {
           chapter,
@@ -44,8 +44,9 @@ const ReadBook = (props) => {
         } = context.GetSingleChapter(book_id, chapter_id);
 
         const owned =
-          context.isAuthenticated &&
-          context.boughtBooks.includes(Number(book_id));
+          context.admin.isAuthenticated &&
+          context.admin.boughtBooks &&
+          context.admin.boughtBooks.includes(Number(book_id));
 
         if (!(owned || chapter.free)) {
           return <Redirect to={"/book/" + book_id} />;
@@ -178,7 +179,7 @@ const ReadBook = (props) => {
           </div>
         );
       }}
-    </AuthContext.Consumer>
+    </Context.Consumer>
   );
 };
 

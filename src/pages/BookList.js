@@ -11,7 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import BookThumbnail from "../components/BookThumbnail";
 
 //import { books } from "../services/data";
-import { AuthContext } from "../contexts/AuthContext";
+import { Context } from "../contexts/Context";
 
 import "./BookList.css";
 
@@ -60,14 +60,15 @@ const BookList = () => {
       </div>
 
       <Grid container spacing={1} className="all-book-grid">
-        <AuthContext.Consumer>
+        <Context.Consumer>
           {(context) => {
             const filteredBooks = context.GetFilteredBook(sort, filter);
 
             return filteredBooks.map((book) => {
               const owned =
-                context.isAuthenticated &&
-                context.boughtBooks.includes(book.id);
+                context.admin.isAuthenticated &&
+                context.admin.boughtBooks &&
+                context.admin.boughtBooks.includes(book.id);
               return (
                 <Grid key={book.id} item xs={6} sm={3}>
                   <BookThumbnail
@@ -82,7 +83,7 @@ const BookList = () => {
               );
             });
           }}
-        </AuthContext.Consumer>
+        </Context.Consumer>
       </Grid>
     </React.Fragment>
   );

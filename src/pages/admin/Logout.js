@@ -1,14 +1,14 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { Context } from "../../contexts/Context";
 
 const Logout = () => (
-  <AuthContext.Consumer>
+  <Context.Consumer>
     {(context) => {
       context.Logout();
       return <Redirect to={"/"} />;
     }}
-  </AuthContext.Consumer>
+  </Context.Consumer>
 );
 
 export default Logout;
