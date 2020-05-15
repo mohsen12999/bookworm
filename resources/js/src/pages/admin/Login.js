@@ -10,64 +10,93 @@ import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import { Redirect } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/AuthContext";
+import { CheckEmail } from "../../services/function";
 
 import "./Login.css";
 
-const Login = () => (
+const Login = () => {
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
+  const [invalidForm, setInvalidForm] = React.useState(true);
+  const [redirect, setRedirect] = React.useState(false);
+
+  React.useEffect(() => {
+    setInvalidForm(!email || !password || !CheckEmail(email));
+  }, [email, password]);
+
+  return (
     <AuthContext.Consumer>
-        {context =>
-            context.isAuthenticated ? (
-                <Redirect to={"/dashboard"} />
-            ) : (
-                <div className="login-page">
-                    <Paper className="login-paper">
-                        <Typography
-                            component="h3"
-                            variant="h5"
-                            className="login-title"
-                        >
-                            فرم ورود به سایت
-                        </Typography>
-                        <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
-                                <AlternateEmailIcon />
-                            </Grid>
-                            <Grid item>
-                                <TextField
-                                    id="input-with-icon-grid"
-                                    label="email"
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
-                                <VisibilityOff />
-                            </Grid>
-                            <Grid item>
-                                <TextField
-                                    id="input-with-icon-grid"
-                                    label="password"
-                                    type="password"
-                                />
-                            </Grid>
-                        </Grid>
-                        <div className="login-btn">
-                            <Button
-                                variant="outlined"
-                                color="primary"
-                                onClick={event => {
-                                    event.preventDefault();
-                                    context.Login();
-                                }}
-                            >
-                                ورود به سایت
-                            </Button>
-                        </div>
-                    </Paper>
-                </div>
-            )
-        }
+      {(context) =>
+        context.isAuthenticated || redirect ? (
+          <Redirect to={"/dashboard"} />
+        ) : (
+          <form
+            className="login-page"
+            onSubmit={(e) => {
+              e.preventDefault();
+              context.Login(email, password).then((res) => {
+                if (res) {
+                  setRedirect(true);
+                  context.OpenSnackbar("خوش آمدید");
+                } else {
+                  context.OpenSnackbar("اشکال در ورود");
+                }
+              });
+            }}
+          >
+            <Paper className="login-paper">
+              <Typography component="h3" variant="h5" className="login-title">
+                فرم ورود به سایت
+              </Typography>
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item>
+                  <AlternateEmailIcon />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    id="input-with-icon-grid"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    helperText="ایمیل معتبر"
+                    error={email && email.length < 4 && !CheckEmail(email)}
+                  />
+                </Grid>
+              </Grid>
+              <Grid container spacing={1} alignItems="flex-end">
+                <Grid item>
+                  <VisibilityOff />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    id="input-with-icon-grid"
+                    label="رمز عبور"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    helperText="رمز عبور حداقل 6 حرفی"
+                    error={password && password.length < 6}
+                  />
+                </Grid>
+              </Grid>
+              <div className="login-btn">
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  type="submit"
+                  disabled={invalidForm}
+                >
+                  ورود به سایت
+                </Button>
+              </div>
+            </Paper>
+          </form>
+        )
+      }
     </AuthContext.Consumer>
-);
+  );
+};
 
 export default Login;

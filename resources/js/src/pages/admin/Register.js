@@ -11,9 +11,9 @@ import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import { Redirect } from "react-router-dom";
 
 import { AuthContext } from "../../contexts/AuthContext";
+import { CheckEmail } from "../../services/function";
 
 import "./Login.css";
-import { CheckEmail } from "../../services/function";
 
 const Register = () => {
   const [name, setName] = React.useState();
