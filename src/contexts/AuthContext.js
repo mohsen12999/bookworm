@@ -57,7 +57,6 @@ const AuthContextProvider = (props) => {
       passwordAgain
     );
 
-    // TODO: redirect
     setContextValue({ ...contextValue, loading: false });
     return registerResult.success;
   };
