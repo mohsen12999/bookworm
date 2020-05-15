@@ -68,6 +68,10 @@ const ReadingBookMenu = (props) => {
         const book = context.GetBook(context.admin.lastBookId);
         const chapters = context.GetChapters(context.admin.lastBookId);
 
+        if (!book || !chapters) {
+          return <React.Fragment></React.Fragment>;
+        }
+
         return (
           <React.Fragment>
             <Divider />
@@ -86,15 +90,18 @@ const ReadingBookMenu = (props) => {
             <Collapse in={openList} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <SubMenuListItemLink title="فهرست" book_id={book.id} />
-                {chapters.map((chapter) => (
-                  <SubMenuListItemLink
-                    key={chapter.id}
-                    title={chapter.title}
-                    book_id={book.id}
-                    chapter_id={chapter.id}
-                    enable={Number(context.admin.lastChapterId) === chapter.id}
-                  />
-                ))}
+                {chapters &&
+                  chapters.map((chapter) => (
+                    <SubMenuListItemLink
+                      key={chapter.id}
+                      title={chapter.title}
+                      book_id={book.id}
+                      chapter_id={chapter.id}
+                      enable={
+                        Number(context.admin.lastChapterId) === chapter.id
+                      }
+                    />
+                  ))}
               </List>
             </Collapse>
           </React.Fragment>

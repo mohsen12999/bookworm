@@ -32,9 +32,11 @@ const Dashboard = () => (
                   کتاب های خریده شدۀ شما:
                 </Typography>
                 <Typography variant="h5" component="h2">
-                  {context.user.boughtBooks.length === 0
+                  {context.admin.boughtBooks.length === 0
                     ? "شما کتابی ندارید."
-                    : "شما " + context.user.boughtBooks.length + " کتاب دارید."}
+                    : "شما " +
+                      context.admin.boughtBooks.length +
+                      " کتاب دارید."}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -69,10 +71,10 @@ const Dashboard = () => (
                   کتاب های نوشته شده توسط شما:
                 </Typography>
                 <Typography variant="h5" component="h2">
-                  {context.user.writtenBooks.length === 0
+                  {context.admin.writtenBooks.length === 0
                     ? "شما کتابی ننوشته اید."
                     : "شما " +
-                      context.user.writtenBooks.length +
+                      context.admin.writtenBooks.length +
                       " کتاب نوشته اید."}
                 </Typography>
               </CardContent>
@@ -108,10 +110,10 @@ const Dashboard = () => (
                   مقاله های نوشته شده توسط شما:
                 </Typography>
                 <Typography variant="h5" component="h2">
-                  {context.user.writtenPosts.length === 0
+                  {context.admin.writtenPosts.length === 0
                     ? "شما مقاله ای ننوشته اید."
                     : "شما " +
-                      context.user.writtenPosts.length +
+                      context.admin.writtenPosts.length +
                       " مقاله نوشته اید."}
                 </Typography>
               </CardContent>
@@ -151,7 +153,7 @@ const Dashboard = () => (
                   component="h2"
                   className="persian-number"
                 >
-                  {context.user.wallet} تومان
+                  {context.admin.wallet} تومان
                 </Typography>
               </CardContent>
               <CardActions>

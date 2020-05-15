@@ -44,8 +44,8 @@ const Profile = () => {
   return (
     <Context.Consumer>
       {(context) => {
-        if (!name && context.username) {
-          setName(context.username);
+        if (!name && context.admin.name) {
+          setName(context.admin.name);
         }
         if (!mobile && context.mobile) {
           setMobile(context.mobile);
@@ -55,7 +55,7 @@ const Profile = () => {
             <div className="center-item">
               <img
                 src={src ? src : context.avatar}
-                alt={context.username}
+                alt={context.name}
                 className="avatar-img"
               />
             </div>
@@ -82,7 +82,7 @@ const Profile = () => {
               <TextField
                 className="max-width username"
                 label="نام شما"
-                defaultValue={context.username}
+                defaultValue={context.name}
                 onChange={handleChangeName}
               />
             </div>

@@ -32,10 +32,9 @@ const SingleBook = () => {
         const chapters = context.GetChapters(book_id);
 
         const owned =
-          context.user &&
-          context.user.isAuthenticated &&
-          context.user.boughtBooks &&
-          context.user.boughtBooks.includes(book.id);
+          context.admin.isAuthenticated &&
+          context.admin.boughtBooks &&
+          context.admin.boughtBooks.includes(book.id);
         return (
           <React.Fragment>
             <div className="big-book-banner">

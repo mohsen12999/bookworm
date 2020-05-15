@@ -13,7 +13,7 @@ const MyBook = () => (
   <Context.Consumer>
     {(context) => {
       const myBook = context.books.filter((book) =>
-        context.user.boughtBooks.includes(book.id)
+        context.admin.boughtBooks.includes(book.id)
       );
       return (
         <div>

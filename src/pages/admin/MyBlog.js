@@ -61,7 +61,7 @@ const MyBlog = () => {
             </Grid>
           </Grid>
 
-          {context.user.writtenBooks.length === 0 ? (
+          {context.admin.writtenBooks.length === 0 ? (
             <Typography variant="h6" component="h4" className="empty-msg">
               شما هنوز مقاله ای ندارید!
             </Typography>

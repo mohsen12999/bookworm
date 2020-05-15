@@ -140,15 +140,17 @@ const DrawerMenu = () => {
           <Divider />
 
           {context.admin.isAuthenticated ? (
-            <ListItemLink
-              icon={<InboxIcon />}
-              primary="خروج"
-              to="/logout"
-              enable={true}
-              exactMatch={false}
-            />
+            <List>
+              <ListItemLink
+                icon={<InboxIcon />}
+                primary="خروج"
+                to="/logout"
+                enable={true}
+                exactMatch={false}
+              />
+            </List>
           ) : (
-            <React.Fragment>
+            <List>
               <ListItemLink
                 icon={<PersonIcon />}
                 primary="ورود"
@@ -163,7 +165,7 @@ const DrawerMenu = () => {
                 enable={true}
                 exactMatch={false}
               />
-            </React.Fragment>
+            </List>
           )}
         </div>
       )}

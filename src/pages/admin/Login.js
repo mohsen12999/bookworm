@@ -27,7 +27,7 @@ const Login = (props) => {
   return (
     <Context.Consumer>
       {(context) => {
-        console.log(context.user, context);
+        console.log(context.admin, context);
         return context.admin.isAuthenticated ? (
           <Redirect to={"/dashboard"} />
         ) : (
