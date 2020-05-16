@@ -2,14 +2,14 @@ import React from "react";
 
 import { Redirect } from "react-router-dom";
 
-import { AuthContext } from "../contexts/AuthContext";
+import { Context } from "../contexts/Context";
 
 const PrivateRouteLayout = (props) => (
-  <AuthContext.Consumer>
+  <Context.Consumer>
     {(context) =>
-      context.isAuthenticated ? props.children : <Redirect to={"login"} />
+      context.admin.isAuthenticated ? props.children : <Redirect to={"login"} />
     }
-  </AuthContext.Consumer>
+  </Context.Consumer>
 );
 
 export default PrivateRouteLayout;

@@ -124,7 +124,7 @@ class AuthController extends Controller
                 'wallet' => $user->wallet,
                 'role' => $user->role,
                 'factors' => $factors,
-                'boughtBook' => $bought,
+                'boughtBooks' => $bought,
                 'writtenBooks' => $writtenBooks,
                 'writtenPosts' => $writtenPosts
             ]

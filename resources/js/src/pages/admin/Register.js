@@ -10,7 +10,7 @@ import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 
 import { Redirect } from "react-router-dom";
 
-import { AuthContext } from "../../contexts/AuthContext";
+import { Context } from "../../contexts/Context";
 import { CheckEmail } from "../../services/function";
 
 import "./Login.css";
@@ -37,9 +37,9 @@ const Register = () => {
   }, [name, email, password, passwordAgain]);
 
   return (
-    <AuthContext.Consumer>
+    <Context.Consumer>
       {(context) =>
-        context.isAuthenticated ? (
+        context.admin.isAuthenticated ? (
           <Redirect to={"/dashboard"} />
         ) : redirect ? (
           <Redirect to={"/login"} />
@@ -70,7 +70,6 @@ const Register = () => {
                 </Grid>
                 <Grid item>
                   <TextField
-                    id="input-with-icon-grid"
                     label="نام فارسی"
                     className="rightText"
                     value={name}
@@ -87,7 +86,6 @@ const Register = () => {
                 </Grid>
                 <Grid item>
                   <TextField
-                    id="input-with-icon-grid"
                     label="ایمیل"
                     type="email"
                     value={email}
@@ -104,7 +102,6 @@ const Register = () => {
                 </Grid>
                 <Grid item>
                   <TextField
-                    id="input-with-icon-grid"
                     label="رمز عبور"
                     type="password"
                     value={password}
@@ -121,7 +118,6 @@ const Register = () => {
                 </Grid>
                 <Grid item>
                   <TextField
-                    id="input-with-icon-grid"
                     label="تکرار رمز عبور"
                     type="password"
                     value={passwordAgain}
@@ -146,7 +142,7 @@ const Register = () => {
           </form>
         )
       }
-    </AuthContext.Consumer>
+    </Context.Consumer>
   );
 };
 

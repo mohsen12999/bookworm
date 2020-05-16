@@ -9,34 +9,38 @@ import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 
 import { Redirect } from "react-router-dom";
 
-import { AuthContext } from "../../contexts/AuthContext";
+import { Context } from "../../contexts/Context";
 import { CheckEmail } from "../../services/function";
 
 import "./Login.css";
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
   const [invalidForm, setInvalidForm] = React.useState(true);
-  const [redirect, setRedirect] = React.useState(false);
+  //const [redirect, setRedirect] = React.useState(false);
 
   React.useEffect(() => {
     setInvalidForm(!email || !password || !CheckEmail(email));
   }, [email, password]);
 
   return (
-    <AuthContext.Consumer>
-      {(context) =>
-        context.isAuthenticated || redirect ? (
+    <Context.Consumer>
+      {(context) => {
+        console.log(context.admin, context);
+        return context.admin.isAuthenticated ? (
           <Redirect to={"/dashboard"} />
         ) : (
+          // ) : redirect ? (
+          //   <Redirect to={"/"} />
           <form
             className="login-page"
             onSubmit={(e) => {
               e.preventDefault();
+
               context.Login(email, password).then((res) => {
                 if (res) {
-                  setRedirect(true);
+                  //setRedirect(true);
                   context.OpenSnackbar("خوش آمدید");
                 } else {
                   context.OpenSnackbar("اشکال در ورود");
@@ -54,7 +58,7 @@ const Login = () => {
                 </Grid>
                 <Grid item>
                   <TextField
-                    id="input-with-icon-grid"
+                    label="ایمیل"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -70,7 +74,6 @@ const Login = () => {
                 </Grid>
                 <Grid item>
                   <TextField
-                    id="input-with-icon-grid"
                     label="رمز عبور"
                     type="password"
                     value={password}
@@ -93,9 +96,9 @@ const Login = () => {
               </div>
             </Paper>
           </form>
-        )
-      }
-    </AuthContext.Consumer>
+        );
+      }}
+    </Context.Consumer>
   );
 };
 

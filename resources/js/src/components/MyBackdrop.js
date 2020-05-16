@@ -2,10 +2,10 @@ import React from "react";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { AuthContext } from "../contexts/AuthContext";
+import { Context } from "../contexts/Context";
 
 const MyBackdrop = () => (
-  <AuthContext.Consumer>
+  <Context.Consumer>
     {(context) =>
       context && (
         <Backdrop
@@ -16,7 +16,7 @@ const MyBackdrop = () => (
         </Backdrop>
       )
     }
-  </AuthContext.Consumer>
+  </Context.Consumer>
 );
 
 export default MyBackdrop;

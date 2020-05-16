@@ -2,10 +2,10 @@ import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import { AuthContext } from "../contexts/AuthContext";
+import { Context } from "../contexts/Context";
 
 const MySnackbar = () => (
-  <AuthContext.Consumer>
+  <Context.Consumer>
     {(context) => {
       if (context && context.snackbar) {
         return (
@@ -32,7 +32,7 @@ const MySnackbar = () => (
         );
       }
     }}
-  </AuthContext.Consumer>
+  </Context.Consumer>
 );
 
 export default MySnackbar;

@@ -21,7 +21,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 import { Link } from "react-router-dom";
 
-import { AuthContext } from "../../contexts/AuthContext";
+import { Context } from "../../contexts/Context";
 
 import "./MyNote.css";
 
@@ -38,7 +38,7 @@ const MyNote = () => {
   const idPopper = openPopper ? "simple-popper" : undefined;
 
   return (
-    <AuthContext.Consumer>
+    <Context.Consumer>
       {(context) => (
         <div>
           <Grid container spacing={1} className="note-grid-item">
@@ -312,7 +312,7 @@ const MyNote = () => {
           </TableContainer>
         </div>
       )}
-    </AuthContext.Consumer>
+    </Context.Consumer>
   );
 };
 
