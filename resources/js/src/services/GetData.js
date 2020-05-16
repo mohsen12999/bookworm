@@ -16,7 +16,7 @@ const PUBLIC_DATA = "publicData";
 const PRIVATE_DATA = "privateData";
 
 export const GetData = async () => {
-    fakeFillLocalStorage();
+    //fakeFillLocalStorage();
 
     const publicData = await getPublicData();
     const privateData = await getPrivateData();
@@ -41,7 +41,6 @@ const getPublicData = async () => {
         return localStorage.getItem("appData")
             ? JSON.parse(localStorage.getItem("appData"))
             : {
-                  user: { isAuthenticated: false },
                   genres: [],
                   books: [],
                   chapters: [],
@@ -98,6 +97,15 @@ export const RemovePrivateDataFromLocalStorage = () => {
 };
 
 const fakeFillLocalStorage = () => {
+    if (
+        !process ||
+        !process.env ||
+        !process.env.NODE_ENV ||
+        process.env.NODE_ENV !== "development"
+    ) {
+        return { success: false, error };
+    }
+
     const appData = {
         genres: genres,
         books: books,
