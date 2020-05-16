@@ -72654,7 +72654,7 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module './contexts/AuthContext'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _contexts_Context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contexts/Context */ "./resources/js/src/contexts/Context.js");
 /* harmony import */ var _components_MainLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/MainLayout */ "./resources/js/src/components/MainLayout.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _pages_Index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Index */ "./resources/js/src/pages/Index.js");
@@ -72706,7 +72706,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module './contexts/AuthContext'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MainLayout__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MainLayout__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     path: "/blog/:blog_id?"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PrivateRouteLayout__WEBPACK_IMPORTED_MODULE_23__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_admin_EditBlog__WEBPACK_IMPORTED_MODULE_21__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     path: "/note/:note_id?"
@@ -72975,7 +72975,7 @@ var BookThumbnail = function BookThumbnail(props) {
     alt: props.title + " - " + props.author
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "persian-number"
-  }, props.price, " \u0647\u0632\u0627\u0631 \u062A\u0648\u0645\u0627\u0646"));
+  }, Number(props.price).toFixed(3), " \u0647\u0632\u0627\u0631 \u062A\u0648\u0645\u0627\u0646"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BookThumbnail);
@@ -76908,7 +76908,7 @@ var getPublicData = /*#__PURE__*/function () {
 
 var getPrivateData = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-    var token, response;
+    var token, response, date;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -76933,20 +76933,22 @@ var getPrivateData = /*#__PURE__*/function () {
 
           case 6:
             response = _context3.sent;
-            return _context3.abrupt("return", response.data);
+            date = response.data;
+            AddToken(data.token);
+            return _context3.abrupt("return", date);
 
-          case 10:
-            _context3.prev = 10;
+          case 12:
+            _context3.prev = 12;
             _context3.t0 = _context3["catch"](3);
             console.log("error:  getPrivateData -  ", _context3.t0);
             return _context3.abrupt("return", undefined);
 
-          case 14:
+          case 16:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[3, 10]]);
+    }, _callee3, null, [[3, 12]]);
   }));
 
   return function getPrivateData() {

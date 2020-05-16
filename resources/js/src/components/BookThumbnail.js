@@ -30,7 +30,9 @@ const BookThumbnail = props => (
         <img src={props.img} alt={props.title + " - " + props.author} />
         <p>{props.title}</p>
         <p>{props.author}</p>
-        <p className="persian-number">{props.price} هزار تومان</p>
+        <p className="persian-number">
+            {Number(props.price).toFixed(3)} هزار تومان
+        </p>
     </Link>
 );
 
