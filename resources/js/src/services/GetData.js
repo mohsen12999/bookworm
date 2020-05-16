@@ -22,7 +22,7 @@ export const GetData = async () => {
     const privateData = await getPrivateData();
     if (privateData) {
         //publicData["user"] = privateData["user"];
-        publicData["chapter"] = privateData["chapter"];
+        publicData["chapters"] = privateData["chapters"];
         return { publicData: publicData, privateData: privateData["user"] };
     }
     return { publicData: publicData, privateData: { isAuthenticated: false } };
@@ -66,10 +66,10 @@ const getPrivateData = async () => {
                 }
             }
         );
-        const date = response.data;
+        const data = response.data;
         AddToken(data.token);
 
-        return date;
+        return data;
     } catch (error) {
         console.log("error:  getPrivateData -  ", error);
         return undefined;

@@ -73429,12 +73429,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var MyBackdrop = function MyBackdrop() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_3__["Context"].Consumer, null, function (context) {
-    return context && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Backdrop__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return context && context.setting && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Backdrop__WEBPACK_IMPORTED_MODULE_1__["default"], {
       style: {
         zIndex: 1000,
         color: "#fff"
       },
-      open: context.loading
+      open: context.setting.loading
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_2__["default"], {
       color: "inherit"
     }));
@@ -73469,16 +73469,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var MySnackbar = function MySnackbar() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_4__["Context"].Consumer, null, function (context) {
-    if (context && context.snackbar) {
+    if (context && context.setting && context.setting.snackbar) {
+      var snackbar = context.setting.snackbar;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Snackbar__WEBPACK_IMPORTED_MODULE_1__["default"], {
         anchorOrigin: {
           vertical: "bottom",
           horizontal: "left"
         },
-        open: context.snackbar.open,
-        autoHideDuration: context.snackbar.time,
+        open: snackbar.open,
+        autoHideDuration: snackbar.time,
         onClose: context.CloseSnackbar,
-        message: context.snackbar.message,
+        message: snackbar.message,
         action: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
           size: "small",
           "aria-label": "close",
@@ -73893,7 +73894,7 @@ var ContextProvider = function ContextProvider(props) {
 
   var Login = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(email, password) {
-      var loginResult;
+      var loginResult, newPublicContext;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -73917,12 +73918,13 @@ var ContextProvider = function ContextProvider(props) {
 
               if (loginResult.success) {
                 setAdminContext(loginResult.user);
-                setPublicContext(_objectSpread(_objectSpread({}, publicContext), {}, {
+                newPublicContext = _objectSpread(_objectSpread({}, publicContext), {}, {
                   chapters: loginResult.chapters
-                }));
+                });
+                setPublicContext(newPublicContext);
                 Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["AddToken"])(loginResult.token);
-                Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SavePublicDataToLocalStorage"])(publicContext);
-                Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SavePrivateDataToLocalStorage"])(adminContext);
+                Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SavePublicDataToLocalStorage"])(newPublicContext);
+                Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SavePrivateDataToLocalStorage"])(loginResult.user);
               }
 
               setSettingContext({
@@ -75396,7 +75398,6 @@ var Login = function Login(props) {
     setInvalidForm(!email || !password || !Object(_services_function__WEBPACK_IMPORTED_MODULE_10__["CheckEmail"])(email));
   }, [email, password]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_9__["Context"].Consumer, null, function (context) {
-    console.log(context.admin, context);
     return context.admin.isAuthenticated ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Redirect"], {
       to: "/dashboard"
     }) :
@@ -76122,6 +76123,8 @@ var Profile = function Profile() {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_6__["Context"].Consumer, null, function (context) {
+    var _ref;
+
     if (!name && context.admin.name) {
       setName(context.admin.name);
     }
@@ -76135,7 +76138,8 @@ var Profile = function Profile() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: src ? src : context.avatar,
+      src: (_ref = src !== null && src !== void 0 ? src : context.avatar) !== null && _ref !== void 0 ? _ref : "/images/user/default-profile.jpg" // src={src ? src : context.avatar? context.avatar:"/images/user/default-profile.jpg"}
+      ,
       alt: context.name,
       className: "avatar-img"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -76281,7 +76285,6 @@ var Register = function Register() {
         e.preventDefault();
         context.Register(name, email, password, passwordAgain).then(function (res) {
           if (res) {
-            setRedirect(true);
             context.OpenSnackbar("ثبت نام موفق بود، لطفا وارد شوید");
           } else {
             context.OpenSnackbar("اشکال در ثبت نام");
@@ -76626,7 +76629,7 @@ var LOGIN_URL = "/api/login";
 var REG_URL = "/api/register";
 var FetchLogin = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(email, password) {
-    var response, data, fakeData;
+    var response, data;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -76648,26 +76651,12 @@ var FetchLogin = /*#__PURE__*/function () {
           case 8:
             _context.prev = 8;
             _context.t0 = _context["catch"](0);
-
-            if (!(process && process.env && "development" && "development" === "development")) {
-              _context.next = 15;
-              break;
-            }
-
-            _context.next = 13;
-            return fakeLogin();
-
-          case 13:
-            fakeData = _context.sent;
-            return _context.abrupt("return", fakeData);
-
-          case 15:
             return _context.abrupt("return", {
               success: false,
               error: _context.t0
             });
 
-          case 16:
+          case 11:
           case "end":
             return _context.stop();
         }
@@ -76735,11 +76724,22 @@ var fakeLogin = /*#__PURE__*/function () {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
+            if (!(!process || !process.env || !"development" || "development" !== "development")) {
+              _context3.next = 2;
+              break;
+            }
+
+            return _context3.abrupt("return", {
+              success: false,
+              error: error
+            });
+
+          case 2:
             console.log("fakeLogin");
-            _context3.next = 3;
+            _context3.next = 5;
             return sleep(1000);
 
-          case 3:
+          case 5:
             return _context3.abrupt("return", {
               user: {
                 isAuthenticated: true,
@@ -76759,7 +76759,7 @@ var fakeLogin = /*#__PURE__*/function () {
               success: true
             });
 
-          case 4:
+          case 6:
           case "end":
             return _context3.stop();
         }
@@ -76784,7 +76784,7 @@ var fakeLogin = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetData", function() { return GetData; });
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetData", function() { return GetData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddToken", function() { return AddToken; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RemoveToken", function() { return RemoveToken; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SavePublicDataToLocalStorage", function() { return SavePublicDataToLocalStorage; });
@@ -76815,31 +76815,30 @@ var GetData = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            fakeFillLocalStorage();
-            _context.next = 3;
+            _context.next = 2;
             return getPublicData();
 
-          case 3:
+          case 2:
             publicData = _context.sent;
-            _context.next = 6;
+            _context.next = 5;
             return getPrivateData();
 
-          case 6:
+          case 5:
             privateData = _context.sent;
 
             if (!privateData) {
-              _context.next = 10;
+              _context.next = 9;
               break;
             }
 
             //publicData["user"] = privateData["user"];
-            publicData["chapter"] = privateData["chapter"];
+            publicData["chapters"] = privateData["chapters"];
             return _context.abrupt("return", {
               publicData: publicData,
               privateData: privateData["user"]
             });
 
-          case 10:
+          case 9:
             return _context.abrupt("return", {
               publicData: publicData,
               privateData: {
@@ -76847,7 +76846,7 @@ var GetData = /*#__PURE__*/function () {
               }
             });
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -76882,9 +76881,6 @@ var getPublicData = /*#__PURE__*/function () {
             _context2.t0 = _context2["catch"](0);
             console.log("error:  getPublicData - ", _context2.t0);
             return _context2.abrupt("return", localStorage.getItem("appData") ? JSON.parse(localStorage.getItem("appData")) : {
-              user: {
-                isAuthenticated: false
-              },
               genres: [],
               books: [],
               chapters: [],
@@ -76908,7 +76904,7 @@ var getPublicData = /*#__PURE__*/function () {
 
 var getPrivateData = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-    var token, response, date;
+    var token, response, data;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -76933,9 +76929,9 @@ var getPrivateData = /*#__PURE__*/function () {
 
           case 6:
             response = _context3.sent;
-            date = response.data;
+            data = response.data;
             AddToken(data.token);
-            return _context3.abrupt("return", date);
+            return _context3.abrupt("return", data);
 
           case 12:
             _context3.prev = 12;
@@ -76975,6 +76971,13 @@ var RemovePrivateDataFromLocalStorage = function RemovePrivateDataFromLocalStora
 var fakeFillLocalStorage = function fakeFillLocalStorage() {
   var _localStorage$getItem, _localStorage$getItem2;
 
+  if (!process || !process.env || !"development" || "development" !== "development") {
+    return {
+      success: false,
+      error: error
+    };
+  }
+
   var appData = {
     genres: _fakeData__WEBPACK_IMPORTED_MODULE_2__["genres"],
     books: _fakeData__WEBPACK_IMPORTED_MODULE_2__["books"],
@@ -77005,6 +77008,7 @@ var fakeFillLocalStorage = function fakeFillLocalStorage() {
   (_localStorage$getItem = localStorage.getItem(PUBLIC_DATA)) !== null && _localStorage$getItem !== void 0 ? _localStorage$getItem : SavePublicDataToLocalStorage(appData);
   (_localStorage$getItem2 = localStorage.getItem(PRIVATE_DATA)) !== null && _localStorage$getItem2 !== void 0 ? _localStorage$getItem2 : SavePrivateDataToLocalStorage(adminData);
 };
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
