@@ -73786,7 +73786,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_GetData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/GetData */ "./resources/js/src/services/GetData.js");
-/* harmony import */ var _services_Auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/Auth */ "./resources/js/src/services/Auth.js");
+/* harmony import */ var _services_LocalStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/LocalStorage */ "./resources/js/src/services/LocalStorage.js");
+/* harmony import */ var _services_Auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/Auth */ "./resources/js/src/services/Auth.js");
+/* harmony import */ var _services_Admin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/Admin */ "./resources/js/src/services/Admin.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -73822,6 +73824,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Context = Object(react__WEBPACK_IMPORTED_MODULE_1__["createContext"])();
 
 var ContextProvider = function ContextProvider(props) {
@@ -73853,7 +73857,7 @@ var ContextProvider = function ContextProvider(props) {
 
 
   react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
-    if (settingContext && settingContext.loading) return;
+    if (settingContext && settingContext.loading) return false;
     setSettingContext({
       loading: true
     });
@@ -73904,14 +73908,14 @@ var ContextProvider = function ContextProvider(props) {
                 break;
               }
 
-              return _context2.abrupt("return");
+              return _context2.abrupt("return", false);
 
             case 2:
               setSettingContext({
                 loading: true
               });
               _context2.next = 5;
-              return Object(_services_Auth__WEBPACK_IMPORTED_MODULE_3__["FetchLogin"])(email, password);
+              return Object(_services_Auth__WEBPACK_IMPORTED_MODULE_4__["FetchLogin"])(email, password);
 
             case 5:
               loginResult = _context2.sent;
@@ -73922,9 +73926,8 @@ var ContextProvider = function ContextProvider(props) {
                   chapters: loginResult.chapters
                 });
                 setPublicContext(newPublicContext);
-                Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["AddToken"])(loginResult.token);
-                Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SavePublicDataToLocalStorage"])(newPublicContext);
-                Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SavePrivateDataToLocalStorage"])(loginResult.user);
+                Object(_services_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["SavePublicDataToLocalStorage"])(newPublicContext);
+                Object(_services_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["SavePrivateDataToLocalStorage"])(loginResult.user);
               }
 
               setSettingContext({
@@ -73957,14 +73960,14 @@ var ContextProvider = function ContextProvider(props) {
                 break;
               }
 
-              return _context3.abrupt("return");
+              return _context3.abrupt("return", false);
 
             case 2:
               setSettingContext({
                 loading: true
               });
               _context3.next = 5;
-              return Object(_services_Auth__WEBPACK_IMPORTED_MODULE_3__["FetchRegister"])(name, email, password, passwordAgain);
+              return Object(_services_Auth__WEBPACK_IMPORTED_MODULE_4__["FetchRegister"])(name, email, password, passwordAgain);
 
             case 5:
               registerResult = _context3.sent;
@@ -73990,8 +73993,8 @@ var ContextProvider = function ContextProvider(props) {
     setAdminContext({
       isAuthenticated: false
     });
-    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["RemoveToken"])();
-    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["RemovePrivateDataFromLocalStorage"])();
+    Object(_services_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["RemoveToken"])();
+    Object(_services_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["RemovePrivateDataFromLocalStorage"])();
   };
 
   var SetLastBookReading = function SetLastBookReading(book_id, chapter_id) {
@@ -73999,7 +74002,7 @@ var ContextProvider = function ContextProvider(props) {
       lastBookId: Number(book_id),
       lastChapterId: Number(chapter_id)
     }));
-    Object(_services_GetData__WEBPACK_IMPORTED_MODULE_2__["SavePrivateDataToLocalStorage"])(adminContext);
+    Object(_services_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["SavePrivateDataToLocalStorage"])(adminContext);
   };
 
   var GetBook = function GetBook(book_id) {
@@ -74074,7 +74077,57 @@ var ContextProvider = function ContextProvider(props) {
         open: false
       })
     }));
-  };
+  }; //const UpdateProfile = async (file, name, email, mobile) => {
+
+
+  var UpdateProfile = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(data) {
+      var result, newPrivateDate;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              if (!(settingContext && settingContext.loading)) {
+                _context4.next = 2;
+                break;
+              }
+
+              return _context4.abrupt("return", false);
+
+            case 2:
+              setSettingContext({
+                loading: true
+              });
+              console.log(data); //const result = await FetchUpdateProfile(file, name, email, mobile);
+
+              _context4.next = 6;
+              return Object(_services_Admin__WEBPACK_IMPORTED_MODULE_5__["FetchUpdateProfile"])(data);
+
+            case 6:
+              result = _context4.sent;
+
+              if (result.success) {
+                newPrivateDate = _objectSpread(_objectSpread({}, adminContext), result.user);
+                setAdminContext(newPrivateDate);
+                Object(_services_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["SavePrivateDataToLocalStorage"])(newPrivateDate);
+              }
+
+              setSettingContext({
+                loading: false
+              });
+
+            case 9:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function UpdateProfile(_x7) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Context.Provider, {
     value: {
@@ -74091,7 +74144,8 @@ var ContextProvider = function ContextProvider(props) {
       GetFilteredBook: GetFilteredBook,
       GetPost: GetPost,
       OpenSnackbar: OpenSnackbar,
-      CloseSnackbar: CloseSnackbar
+      CloseSnackbar: CloseSnackbar,
+      UpdateProfile: UpdateProfile
     }
   }, props.children);
 };
@@ -76080,33 +76134,39 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // TODO: save to db
-// TODO: save to auth context
+ // TODO: change user password
 
 var Profile = function Profile() {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(null),
       _React$useState2 = _slicedToArray(_React$useState, 2),
-      name = _React$useState2[0],
-      setName = _React$useState2[1];
+      file = _React$useState2[0],
+      setFile = _React$useState2[1];
 
   var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
-      email = _React$useState4[0],
-      setEmail = _React$useState4[1];
+      name = _React$useState4[0],
+      setName = _React$useState4[1];
 
   var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
       _React$useState6 = _slicedToArray(_React$useState5, 2),
-      mobile = _React$useState6[0],
-      setMobile = _React$useState6[1];
+      email = _React$useState6[0],
+      setEmail = _React$useState6[1];
 
-  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
       _React$useState8 = _slicedToArray(_React$useState7, 2),
-      src = _React$useState8[0],
-      setSrc = _React$useState8[1];
+      mobile = _React$useState8[0],
+      setMobile = _React$useState8[1];
+
+  var _React$useState9 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState10 = _slicedToArray(_React$useState9, 2),
+      src = _React$useState10[0],
+      setSrc = _React$useState10[1];
 
   var handleInputFileChange = function handleInputFileChange(event) {
     var ele = event.target;
     var imgFile = ele.files[0];
+    console.log(ele, imgFile);
+    setFile(imgFile);
     var reader = new FileReader();
 
     reader.onload = function (e) {
@@ -76116,35 +76176,38 @@ var Profile = function Profile() {
     reader.readAsDataURL(imgFile);
   };
 
-  var handleChangeName = function handleChangeName(e) {
-    setName(e.target.value);
-  };
-
-  var handleChangeMobile = function handleChangeMobile(e) {
-    setMobile(e.target.value);
-  };
-
-  var handleSaveProfile = function handleSaveProfile() {// ....
-  };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_6__["Context"].Consumer, null, function (context) {
     var _ref;
 
-    if (!name && context.admin.name) {
-      setName(context.admin.name);
-    }
-
-    if (!mobile && context.mobile) {
-      setMobile(context.mobile);
-    }
-
+    // if (!name && context.admin.name) {
+    //     setName(context.admin.name);
+    // }
+    // if (!email && context.admin.email) {
+    //     setEmail(context.admin.email);
+    // }
+    // if (!mobile && context.admin.mobile) {
+    //     setMobile(context.admin.mobile);
+    // }
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       maxWidth: "sm"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
       onSubmit: function onSubmit(e) {
         e.preventDefault();
-      },
-      enctype: "multipart/form-data"
+        var data = new FormData();
+        data.append("file", file);
+        data.append("name", name);
+        data.append("email", email);
+        data.append("mobile", mobile);
+        console.log(file, name, email, mobile, data); //context.UpdateProfile(file, name, email, mobile)
+
+        context.UpdateProfile(data).then(function (res) {
+          if (res) {
+            context.OpenSnackbar("پروفایل با موفقیت بروزرسانی شد.");
+          } else {
+            context.OpenSnackbar("اشکال در بروزرسانی پروفایل");
+          }
+        });
+      }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -76171,17 +76234,31 @@ var Profile = function Profile() {
       className: "center-item persian-form"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "max-width username",
-      label: "\u0646\u0627\u0645 \u0634\u0645\u0627" //defaultValue={context.admin.name}
-      ,
+      label: "\u0646\u0627\u0645 \u0634\u0645\u0627",
       value: name !== null && name !== void 0 ? name : context.admin.name,
-      onChange: handleChangeName
+      onChange: function onChange(e) {
+        setName(e.target.value);
+      }
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "center-item persian-form"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      className: "max-width username",
+      label: "\u0627\u06CC\u0645\u06CC\u0644 \u0634\u0645\u0627",
+      type: "email",
+      value: email !== null && email !== void 0 ? email : context.admin.email,
+      onChange: function onChange(e) {
+        setEmail(e.target.value);
+      }
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item persian-form"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "max-width",
-      label: "\u0645\u0648\u0628\u0627\u06CC\u0644",
-      defaultValue: context.admin.mobile,
-      onChange: handleChangeMobile
+      label: "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06CC\u0644",
+      type: "tel",
+      value: mobile !== null && mobile !== void 0 ? mobile : context.admin.mobile,
+      onChange: function onChange(e) {
+        setMobile(e.target.value);
+      }
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item save-btn-div"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -76190,7 +76267,7 @@ var Profile = function Profile() {
       size: "large",
       type: "submit",
       startIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_4___default.a, null)
-    }, "\u0630\u062E\u06CC\u0631\u0647"))));
+    }, "\u0628\u0647\u200C\u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06CC"))));
   });
 };
 
@@ -76608,6 +76685,92 @@ function unregister() {
 
 /***/ }),
 
+/***/ "./resources/js/src/services/Admin.js":
+/*!********************************************!*\
+  !*** ./resources/js/src/services/Admin.js ***!
+  \********************************************/
+/*! exports provided: FetchUpdateProfile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchUpdateProfile", function() { return FetchUpdateProfile; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _LocalStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LocalStorage */ "./resources/js/src/services/LocalStorage.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var PROFILE_URL = "/api/profile"; //export const FetchUpdateProfile = async (file, name, email, mobile) => {
+
+var FetchUpdateProfile = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(data) {
+    var response, _data;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log(data);
+            _context.prev = 1;
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(PROFILE_URL, {
+              data: _data // file,
+              // name,
+              // email,
+              // mobile
+
+            }, {
+              headers: {
+                Authorization: "Bearer " + Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["GetToken"])()
+              }
+            });
+
+          case 4:
+            response = _context.sent;
+            _data = response.data;
+            Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["AddToken"])(_data.token);
+            return _context.abrupt("return", _objectSpread(_objectSpread({}, _data), {}, {
+              success: true
+            }));
+
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](1);
+            console.log("error in FetchUpdateProfile", _context.t0);
+            return _context.abrupt("return", {
+              success: false,
+              error: _context.t0
+            });
+
+          case 14:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 10]]);
+  }));
+
+  return function FetchUpdateProfile(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
 /***/ "./resources/js/src/services/Auth.js":
 /*!*******************************************!*\
   !*** ./resources/js/src/services/Auth.js ***!
@@ -76655,24 +76818,25 @@ var FetchLogin = /*#__PURE__*/function () {
           case 3:
             response = _context.sent;
             data = response.data;
+            if (data.token) AddToken(data.token);
             return _context.abrupt("return", _objectSpread(_objectSpread({}, data), {}, {
               success: true
             }));
 
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             return _context.abrupt("return", {
               success: false,
               error: _context.t0
             });
 
-          case 11:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 9]]);
   }));
 
   return function FetchLogin(_x, _x2) {
@@ -76790,22 +76954,18 @@ var fakeLogin = /*#__PURE__*/function () {
 /*!**********************************************!*\
   !*** ./resources/js/src/services/GetData.js ***!
   \**********************************************/
-/*! exports provided: GetData, AddToken, RemoveToken, SavePublicDataToLocalStorage, SavePrivateDataToLocalStorage, RemovePrivateDataFromLocalStorage */
+/*! exports provided: GetData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetData", function() { return GetData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddToken", function() { return AddToken; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RemoveToken", function() { return RemoveToken; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SavePublicDataToLocalStorage", function() { return SavePublicDataToLocalStorage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SavePrivateDataToLocalStorage", function() { return SavePrivateDataToLocalStorage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RemovePrivateDataFromLocalStorage", function() { return RemovePrivateDataFromLocalStorage; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _fakeData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fakeData */ "./resources/js/src/services/fakeData.js");
+/* harmony import */ var _LocalStorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LocalStorage */ "./resources/js/src/services/LocalStorage.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -76814,9 +76974,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 var GET_PUBLIC_DATA_URL = "/api/get_data";
 var GET_PRIVATE_DATA_URL = "/api/private_data";
-var TOKEN = "token";
 var PUBLIC_DATA = "publicData";
 var PRIVATE_DATA = "privateData";
 var GetData = /*#__PURE__*/function () {
@@ -76884,7 +77044,7 @@ var getPublicData = /*#__PURE__*/function () {
           case 3:
             response = _context2.sent;
             appData = response.data;
-            SavePublicDataToLocalStorage(appData);
+            Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["SavePublicDataToLocalStorage"])(appData);
             return _context2.abrupt("return", appData);
 
           case 9:
@@ -76920,7 +77080,7 @@ var getPrivateData = /*#__PURE__*/function () {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            token = localStorage.getItem(TOKEN);
+            token = Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["GetToken"])();
 
             if (token) {
               _context3.next = 3;
@@ -76941,7 +77101,7 @@ var getPrivateData = /*#__PURE__*/function () {
           case 6:
             response = _context3.sent;
             data = response.data;
-            AddToken(data.token);
+            Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["AddToken"])(data.token);
             return _context3.abrupt("return", data);
 
           case 12:
@@ -76963,24 +77123,8 @@ var getPrivateData = /*#__PURE__*/function () {
   };
 }();
 
-var AddToken = function AddToken(token) {
-  localStorage.setItem(TOKEN, token);
-};
-var RemoveToken = function RemoveToken() {
-  localStorage.removeItem(TOKEN);
-};
-var SavePublicDataToLocalStorage = function SavePublicDataToLocalStorage(appData) {
-  localStorage.setItem(PUBLIC_DATA, JSON.stringify(appData));
-};
-var SavePrivateDataToLocalStorage = function SavePrivateDataToLocalStorage(appData) {
-  localStorage.setItem(PRIVATE_DATA, JSON.stringify(appData));
-};
-var RemovePrivateDataFromLocalStorage = function RemovePrivateDataFromLocalStorage() {
-  localStorage.removeItem(PRIVATE_DATA);
-};
-
 var fakeFillLocalStorage = function fakeFillLocalStorage() {
-  var _localStorage$getItem, _localStorage$getItem2;
+  var _GetPublicDataFromFro, _GetPrivateDataFromFr;
 
   if (!process || !process.env || !"development" || "development" !== "development") {
     return {
@@ -77016,10 +77160,57 @@ var fakeFillLocalStorage = function fakeFillLocalStorage() {
     lastBookId: 7,
     lastChapterId: 103
   };
-  (_localStorage$getItem = localStorage.getItem(PUBLIC_DATA)) !== null && _localStorage$getItem !== void 0 ? _localStorage$getItem : SavePublicDataToLocalStorage(appData);
-  (_localStorage$getItem2 = localStorage.getItem(PRIVATE_DATA)) !== null && _localStorage$getItem2 !== void 0 ? _localStorage$getItem2 : SavePrivateDataToLocalStorage(adminData);
+  (_GetPublicDataFromFro = Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["GetPublicDataFromFromLocalStorage"])()) !== null && _GetPublicDataFromFro !== void 0 ? _GetPublicDataFromFro : Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["SavePublicDataToLocalStorage"])(appData);
+  (_GetPrivateDataFromFr = Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["GetPrivateDataFromFromLocalStorage"])()) !== null && _GetPrivateDataFromFr !== void 0 ? _GetPrivateDataFromFr : Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_3__["SavePrivateDataToLocalStorage"])(adminData);
 };
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./resources/js/src/services/LocalStorage.js":
+/*!***************************************************!*\
+  !*** ./resources/js/src/services/LocalStorage.js ***!
+  \***************************************************/
+/*! exports provided: GetToken, AddToken, RemoveToken, SavePublicDataToLocalStorage, SavePrivateDataToLocalStorage, RemovePrivateDataFromLocalStorage, GetPublicDataFromFromLocalStorage, GetPrivateDataFromFromLocalStorage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetToken", function() { return GetToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddToken", function() { return AddToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RemoveToken", function() { return RemoveToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SavePublicDataToLocalStorage", function() { return SavePublicDataToLocalStorage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SavePrivateDataToLocalStorage", function() { return SavePrivateDataToLocalStorage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RemovePrivateDataFromLocalStorage", function() { return RemovePrivateDataFromLocalStorage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetPublicDataFromFromLocalStorage", function() { return GetPublicDataFromFromLocalStorage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetPrivateDataFromFromLocalStorage", function() { return GetPrivateDataFromFromLocalStorage; });
+var TOKEN = "token";
+var PUBLIC_DATA = "publicData";
+var PRIVATE_DATA = "privateData";
+var GetToken = function GetToken() {
+  return localStorage.getItem(TOKEN);
+};
+var AddToken = function AddToken(token) {
+  if (token) localStorage.setItem(TOKEN, token);
+};
+var RemoveToken = function RemoveToken() {
+  localStorage.removeItem(TOKEN);
+};
+var SavePublicDataToLocalStorage = function SavePublicDataToLocalStorage(appData) {
+  localStorage.setItem(PUBLIC_DATA, JSON.stringify(appData));
+};
+var SavePrivateDataToLocalStorage = function SavePrivateDataToLocalStorage(appData) {
+  localStorage.setItem(PRIVATE_DATA, JSON.stringify(appData));
+};
+var RemovePrivateDataFromLocalStorage = function RemovePrivateDataFromLocalStorage() {
+  localStorage.removeItem(PRIVATE_DATA);
+};
+var GetPublicDataFromFromLocalStorage = function GetPublicDataFromFromLocalStorage() {
+  return localStorage.getItem(PUBLIC_DATA);
+};
+var GetPrivateDataFromFromLocalStorage = function GetPrivateDataFromFromLocalStorage() {
+  return localStorage.getItem(PRIVATE_DATA);
+};
 
 /***/ }),
 

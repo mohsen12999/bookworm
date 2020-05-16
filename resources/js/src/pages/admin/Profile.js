@@ -9,10 +9,10 @@ import { Context } from "../../contexts/Context";
 
 import "./Profile.css";
 
-// TODO: save to db
-// TODO: save to auth context
+// TODO: change user password
 
 const Profile = () => {
+    const [file, setFile] = React.useState(null);
     const [name, setName] = React.useState();
     const [email, setEmail] = React.useState();
     const [mobile, setMobile] = React.useState();
@@ -21,6 +21,8 @@ const Profile = () => {
     const handleInputFileChange = event => {
         const ele = event.target;
         const imgFile = ele.files[0];
+        console.log(ele, imgFile);
+        setFile(imgFile);
 
         let reader = new FileReader();
         reader.onload = e => {
@@ -33,19 +35,41 @@ const Profile = () => {
     return (
         <Context.Consumer>
             {context => {
-                if (!name && context.admin.name) {
-                    setName(context.admin.name);
-                }
-                if (!mobile && context.mobile) {
-                    setMobile(context.mobile);
-                }
+                // if (!name && context.admin.name) {
+                //     setName(context.admin.name);
+                // }
+                // if (!email && context.admin.email) {
+                //     setEmail(context.admin.email);
+                // }
+                // if (!mobile && context.admin.mobile) {
+                //     setMobile(context.admin.mobile);
+                // }
                 return (
                     <Container maxWidth="sm">
                         <form
                             onSubmit={e => {
                                 e.preventDefault();
+                                const data = new FormData();
+                                data.append("file", file);
+                                data.append("name", name);
+                                data.append("email", email);
+                                data.append("mobile", mobile);
+
+                                console.log(file, name, email, mobile, data);
+
+                                //context.UpdateProfile(file, name, email, mobile)
+                                context.UpdateProfile(data).then(res => {
+                                    if (res) {
+                                        context.OpenSnackbar(
+                                            "پروفایل با موفقیت بروزرسانی شد."
+                                        );
+                                    } else {
+                                        context.OpenSnackbar(
+                                            "اشکال در بروزرسانی پروفایل"
+                                        );
+                                    }
+                                });
                             }}
-                            enctype="multipart/form-data"
                         >
                             <div className="center-item">
                                 <img
@@ -92,7 +116,8 @@ const Profile = () => {
                                 <TextField
                                     className="max-width username"
                                     label="ایمیل شما"
-                                    value={email ?? context.admin.name}
+                                    type="email"
+                                    value={email ?? context.admin.email}
                                     onChange={e => {
                                         setEmail(e.target.value);
                                     }}
@@ -102,7 +127,8 @@ const Profile = () => {
                                 <TextField
                                     className="max-width"
                                     label="شماره موبایل"
-                                    defaultValue={context.admin.mobile}
+                                    type="tel"
+                                    value={mobile ?? context.admin.mobile}
                                     onChange={e => {
                                         setMobile(e.target.value);
                                     }}

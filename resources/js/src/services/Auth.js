@@ -7,6 +7,7 @@ export const FetchLogin = async (email, password) => {
     try {
         const response = await axios.post(LOGIN_URL, { email, password });
         const data = response.data;
+        if (data.token) AddToken(data.token);
 
         return { ...data, success: true };
     } catch (error) {

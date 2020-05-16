@@ -1,13 +1,14 @@
 import React, { createContext, useState } from "react";
+import { GetData } from "../services/GetData";
 import {
-    GetData,
-    AddToken,
     RemoveToken,
     SavePublicDataToLocalStorage,
     SavePrivateDataToLocalStorage,
     RemovePrivateDataFromLocalStorage
-} from "../services/GetData";
+} from "../services/LocalStorage";
+
 import { FetchLogin, FetchRegister } from "../services/Auth";
+import { FetchUpdateProfile } from "../services/Admin";
 
 export const Context = createContext();
 
@@ -27,7 +28,7 @@ const ContextProvider = props => {
     // const [tempContext, seTempContext] = useState({});
 
     React.useEffect(() => {
-        if (settingContext && settingContext.loading) return;
+        if (settingContext && settingContext.loading) return false;
         setSettingContext({ loading: true });
 
         const fillContext = async () => {
@@ -42,7 +43,7 @@ const ContextProvider = props => {
     }, []);
 
     const Login = async (email, password) => {
-        if (settingContext && settingContext.loading) return;
+        if (settingContext && settingContext.loading) return false;
         setSettingContext({ loading: true });
 
         const loginResult = await FetchLogin(email, password);
@@ -55,7 +56,6 @@ const ContextProvider = props => {
             };
             setPublicContext(newPublicContext);
 
-            AddToken(loginResult.token);
             SavePublicDataToLocalStorage(newPublicContext);
             SavePrivateDataToLocalStorage(loginResult.user);
         }
@@ -65,7 +65,7 @@ const ContextProvider = props => {
     };
 
     const Register = async (name, email, password, passwordAgain) => {
-        if (settingContext && settingContext.loading) return;
+        if (settingContext && settingContext.loading) return false;
         setSettingContext({ loading: true });
 
         const registerResult = await FetchRegister(
@@ -167,6 +167,24 @@ const ContextProvider = props => {
         });
     };
 
+    //const UpdateProfile = async (file, name, email, mobile) => {
+    const UpdateProfile = async data => {
+        if (settingContext && settingContext.loading) return false;
+        setSettingContext({ loading: true });
+
+        console.log(data);
+
+        //const result = await FetchUpdateProfile(file, name, email, mobile);
+        const result = await FetchUpdateProfile(data);
+        if (result.success) {
+            const newPrivateDate = { ...adminContext, ...result.user };
+            setAdminContext(newPrivateDate);
+            SavePrivateDataToLocalStorage(newPrivateDate);
+        }
+
+        setSettingContext({ loading: false });
+    };
+
     return (
         <Context.Provider
             value={{
@@ -183,7 +201,8 @@ const ContextProvider = props => {
                 GetFilteredBook,
                 GetPost,
                 OpenSnackbar,
-                CloseSnackbar
+                CloseSnackbar,
+                UpdateProfile
             }}
         >
             {props.children}

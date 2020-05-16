@@ -7,11 +7,18 @@ import {
     subjects,
     chapters
 } from "./fakeData";
+import {
+    AddToken,
+    GetToken,
+    SavePublicDataToLocalStorage,
+    SavePrivateDataToLocalStorage,
+    GetPublicDataFromFromLocalStorage,
+    GetPrivateDataFromFromLocalStorage
+} from "./LocalStorage";
 
 const GET_PUBLIC_DATA_URL = "/api/get_data";
 const GET_PRIVATE_DATA_URL = "/api/private_data";
 
-const TOKEN = "token";
 const PUBLIC_DATA = "publicData";
 const PRIVATE_DATA = "privateData";
 
@@ -52,7 +59,7 @@ const getPublicData = async () => {
 };
 
 const getPrivateData = async () => {
-    const token = localStorage.getItem(TOKEN);
+    const token = GetToken();
     if (!token) {
         return undefined;
     }
@@ -74,26 +81,6 @@ const getPrivateData = async () => {
         console.log("error:  getPrivateData -  ", error);
         return undefined;
     }
-};
-
-export const AddToken = token => {
-    localStorage.setItem(TOKEN, token);
-};
-
-export const RemoveToken = () => {
-    localStorage.removeItem(TOKEN);
-};
-
-export const SavePublicDataToLocalStorage = appData => {
-    localStorage.setItem(PUBLIC_DATA, JSON.stringify(appData));
-};
-
-export const SavePrivateDataToLocalStorage = appData => {
-    localStorage.setItem(PRIVATE_DATA, JSON.stringify(appData));
-};
-
-export const RemovePrivateDataFromLocalStorage = () => {
-    localStorage.removeItem(PRIVATE_DATA);
 };
 
 const fakeFillLocalStorage = () => {
@@ -135,7 +122,8 @@ const fakeFillLocalStorage = () => {
         lastChapterId: 103
     };
 
-    localStorage.getItem(PUBLIC_DATA) ?? SavePublicDataToLocalStorage(appData);
-    localStorage.getItem(PRIVATE_DATA) ??
+    GetPublicDataFromFromLocalStorage() ??
+        SavePublicDataToLocalStorage(appData);
+    GetPrivateDataFromFromLocalStorage() ??
         SavePrivateDataToLocalStorage(adminData);
 };
