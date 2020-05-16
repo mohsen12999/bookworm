@@ -41,6 +41,7 @@
 ## TODO
 
 -   [ ] refresh token with every access via api
+-   [ ] change user password
 -   [ ] user role
 -   [ ] free host
 -   [ ] free domain
