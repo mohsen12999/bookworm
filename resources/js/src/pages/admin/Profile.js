@@ -14,6 +14,7 @@ import "./Profile.css";
 
 const Profile = () => {
     const [name, setName] = React.useState();
+    const [email, setEmail] = React.useState();
     const [mobile, setMobile] = React.useState();
     const [src, setSrc] = React.useState(undefined);
 
@@ -29,18 +30,6 @@ const Profile = () => {
         reader.readAsDataURL(imgFile);
     };
 
-    const handleChangeName = e => {
-        setName(e.target.value);
-    };
-
-    const handleChangeMobile = e => {
-        setMobile(e.target.value);
-    };
-
-    const handleSaveProfile = () => {
-        // ....
-    };
-
     return (
         <Context.Consumer>
             {context => {
@@ -52,64 +41,85 @@ const Profile = () => {
                 }
                 return (
                     <Container maxWidth="sm">
-                        <div className="center-item">
-                            <img
-                                src={
-                                    src ??
-                                    context.avatar ??
-                                    "/images/user/default-profile.jpg"
-                                }
-                                // src={src ? src : context.avatar? context.avatar:"/images/user/default-profile.jpg"}
-                                alt={context.name}
-                                className="avatar-img"
-                            />
-                        </div>
-                        <div className="center-item">
-                            <input
-                                accept="image/*"
-                                className="hidden-input"
-                                id="icon-button-file"
-                                type="file"
-                                onChange={handleInputFileChange}
-                            />
-                            <label htmlFor="icon-button-file">
+                        <form
+                            onSubmit={e => {
+                                e.preventDefault();
+                            }}
+                            enctype="multipart/form-data"
+                        >
+                            <div className="center-item">
+                                <img
+                                    src={
+                                        src ??
+                                        context.avatar ??
+                                        "/images/user/default-profile.jpg"
+                                    }
+                                    // src={src ? src : context.avatar? context.avatar:"/images/user/default-profile.jpg"}
+                                    alt={context.name}
+                                    className="avatar-img"
+                                />
+                            </div>
+                            <div className="center-item">
+                                <input
+                                    accept="image/*"
+                                    className="hidden-input"
+                                    id="icon-button-file"
+                                    type="file"
+                                    onChange={handleInputFileChange}
+                                />
+                                <label htmlFor="icon-button-file">
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        component="span"
+                                        startIcon={<PhotoCamera />}
+                                    >
+                                        بارگزاری تصویر
+                                    </Button>
+                                </label>
+                            </div>
+                            <div className="center-item persian-form">
+                                <TextField
+                                    className="max-width username"
+                                    label="نام شما"
+                                    value={name ?? context.admin.name}
+                                    onChange={e => {
+                                        setName(e.target.value);
+                                    }}
+                                />
+                            </div>
+                            <div className="center-item persian-form">
+                                <TextField
+                                    className="max-width username"
+                                    label="ایمیل شما"
+                                    value={email ?? context.admin.name}
+                                    onChange={e => {
+                                        setEmail(e.target.value);
+                                    }}
+                                />
+                            </div>
+                            <div className="center-item persian-form">
+                                <TextField
+                                    className="max-width"
+                                    label="شماره موبایل"
+                                    defaultValue={context.admin.mobile}
+                                    onChange={e => {
+                                        setMobile(e.target.value);
+                                    }}
+                                />
+                            </div>
+                            <div className="center-item save-btn-div">
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    component="span"
-                                    startIcon={<PhotoCamera />}
+                                    size="large"
+                                    type="submit"
+                                    startIcon={<SaveIcon />}
                                 >
-                                    بارگزاری تصویر
+                                    به‌روزرسانی
                                 </Button>
-                            </label>
-                        </div>
-                        <div className="center-item persian-form">
-                            <TextField
-                                className="max-width username"
-                                label="نام شما"
-                                defaultValue={context.name}
-                                onChange={handleChangeName}
-                            />
-                        </div>
-                        <div className="center-item persian-form">
-                            <TextField
-                                className="max-width"
-                                label="موبایل"
-                                defaultValue={context.mobile}
-                                onChange={handleChangeMobile}
-                            />
-                        </div>
-                        <div className="center-item save-btn-div">
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                size="large"
-                                startIcon={<SaveIcon />}
-                                onClick={handleSaveProfile}
-                            >
-                                ذخیره
-                            </Button>
-                        </div>
+                            </div>
+                        </form>
                     </Container>
                 );
             }}

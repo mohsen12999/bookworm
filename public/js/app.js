@@ -76091,13 +76091,18 @@ var Profile = function Profile() {
 
   var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
-      mobile = _React$useState4[0],
-      setMobile = _React$useState4[1];
+      email = _React$useState4[0],
+      setEmail = _React$useState4[1];
 
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
       _React$useState6 = _slicedToArray(_React$useState5, 2),
-      src = _React$useState6[0],
-      setSrc = _React$useState6[1];
+      mobile = _React$useState6[0],
+      setMobile = _React$useState6[1];
+
+  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState8 = _slicedToArray(_React$useState7, 2),
+      src = _React$useState8[0],
+      setSrc = _React$useState8[1];
 
   var handleInputFileChange = function handleInputFileChange(event) {
     var ele = event.target;
@@ -76135,6 +76140,11 @@ var Profile = function Profile() {
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       maxWidth: "sm"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      onSubmit: function onSubmit(e) {
+        e.preventDefault();
+      },
+      enctype: "multipart/form-data"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -76161,15 +76171,16 @@ var Profile = function Profile() {
       className: "center-item persian-form"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "max-width username",
-      label: "\u0646\u0627\u0645 \u0634\u0645\u0627",
-      defaultValue: context.name,
+      label: "\u0646\u0627\u0645 \u0634\u0645\u0627" //defaultValue={context.admin.name}
+      ,
+      value: name !== null && name !== void 0 ? name : context.admin.name,
       onChange: handleChangeName
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item persian-form"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "max-width",
       label: "\u0645\u0648\u0628\u0627\u06CC\u0644",
-      defaultValue: context.mobile,
+      defaultValue: context.admin.mobile,
       onChange: handleChangeMobile
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item save-btn-div"
@@ -76177,9 +76188,9 @@ var Profile = function Profile() {
       variant: "contained",
       color: "primary",
       size: "large",
-      startIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_4___default.a, null),
-      onClick: handleSaveProfile
-    }, "\u0630\u062E\u06CC\u0631\u0647")));
+      type: "submit",
+      startIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_4___default.a, null)
+    }, "\u0630\u062E\u06CC\u0631\u0647"))));
   });
 };
 
