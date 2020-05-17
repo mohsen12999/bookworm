@@ -76211,9 +76211,9 @@ var Profile = function Profile() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: (_ref = src !== null && src !== void 0 ? src : context.avatar) !== null && _ref !== void 0 ? _ref : "/images/user/default-profile.jpg" // src={src ? src : context.avatar? context.avatar:"/images/user/default-profile.jpg"}
+      src: (_ref = src !== null && src !== void 0 ? src : context.admin.avatar) !== null && _ref !== void 0 ? _ref : "/images/user/default-profile.jpg" // src={src ? src : context.avatar? context.avatar:"/images/user/default-profile.jpg"}
       ,
-      alt: context.name,
+      alt: context.admin.name,
       className: "avatar-img"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item"

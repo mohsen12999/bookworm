@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Image;
 
 use Auth;
 
@@ -135,37 +136,40 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        $file = $_FILES['file'];
-        if ($file['size'] != 0) {
+        if (isset($_FILES["file"])) {
+            $file = $_FILES['file'];
 
             $fileName = "user_" . $user->id . "_" . basename($file['name']);
             $filePath = "/images/user/";
             $tmp = $file["tmp_name"];
             $tmp_url = str_replace("\\", "/", $tmp);
 
-            $moved = move_uploaded_file($tmp_url, $filePath . $fileName);
+            //$moved = move_uploaded_file($tmp_url, $filePath . $fileName);
+            $image_resize = Image::make($tmp_url);
+            $image_resize->resize(310, 310);
+            $image_resize->save(public_path($filePath . $fileName));
 
-            if ($moved) {
-                if (isset($user->avatar) && $user->avatar && file_exists($user->avatar)) {
-                    unlink($user->avatar);
+            if (file_exists(public_path($filePath . $fileName))) {
+                if (isset($user->avatar) && $user->avatar && file_exists(public_path($user->avatar))) {
+                    unlink(public_path($user->avatar));
                 }
 
-                $user->avatar = url('/' . $filePath . $fileName);
+                $user->avatar = $filePath . $fileName;
             }
         }
 
         $name = $request->name;
-        if (isset($name) && $name) {
+        if (isset($name) && $name && $name != "undefined") {
             $user->name = $name;
         }
 
         $email = $request->email;
-        if (isset($email) && $email) {
+        if (isset($email) && $email && $email != "undefined") {
             $user->email = $email;
         }
 
         $mobile = $request->mobile;
-        if (isset($mobile) && $mobile) {
+        if (isset($mobile) && $mobile && $mobile != "undefined") {
             $user->mobile = $mobile;
         }
 
@@ -173,14 +177,12 @@ class AuthController extends Controller
 
         return response()->json([
             //'token' => $this->generateAccessToken($user),
-            //'user' => $user,
-            //'request' => $request->all(),
-            'file_name' => $file['name'],
-            'file_tmp_name' => $file['tmp_name'],
-            'file_tmp_name_url' => str_replace("\\", "/", $file['tmp_name']),
-            'is_writable' => is_writable("/images/user/"),
-            'is_uploaded_file' => is_uploaded_file($file['tmp_name']),
-            'is_file' => is_file($file['tmp_name']),
+            'user' => $user,
+            'request' => $request->all(),
+            'avatar' => $user->avatar,
+            'avatar_p' => public_path($user->avatar),
+            'avatar_exist' => file_exists($user->avatar),
+            'avatar_exist_p' => file_exists(public_path($user->avatar)),
         ], 200);
     }
 }
