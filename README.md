@@ -21,3 +21,5 @@
 -   [ ] free host
 -   [ ] free domain
 -   [ ] followers and following
+-   [ ] rating for book
+-   [ ] comment for book and posts
