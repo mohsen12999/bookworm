@@ -130,4 +130,57 @@ class AuthController extends Controller
             ]
         ];
     }
+
+    public function updateProfile(Request $request)
+    {
+        $user = $request->user();
+
+        $file = $_FILES['file'];
+        if ($file['size'] != 0) {
+
+            $fileName = "user_" . $user->id . "_" . basename($file['name']);
+            $filePath = "/images/user/";
+            $tmp = $file["tmp_name"];
+            $tmp_url = str_replace("\\", "/", $tmp);
+
+            $moved = move_uploaded_file($tmp_url, $filePath . $fileName);
+
+            if ($moved) {
+                if (isset($user->avatar) && $user->avatar && file_exists($user->avatar)) {
+                    unlink($user->avatar);
+                }
+
+                $user->avatar = url('/' . $filePath . $fileName);
+            }
+        }
+
+        $name = $request->name;
+        if (isset($name) && $name) {
+            $user->name = $name;
+        }
+
+        $email = $request->email;
+        if (isset($email) && $email) {
+            $user->email = $email;
+        }
+
+        $mobile = $request->mobile;
+        if (isset($mobile) && $mobile) {
+            $user->mobile = $mobile;
+        }
+
+        $user->save();
+
+        return response()->json([
+            //'token' => $this->generateAccessToken($user),
+            //'user' => $user,
+            //'request' => $request->all(),
+            'file_name' => $file['name'],
+            'file_tmp_name' => $file['tmp_name'],
+            'file_tmp_name_url' => str_replace("\\", "/", $file['tmp_name']),
+            'is_writable' => is_writable("/images/user/"),
+            'is_uploaded_file' => is_uploaded_file($file['tmp_name']),
+            'is_file' => is_file($file['tmp_name']),
+        ], 200);
+    }
 }

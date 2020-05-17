@@ -76373,6 +76373,7 @@ var Register = function Register() {
         e.preventDefault();
         context.Register(name, email, password, passwordAgain).then(function (res) {
           if (res) {
+            setRedirect(true);
             context.OpenSnackbar("ثبت نام موفق بود، لطفا وارد شوید");
           } else {
             context.OpenSnackbar("اشکال در ثبت نام");
@@ -76718,8 +76719,7 @@ var PROFILE_URL = "/api/profile"; //export const FetchUpdateProfile = async (fil
 
 var FetchUpdateProfile = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(data) {
-    var response, _data;
-
+    var response, responseData;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -76727,23 +76727,21 @@ var FetchUpdateProfile = /*#__PURE__*/function () {
             console.log(data);
             _context.prev = 1;
             _context.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(PROFILE_URL, {
-              data: _data // file,
-              // name,
-              // email,
-              // mobile
-
-            }, {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(PROFILE_URL, data, // {file,name,email,mobile},
+            {
               headers: {
-                Authorization: "Bearer " + Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["GetToken"])()
+                Authorization: "Bearer " + Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["GetToken"])(),
+                "Content-type": "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2),
+                contentType: false,
+                processData: false
               }
             });
 
           case 4:
             response = _context.sent;
-            _data = response.data;
-            Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["AddToken"])(_data.token);
-            return _context.abrupt("return", _objectSpread(_objectSpread({}, _data), {}, {
+            responseData = response.data;
+            Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["AddToken"])(responseData.token);
+            return _context.abrupt("return", _objectSpread(_objectSpread({}, responseData), {}, {
               success: true
             }));
 
@@ -76786,6 +76784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _LocalStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LocalStorage */ "./resources/js/src/services/LocalStorage.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -76797,6 +76796,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 var LOGIN_URL = "/api/login";
@@ -76818,7 +76818,7 @@ var FetchLogin = /*#__PURE__*/function () {
           case 3:
             response = _context.sent;
             data = response.data;
-            if (data.token) AddToken(data.token);
+            Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["AddToken"])(data.token);
             return _context.abrupt("return", _objectSpread(_objectSpread({}, data), {}, {
               success: true
             }));
@@ -76905,8 +76905,7 @@ var fakeLogin = /*#__PURE__*/function () {
             }
 
             return _context3.abrupt("return", {
-              success: false,
-              error: error
+              success: false
             });
 
           case 2:
@@ -76977,8 +76976,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var GET_PUBLIC_DATA_URL = "/api/get_data";
 var GET_PRIVATE_DATA_URL = "/api/private_data";
-var PUBLIC_DATA = "publicData";
-var PRIVATE_DATA = "privateData";
 var GetData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
     var publicData, privateData;
@@ -77128,8 +77125,7 @@ var fakeFillLocalStorage = function fakeFillLocalStorage() {
 
   if (!process || !process.env || !"development" || "development" !== "development") {
     return {
-      success: false,
-      error: error
+      success: false
     };
   }
 
