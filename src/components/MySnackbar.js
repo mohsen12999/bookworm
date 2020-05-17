@@ -5,34 +5,35 @@ import CloseIcon from "@material-ui/icons/Close";
 import { Context } from "../contexts/Context";
 
 const MySnackbar = () => (
-  <Context.Consumer>
-    {(context) => {
-      if (context && context.snackbar) {
-        return (
-          <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            open={context.snackbar.open}
-            autoHideDuration={context.snackbar.time}
-            onClose={context.CloseSnackbar}
-            message={context.snackbar.message}
-            action={
-              <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={context.CloseSnackbar}
-              >
-                <CloseIcon fontSize="small" />
-              </IconButton>
+    <Context.Consumer>
+        {context => {
+            if (context && context.setting && context.setting.snackbar) {
+                const snackbar = context.setting.snackbar;
+                return (
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "left"
+                        }}
+                        open={snackbar.open}
+                        autoHideDuration={snackbar.time}
+                        onClose={context.CloseSnackbar}
+                        message={snackbar.message}
+                        action={
+                            <IconButton
+                                size="small"
+                                aria-label="close"
+                                color="inherit"
+                                onClick={context.CloseSnackbar}
+                            >
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        }
+                    />
+                );
             }
-          />
-        );
-      }
-    }}
-  </Context.Consumer>
+        }}
+    </Context.Consumer>
 );
 
 export default MySnackbar;

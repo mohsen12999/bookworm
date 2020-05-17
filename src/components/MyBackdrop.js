@@ -5,18 +5,19 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Context } from "../contexts/Context";
 
 const MyBackdrop = () => (
-  <Context.Consumer>
-    {(context) =>
-      context && (
-        <Backdrop
-          style={{ zIndex: 1000, color: "#fff" }}
-          open={context.loading}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )
-    }
-  </Context.Consumer>
+    <Context.Consumer>
+        {context =>
+            context &&
+            context.setting && (
+                <Backdrop
+                    style={{ zIndex: 1000, color: "#fff" }}
+                    open={context.setting.loading}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+            )
+        }
+    </Context.Consumer>
 );
 
 export default MyBackdrop;
