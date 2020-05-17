@@ -30015,7 +30015,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".section-title {\r\n  margin-top: 2rem !important;\r\n  margin-bottom: 1rem !important;\r\n  text-align: right;\r\n  direction: rtl;\r\n}\r\n\r\n.search-filtered-book {\r\n  flex-grow: 1;\r\n  direction: rtl;\r\n  background: #e8e8e8;\r\n  padding: 1em !important;\r\n  margin-bottom: 1rem !important;\r\n  text-align: center;\r\n  position: relative;\r\n}\r\n\r\n.center-grid-item {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.center-grid-item .search-input {\r\n  width: 75%;\r\n}\r\n\r\n@media screen and (max-width: 700px) {\r\n  .center-grid-item .search-input {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n.full-width {\r\n  width: 100%;\r\n}\r\n\r\n.all-book-grid {\r\n  direction: rtl !important;\r\n}\r\n", ""]);
+exports.push([module.i, ".section-title {\r\n    margin-top: 2rem !important;\r\n    margin-bottom: 1rem !important;\r\n    text-align: right;\r\n    direction: rtl;\r\n}\r\n\r\n.search-filtered-book {\r\n    flex-grow: 1;\r\n    direction: rtl;\r\n    background: #e8e8e8;\r\n    padding: 1em !important;\r\n    margin-bottom: 1rem !important;\r\n    text-align: center;\r\n    position: relative;\r\n}\r\n\r\n.center-grid-item {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.center-grid-item .search-input {\r\n    width: 75%;\r\n}\r\n\r\n@media screen and (max-width: 700px) {\r\n    .center-grid-item .search-input {\r\n        width: 100%;\r\n    }\r\n}\r\n\r\n.full-width {\r\n    width: 100%;\r\n}\r\n\r\n.all-book-grid {\r\n    direction: rtl !important;\r\n}\r\n\r\n.no-book {\r\n    direction: rtl !important;\r\n    text-align: center !important;\r\n    flex: 1;\r\n    margin: 1em;\r\n}\r\n\r\n.no-book h5 {\r\n    margin-bottom: 2em;\r\n}\r\n", ""]);
 
 // exports
 
@@ -30148,7 +30148,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".center-item {\r\n  text-align: center;\r\n}\r\n\r\n.hidden-input {\r\n  display: none !important;\r\n}\r\n\r\n.center-item.persian-form {\r\n  margin-top: 1rem;\r\n}\r\n\r\n.center-item.persian-form .max-width {\r\n  min-width: 70%;\r\n}\r\n\r\n.save-btn-div {\r\n  margin-top: 2rem;\r\n}\r\n\r\n.avatar-img {\r\n  max-width: 100%;\r\n}\r\n\r\n.username {\r\n  text-align: right;\r\n}\r\n", ""]);
+exports.push([module.i, ".center-item {\r\n    text-align: center;\r\n}\r\n\r\n.hidden-input {\r\n    display: none !important;\r\n}\r\n\r\n.center-item.persian-form {\r\n    margin-top: 1rem;\r\n}\r\n\r\n.center-item.persian-form .max-width {\r\n    min-width: 70%;\r\n}\r\n\r\n.save-btn-div {\r\n    margin-top: 2rem;\r\n}\r\n\r\n.avatar-img {\r\n    max-width: 100%;\r\n}\r\n\r\n.username input {\r\n    text-align: right !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -75747,10 +75747,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
-/* harmony import */ var _contexts_Context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../contexts/Context */ "./resources/js/src/contexts/Context.js");
-/* harmony import */ var _components_BookThumbnail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/BookThumbnail */ "./resources/js/src/components/BookThumbnail.js");
-/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../BookList.css */ "./resources/js/src/pages/BookList.css");
-/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var _contexts_Context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../contexts/Context */ "./resources/js/src/contexts/Context.js");
+/* harmony import */ var _components_BookThumbnail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/BookThumbnail */ "./resources/js/src/components/BookThumbnail.js");
+/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../BookList.css */ "./resources/js/src/pages/BookList.css");
+/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -75760,8 +75762,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MyBook = function MyBook() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_3__["Context"].Consumer, null, function (context) {
-    var myBook = context.books.filter(function (book) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_4__["Context"].Consumer, null, function (context) {
+    console.log(context["public"].books, context.admin.boughtBooks);
+    var myBook = context["public"].books.filter(function (book) {
       return context.admin.boughtBooks.includes(book.id);
     });
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -75771,13 +75774,22 @@ var MyBook = function MyBook() {
     }, "\u06A9\u062A\u0627\u0628 \u0647\u0627\u06CC \u0634\u0645\u0627"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__["default"], {
       container: true,
       spacing: 1
-    }, myBook.map(function (book) {
+    }, myBook.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "no-book"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      variant: "h5"
+    }, "\u0634\u0645\u0627 \u062A\u0627 \u06A9\u0646\u0648\u0646 \u06A9\u062A\u0627\u0628\u06CC \u0646\u062E\u0631\u06CC\u062F\u0647\u200C\u0627\u06CC\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      variant: "outlined",
+      color: "primary",
+      component: Link,
+      to: "/books"
+    }, "\u0627\u0646\u062A\u062E\u0627\u0628 \u06A9\u062A\u0627\u0628")) : myBook.map(function (book) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__["default"], {
         key: book.id,
         item: true,
         xs: 6,
         sm: 3
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_BookThumbnail__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_BookThumbnail__WEBPACK_IMPORTED_MODULE_5__["default"], {
         id: book.id,
         title: book.title,
         img: book.img,
@@ -76241,7 +76253,7 @@ var Profile = function Profile() {
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item persian-form"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      className: "max-width username",
+      className: "max-width email",
       label: "\u0627\u06CC\u0645\u06CC\u0644 \u0634\u0645\u0627",
       type: "email",
       value: email !== null && email !== void 0 ? email : context.admin.email,
