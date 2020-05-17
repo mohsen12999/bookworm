@@ -172,9 +172,6 @@ const ContextProvider = props => {
         if (settingContext && settingContext.loading) return false;
         setSettingContext({ loading: true });
 
-        console.log(data);
-
-        //const result = await FetchUpdateProfile(file, name, email, mobile);
         const result = await FetchUpdateProfile(data);
         if (result.success) {
             const newPrivateDate = { ...adminContext, ...result.user };
@@ -183,6 +180,7 @@ const ContextProvider = props => {
         }
 
         setSettingContext({ loading: false });
+        return result.success;
     };
 
     return (

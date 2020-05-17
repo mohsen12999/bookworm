@@ -37,11 +37,3 @@
 -   https://laravel.com/docs/7.x/passport#upgrading
 
 -   https://blog.pusher.com/react-laravel-application/
-
-## TODO
-
--   [ ] refresh token with every access via api
--   [ ] change user password
--   [ ] user role
--   [ ] free host
--   [ ] free domain

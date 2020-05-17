@@ -12,3 +12,12 @@
 -   `git clone https://github.com/mohsen12999/bookworm.git`
 -   for first time: `composer update && npm install && npm run dev && php artisan serve`
 -   `npm run dev && php artisan serve`
+
+## TODO
+
+-   [ ] refresh token with every access via api
+-   [ ] change user password
+-   [ ] user role
+-   [ ] free host
+-   [ ] free domain
+-   [ ] followers and following

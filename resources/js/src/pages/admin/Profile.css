@@ -1,27 +1,27 @@
 .center-item {
-  text-align: center;
+    text-align: center;
 }
 
 .hidden-input {
-  display: none !important;
+    display: none !important;
 }
 
 .center-item.persian-form {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .center-item.persian-form .max-width {
-  min-width: 70%;
+    min-width: 70%;
 }
 
 .save-btn-div {
-  margin-top: 2rem;
+    margin-top: 2rem;
 }
 
 .avatar-img {
-  max-width: 100%;
+    max-width: 100%;
 }
 
-.username {
-  text-align: right;
+.username input {
+    text-align: right !important;
 }

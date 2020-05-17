@@ -74098,12 +74098,10 @@ var ContextProvider = function ContextProvider(props) {
               setSettingContext({
                 loading: true
               });
-              console.log(data); //const result = await FetchUpdateProfile(file, name, email, mobile);
-
-              _context4.next = 6;
+              _context4.next = 5;
               return Object(_services_Admin__WEBPACK_IMPORTED_MODULE_5__["FetchUpdateProfile"])(data);
 
-            case 6:
+            case 5:
               result = _context4.sent;
 
               if (result.success) {
@@ -74115,6 +74113,7 @@ var ContextProvider = function ContextProvider(props) {
               setSettingContext({
                 loading: false
               });
+              return _context4.abrupt("return", result.success);
 
             case 9:
             case "end":
@@ -76715,8 +76714,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var PROFILE_URL = "/api/profile"; //export const FetchUpdateProfile = async (file, name, email, mobile) => {
-
+var PROFILE_URL = "/api/profile";
 var FetchUpdateProfile = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(data) {
     var response, responseData;
@@ -76724,11 +76722,9 @@ var FetchUpdateProfile = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(data);
-            _context.prev = 1;
-            _context.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(PROFILE_URL, data, // {file,name,email,mobile},
-            {
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(PROFILE_URL, data, {
               headers: {
                 Authorization: "Bearer " + Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["GetToken"])(),
                 "Content-type": "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2),
@@ -76737,7 +76733,7 @@ var FetchUpdateProfile = /*#__PURE__*/function () {
               }
             });
 
-          case 4:
+          case 3:
             response = _context.sent;
             responseData = response.data;
             Object(_LocalStorage__WEBPACK_IMPORTED_MODULE_2__["AddToken"])(responseData.token);
@@ -76745,21 +76741,21 @@ var FetchUpdateProfile = /*#__PURE__*/function () {
               success: true
             }));
 
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](1);
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
             console.log("error in FetchUpdateProfile", _context.t0);
             return _context.abrupt("return", {
               success: false,
               error: _context.t0
             });
 
-          case 14:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 10]]);
+    }, _callee, null, [[0, 9]]);
   }));
 
   return function FetchUpdateProfile(_x) {

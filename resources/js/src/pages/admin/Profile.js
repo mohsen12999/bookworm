@@ -114,7 +114,7 @@ const Profile = () => {
                             </div>
                             <div className="center-item persian-form">
                                 <TextField
-                                    className="max-width username"
+                                    className="max-width email"
                                     label="ایمیل شما"
                                     type="email"
                                     value={email ?? context.admin.email}

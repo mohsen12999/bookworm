@@ -176,13 +176,9 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            //'token' => $this->generateAccessToken($user),
+            'token' => $this->generateAccessToken($user),
             'user' => $user,
-            'request' => $request->all(),
-            'avatar' => $user->avatar,
-            'avatar_p' => public_path($user->avatar),
-            'avatar_exist' => file_exists($user->avatar),
-            'avatar_exist_p' => file_exists(public_path($user->avatar)),
+            //'request' => $request->all(),
         ], 200);
     }
 }
