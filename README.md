@@ -23,3 +23,5 @@
 -   [ ] followers and following
 -   [ ] rating for book
 -   [ ] comment for book and posts
+-   [ ] ticket, support and report
+-   [ ] show website news
