@@ -75,11 +75,11 @@ const Profile = () => {
                                 <img
                                     src={
                                         src ??
-                                        context.avatar ??
+                                        context.admin.avatar ??
                                         "/images/user/default-profile.jpg"
                                     }
                                     // src={src ? src : context.avatar? context.avatar:"/images/user/default-profile.jpg"}
-                                    alt={context.name}
+                                    alt={context.admin.name}
                                     className="avatar-img"
                                 />
                             </div>
@@ -114,7 +114,7 @@ const Profile = () => {
                             </div>
                             <div className="center-item persian-form">
                                 <TextField
-                                    className="max-width username"
+                                    className="max-width email"
                                     label="ایمیل شما"
                                     type="email"
                                     value={email ?? context.admin.email}
