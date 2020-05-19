@@ -26,6 +26,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/private_data', 'Admin\AuthController@getPrivateData');
 
     Route::post('/profile', 'Admin\AuthController@updateProfile');
+
+    Route::delete('/note/{id}', 'Admin\BookController@deleteBook');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
