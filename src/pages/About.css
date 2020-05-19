@@ -1,29 +1,29 @@
 .section-title {
-  margin-top: 2rem !important;
-  margin-bottom: 1rem !important;
-  text-align: right;
-  direction: rtl;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+    text-align: right;
+    direction: rtl;
 }
 
 .about-page p {
-  direction: rtl;
-  text-align: right;
-  text-align: justify;
-  font-size: larger;
+    direction: rtl;
+    text-align: right;
+    text-align: justify;
+    font-size: larger;
 }
 
 .team-member-grid {
-  direction: rtl;
+    direction: rtl;
 }
 
 .card-img {
-  width: 100%;
+    width: 100%;
 }
 
 .card-content {
-  text-align: center !important;
+    text-align: center;
 }
 
 .card-action {
-  direction: ltr;
+    direction: ltr !important;
 }
