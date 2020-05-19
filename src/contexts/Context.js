@@ -8,7 +8,7 @@ import {
 } from "../services/LocalStorage";
 
 import { FetchLogin, FetchRegister } from "../services/Auth";
-import { FetchUpdateProfile } from "../services/Admin";
+import { FetchUpdateProfile, FetchDeleteNote } from "../services/Admin";
 
 export const Context = createContext();
 
@@ -162,7 +162,6 @@ const ContextProvider = (props) => {
     });
   };
 
-  //const UpdateProfile = async (file, name, email, mobile) => {
   const UpdateProfile = async (data) => {
     if (settingContext && settingContext.loading) return false;
     setSettingContext({ loading: true });
@@ -172,6 +171,23 @@ const ContextProvider = (props) => {
       const newPrivateDate = { ...adminContext, ...result.user };
       setAdminContext(newPrivateDate);
       SavePrivateDataToLocalStorage(newPrivateDate);
+    }
+
+    setSettingContext({ loading: false });
+    return result.success;
+  };
+
+  const DeleteNote = async (id) => {
+    if (settingContext && settingContext.loading) return false;
+    setSettingContext({ loading: true });
+
+    const result = await FetchDeleteNote(id);
+    if (result.success) {
+      const remainWrittenBooks = adminContext.writtenBooks.filter(
+        (book) => book.id !== id
+      );
+
+      setAdminContext({ ...adminContext, writtenBooks: remainWrittenBooks });
     }
 
     setSettingContext({ loading: false });
@@ -196,6 +212,7 @@ const ContextProvider = (props) => {
         OpenSnackbar,
         CloseSnackbar,
         UpdateProfile,
+        DeleteNote,
       }}
     >
       {props.children}
