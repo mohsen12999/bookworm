@@ -80,6 +80,7 @@ const getPrivateData = async () => {
   }
 };
 
+// eslint-disable-next-line
 const fakeFillLocalStorage = () => {
   if (
     !process ||

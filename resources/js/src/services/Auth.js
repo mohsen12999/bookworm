@@ -41,6 +41,7 @@ export const FetchRegister = async (
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// eslint-disable-next-line
 const fakeLogin = async () => {
   if (
     !process ||

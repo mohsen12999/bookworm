@@ -2791,6 +2791,145 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/CardMedia/CardMedia.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/CardMedia/CardMedia.js ***!
+  \*******************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _material_ui_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/index.js");
+
+
+
+
+
+
+
+var styles = {
+  /* Styles applied to the root element. */
+  root: {
+    display: 'block',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
+  },
+
+  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
+  media: {
+    width: '100%'
+  },
+
+  /* Styles applied to the root element if `component="picture or img"`. */
+  img: {
+    // ⚠️ object-fit is not supported by IE 11.
+    objectFit: 'cover'
+  }
+};
+var MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
+var CardMedia = react__WEBPACK_IMPORTED_MODULE_2__["forwardRef"](function CardMedia(props, ref) {
+  var children = props.children,
+      classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'div' : _props$component,
+      image = props.image,
+      src = props.src,
+      style = props.style,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["children", "classes", "className", "component", "image", "src", "style"]);
+
+  var isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
+  var composedStyle = !isMediaComponent && image ? Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    backgroundImage: "url(\"".concat(image, "\")")
+  }, style) : style;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__["createElement"](Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, isMediaComponent && classes.media, "picture img".indexOf(Component) !== -1 && classes.img),
+    ref: ref,
+    style: composedStyle,
+    src: isMediaComponent ? image || src : undefined
+  }, other), children);
+});
+ true ? CardMedia.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: Object(_material_ui_utils__WEBPACK_IMPORTED_MODULE_6__["chainPropTypes"])(prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node, function (props) {
+    if (!props.children && !props.image && !props.src && !props.component) {
+      return new Error('Material-UI: Either `children`, `image`, `src` or `component` prop must be specified.');
+    }
+
+    return null;
+  }),
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * Component for rendering image.
+   * Either a string to use a HTML element or a component.
+   */
+  component: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.elementType,
+
+  /**
+   * Image to be displayed as a background image.
+   * Either `image` or `src` prop must be specified.
+   * Note that caller must specify height otherwise the image will not be visible.
+   */
+  image: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * An alias for `image` property.
+   * Available only with media components.
+   * Media components: `video`, `audio`, `picture`, `iframe`, `img`.
+   */
+  src: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * @ignore
+   */
+  style: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__["default"])(styles, {
+  name: 'MuiCardMedia'
+})(CardMedia));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/CardMedia/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/CardMedia/index.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CardMedia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/CardMedia.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _CardMedia__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/CircularProgress/CircularProgress.js":
 /*!*********************************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/CircularProgress/CircularProgress.js ***!
@@ -29978,6 +30117,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "body {\r\n  margin: 0;\r\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r\n    sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n}\r\n\r\ncode {\r\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r\n    monospace;\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/src/pages/About.css":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/src/pages/About.css ***!
+  \**************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".section-title {\r\n    margin-top: 2rem !important;\r\n    margin-bottom: 1rem !important;\r\n    text-align: right;\r\n    direction: rtl;\r\n}\r\n\r\n.about-page p {\r\n    direction: rtl;\r\n    text-align: right;\r\n    text-align: justify;\r\n    font-size: larger;\r\n}\r\n\r\n.team-member-grid {\r\n    direction: rtl;\r\n}\r\n\r\n.card-img {\r\n    width: 100%;\r\n}\r\n\r\n.card-content {\r\n    text-align: center;\r\n}\r\n\r\n.card-action {\r\n    direction: ltr !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -73893,7 +74051,7 @@ var ContextProvider = function ContextProvider(props) {
       };
     }();
 
-    fillContext();
+    fillContext(); // eslint-disable-next-line
   }, []);
 
   var Login = /*#__PURE__*/function () {
@@ -74183,6 +74341,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./resources/js/src/pages/About.css":
+/*!******************************************!*\
+  !*** ./resources/js/src/pages/About.css ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./About.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/src/pages/About.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./resources/js/src/pages/About.js":
 /*!*****************************************!*\
   !*** ./resources/js/src/pages/About.js ***!
@@ -74194,10 +74382,133 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
+/* harmony import */ var _material_ui_core_Card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js");
+/* harmony import */ var _material_ui_core_CardActionArea__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/CardActionArea */ "./node_modules/@material-ui/core/esm/CardActionArea/index.js");
+/* harmony import */ var _material_ui_core_CardActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/CardActions */ "./node_modules/@material-ui/core/esm/CardActions/index.js");
+/* harmony import */ var _material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js");
+/* harmony import */ var _material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var _About_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./About.css */ "./resources/js/src/pages/About.css");
+/* harmony import */ var _About_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_About_css__WEBPACK_IMPORTED_MODULE_9__);
+
+
+
+
+
+
+
+
+
 
 
 var About = function About() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "About us page");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "about-page"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "h5",
+    component: "h3",
+    className: "section-title"
+  }, "\u062F\u0631\u0628\u0627\u0631\u06C0 \u0645\u0627"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    paragraph: true
+  }, "\u0627\u0639\u0636\u0627\u06CC", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "http://magiclight.ir",
+    title: "\u0648\u0628 \u0633\u0627\u06CC\u062A \u062A\u06CC\u0645 \u0645\u062C\u06CC\u06A9 \u0644\u0627\u06CC\u062A"
+  }, "\u062A\u06CC\u0645 \u0645\u062C\u06CC\u06A9 \u0644\u0627\u06CC\u062A"), "\u060C \u062F\u0631 \u0627\u0628\u062A\u062F\u0627 \u062A\u0639\u062F\u0627\u062F\u06CC \u0627\u0641\u0631\u0627\u062F \u0639\u0627\u0634\u0642 \u0628\u0627\u0632\u06CC\u200C\u0647\u0627\u06CC \u06A9\u0627\u0645\u067E\u06CC\u0648\u062A\u0631\u06CC \u0648 \u0641\u0646\u200C\u0622\u0648\u0631\u06CC\u200C\u0647\u0627\u06CC \u0645\u0631\u0628\u0648\u0637\u0647 \u0628\u0648\u062F\u0646\u062F\u060C \u06A9\u0647 \u0627\u0648\u0644\u06CC\u0646 \u0628\u0627\u0631 \u062A\u0648\u06CC \u0627\u0648\u0644\u06CC\u0646 \u062F\u0648\u0631\u0647 TGC (\u0647\u0645\u0627\u06CC\u0634 \u0628\u0627\u0632\u06CC\u200C\u0647\u0627\u06CC \u0631\u0627\u06CC\u0627\u0646\u0647\u200C\u0627\u06CC \u062A\u0647\u0631\u0627\u0646 \u062F\u0631 \u0633\u0627\u0644 1396) \u0628\u0627 \u0647\u0645 \u0622\u0634\u0646\u0627 \u0634\u062F\u0646\u062F \u0648 \u062A\u0635\u0645\u06CC\u0645 \u06AF\u0631\u0641\u062A\u0646\u062F \u0641\u0642\u0637 \u06CC\u0647 \u0628\u0627\u0632\u06CC \u06A9\u0646\u0646\u062F\u0647 \u062E\u0627\u0644\u06CC \u0646\u0628\u0627\u0634\u0646\u062F \u0648 \u0628\u0627\u0632\u06CC \u0647\u0627\u06CC \u0645\u0648\u0631\u062F \u0639\u0644\u0627\u0642\u0647 \u062E\u0648\u062F\u0634\u0627\u0646 \u0631\u0627 \u0628\u0633\u0627\u0632\u0646\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    paragraph: true
+  }, "\u0627\u0639\u0636\u0627\u06CC \u062A\u06CC\u0645 \u0641\u0639\u0627\u0644\u06CC\u062A \u062E\u0648\u062F\u0634\u0627\u0646 \u0631\u0627 \u0628\u0627 \u0634\u0631\u06A9\u062A \u062F\u0631 \u06A9\u0627\u0631\u06AF\u0627\u0647 \u0647\u0627\u06CC \u0622\u0645\u0648\u0632\u0634\u06CC \u0633\u0627\u062E\u062A \u0628\u0627\u0632\u06CC \u0634\u0631\u0648\u0639 \u06A9\u0631\u062F\u0646\u062F \u0648 \u062F\u0631 \u0627\u062F\u0627\u0645\u0647 \u062F\u0631 \u0686\u0646\u062F \u0647\u0645\u0627\u06CC\u0634 \u0648 \u0645\u0633\u0627\u0628\u0642\u0647 \u0633\u0627\u062E\u062A \u0628\u0627\u0632\u06CC \u0634\u0631\u06A9\u062A \u062F\u0627\u0634\u062A\u0647 \u0648 \u0628\u0627\u0632\u06CC \u0647\u0627\u06CC \u0645\u062E\u062A\u0644\u0641\u06CC \u0631\u0627 \u0637\u0631\u0627\u062D\u06CC \u06A9\u0631\u062F\u0647\u060C \u0633\u0627\u062E\u062A\u0646\u062F \u0648 \u0628\u0647 \u0637\u0648\u0631 \u0631\u0627\u06CC\u06AF\u0627\u0646 \u062F\u0631 \u062F\u0633\u062A\u0631\u0633 \u0639\u0644\u0627\u0642\u0647\u200C\u0645\u0646\u062F\u0627\u0646 \u0642\u0631\u0627\u0631 \u062F\u0627\u062F\u0646\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    paragraph: true
+  }, "\u062F\u0631 \u0627\u062F\u0627\u0645\u0647 \u0627\u0639\u0636\u0627\u06CC \u062A\u06CC\u0645 \u0628\u0647 \u0627\u06CC\u0646 \u0646\u062A\u06CC\u062C\u0647 \u0631\u0633\u06CC\u062F\u0646\u062F \u06A9\u0647 \u0641\u0639\u0627\u0644\u06CC\u062A \u062E\u0648\u062F \u0631\u0627 \u0645\u062D\u062F\u0648\u062F \u0628\u0647 \u062D\u0648\u0632\u0647 \u0628\u0627\u0632\u06CC \u0646\u06A9\u0646\u0646\u062F \u0648 \u062F\u0631 \u0645\u0648\u0636\u0648\u0639\u0627\u062A \u0648 \u0632\u0645\u06CC\u0646\u0647\u200C\u0647\u0627\u06CC \u0645\u0648\u0631\u062F \u0639\u0644\u0627\u0642\u0647 \u0645\u0634\u062A\u0631\u06A9 \u0628\u0647 \u0641\u0639\u0627\u0644\u06CC\u062A \u0628\u067E\u0631\u062F\u0627\u0632\u0646\u062F. \u0627\u06CC\u0646 \u0646\u0631\u0645 \u0627\u0641\u0632\u0627\u0631 \u062D\u0627\u0635\u0644 \u06CC\u06A9\u06CC \u0627\u0632 \u0647\u0645\u06CC\u0646 \u062A\u0644\u0627\u0634 \u0647\u0627 \u0647\u0633\u062A."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "h5",
+    component: "h3",
+    className: "section-title"
+  }, "\u0627\u0639\u0636\u0627\u06CC \u062A\u06CC\u0645"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "team-member-grid",
+    container: true,
+    spacing: 3
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    sm: 6,
+    md: 4
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActionArea__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: "img",
+    className: "card-img",
+    image: "/images/user/amir.jpg",
+    title: "Amir Salar Soleymani"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "card-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    gutterBottom: true,
+    variant: "h5",
+    component: "h2"
+  }, "\u0627\u0645\u06CC\u0631 \u0633\u0627\u0644\u0627\u0631 \u0633\u0644\u06CC\u0645\u0627\u0646\u06CC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "body2",
+    color: "textSecondary",
+    component: "p"
+  }, "\u0645\u062F\u06CC\u0631 \u062A\u06CC\u0645\u060C \u0637\u0631\u0627\u062D \u0648 \u0628\u0627\u0632\u06CC \u0633\u0627\u0632"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActions__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: "card-action"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    size: "small",
+    color: "primary",
+    href: "https://www.linkedin.com/in/amirsalar-solimani-8b3376123/",
+    target: "_blank"
+  }, "Linkdin")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    sm: 6,
+    md: 4
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActionArea__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: "img",
+    className: "card-img",
+    image: "/images/user/hosein.jpg",
+    title: "Hosein farahani"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "card-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    gutterBottom: true,
+    variant: "h5",
+    component: "h2"
+  }, "\u062D\u0633\u06CC\u0646 \u0641\u0631\u0627\u0647\u0627\u0646\u06CC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "body2",
+    color: "textSecondary",
+    component: "p"
+  }, "\u0628\u0631\u0646\u0627\u0645\u0647 \u0646\u0648\u06CC\u0633 \u0648 \u0628\u0627\u0632\u06CC \u0633\u0627\u0632"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActions__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: "card-action"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    size: "small",
+    color: "primary",
+    href: "https://www.linkedin.com/",
+    target: "_blank"
+  }, "Linkdin")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    item: true,
+    xs: 12,
+    sm: 6,
+    md: 4
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActionArea__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: "img",
+    className: "card-img",
+    image: "/images/user/mohsen.jpg",
+    title: "Mohsen Shabanian"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "card-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    gutterBottom: true,
+    variant: "h5",
+    component: "h2"
+  }, "\u0645\u062D\u0633\u0646 \u0634\u0639\u0628\u0627\u0646\u06CC\u0627\u0646"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    variant: "body2",
+    color: "textSecondary",
+    component: "p"
+  }, "\u0628\u0631\u0646\u0627\u0645\u0647 \u0646\u0648\u06CC\u0633 \u0648 \u0628\u0627\u0632\u06CC \u0633\u0627\u0632"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActions__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: "card-action"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    size: "small",
+    color: "primary",
+    href: "https://www.linkedin.com/in/mohsen-shabanian-8869b478/",
+    target: "_blank"
+  }, "Linkdin"))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (About);
@@ -75750,8 +76061,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 /* harmony import */ var _contexts_Context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../contexts/Context */ "./resources/js/src/contexts/Context.js");
 /* harmony import */ var _components_BookThumbnail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/BookThumbnail */ "./resources/js/src/components/BookThumbnail.js");
-/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../BookList.css */ "./resources/js/src/pages/BookList.css");
-/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../BookList.css */ "./resources/js/src/pages/BookList.css");
+/* harmony import */ var _BookList_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_BookList_css__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -75781,7 +76094,7 @@ var MyBook = function MyBook() {
     }, "\u0634\u0645\u0627 \u062A\u0627 \u06A9\u0646\u0648\u0646 \u06A9\u062A\u0627\u0628\u06CC \u0646\u062E\u0631\u06CC\u062F\u0647\u200C\u0627\u06CC\u062F."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
       variant: "outlined",
       color: "primary",
-      component: Link,
+      component: react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"],
       to: "/books"
     }, "\u0627\u0646\u062A\u062E\u0627\u0628 \u06A9\u062A\u0627\u0628")) : myBook.map(function (book) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -76899,7 +77212,8 @@ var sleep = function sleep(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
   });
-};
+}; // eslint-disable-next-line
+
 
 var fakeLogin = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -77126,7 +77440,8 @@ var getPrivateData = /*#__PURE__*/function () {
   return function getPrivateData() {
     return _ref3.apply(this, arguments);
   };
-}();
+}(); // eslint-disable-next-line
+
 
 var fakeFillLocalStorage = function fakeFillLocalStorage() {
   var _GetPublicDataFromFro, _GetPrivateDataFromFr;
