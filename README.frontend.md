@@ -48,7 +48,7 @@
 - [ ] EditBlog
 - [ ] EditBook
 - [ ] EditChapter
-- [ ] About
+- [x] About
 
 ## future feature
 
