@@ -55,7 +55,7 @@ const About = () => (
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions classname="card-action">
+          <CardActions className="card-action">
             <Button
               size="small"
               color="primary"
@@ -84,7 +84,7 @@ const About = () => (
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions classname="card-action">
+          <CardActions className="card-action">
             <Button
               size="small"
               color="primary"
@@ -113,7 +113,7 @@ const About = () => (
               </Typography>
             </CardContent>
           </CardActionArea>
-          <CardActions classname="card-action">
+          <CardActions className="card-action">
             <Button
               size="small"
               color="primary"

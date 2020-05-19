@@ -21,7 +21,7 @@
 }
 
 .card-content {
-  text-align: center;
+  text-align: center !important;
 }
 
 .card-action {
