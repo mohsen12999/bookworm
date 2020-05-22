@@ -24,3 +24,7 @@ const email_expression = /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\
 
 export const CheckEmail = (email) =>
   email_expression.test(String(email).toLowerCase());
+
+export const FixPrice = (price) => Number(price).toFixed(3) + "هزار تومان";
+
+export const FixDate = (date) => new Date(date).toLocaleString("fa-IR");
