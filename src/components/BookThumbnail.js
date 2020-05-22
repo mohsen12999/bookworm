@@ -6,34 +6,33 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import Tooltip from "@material-ui/core/Tooltip";
 
 import "./BookThumbnail.css";
+import { FixPrice } from "../services/function";
 
 // TODO: new book banner
 // TODO: sale banner
 // TODO: top or trend books
 
-const BookThumbnail = props => (
-    <Link to={"/book/" + props.id} className="book-thumb">
-        {props.owned && (
-            <Tooltip title="شما صاحب این کتاب هستید" aria-label="owned">
-                <Fab
-                    color="primary"
-                    size="small"
-                    variant="extended"
-                    className="fab-btn"
-                >
-                    خریداری شده
-                    <ShoppingBasketIcon className="fab-extended-icon" />
-                </Fab>
-            </Tooltip>
-        )}
+const BookThumbnail = (props) => (
+  <Link to={"/book/" + props.id} className="book-thumb">
+    {props.owned && (
+      <Tooltip title="شما صاحب این کتاب هستید" aria-label="owned">
+        <Fab
+          color="primary"
+          size="small"
+          variant="extended"
+          className="fab-btn"
+        >
+          خریداری شده
+          <ShoppingBasketIcon className="fab-extended-icon" />
+        </Fab>
+      </Tooltip>
+    )}
 
-        <img src={props.img} alt={props.title + " - " + props.author} />
-        <p>{props.title}</p>
-        <p>{props.author}</p>
-        <p className="persian-number">
-            {Number(props.price).toFixed(3)} هزار تومان
-        </p>
-    </Link>
+    <img src={props.img} alt={props.title + " - " + props.author} />
+    <p>{props.title}</p>
+    <p>{props.author}</p>
+    <p className="persian-number">{FixPrice(props.price)}</p>
+  </Link>
 );
 
 export default BookThumbnail;

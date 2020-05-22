@@ -15,8 +15,6 @@ import "../BookList.css";
 const MyBook = () => (
   <Context.Consumer>
     {(context) => {
-      console.log(context.public.books, context.admin.boughtBooks);
-
       const myBook = context.public.books.filter((book) =>
         context.admin.boughtBooks.includes(book.id)
       );
