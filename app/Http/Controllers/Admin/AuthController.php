@@ -118,6 +118,7 @@ class AuthController extends Controller
             'chapters' => $chapters,
             'user' => [
                 'isAuthenticated' => true,
+                'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
                 'mobile' => $user->mobile,
