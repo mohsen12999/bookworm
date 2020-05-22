@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../contexts/Context";
 
 import "./BlogList.css";
+import { FixDate } from "../services/function";
 
 // TODO: blog time -> یکشنبه 8 اسفند
 // Todo: blog subject
@@ -24,7 +25,7 @@ const BlogList = () => (
                 {post.title}
               </Typography>
               <Typography component="p" className="post-time">
-                {new Date(post.created_at).toLocaleString("fa-IR")}
+                {FixDate(post.created_at)}
               </Typography>
             </div>
 
