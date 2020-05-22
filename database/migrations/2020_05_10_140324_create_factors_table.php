@@ -18,13 +18,14 @@ class CreateFactorsTable extends Migration
 
             $table->string('title');
             $table->string('abstract')->nullable();
-            
+            $table->string('bank-code')->nullable();
+
             $table->unsignedDecimal('price', 8, 2);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->bigInteger('book_id')->nullable()->unsigned();
+            $table->foreign('book_id')->nullable()->references('id')->on('books');
 
             $table->timestamps();
         });
