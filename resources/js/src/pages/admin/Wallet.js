@@ -7,54 +7,81 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import TableHead from "@material-ui/core/TableHead";
+import Button from "@material-ui/core/Button";
+
+import { Context } from "../../contexts/Context";
+import { FixPrice, FixDate } from "../../services/function";
 
 const Wallet = () => (
-  <div>
-    <Typography variant="h5" component="h2" style={{ direction: "rtl" }}>
-      لیست تراکنش ها
-    </Typography>
+  <Context.Consumer>
+    {(context) => (
+      <React.Fragment>
+        <Typography variant="h5" component="h2" style={{ direction: "rtl" }}>
+          لیست تراکنش ها
+        </Typography>
 
-    {/* <Typography
-      variant="h6"
-      component="h4"
-      style={{ direction: "rtl", textAlign: "center", marginTop: "4rem" }}
-    >
-      شما تا کنون تراکنشی ندارید
-    </Typography> */}
-
-    <TableContainer component={Paper} className="note-table">
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">کد</TableCell>
-            <TableCell align="center">عنوان</TableCell>
-            <TableCell align="center">قیمت</TableCell>
-            <TableCell align="center">تاریخ</TableCell>
-            <TableCell align="center">کد پیگیری</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow hover>
-            <TableCell component="td" scope="row" align="center">
-              43
-            </TableCell>
-            <TableCell component="td" scope="row" align="center">
-              خرید کتاب
-            </TableCell>
-            <TableCell component="td" scope="row" align="center">
-              50,000
-            </TableCell>
-            <TableCell component="td" scope="row" align="center">
-              1398/02/02 23:58
-            </TableCell>
-            <TableCell component="td" scope="row" align="center">
-              132134564331
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </div>
+        {context.admin.factors.length === 0 ? (
+          <div>
+            <Typography
+              variant="h6"
+              component="h4"
+              style={{
+                direction: "rtl",
+                textAlign: "center",
+                marginTop: "4rem",
+              }}
+            >
+              شما تا کنون تراکنشی نداشته اید.
+            </Typography>
+            <Button
+              variant="outlined"
+              color="primary"
+              // component={Link}
+              // to={"/books"}
+              disabled
+            >
+              شارژ کیف پول
+            </Button>
+          </div>
+        ) : (
+          <TableContainer component={Paper} className="note-table">
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">کد</TableCell>
+                  <TableCell align="center">عنوان</TableCell>
+                  <TableCell align="center">قیمت</TableCell>
+                  <TableCell align="center">تاریخ</TableCell>
+                  <TableCell align="center">کد پیگیری</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {context.admin.factors.map((factor) => (
+                  <TableRow hover>
+                    <TableCell component="td" scope="row" align="center">
+                      {factor.id}
+                    </TableCell>
+                    <TableCell component="td" scope="row" align="center">
+                      {factor.title}
+                    </TableCell>
+                    <TableCell component="td" scope="row" align="center">
+                      {FixPrice(factor.price)}
+                    </TableCell>
+                    <TableCell component="td" scope="row" align="center">
+                      {FixDate(factor.created_at)}
+                    </TableCell>
+                    <TableCell component="td" scope="row" align="center">
+                      {factor.bank_code}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+      </React.Fragment>
+    )}
+  </Context.Consumer>
 );
 
 export default Wallet;
