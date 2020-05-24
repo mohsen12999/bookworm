@@ -8,11 +8,7 @@ import {
 } from "../services/LocalStorage";
 
 import { FetchLogin, FetchRegister } from "../services/Auth";
-import {
-  FetchUpdateProfile,
-  FetchDeleteNote,
-  FetchDeletePost,
-} from "../services/Admin";
+import { FetchUpdateProfile, FetchDeleteNote } from "../services/Admin";
 
 export const Context = createContext();
 
@@ -198,23 +194,6 @@ const ContextProvider = (props) => {
     return result.success;
   };
 
-  const DeletePost = async (id) => {
-    if (settingContext && settingContext.loading) return false;
-    setSettingContext({ loading: true });
-
-    const result = await FetchDeletePost(id);
-    if (result.success) {
-      const remainWrittenPosts = adminContext.writtenPosts.filter(
-        (post) => post.id !== id
-      );
-
-      setAdminContext({ ...adminContext, writtenPosts: remainWrittenPosts });
-    }
-
-    setSettingContext({ loading: false });
-    return result.success;
-  };
-
   return (
     <Context.Provider
       value={{
@@ -234,7 +213,6 @@ const ContextProvider = (props) => {
         CloseSnackbar,
         UpdateProfile,
         DeleteNote,
-        DeletePost,
       }}
     >
       {props.children}
