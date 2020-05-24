@@ -25,8 +25,6 @@ import { Context } from "../../contexts/Context";
 
 import "./MyNote.css";
 
-// TODO: note list with edit and delete btn -> action
-
 const MyBlog = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -61,14 +59,14 @@ const MyBlog = () => {
             </Grid>
           </Grid>
 
-          {context.admin.writtenBooks.length === 0 ? (
+          {context.admin.writtenPosts.length === 0 ? (
             <Typography variant="h6" component="h4" className="empty-msg">
               شما هنوز مقاله ای ندارید!
             </Typography>
           ) : (
-            context.writtenBooks.map((wb) => (
+            context.writtenPosts.map((wp) => (
               <TableContainer
-                key={wb.id}
+                key={wp.id}
                 component={Paper}
                 className="note-table"
               >
@@ -76,7 +74,7 @@ const MyBlog = () => {
                   <TableBody>
                     <TableRow hover>
                       <TableCell component="td" scope="row" align="right">
-                        {wb.title}
+                        {wp.title}
                       </TableCell>
                       <TableCell component="td" scope="row" align="left">
                         <Tooltip title="تغییر مقاله">
@@ -84,7 +82,7 @@ const MyBlog = () => {
                             color="primary"
                             aria-label="edit note"
                             component={Link}
-                            to={"/blog/" + wb.id}
+                            to={"/blog/" + wp.id}
                           >
                             <EditIcon />
                           </IconButton>
@@ -127,8 +125,16 @@ const MyBlog = () => {
                               <Button
                                 size="small"
                                 color="primary"
-                                onClick={(e) => {
-                                  console.log("delete");
+                                onClick={() => {
+                                  context.DeletePost(wp.id).then((res) => {
+                                    if (res) {
+                                      context.OpenSnackbar("این مقاله حذف شد");
+                                    } else {
+                                      context.OpenSnackbar(
+                                        "اشکال در حذف مقاله"
+                                      );
+                                    }
+                                  });
                                 }}
                               >
                                 اطمینان از حذف
