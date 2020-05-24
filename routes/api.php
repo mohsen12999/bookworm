@@ -28,6 +28,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/profile', 'Admin\AuthController@updateProfile');
 
     Route::delete('/note/{id}', 'Admin\BookController@deleteBook');
+    Route::delete('/blog/{id}', 'Admin\PostController@deletePost');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
