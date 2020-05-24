@@ -194,6 +194,35 @@ const ContextProvider = (props) => {
     return result.success;
   };
 
+  const GetWrittenBook = (book_id) =>
+    book_id
+      ? adminContext.WrittenBooks.find((book) => book.id === Number(book_id))
+      : undefined;
+
+  const GetWrittenPost = (post_id) =>
+    post_id
+      ? publicContext.WrittenPosts.find((post) => post.id === Number(post_id))
+      : undefined;
+
+  const WritePost = async (data) => {
+    if (settingContext && settingContext.loading) return false;
+    setSettingContext({ loading: true });
+
+    // TODO: fetch Write Post
+    // const result = await FetchUpdateProfile(data);
+
+    // TODO: is new post / edit => change admin context
+    // if (result.success) {
+    //   const newPrivateDate = { ...adminContext, ...result.user };
+    //   setAdminContext(newPrivateDate);
+    //   SavePrivateDataToLocalStorage(newPrivateDate);
+    // }
+
+    setSettingContext({ loading: false });
+    // return result.success;
+    return false;
+  };
+
   return (
     <Context.Provider
       value={{
@@ -213,6 +242,9 @@ const ContextProvider = (props) => {
         CloseSnackbar,
         UpdateProfile,
         DeleteNote,
+        GetWrittenPost,
+        GetWrittenBook,
+        WritePost,
       }}
     >
       {props.children}
