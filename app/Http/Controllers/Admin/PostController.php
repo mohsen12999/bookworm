@@ -103,9 +103,7 @@ class PostController extends Controller
         //published
         $published = $request->published;
         if (isset($published) && $published && $published != "undefined" && $published != "false" && $published != "False") {
-            $post->published = true;
-        } else {
-            $post->published = false;
+            $post->publish_status  = 1;
         }
 
         $subject = $request->subject;
