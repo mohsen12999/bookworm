@@ -30,7 +30,7 @@ class CreatePostsTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('subject_id');
+            $table->bigInteger('subject_id')->nullable()->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
 
             $table->tinyInteger('publish_status')->default(0);

@@ -30,7 +30,7 @@ class CreateBooksTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('genre_id');
+            $table->bigInteger('genre_id')->nullable()->unsigned();
             $table->foreign('genre_id')->references('id')->on('genres');
 
             $table->tinyInteger('publish_status')->default(0);
