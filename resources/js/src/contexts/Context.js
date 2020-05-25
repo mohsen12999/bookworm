@@ -219,7 +219,7 @@ const ContextProvider = (props) => {
     // }
 
     setSettingContext({ loading: false });
-    // return result.success;
+    // return {success:result.success,id:0};
     return false;
   };
 
