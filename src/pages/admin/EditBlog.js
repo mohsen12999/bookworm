@@ -8,13 +8,15 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { Context } from "../../contexts/Context";
 
 import "./Profile.css";
 
 const EditBlog = () => {
   const { blog_id } = useParams();
+
+  const [id, setId] = React.useState(undefined);
   const [file, setFile] = React.useState(null);
   const [title, setTitle] = React.useState();
   const [abstract, setAbstract] = React.useState();
@@ -24,6 +26,8 @@ const EditBlog = () => {
   const [published, setPublished] = React.useState(false);
 
   const [src, setSrc] = React.useState(undefined);
+
+  const [exit2List, setExit2List] = React.useState(false);
 
   const handleInputFileChange = (event) => {
     const ele = event.target;
@@ -39,171 +43,211 @@ const EditBlog = () => {
     reader.readAsDataURL(imgFile);
   };
 
-  return (
+  return exit2List ? (
+    <Redirect to={"/myblog"} />
+  ) : (
     <Context.Consumer>
       {(context) => {
-        const writtenPost = context.GetWrittenPost(blog_id);
+        const writtenPost = undefined; //context.GetWrittenPost(blog_id);
+        if (writtenPost) {
+          setId(writtenPost.id);
+        }
+
+        const writePost = (exit) => {
+          if (!title || title.length < 3) {
+            context.OpenSnackbar("عنوان مقاله اجباری هست");
+            return;
+          }
+
+          const data = new FormData();
+          data.append("id", id);
+          data.append("file", file);
+          data.append("title", title);
+          data.append("abstract", abstract);
+          data.append("foreignAuthor", foreignAuthor);
+          data.append("description", description);
+          data.append("subject", subject);
+          data.append("published", published);
+
+          context.WritePost(data).then((res) => {
+            if (res.success) {
+              context.OpenSnackbar("مقاله با موفقیت ذخیره شد.");
+              setId(res.id);
+            } else {
+              context.OpenSnackbar("اشکال در ذخیره مقاله");
+            }
+            if (exit) {
+              setExit2List(true);
+            }
+          });
+        };
         return (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (!title || title.length < 3) {
-                context.OpenSnackbar("عنوان مقاله اجباری هست");
-                return;
-              }
+          <React.Fragment>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                writePost(false);
+              }}
+            >
+              <Container maxWidth="sm">
+                <div className="center-item">
+                  <img
+                    src={
+                      src ??
+                      (writtenPost && writtenPost.img
+                        ? writtenPost.img
+                        : "/images/placeholder.png")
+                    }
+                    alt={title ?? "تصویر مقاله"}
+                    className="avatar-img"
+                  />
+                </div>
+                <div className="center-item">
+                  <input
+                    accept="image/*"
+                    className="hidden-input"
+                    id="icon-button-file"
+                    type="file"
+                    onChange={handleInputFileChange}
+                  />
+                  <label htmlFor="icon-button-file">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      component="span"
+                      startIcon={<PhotoCamera />}
+                    >
+                      بارگزاری تصویر
+                    </Button>
+                  </label>
+                </div>
 
-              const data = new FormData();
-              data.append("file", file);
-              data.append("title", title);
-              data.append("abstract", abstract);
-              data.append("foreignAuthor", foreignAuthor);
-              data.append("description", description);
-              data.append("subject", subject);
-              data.append("published", published);
+                <div className="center-item persian-form">
+                  <TextField
+                    className="max-width right-text"
+                    label="عنوان مقاله"
+                    value={
+                      title ??
+                      (writtenPost && writtenPost.title
+                        ? writtenPost.title
+                        : "")
+                    }
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                    }}
+                    required
+                  />
+                </div>
+                <div className="center-item persian-form">
+                  <TextareaAutosize
+                    aria-label="abstract"
+                    className="min-width-70p right-text right-dir"
+                    rowsMin={2}
+                    placeholder="خلاصه مقاله"
+                    value={
+                      abstract ??
+                      (writtenPost && writtenPost.abstract
+                        ? writtenPost.abstract
+                        : "")
+                    }
+                    onChange={(e) => {
+                      setAbstract(e.target.value);
+                    }}
+                  />
+                </div>
+              </Container>
+              <Container maxWidth="md">
+                <div className="center-item persian-form">
+                  <TextareaAutosize
+                    aria-label="description"
+                    className="min-width-70p right-text right-dir"
+                    rowsMin={4}
+                    placeholder="متن مقاله"
+                    value={
+                      description ??
+                      (writtenPost && writtenPost.description
+                        ? writtenPost.description
+                        : "")
+                    }
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
+                  />
+                </div>
+              </Container>
+              <Container maxWidth="sm">
+                <div className="center-item persian-form">
+                  <TextField
+                    className="max-width"
+                    label="موضوع"
+                    value={
+                      subject ??
+                      (writtenPost && writtenPost.subject
+                        ? writtenPost.subject
+                        : "")
+                    }
+                    onChange={(e) => {
+                      setSubject(e.target.value);
+                    }}
+                  />
+                </div>
 
-              context.WritePost(data).then((res) => {
-                if (res) {
-                  context.OpenSnackbar("مقاله با موفقیت ذخیره شد.");
-                } else {
-                  context.OpenSnackbar("اشکال در ذخیره مقاله");
-                }
-              });
-            }}
-          >
-            <Container maxWidth="sm">
-              <div className="center-item">
-                <img
-                  src={
-                    src ?? (writtenPost && writtenPost.img)
-                      ? writtenPost.img
-                      : "/images/placeholder.png"
-                  }
-                  alt={title ?? "تصویر مقاله"}
-                  className="avatar-img"
-                />
-              </div>
-              <div className="center-item">
-                <input
-                  accept="image/*"
-                  className="hidden-input"
-                  id="icon-button-file"
-                  type="file"
-                  onChange={handleInputFileChange}
-                />
-                <label htmlFor="icon-button-file">
+                <div className="center-item persian-form">
+                  <TextField
+                    className="max-width"
+                    label="نام نویسنده اصلی برای ترجمه ها"
+                    value={
+                      foreignAuthor ??
+                      (writtenPost && writtenPost.foreign_author
+                        ? writtenPost.foreign_author
+                        : "")
+                    }
+                    onChange={(e) => {
+                      setForeignAuthor(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="center-item right-dir mt-2">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={published}
+                        onChange={(e) => setPublished(e.target.checked)}
+                        color="primary"
+                      />
+                    }
+                    label="منتشر شود"
+                  />
+                </div>
+                <div className="center-item save-btn-div mt-2">
                   <Button
                     variant="contained"
                     color="primary"
-                    component="span"
-                    startIcon={<PhotoCamera />}
+                    size="large"
+                    type="submit"
+                    disabled={!title || title.length < 3}
+                    startIcon={<SaveIcon />}
                   >
-                    بارگزاری تصویر
+                    ذخیره
                   </Button>
-                </label>
-              </div>
-
-              <div className="center-item persian-form">
-                <TextField
-                  className="max-width"
-                  label="نام شما"
-                  value={
-                    title ?? (writtenPost && writtenPost.title)
-                      ? writtenPost.title
-                      : ""
-                  }
-                  onChange={(e) => {
-                    setTitle(e.target.value);
-                  }}
-                  required
-                />
-              </div>
-              <TextareaAutosize
-                aria-label="abstract"
-                className="max-width"
-                rowsMin={3}
-                placeholder="خلاصه مقاله"
-                value={
-                  abstract ?? (writtenPost && writtenPost.abstract)
-                    ? writtenPost.abstract
-                    : ""
-                }
-                onChange={(e) => {
-                  setAbstract(e.target.value);
-                }}
-              />
-            </Container>
-            <Container maxWidth="md">
-              <TextareaAutosize
-                aria-label="description"
-                className="max-width"
-                rowsMin={3}
-                placeholder="متن مقاله"
-                value={
-                  description ?? (writtenPost && writtenPost.description)
-                    ? writtenPost.description
-                    : ""
-                }
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              />
-            </Container>
+                </div>
+              </Container>
+            </form>
             <Container maxWidth="sm">
-              <div className="center-item persian-form">
-                <TextField
-                  className="max-width"
-                  label="موضوع"
-                  value={
-                    subject ?? (writtenPost && writtenPost.subject)
-                      ? writtenPost.subject
-                      : ""
-                  }
-                  onChange={(e) => {
-                    setSubject(e.target.value);
-                  }}
-                />
-              </div>
-
-              <div className="center-item persian-form">
-                <TextField
-                  className="max-width"
-                  label="نام نویسنده اصلی برای ترجمه ها"
-                  value={
-                    foreignAuthor ?? (writtenPost && writtenPost.foreign_author)
-                      ? writtenPost.foreign_author
-                      : ""
-                  }
-                  onChange={(e) => {
-                    setForeignAuthor(e.target.value);
-                  }}
-                />
-              </div>
-
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={published}
-                    onChange={(e) => setPublished(e.target.checked)}
-                    color="primary"
-                  />
-                }
-                label="منتشر شود"
-              />
-
-              <div className="center-item save-btn-div">
+              <div className="center-item mt-2">
                 <Button
                   variant="contained"
                   color="primary"
                   size="large"
-                  type="submit"
                   disabled={!title || title.length < 3}
                   startIcon={<SaveIcon />}
+                  onClick={() => writePost(true)}
                 >
-                  ذخیره
+                  ذخیره و خروج
                 </Button>
               </div>
             </Container>
-          </form>
+          </React.Fragment>
         );
       }}
     </Context.Consumer>
