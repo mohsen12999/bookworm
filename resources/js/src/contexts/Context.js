@@ -11,6 +11,7 @@ import { FetchLogin, FetchRegister } from "../services/Auth";
 import {
     FetchUpdateProfile,
     FetchDeleteNote,
+    FetchDeletePost,
     FetchWritePost
 } from "../services/Admin";
 
@@ -207,16 +208,36 @@ const ContextProvider = props => {
         return result.success;
     };
 
+    const DeletePost = async id => {
+        if (settingContext && settingContext.loading) return false;
+        setSettingContext({ loading: true });
+
+        const result = await FetchDeletePost(id);
+        if (result.success) {
+            const remainWrittenPosts = adminContext.writtenPosts.filter(
+                post => post.id !== id
+            ):[];
+
+            setAdminContext({
+                ...adminContext,
+                writtenPosts: remainWrittenPosts
+            });
+        }
+
+        setSettingContext({ loading: false });
+        return result.success;
+    };
+
     const GetWrittenBook = book_id =>
         book_id
-            ? adminContext.WrittenBooks.find(
+            ? adminContext.writtenBooks.find(
                   book => book.id === Number(book_id)
               )
             : undefined;
 
     const GetWrittenPost = post_id =>
         post_id
-            ? adminContext.WrittenPosts.find(
+            ? adminContext.writtenPosts.find(
                   post => post.id === Number(post_id)
               )
             : undefined;
@@ -229,7 +250,7 @@ const ContextProvider = props => {
 
         // TODO: is new post / edit => change admin context
         if (result.success) {
-            const writtenPosts = adminContext.WrittenPosts;
+            const writtenPosts = adminContext.writtenPosts;
             const index = writtenPosts.findIndex(wp => wp.id == result.post.id);
             if (index >= 0) {
                 writtenPosts.splice(index, 1);
@@ -265,6 +286,7 @@ const ContextProvider = props => {
                 CloseSnackbar,
                 UpdateProfile,
                 DeleteNote,
+                DeletePost,
                 GetWrittenPost,
                 GetWrittenBook,
                 WritePost

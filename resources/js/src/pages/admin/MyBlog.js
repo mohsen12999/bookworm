@@ -64,17 +64,31 @@ const MyBlog = () => {
               شما هنوز مقاله ای ندارید!
             </Typography>
           ) : (
-            context.writtenPosts.map((wp) => (
+            context.admin.writtenPosts.map((wp) => (
               <TableContainer
                 key={wp.id}
                 component={Paper}
                 className="note-table"
               >
                 <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">کد</TableCell>
+                    <TableCell align="center">عنوان</TableCell>
+                    <TableCell align="center">وضعیت نوشته</TableCell>
+                    <TableCell align="center">عملیات</TableCell>
+                  </TableRow>
+                </TableHead>
                   <TableBody>
                     <TableRow hover>
+                    <TableCell component="td" scope="row" align="right">
+                        {wp.id}
+                      </TableCell>
                       <TableCell component="td" scope="row" align="right">
                         {wp.title}
+                      </TableCell>
+                      <TableCell component="td" scope="row" align="right">
+                        {wp.publish_status}
                       </TableCell>
                       <TableCell component="td" scope="row" align="left">
                         <Tooltip title="تغییر مقاله">

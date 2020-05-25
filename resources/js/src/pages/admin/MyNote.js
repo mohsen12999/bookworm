@@ -63,7 +63,7 @@ const MyNote = () => {
             </Grid>
           </Grid>
 
-          {context.admin.writtenBooks === 0 ? (
+          {context.admin.writtenBooks.length === 0 ? (
             <Typography variant="h6" component="h4" className="empty-msg">
               شما هنوز نوشته ای ندارید!
             </Typography>

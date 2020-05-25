@@ -54,11 +54,11 @@ const EditBlog = () => {
                 }
 
                 const writePost = exit => {
-                    if (
+                    if (!writtenPost &&(
                         !title ||
                         title.length < 3 ||
                         !description ||
-                        description.length < 3
+                        description.length < 3)
                     ) {
                         context.OpenSnackbar("عنوان مقاله و متن اجباری هستند");
                         return;
@@ -237,10 +237,11 @@ const EditBlog = () => {
                                         size="large"
                                         type="submit"
                                         disabled={
-                                            !title ||
-                                            title.length < 3 ||
-                                            !description ||
-                                            description.length < 3
+                                            !writtenPost &&(
+                                                !title ||
+                                                title.length < 3 ||
+                                                !description ||
+                                                description.length < 3)
                                         }
                                         startIcon={<SaveIcon />}
                                     >
@@ -256,10 +257,11 @@ const EditBlog = () => {
                                     color="primary"
                                     size="large"
                                     disabled={
-                                        !title ||
-                                        title.length < 3 ||
-                                        !description ||
-                                        description.length < 3
+                                        !writtenPost &&(
+                                            !title ||
+                                            title.length < 3 ||
+                                            !description ||
+                                            description.length < 3)
                                     }
                                     startIcon={<SaveIcon />}
                                     onClick={() => writePost(true)}

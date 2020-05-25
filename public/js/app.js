@@ -75142,21 +75142,9 @@ var ContextProvider = function ContextProvider(props) {
     };
   }();
 
-  var GetWrittenBook = function GetWrittenBook(book_id) {
-    return book_id ? adminContext.WrittenBooks.find(function (book) {
-      return book.id === Number(book_id);
-    }) : undefined;
-  };
-
-  var GetWrittenPost = function GetWrittenPost(post_id) {
-    return post_id ? adminContext.WrittenPosts.find(function (post) {
-      return post.id === Number(post_id);
-    }) : undefined;
-  };
-
-  var WritePost = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(data) {
-      var result, writtenPosts, index;
+  var DeletePost = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(id) {
+      var result, remainWrittenPost;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
@@ -75173,14 +75161,77 @@ var ContextProvider = function ContextProvider(props) {
                 loading: true
               });
               _context6.next = 5;
-              return Object(_services_Admin__WEBPACK_IMPORTED_MODULE_5__["FetchWritePost"])(data);
+              return Object(_services_Admin__WEBPACK_IMPORTED_MODULE_5__["FetchDeletePost"])(id);
 
             case 5:
               result = _context6.sent;
 
+              if (result.success) {
+                remainWrittenPost = adminContext.writtenPost.filter(function (book) {
+                  return book.id !== id;
+                });
+                setAdminContext(_objectSpread(_objectSpread({}, adminContext), {}, {
+                  writtenPost: remainWrittenPost
+                }));
+              }
+
+              setSettingContext({
+                loading: false
+              });
+              return _context6.abrupt("return", result.success);
+
+            case 9:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }));
+
+    return function DeletePost(_x9) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
+  var GetWrittenBook = function GetWrittenBook(book_id) {
+    return book_id ? adminContext.writtenBooks.find(function (book) {
+      return book.id === Number(book_id);
+    }) : undefined;
+  };
+
+  var GetWrittenPost = function GetWrittenPost(post_id) {
+    return post_id ? adminContext.writtenPosts.find(function (post) {
+      return post.id === Number(post_id);
+    }) : undefined;
+  };
+
+  var WritePost = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(data) {
+      var result, writtenPosts, index;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              if (!(settingContext && settingContext.loading)) {
+                _context7.next = 2;
+                break;
+              }
+
+              return _context7.abrupt("return", false);
+
+            case 2:
+              setSettingContext({
+                loading: true
+              });
+              _context7.next = 5;
+              return Object(_services_Admin__WEBPACK_IMPORTED_MODULE_5__["FetchWritePost"])(data);
+
+            case 5:
+              result = _context7.sent;
+
               // TODO: is new post / edit => change admin context
               if (result.success) {
-                writtenPosts = adminContext.WrittenPosts;
+                writtenPosts = adminContext.writtenPosts;
                 index = writtenPosts.findIndex(function (wp) {
                   return wp.id == result.post.id;
                 });
@@ -75198,21 +75249,21 @@ var ContextProvider = function ContextProvider(props) {
               setSettingContext({
                 loading: false
               });
-              return _context6.abrupt("return", {
+              return _context7.abrupt("return", {
                 success: result.success,
                 id: result.success ? result.post.id : 0
               });
 
             case 9:
             case "end":
-              return _context6.stop();
+              return _context7.stop();
           }
         }
-      }, _callee6);
+      }, _callee7);
     }));
 
-    return function WritePost(_x9) {
-      return _ref6.apply(this, arguments);
+    return function WritePost(_x10) {
+      return _ref7.apply(this, arguments);
     };
   }();
 
@@ -75234,6 +75285,7 @@ var ContextProvider = function ContextProvider(props) {
       CloseSnackbar: CloseSnackbar,
       UpdateProfile: UpdateProfile,
       DeleteNote: DeleteNote,
+      DeletePost: DeletePost,
       GetWrittenPost: GetWrittenPost,
       GetWrittenBook: GetWrittenBook,
       WritePost: WritePost
@@ -77175,7 +77227,7 @@ var MyBlog = function MyBlog() {
       variant: "h6",
       component: "h4",
       className: "empty-msg"
-    }, "\u0634\u0645\u0627 \u0647\u0646\u0648\u0632 \u0645\u0642\u0627\u0644\u0647 \u0627\u06CC \u0646\u062F\u0627\u0631\u06CC\u062F!") : context.writtenPosts.map(function (wp) {
+    }, "\u0634\u0645\u0627 \u0647\u0646\u0648\u0632 \u0645\u0642\u0627\u0644\u0647 \u0627\u06CC \u0646\u062F\u0627\u0631\u06CC\u062F!") : context.admin.writtenPosts.map(function (wp) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_8__["default"], {
         key: wp.id,
         component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_10__["default"],
