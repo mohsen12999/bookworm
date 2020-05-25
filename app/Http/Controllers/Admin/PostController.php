@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Image;
 
 use App\Post;
 
@@ -34,5 +35,15 @@ class PostController extends Controller
         $post->save();
 
         return response()->json(['message' => 'delete done!'], 200);
+    }
+
+    public function writePost(Request $request)
+    {
+        $user = $request->user();
+
+        $name = $request->name;
+        if (isset($name) && $name && $name != "undefined") {
+            $user->name = $name;
+        }
     }
 }
