@@ -8,7 +8,7 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { Context } from "../../contexts/Context";
 
 import "./Profile.css";
@@ -54,44 +54,44 @@ const EditBlog = () => {
                 }
 
                 const writePost = exit => {
-                    if (exit) {
-                        setExit2List(true);
+                    if (
+                        !title ||
+                        title.length < 3 ||
+                        !description ||
+                        description.length < 3
+                    ) {
+                        context.OpenSnackbar("عنوان مقاله و متن اجباری هستند");
+                        return;
                     }
+
+                    const data = new FormData();
+                    data.append("id", id);
+                    data.append("file", file);
+                    data.append("title", title);
+                    data.append("abstract", abstract);
+                    data.append("foreignAuthor", foreignAuthor);
+                    data.append("description", description);
+                    data.append("subject", subject);
+                    data.append("published", published);
+
+                    context.WritePost(data).then(res => {
+                        if (res.success) {
+                            context.OpenSnackbar("مقاله با موفقیت ذخیره شد.");
+                            setId(res.id);
+                        } else {
+                            context.OpenSnackbar("اشکال در ذخیره مقاله");
+                        }
+                        if (exit) {
+                            setExit2List(true);
+                        }
+                    });
                 };
                 return (
                     <React.Fragment>
                         <form
                             onSubmit={e => {
                                 e.preventDefault();
-                                if (!title || title.length < 3) {
-                                    context.OpenSnackbar(
-                                        "عنوان مقاله اجباری هست"
-                                    );
-                                    return;
-                                }
-
-                                const data = new FormData();
-                                data.append("id", id);
-                                data.append("file", file);
-                                data.append("title", title);
-                                data.append("abstract", abstract);
-                                data.append("foreignAuthor", foreignAuthor);
-                                data.append("description", description);
-                                data.append("subject", subject);
-                                data.append("published", published);
-
-                                context.WritePost(data).then(res => {
-                                    //return id
-                                    if (res) {
-                                        context.OpenSnackbar(
-                                            "مقاله با موفقیت ذخیره شد."
-                                        );
-                                    } else {
-                                        context.OpenSnackbar(
-                                            "اشکال در ذخیره مقاله"
-                                        );
-                                    }
-                                });
+                                writePost(false);
                             }}
                         >
                             <Container maxWidth="sm">
@@ -99,9 +99,9 @@ const EditBlog = () => {
                                     <img
                                         src={
                                             src ??
-                                            (writtenPost && writtenPost.img)
+                                            (writtenPost && writtenPost.img
                                                 ? writtenPost.img
-                                                : "/images/placeholder.png"
+                                                : "/images/placeholder.png")
                                         }
                                         alt={title ?? "تصویر مقاله"}
                                         className="avatar-img"
@@ -129,13 +129,13 @@ const EditBlog = () => {
 
                                 <div className="center-item persian-form">
                                     <TextField
-                                        className="max-width"
-                                        label="نام شما"
+                                        className="max-width right-text"
+                                        label="عنوان مقاله"
                                         value={
                                             title ??
-                                            (writtenPost && writtenPost.title)
+                                            (writtenPost && writtenPost.title
                                                 ? writtenPost.title
-                                                : ""
+                                                : "")
                                         }
                                         onChange={e => {
                                             setTitle(e.target.value);
@@ -143,38 +143,43 @@ const EditBlog = () => {
                                         required
                                     />
                                 </div>
-                                <TextareaAutosize
-                                    aria-label="abstract"
-                                    className="max-width"
-                                    rowsMin={3}
-                                    placeholder="خلاصه مقاله"
-                                    value={
-                                        abstract ??
-                                        (writtenPost && writtenPost.abstract)
-                                            ? writtenPost.abstract
-                                            : ""
-                                    }
-                                    onChange={e => {
-                                        setAbstract(e.target.value);
-                                    }}
-                                />
+                                <div className="center-item persian-form">
+                                    <TextareaAutosize
+                                        aria-label="abstract"
+                                        className="min-width-70p right-text right-dir"
+                                        rowsMin={2}
+                                        placeholder="خلاصه مقاله"
+                                        value={
+                                            abstract ??
+                                            (writtenPost && writtenPost.abstract
+                                                ? writtenPost.abstract
+                                                : "")
+                                        }
+                                        onChange={e => {
+                                            setAbstract(e.target.value);
+                                        }}
+                                    />
+                                </div>
                             </Container>
                             <Container maxWidth="md">
-                                <TextareaAutosize
-                                    aria-label="description"
-                                    className="max-width"
-                                    rowsMin={3}
-                                    placeholder="متن مقاله"
-                                    value={
-                                        description ??
-                                        (writtenPost && writtenPost.description)
-                                            ? writtenPost.description
-                                            : ""
-                                    }
-                                    onChange={e => {
-                                        setDescription(e.target.value);
-                                    }}
-                                />
+                                <div className="center-item persian-form">
+                                    <TextareaAutosize
+                                        aria-label="description"
+                                        className="min-width-70p right-text right-dir"
+                                        rowsMin={4}
+                                        placeholder="متن مقاله"
+                                        value={
+                                            description ??
+                                            (writtenPost &&
+                                            writtenPost.description
+                                                ? writtenPost.description
+                                                : "")
+                                        }
+                                        onChange={e => {
+                                            setDescription(e.target.value);
+                                        }}
+                                    />
+                                </div>
                             </Container>
                             <Container maxWidth="sm">
                                 <div className="center-item persian-form">
@@ -183,9 +188,9 @@ const EditBlog = () => {
                                         label="موضوع"
                                         value={
                                             subject ??
-                                            (writtenPost && writtenPost.subject)
+                                            (writtenPost && writtenPost.subject
                                                 ? writtenPost.subject
-                                                : ""
+                                                : "")
                                         }
                                         onChange={e => {
                                             setSubject(e.target.value);
@@ -200,36 +205,43 @@ const EditBlog = () => {
                                         value={
                                             foreignAuthor ??
                                             (writtenPost &&
-                                                writtenPost.foreign_author)
+                                            writtenPost.foreign_author
                                                 ? writtenPost.foreign_author
-                                                : ""
+                                                : "")
                                         }
                                         onChange={e => {
                                             setForeignAuthor(e.target.value);
                                         }}
                                     />
                                 </div>
-
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            checked={published}
-                                            onChange={e =>
-                                                setPublished(e.target.checked)
-                                            }
-                                            color="primary"
-                                        />
-                                    }
-                                    label="منتشر شود"
-                                />
-
-                                <div className="center-item save-btn-div">
+                                <div className="center-item right-dir mt-2">
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={published}
+                                                onChange={e =>
+                                                    setPublished(
+                                                        e.target.checked
+                                                    )
+                                                }
+                                                color="primary"
+                                            />
+                                        }
+                                        label="منتشر شود"
+                                    />
+                                </div>
+                                <div className="center-item save-btn-div mt-2">
                                     <Button
                                         variant="contained"
                                         color="primary"
                                         size="large"
                                         type="submit"
-                                        disabled={!title || title.length < 3}
+                                        disabled={
+                                            !title ||
+                                            title.length < 3 ||
+                                            !description ||
+                                            description.length < 3
+                                        }
                                         startIcon={<SaveIcon />}
                                     >
                                         ذخیره
@@ -238,14 +250,19 @@ const EditBlog = () => {
                             </Container>
                         </form>
                         <Container maxWidth="sm">
-                            <div className="center-item">
+                            <div className="center-item mt-2">
                                 <Button
                                     variant="contained"
                                     color="primary"
                                     size="large"
-                                    disabled={!title || title.length < 3}
+                                    disabled={
+                                        !title ||
+                                        title.length < 3 ||
+                                        !description ||
+                                        description.length < 3
+                                    }
                                     startIcon={<SaveIcon />}
-                                    onClick={writePost(true)}
+                                    onClick={() => writePost(true)}
                                 >
                                     ذخیره و خروج
                                 </Button>
