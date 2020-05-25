@@ -23,13 +23,13 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('user/{userId}/detail', 'Admin\AuthController@userInfo');
 
-    Route::post('/private_data', 'Admin\AuthController@getPrivateData');
+    Route::post('/private_data', 'Admin\AuthController@getPrivateData')->name('private_data');
 
-    Route::post('/profile', 'Admin\AuthController@updateProfile');
+    Route::post('/profile', 'Admin\AuthController@updateProfile')->name('update_profile');
 
-    Route::delete('/note/{id}', 'Admin\BookController@deleteBook');
+    Route::delete('/note/{id}', 'Admin\BookController@deleteBook')->name('deleteBook');
 
-    Route::delete('/blog/{id}', 'Admin\PostController@deletePost');
+    Route::delete('/blog/{id}', 'Admin\PostController@deletePost')->name('deletePost');
     Route::post('/blog', 'Admin\PostController@writePost');
 });
 

@@ -31110,7 +31110,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".center-item {\r\n    text-align: center;\r\n}\r\n\r\n.hidden-input {\r\n    display: none !important;\r\n}\r\n\r\n.center-item.persian-form {\r\n    margin-top: 1rem;\r\n}\r\n\r\n.center-item.persian-form .max-width {\r\n    min-width: 70%;\r\n}\r\n\r\n.save-btn-div {\r\n    margin-top: 2rem;\r\n}\r\n\r\n.avatar-img {\r\n    max-width: 100%;\r\n}\r\n\r\n.username input {\r\n    text-align: right !important;\r\n}\r\n", ""]);
+exports.push([module.i, ".center-item {\r\n  text-align: center;\r\n}\r\n\r\n.hidden-input {\r\n  display: none !important;\r\n}\r\n\r\n.center-item.persian-form {\r\n  margin-top: 1rem;\r\n}\r\n\r\n.center-item.persian-form .max-width {\r\n  min-width: 70%;\r\n}\r\n\r\n.save-btn-div {\r\n  margin-top: 2rem;\r\n}\r\n\r\n.avatar-img {\r\n  max-width: 100%;\r\n}\r\n\r\n.username input {\r\n  text-align: right !important;\r\n}\r\n\r\n.min-width-70p {\r\n  min-width: 70%;\r\n}\r\n\r\n.right-text {\r\n  text-align: right !important;\r\n}\r\n\r\n.right-dir {\r\n  direction: rtl !important;\r\n}\r\n\r\ninput.MuiInputBase-input {\r\n  text-align: right !important;\r\n  direction: rtl !important;\r\n}\r\n\r\n.mt-2 {\r\n  margin-top: 2em;\r\n}\r\n", ""]);
 
 // exports
 
@@ -75149,13 +75149,14 @@ var ContextProvider = function ContextProvider(props) {
   };
 
   var GetWrittenPost = function GetWrittenPost(post_id) {
-    return post_id ? publicContext.WrittenPosts.find(function (post) {
+    return post_id ? adminContext.WrittenPosts.find(function (post) {
       return post.id === Number(post_id);
     }) : undefined;
   };
 
   var WritePost = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(data) {
+      var result, writtenPosts, index;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
@@ -75170,22 +75171,39 @@ var ContextProvider = function ContextProvider(props) {
             case 2:
               setSettingContext({
                 loading: true
-              }); // TODO: fetch Write Post
-              // const result = await FetchUpdateProfile(data);
+              });
+              _context6.next = 5;
+              return Object(_services_Admin__WEBPACK_IMPORTED_MODULE_5__["FetchWritePost"])(data);
+
+            case 5:
+              result = _context6.sent;
+
               // TODO: is new post / edit => change admin context
-              // if (result.success) {
-              //   const newPrivateDate = { ...adminContext, ...result.user };
-              //   setAdminContext(newPrivateDate);
-              //   SavePrivateDataToLocalStorage(newPrivateDate);
-              // }
+              if (result.success) {
+                writtenPosts = adminContext.WrittenPosts;
+                index = writtenPosts.findIndex(function (wp) {
+                  return wp.id == result.post.id;
+                });
+
+                if (index >= 0) {
+                  writtenPosts.splice(index, 1);
+                }
+
+                writtenPosts.push(result.post);
+                setAdminContext(_objectSpread(_objectSpread({}, adminContext), {}, {
+                  writtenPosts: writtenPosts
+                }));
+              }
 
               setSettingContext({
                 loading: false
-              }); // return result.success;
+              });
+              return _context6.abrupt("return", {
+                success: result.success,
+                id: result.success ? result.post.id : 0
+              });
 
-              return _context6.abrupt("return", false);
-
-            case 5:
+            case 9:
             case "end":
               return _context6.stop();
           }
@@ -76617,7 +76635,7 @@ var EditBlog = function EditBlog() {
     reader.readAsDataURL(imgFile);
   };
 
-  return exit2List ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Redirect, {
+  return exit2List ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Redirect"], {
     to: "/myblog"
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contexts_Context__WEBPACK_IMPORTED_MODULE_10__["Context"].Consumer, null, function (context) {
     var writtenPost = context.GetWrittenPost(blog_id);
@@ -76627,44 +76645,45 @@ var EditBlog = function EditBlog() {
     }
 
     var writePost = function writePost(exit) {
-      if (exit) {
-        setExit2List(true);
+      if (!title || title.length < 3 || !description || description.length < 3) {
+        context.OpenSnackbar("عنوان مقاله و متن اجباری هستند");
+        return;
       }
+
+      var data = new FormData();
+      data.append("id", id);
+      data.append("file", file);
+      data.append("title", title);
+      data.append("abstract", _abstract);
+      data.append("foreignAuthor", foreignAuthor);
+      data.append("description", description);
+      data.append("subject", subject);
+      data.append("published", published);
+      context.WritePost(data).then(function (res) {
+        if (res.success) {
+          context.OpenSnackbar("مقاله با موفقیت ذخیره شد.");
+          setId(res.id);
+        } else {
+          context.OpenSnackbar("اشکال در ذخیره مقاله");
+        }
+
+        if (exit) {
+          setExit2List(true);
+        }
+      });
     };
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
       onSubmit: function onSubmit(e) {
         e.preventDefault();
-
-        if (!title || title.length < 3) {
-          context.OpenSnackbar("عنوان مقاله اجباری هست");
-          return;
-        }
-
-        var data = new FormData();
-        data.append("id", id);
-        data.append("file", file);
-        data.append("title", title);
-        data.append("abstract", _abstract);
-        data.append("foreignAuthor", foreignAuthor);
-        data.append("description", description);
-        data.append("subject", subject);
-        data.append("published", published);
-        context.WritePost(data).then(function (res) {
-          //return id
-          if (res) {
-            context.OpenSnackbar("مقاله با موفقیت ذخیره شد.");
-          } else {
-            context.OpenSnackbar("اشکال در ذخیره مقاله");
-          }
-        });
+        writePost(false);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       maxWidth: "sm"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: (src !== null && src !== void 0 ? src : writtenPost && writtenPost.img) ? writtenPost.img : "/images/placeholder.png",
+      src: src !== null && src !== void 0 ? src : writtenPost && writtenPost.img ? writtenPost.img : "/images/placeholder.png",
       alt: title !== null && title !== void 0 ? title : "تصویر مقاله",
       className: "avatar-img"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -76685,41 +76704,45 @@ var EditBlog = function EditBlog() {
     }, "\u0628\u0627\u0631\u06AF\u0632\u0627\u0631\u06CC \u062A\u0635\u0648\u06CC\u0631"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item persian-form"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      className: "max-width",
-      label: "\u0646\u0627\u0645 \u0634\u0645\u0627",
-      value: (title !== null && title !== void 0 ? title : writtenPost && writtenPost.title) ? writtenPost.title : "",
+      className: "max-width right-text",
+      label: "\u0639\u0646\u0648\u0627\u0646 \u0645\u0642\u0627\u0644\u0647",
+      value: title !== null && title !== void 0 ? title : writtenPost && writtenPost.title ? writtenPost.title : "",
       onChange: function onChange(e) {
         setTitle(e.target.value);
       },
       required: true
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextareaAutosize__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "center-item persian-form"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextareaAutosize__WEBPACK_IMPORTED_MODULE_6__["default"], {
       "aria-label": "abstract",
-      className: "max-width",
-      rowsMin: 3,
+      className: "min-width-70p right-text right-dir",
+      rowsMin: 2,
       placeholder: "\u062E\u0644\u0627\u0635\u0647 \u0645\u0642\u0627\u0644\u0647",
-      value: (_abstract !== null && _abstract !== void 0 ? _abstract : writtenPost && writtenPost["abstract"]) ? writtenPost["abstract"] : "",
+      value: _abstract !== null && _abstract !== void 0 ? _abstract : writtenPost && writtenPost["abstract"] ? writtenPost["abstract"] : "",
       onChange: function onChange(e) {
         setAbstract(e.target.value);
       }
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       maxWidth: "md"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "center-item persian-form"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextareaAutosize__WEBPACK_IMPORTED_MODULE_6__["default"], {
       "aria-label": "description",
-      className: "max-width",
-      rowsMin: 3,
+      className: "min-width-70p right-text right-dir",
+      rowsMin: 4,
       placeholder: "\u0645\u062A\u0646 \u0645\u0642\u0627\u0644\u0647",
-      value: (description !== null && description !== void 0 ? description : writtenPost && writtenPost.description) ? writtenPost.description : "",
+      value: description !== null && description !== void 0 ? description : writtenPost && writtenPost.description ? writtenPost.description : "",
       onChange: function onChange(e) {
         setDescription(e.target.value);
       }
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       maxWidth: "sm"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "center-item persian-form"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "max-width",
       label: "\u0645\u0648\u0636\u0648\u0639",
-      value: (subject !== null && subject !== void 0 ? subject : writtenPost && writtenPost.subject) ? writtenPost.subject : "",
+      value: subject !== null && subject !== void 0 ? subject : writtenPost && writtenPost.subject ? writtenPost.subject : "",
       onChange: function onChange(e) {
         setSubject(e.target.value);
       }
@@ -76728,11 +76751,13 @@ var EditBlog = function EditBlog() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: "max-width",
       label: "\u0646\u0627\u0645 \u0646\u0648\u06CC\u0633\u0646\u062F\u0647 \u0627\u0635\u0644\u06CC \u0628\u0631\u0627\u06CC \u062A\u0631\u062C\u0645\u0647 \u0647\u0627",
-      value: (foreignAuthor !== null && foreignAuthor !== void 0 ? foreignAuthor : writtenPost && writtenPost.foreign_author) ? writtenPost.foreign_author : "",
+      value: foreignAuthor !== null && foreignAuthor !== void 0 ? foreignAuthor : writtenPost && writtenPost.foreign_author ? writtenPost.foreign_author : "",
       onChange: function onChange(e) {
         setForeignAuthor(e.target.value);
       }
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "center-item right-dir mt-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_7__["default"], {
       control: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Checkbox__WEBPACK_IMPORTED_MODULE_8__["default"], {
         checked: published,
         onChange: function onChange(e) {
@@ -76741,26 +76766,28 @@ var EditBlog = function EditBlog() {
         color: "primary"
       }),
       label: "\u0645\u0646\u062A\u0634\u0631 \u0634\u0648\u062F"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "center-item save-btn-div"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "center-item save-btn-div mt-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
       variant: "contained",
       color: "primary",
       size: "large",
       type: "submit",
-      disabled: !title || title.length < 3,
+      disabled: !title || title.length < 3 || !description || description.length < 3,
       startIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_4___default.a, null)
     }, "\u0630\u062E\u06CC\u0631\u0647")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       maxWidth: "sm"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "center-item"
+      className: "center-item mt-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
       variant: "contained",
       color: "primary",
       size: "large",
-      disabled: !title || title.length < 3,
+      disabled: !title || title.length < 3 || !description || description.length < 3,
       startIcon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Save__WEBPACK_IMPORTED_MODULE_4___default.a, null),
-      onClick: writePost(true)
+      onClick: function onClick() {
+        return writePost(true);
+      }
     }, "\u0630\u062E\u06CC\u0631\u0647 \u0648 \u062E\u0631\u0648\u062C"))));
   });
 };

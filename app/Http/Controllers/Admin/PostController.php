@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Image;
@@ -13,11 +13,13 @@ use App\Subject;
 class PostController extends Controller
 {
     //
-
-    public function scopePublic_post($query)
+    protected function generateAccessToken($user)
     {
-        return $query->where('publish_status', 100);
+        $token = $user->createToken($user->email . '-' . now());
+
+        return $token->accessToken;
     }
+
 
     public function deletePost(Request $request, $id)
     {
@@ -37,6 +39,7 @@ class PostController extends Controller
 
         return response()->json(['message' => 'delete done!'], 200);
     }
+
 
     public function writePost(Request $request)
     {
