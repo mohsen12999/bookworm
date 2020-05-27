@@ -141,4 +141,69 @@ class BookController extends Controller
             //'request' => $request->all(),
         ], 200);
     }
+
+    public function writeChapter(Request $request)
+    {
+        $user = $request->user();
+
+        $id = $request->id;
+        $chapter = null;
+        if (isset($id) && $id && $id != "undefined") {
+            $find_chapter = Chapter::find($id);
+            if ($find_chapter && ($find_chapter->user_id == $user->id || $user->id == 100)) {
+                $chapter = $find_chapter;
+            }
+        }
+
+        if (!$chapter) {
+            $chapter = new Chapter();
+        }
+
+        // if (isset($_FILES["file"])) {
+        //     $file = $_FILES['file'];
+
+        //     $fileName = "post_" . $user->id . "_" . time() . "_" . basename($file['name']);
+        //     $filePath = "/images/blog/";
+        //     $tmp = $file["tmp_name"];
+        //     $tmp_url = str_replace("\\", "/", $tmp);
+
+        //     //$moved = move_uploaded_file($tmp_url, $filePath . $fileName);
+        //     $full_file_path = $filePath . $fileName;
+        //     $image_resize = Image::make($tmp_url);
+        //     $image_resize->resize(540, 480);
+        //     $image_resize->save(public_path($full_file_path));
+
+        //     if (file_exists(public_path($full_file_path))) {
+        //         if (isset($post->img) && $post->img && file_exists(public_path($post->img))) {
+        //             unlink(public_path($post->img));
+        //         }
+
+        //         $post->img = $filePath . $fileName;
+        //     }
+        // }
+
+        $title = $request->title;
+        if (isset($title) && $title && $title != "undefined") {
+            $chapter->title = $title;
+        }
+
+        $description = $request->description;
+        if (isset($description) && $description && $description != "undefined") {
+            $chapter->description = $description;
+        }
+
+        $chapter->publish_status = 0;
+        $published = $request->published;
+        if (isset($published) && $published && $published != "undefined" && $published != "false" && $published != "False") {
+            $chapter->publish_status  = 10;
+        }
+
+        $chapter->save();
+
+        return response()->json([
+            'token' => $this->generateAccessToken($user),
+            'chapter' => $chapter,
+            //'request' => $request->all(),
+        ], 200);
+    }
 }
