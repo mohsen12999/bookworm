@@ -15,6 +15,7 @@
 
 ## TODO
 
+-   [ ] autocomplete for input in subject and genre
 -   [ ] difference table for note[write] and book[publish]
 -   [ ] difference table for blog[write] and post[publish]
 -   [ ] change user password
