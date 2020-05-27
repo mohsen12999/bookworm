@@ -19,7 +19,6 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import ListAltIcon from "@material-ui/icons/ListAlt";
 
 import { useParams, Redirect, Link } from "react-router-dom";
 import { Context } from "../../contexts/Context";
