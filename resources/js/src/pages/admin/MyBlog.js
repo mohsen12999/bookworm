@@ -28,227 +28,163 @@ import "./MyNote.css";
 import { PostPublishStatusDescription } from "../../services/function";
 
 const MyBlog = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handlePopperClick = event => {
-        setAnchorEl(anchorEl ? null : event.currentTarget);
-    };
+  const handlePopperClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
 
-    const openPopper = Boolean(anchorEl);
-    const idPopper = openPopper ? "simple-popper" : undefined;
+  const openPopper = Boolean(anchorEl);
+  const idPopper = openPopper ? "simple-popper" : undefined;
 
-    return (
-        <Context.Consumer>
-            {context => {
-                const subDic = context.MakeSubjectDictionary();
-                return (
-                    <div>
-                        <Grid container spacing={1} className="note-grid-item">
-                            <Grid item xs={12} sm={8}>
-                                <Typography
+  return (
+    <Context.Consumer>
+      {(context) => {
+        const subDic = context.MakeSubjectDictionary();
+        return (
+          <div>
+            <Grid container spacing={1} className="note-grid-item">
+              <Grid item xs={12} sm={8}>
+                <Typography variant="h5" component="h2" className="note-title">
+                  لیست مقاله ها
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={4} className="add-btn-grid-item">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  startIcon={<AddBoxIcon />}
+                  component={Link}
+                  to={"/blog"}
+                >
+                  مقاله جدید
+                </Button>
+              </Grid>
+            </Grid>
+
+            {context.admin.writtenPosts.length === 0 ? (
+              <Typography variant="h6" component="h4" className="empty-msg">
+                شما هنوز مقاله ای ندارید!
+              </Typography>
+            ) : (
+              context.admin.writtenPosts.map((wp) => (
+                <TableContainer
+                  key={wp.id}
+                  component={Paper}
+                  className="note-table"
+                >
+                  <Table aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="center">کد</TableCell>
+                        <TableCell align="center">عنوان</TableCell>
+                        <TableCell align="center">موضوع</TableCell>
+                        <TableCell align="center">وضعیت نوشته</TableCell>
+                        <TableCell align="center">عملیات</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow hover>
+                        <TableCell component="td" scope="row" align="right">
+                          {wp.id}
+                        </TableCell>
+                        <TableCell component="td" scope="row" align="center">
+                          {wp.title}
+                        </TableCell>
+                        <TableCell component="td" scope="row" align="center">
+                          {subDic[wp.subject_id]}
+                        </TableCell>
+                        <TableCell component="td" scope="row" align="center">
+                          {PostPublishStatusDescription(wp.publish_status)}
+                        </TableCell>
+                        <TableCell component="td" scope="row" align="left">
+                          <Tooltip title="تغییر مقاله">
+                            <IconButton
+                              color="primary"
+                              aria-label="edit note"
+                              component={Link}
+                              to={"/blog/" + wp.id}
+                            >
+                              <EditIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="حذف مقاله">
+                            <IconButton
+                              color="primary"
+                              aria-label="delete note"
+                              onClick={handlePopperClick}
+                            >
+                              <DeleteOutlineIcon />
+                            </IconButton>
+                          </Tooltip>
+
+                          <Popper
+                            id={idPopper}
+                            open={openPopper}
+                            anchorEl={anchorEl}
+                          >
+                            <Card className="popper-card">
+                              <CardActionArea>
+                                <CardContent>
+                                  <Typography
+                                    gutterBottom
                                     variant="h5"
                                     component="h2"
-                                    className="note-title"
-                                >
-                                    لیست مقاله ها
-                                </Typography>
-                            </Grid>
-                            <Grid
-                                item
-                                xs={12}
-                                sm={4}
-                                className="add-btn-grid-item"
-                            >
+                                  >
+                                    حذف
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    color="textSecondary"
+                                    component="p"
+                                  >
+                                    آیا از حذف مقاله اطمینان دارید؟
+                                  </Typography>
+                                </CardContent>
+                              </CardActionArea>
+                              <CardActions>
                                 <Button
-                                    variant="contained"
-                                    color="primary"
-                                    size="large"
-                                    startIcon={<AddBoxIcon />}
-                                    component={Link}
-                                    to={"/blog"}
+                                  size="small"
+                                  color="primary"
+                                  onClick={() => {
+                                    context.DeletePost(wp.id).then((res) => {
+                                      if (res) {
+                                        context.OpenSnackbar(
+                                          "این مقاله حذف شد"
+                                        );
+                                      } else {
+                                        context.OpenSnackbar(
+                                          "اشکال در حذف مقاله"
+                                        );
+                                      }
+                                    });
+                                  }}
                                 >
-                                    مقاله جدید
+                                  اطمینان از حذف
                                 </Button>
-                            </Grid>
-                        </Grid>
-
-                        {context.admin.writtenPosts.length === 0 ? (
-                            <Typography
-                                variant="h6"
-                                component="h4"
-                                className="empty-msg"
-                            >
-                                شما هنوز مقاله ای ندارید!
-                            </Typography>
-                        ) : (
-                            context.admin.writtenPosts.map(wp => (
-                                <TableContainer
-                                    key={wp.id}
-                                    component={Paper}
-                                    className="note-table"
+                                <Button
+                                  size="small"
+                                  color="primary"
+                                  onClick={handlePopperClick}
                                 >
-                                    <Table aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell align="center">
-                                                    کد
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    عنوان
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    موضوع
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    وضعیت نوشته
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    عملیات
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            <TableRow hover>
-                                                <TableCell
-                                                    component="td"
-                                                    scope="row"
-                                                    align="right"
-                                                >
-                                                    {wp.id}
-                                                </TableCell>
-                                                <TableCell
-                                                    component="td"
-                                                    scope="row"
-                                                    align="center"
-                                                >
-                                                    {wp.title}
-                                                </TableCell>
-                                                <TableCell
-                                                    component="td"
-                                                    scope="row"
-                                                    align="center"
-                                                >
-                                                    {subDic[wp.subject_id]}
-                                                </TableCell>
-                                                <TableCell
-                                                    component="td"
-                                                    scope="row"
-                                                    align="center"
-                                                >
-                                                    {PostPublishStatusDescription(
-                                                        wp.publish_status
-                                                    )}
-                                                </TableCell>
-                                                <TableCell
-                                                    component="td"
-                                                    scope="row"
-                                                    align="left"
-                                                >
-                                                    <Tooltip title="تغییر مقاله">
-                                                        <IconButton
-                                                            color="primary"
-                                                            aria-label="edit note"
-                                                            component={Link}
-                                                            to={
-                                                                "/blog/" + wp.id
-                                                            }
-                                                        >
-                                                            <EditIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                    <Tooltip title="حذف مقاله">
-                                                        <IconButton
-                                                            color="primary"
-                                                            aria-label="delete note"
-                                                            onClick={
-                                                                handlePopperClick
-                                                            }
-                                                        >
-                                                            <DeleteOutlineIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-
-                                                    <Popper
-                                                        id={idPopper}
-                                                        open={openPopper}
-                                                        anchorEl={anchorEl}
-                                                    >
-                                                        <Card className="popper-card">
-                                                            <CardActionArea>
-                                                                <CardContent>
-                                                                    <Typography
-                                                                        gutterBottom
-                                                                        variant="h5"
-                                                                        component="h2"
-                                                                    >
-                                                                        حذف
-                                                                    </Typography>
-                                                                    <Typography
-                                                                        variant="body2"
-                                                                        color="textSecondary"
-                                                                        component="p"
-                                                                    >
-                                                                        آیا از
-                                                                        حذف
-                                                                        مقاله
-                                                                        اطمینان
-                                                                        دارید؟
-                                                                    </Typography>
-                                                                </CardContent>
-                                                            </CardActionArea>
-                                                            <CardActions>
-                                                                <Button
-                                                                    size="small"
-                                                                    color="primary"
-                                                                    onClick={() => {
-                                                                        context
-                                                                            .DeletePost(
-                                                                                wp.id
-                                                                            )
-                                                                            .then(
-                                                                                res => {
-                                                                                    if (
-                                                                                        res
-                                                                                    ) {
-                                                                                        context.OpenSnackbar(
-                                                                                            "این مقاله حذف شد"
-                                                                                        );
-                                                                                    } else {
-                                                                                        context.OpenSnackbar(
-                                                                                            "اشکال در حذف مقاله"
-                                                                                        );
-                                                                                    }
-                                                                                }
-                                                                            );
-                                                                    }}
-                                                                >
-                                                                    اطمینان از
-                                                                    حذف
-                                                                </Button>
-                                                                <Button
-                                                                    size="small"
-                                                                    color="primary"
-                                                                    onClick={
-                                                                        handlePopperClick
-                                                                    }
-                                                                >
-                                                                    رد کردن
-                                                                </Button>
-                                                            </CardActions>
-                                                        </Card>
-                                                    </Popper>
-                                                </TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                            ))
-                        )}
-                    </div>
-                );
-            }}
-        </Context.Consumer>
-    );
+                                  رد کردن
+                                </Button>
+                              </CardActions>
+                            </Card>
+                          </Popper>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              ))
+            )}
+          </div>
+        );
+      }}
+    </Context.Consumer>
+  );
 };
 
 export default MyBlog;
