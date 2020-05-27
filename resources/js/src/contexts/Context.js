@@ -13,6 +13,9 @@ import {
   FetchDeleteNote,
   FetchDeletePost,
   FetchWritePost,
+  FetchDeleteChapter,
+  FetchWriteBook,
+  FetchWriteChapter,
 } from "../services/Admin";
 
 export const Context = createContext();
@@ -222,9 +225,42 @@ const ContextProvider = (props) => {
     return result.success;
   };
 
+  const DeleteChapter = async (id) => {
+    if (settingContext && settingContext.loading) return false;
+    setSettingContext({ loading: true });
+
+    const result = await FetchDeleteChapter(id);
+    if (result.success) {
+      const remainWrittenChapters = adminContext.writtenChapters.filter(
+        (post) => post.id !== id
+      );
+
+      setAdminContext({
+        ...adminContext,
+        writtenChapters: remainWrittenChapters,
+      });
+    }
+
+    setSettingContext({ loading: false });
+    return result.success;
+  };
   const GetWrittenBook = (book_id) =>
     book_id
       ? adminContext.writtenBooks.find((book) => book.id === Number(book_id))
+      : undefined;
+
+  const GetWrittenChapter = (chapter_id) =>
+    chapter_id
+      ? adminContext.writtenChapters.find(
+          (chapter) => chapter.id === Number(chapter_id)
+        )
+      : undefined;
+
+  const GetWrittenBookChapters = (book_id) =>
+    book_id
+      ? adminContext.writtenChapters.filter(
+          (chapter) => chapter.book_id === Number(book_id)
+        )
       : undefined;
 
   const GetWrittenPost = (post_id) =>
@@ -275,6 +311,56 @@ const ContextProvider = (props) => {
     return genresDictionary;
   };
 
+  const WriteBook = async (data) => {
+    if (settingContext && settingContext.loading) return false;
+    setSettingContext({ loading: true });
+
+    const result = await FetchWriteBook(data);
+
+    if (result.success) {
+      const writtenBooks = adminContext.writtenBooks;
+      const index = writtenBooks.findIndex((wp) => wp.id === result.post.id);
+      if (index >= 0) {
+        // for edit page
+        writtenBooks.splice(index, 1);
+      }
+      writtenBooks.push(result.book);
+      setAdminContext({ ...adminContext, writtenBooks: writtenBooks });
+    }
+
+    setSettingContext({ loading: false });
+
+    return {
+      success: result.success,
+      id: result.success ? result.book.id : 0,
+    };
+  };
+
+  const WriteChapter = async (data) => {
+    if (settingContext && settingContext.loading) return false;
+    setSettingContext({ loading: true });
+
+    const result = await FetchWriteChapter(data);
+
+    if (result.success) {
+      const writtenChapters = adminContext.writtenChapters;
+      const index = writtenChapters.findIndex((wp) => wp.id === result.post.id);
+      if (index >= 0) {
+        // for edit page
+        writtenChapters.splice(index, 1);
+      }
+      writtenChapters.push(result.chapter);
+      setAdminContext({ ...adminContext, writtenChapters: writtenChapters });
+    }
+
+    setSettingContext({ loading: false });
+
+    return {
+      success: result.success,
+      id: result.success ? result.chapter.id : 0,
+    };
+  };
+
   return (
     <Context.Provider
       value={{
@@ -294,12 +380,17 @@ const ContextProvider = (props) => {
         CloseSnackbar,
         UpdateProfile,
         DeleteNote,
+        DeleteChapter,
         DeletePost,
         GetWrittenPost,
         GetWrittenBook,
+        GetWrittenChapter,
+        GetWrittenBookChapters,
         WritePost,
         MakeSubjectDictionary,
         MakeGenreDictionary,
+        WriteBook,
+        WriteChapter,
       }}
     >
       {props.children}
