@@ -13,6 +13,7 @@ import {
   FetchDeleteNote,
   FetchDeletePost,
   FetchWritePost,
+  FetchDeleteChapter,
 } from "../services/Admin";
 
 export const Context = createContext();
@@ -222,6 +223,25 @@ const ContextProvider = (props) => {
     return result.success;
   };
 
+  const DeleteChapter = async (id) => {
+    if (settingContext && settingContext.loading) return false;
+    setSettingContext({ loading: true });
+
+    const result = await FetchDeleteChapter(id);
+    if (result.success) {
+      const remainWrittenChapters = adminContext.writtenChapters.filter(
+        (post) => post.id !== id
+      );
+
+      setAdminContext({
+        ...adminContext,
+        writtenChapters: remainWrittenChapters,
+      });
+    }
+
+    setSettingContext({ loading: false });
+    return result.success;
+  };
   const GetWrittenBook = (book_id) =>
     book_id
       ? adminContext.writtenBooks.find((book) => book.id === Number(book_id))
@@ -308,6 +328,7 @@ const ContextProvider = (props) => {
         CloseSnackbar,
         UpdateProfile,
         DeleteNote,
+        DeleteChapter,
         DeletePost,
         GetWrittenPost,
         GetWrittenBook,
