@@ -216,7 +216,7 @@ const ContextProvider = props => {
         if (result.success) {
             const remainWrittenPosts = adminContext.writtenPosts.filter(
                 post => post.id !== id
-            ):[];
+            );
 
             setAdminContext({
                 ...adminContext,
@@ -248,11 +248,11 @@ const ContextProvider = props => {
 
         const result = await FetchWritePost(data);
 
-        // TODO: is new post / edit => change admin context
         if (result.success) {
             const writtenPosts = adminContext.writtenPosts;
             const index = writtenPosts.findIndex(wp => wp.id == result.post.id);
             if (index >= 0) {
+                // for edit page
                 writtenPosts.splice(index, 1);
             }
             writtenPosts.push(result.post);
