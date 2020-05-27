@@ -19,6 +19,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import ListAltIcon from "@material-ui/icons/ListAlt";
 
 import { Link } from "react-router-dom";
 
@@ -26,230 +27,175 @@ import { Context } from "../../contexts/Context";
 
 import "./MyNote.css";
 import {
-    FixPrice,
-    FixDate,
-    BookPublishStatusDescription
+  FixPrice,
+  FixDate,
+  BookPublishStatusDescription,
 } from "../../services/function";
 
 // TODO: note list with edit and delete btn -> action
 
 const MyNote = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handlePopperClick = event => {
-        setAnchorEl(anchorEl ? null : event.currentTarget);
-    };
+  const handlePopperClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
 
-    const openPopper = Boolean(anchorEl);
-    const idPopper = openPopper ? "simple-popper" : undefined;
+  const openPopper = Boolean(anchorEl);
+  const idPopper = openPopper ? "simple-popper" : undefined;
 
-    return (
-        <Context.Consumer>
-            {context => (
-                <div>
-                    <Grid container spacing={1} className="note-grid-item">
-                        <Grid item xs={12} sm={8}>
-                            <Typography
-                                variant="h5"
-                                component="h2"
-                                className="note-title"
-                            >
-                                لیست نوشته ها
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={4} className="add-btn-grid-item">
-                            <Button
-                                variant="contained"
+  return (
+    <Context.Consumer>
+      {(context) => (
+        <div>
+          <Grid container spacing={1} className="note-grid-item">
+            <Grid item xs={12} sm={8}>
+              <Typography variant="h5" component="h2" className="note-title">
+                لیست نوشته ها
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={4} className="add-btn-grid-item">
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={<AddBoxIcon />}
+                component={Link}
+                to={"/note"}
+              >
+                نوشته جدید
+              </Button>
+            </Grid>
+          </Grid>
+
+          {context.admin.writtenBooks.length === 0 ? (
+            <Typography variant="h6" component="h4" className="empty-msg">
+              شما هنوز نوشته ای ندارید!
+            </Typography>
+          ) : (
+            <TableContainer component={Paper} className="note-table">
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">کد</TableCell>
+                    <TableCell align="center">عنوان</TableCell>
+                    <TableCell align="center">قیمت</TableCell>
+                    <TableCell align="center">تاریخ</TableCell>
+                    <TableCell align="center">وضعیت نوشته</TableCell>
+                    <TableCell align="center">عملیات</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {context.admin.writtenBooks.map((wb) => (
+                    <TableRow key={wb.id} hover>
+                      <TableCell component="td" scope="row" align="right">
+                        {wb.id}
+                      </TableCell>
+                      <TableCell component="td" scope="row" align="right">
+                        {wb.title}
+                      </TableCell>
+                      <TableCell component="td" scope="row" align="right">
+                        {FixPrice(wb.price)}
+                      </TableCell>
+                      <TableCell component="td" scope="row" align="center">
+                        {FixDate(wb.created_at)}
+                      </TableCell>
+                      <TableCell component="td" scope="row" align="center">
+                        {BookPublishStatusDescription(wb.publish_status)}
+                      </TableCell>
+                      <TableCell component="td" scope="row" align="left">
+                        <Tooltip title="فصل‌های کتاب">
+                          <IconButton
+                            color="primary"
+                            aria-label="chapter list"
+                            component={Link}
+                            to={"/chapters/" + wb.id}
+                          >
+                            <ListAltIcon />
+                          </IconButton>
+                        </Tooltip>
+
+                        <Tooltip title="تغییر نوشته">
+                          <IconButton
+                            color="primary"
+                            aria-label="edit note"
+                            component={Link}
+                            to={"/note/" + wb.id}
+                          >
+                            <EditIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="حذف نوشته">
+                          <IconButton
+                            color="primary"
+                            aria-label="delete note"
+                            onClick={handlePopperClick}
+                          >
+                            <DeleteOutlineIcon />
+                          </IconButton>
+                        </Tooltip>
+
+                        <Popper
+                          id={idPopper}
+                          open={openPopper}
+                          anchorEl={anchorEl}
+                        >
+                          <Card className="popper-card">
+                            <CardActionArea>
+                              <CardContent>
+                                <Typography
+                                  gutterBottom
+                                  variant="h5"
+                                  component="h2"
+                                >
+                                  حذف
+                                </Typography>
+                                <Typography
+                                  variant="body2"
+                                  color="textSecondary"
+                                  component="p"
+                                >
+                                  آیا از حذف نوشته اطمینان دارید؟
+                                </Typography>
+                              </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                              <Button
+                                size="small"
                                 color="primary"
-                                size="large"
-                                startIcon={<AddBoxIcon />}
-                                component={Link}
-                                to={"/note"}
-                            >
-                                نوشته جدید
-                            </Button>
-                        </Grid>
-                    </Grid>
-
-                    {context.admin.writtenBooks.length === 0 ? (
-                        <Typography
-                            variant="h6"
-                            component="h4"
-                            className="empty-msg"
-                        >
-                            شما هنوز نوشته ای ندارید!
-                        </Typography>
-                    ) : (
-                        <TableContainer
-                            component={Paper}
-                            className="note-table"
-                        >
-                            <Table aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell align="center">کد</TableCell>
-                                        <TableCell align="center">
-                                            عنوان
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            قیمت
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            تاریخ
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            وضعیت نوشته
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            عملیات
-                                        </TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {context.admin.writtenBooks.map(wb => (
-                                        <TableRow key={wb.id} hover>
-                                            <TableCell
-                                                component="td"
-                                                scope="row"
-                                                align="right"
-                                            >
-                                                {wb.id}
-                                            </TableCell>
-                                            <TableCell
-                                                component="td"
-                                                scope="row"
-                                                align="right"
-                                            >
-                                                {wb.title}
-                                            </TableCell>
-                                            <TableCell
-                                                component="td"
-                                                scope="row"
-                                                align="right"
-                                            >
-                                                {FixPrice(wb.price)}
-                                            </TableCell>
-                                            <TableCell
-                                                component="td"
-                                                scope="row"
-                                                align="center"
-                                            >
-                                                {FixDate(wb.created_at)}
-                                            </TableCell>
-                                            <TableCell
-                                                component="td"
-                                                scope="row"
-                                                align="center"
-                                            >
-                                                {BookPublishStatusDescription(
-                                                    wb.publish_status
-                                                )}
-                                            </TableCell>
-                                            <TableCell
-                                                component="td"
-                                                scope="row"
-                                                align="left"
-                                            >
-                                                <Tooltip title="تغییر نوشته">
-                                                    <IconButton
-                                                        color="primary"
-                                                        aria-label="edit note"
-                                                        component={Link}
-                                                        to={"/note/" + wb.id}
-                                                    >
-                                                        <EditIcon />
-                                                    </IconButton>
-                                                </Tooltip>
-                                                <Tooltip title="حذف نوشته">
-                                                    <IconButton
-                                                        color="primary"
-                                                        aria-label="delete note"
-                                                        onClick={
-                                                            handlePopperClick
-                                                        }
-                                                    >
-                                                        <DeleteOutlineIcon />
-                                                    </IconButton>
-                                                </Tooltip>
-
-                                                <Popper
-                                                    id={idPopper}
-                                                    open={openPopper}
-                                                    anchorEl={anchorEl}
-                                                >
-                                                    <Card className="popper-card">
-                                                        <CardActionArea>
-                                                            <CardContent>
-                                                                <Typography
-                                                                    gutterBottom
-                                                                    variant="h5"
-                                                                    component="h2"
-                                                                >
-                                                                    حذف
-                                                                </Typography>
-                                                                <Typography
-                                                                    variant="body2"
-                                                                    color="textSecondary"
-                                                                    component="p"
-                                                                >
-                                                                    آیا از حذف
-                                                                    نوشته
-                                                                    اطمینان
-                                                                    دارید؟
-                                                                </Typography>
-                                                            </CardContent>
-                                                        </CardActionArea>
-                                                        <CardActions>
-                                                            <Button
-                                                                size="small"
-                                                                color="primary"
-                                                                onClick={() => {
-                                                                    context
-                                                                        .DeleteNote(
-                                                                            wb.id
-                                                                        )
-                                                                        .then(
-                                                                            res => {
-                                                                                if (
-                                                                                    res
-                                                                                ) {
-                                                                                    context.OpenSnackbar(
-                                                                                        "این نوشته حذف شد"
-                                                                                    );
-                                                                                } else {
-                                                                                    context.OpenSnackbar(
-                                                                                        "خطا در حذف نوشته"
-                                                                                    );
-                                                                                }
-                                                                            }
-                                                                        );
-                                                                }}
-                                                            >
-                                                                اطمینان از حذف
-                                                            </Button>
-                                                            <Button
-                                                                size="small"
-                                                                color="primary"
-                                                                onClick={
-                                                                    handlePopperClick
-                                                                }
-                                                            >
-                                                                رد کردن
-                                                            </Button>
-                                                        </CardActions>
-                                                    </Card>
-                                                </Popper>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    )}
-                </div>
-            )}
-        </Context.Consumer>
-    );
+                                onClick={() => {
+                                  context.DeleteNote(wb.id).then((res) => {
+                                    if (res) {
+                                      context.OpenSnackbar("این نوشته حذف شد");
+                                    } else {
+                                      context.OpenSnackbar("خطا در حذف نوشته");
+                                    }
+                                  });
+                                }}
+                              >
+                                اطمینان از حذف
+                              </Button>
+                              <Button
+                                size="small"
+                                color="primary"
+                                onClick={handlePopperClick}
+                              >
+                                رد کردن
+                              </Button>
+                            </CardActions>
+                          </Card>
+                        </Popper>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </div>
+      )}
+    </Context.Consumer>
+  );
 };
 
 export default MyNote;
