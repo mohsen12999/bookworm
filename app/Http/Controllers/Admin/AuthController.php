@@ -93,6 +93,7 @@ class AuthController extends Controller
         $bought = Bought::where('user_id', $user->id)->get();
 
         $writtenBooks = Book::where('user_id', $user->id)->get();
+        $writtenChapters = Chapter::where('user_id', $user->id)->get();
         $writtenPosts = Post::where('user_id', $user->id)->get();
 
         $chapters = Chapter::public_chapter()->get();
@@ -128,6 +129,7 @@ class AuthController extends Controller
                 'factors' => $factors,
                 'boughtBooks' => $bought,
                 'writtenBooks' => $writtenBooks,
+                'writtenChapters' => $writtenChapters,
                 'writtenPosts' => $writtenPosts
             ]
         ];
