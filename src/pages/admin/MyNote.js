@@ -19,6 +19,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import ListAltIcon from "@material-ui/icons/ListAlt";
 
 import { Link } from "react-router-dom";
 
@@ -101,9 +102,19 @@ const MyNote = () => {
                       </TableCell>
                       <TableCell component="td" scope="row" align="center">
                         {BookPublishStatusDescription(wb.publish_status)}
-                        ذخیره شده
                       </TableCell>
                       <TableCell component="td" scope="row" align="left">
+                        <Tooltip title="فصل‌های کتاب">
+                          <IconButton
+                            color="primary"
+                            aria-label="chapter list"
+                            component={Link}
+                            to={"/chapters/" + wb.id}
+                          >
+                            <ListAltIcon />
+                          </IconButton>
+                        </Tooltip>
+
                         <Tooltip title="تغییر نوشته">
                           <IconButton
                             color="primary"
