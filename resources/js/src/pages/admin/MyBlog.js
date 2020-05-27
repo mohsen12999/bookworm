@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../../contexts/Context";
 
 import "./MyNote.css";
+import { PostPublishStatusDescription } from "../../services/function";
 
 const MyBlog = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -117,7 +118,9 @@ const MyBlog = () => {
                                                 scope="row"
                                                 align="right"
                                             >
-                                                {wp.publish_status}
+                                                {PostPublishStatusDescription(
+                                                    wp.publish_status
+                                                )}
                                             </TableCell>
                                             <TableCell
                                                 component="td"
