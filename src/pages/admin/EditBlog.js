@@ -221,7 +221,7 @@ const EditBlog = () => {
                           published ??
                           (writtenPost &&
                           writtenPost.publish_status &&
-                          writtenPost.publish_status == 10
+                          writtenPost.publish_status === 10
                             ? true
                             : false)
                         }

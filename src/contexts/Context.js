@@ -240,7 +240,7 @@ const ContextProvider = (props) => {
 
     if (result.success) {
       const writtenPosts = adminContext.writtenPosts;
-      const index = writtenPosts.findIndex((wp) => wp.id == result.post.id);
+      const index = writtenPosts.findIndex((wp) => wp.id === result.post.id);
       if (index >= 0) {
         // for edit page
         writtenPosts.splice(index, 1);
