@@ -15,6 +15,7 @@ import {
   FetchWritePost,
   FetchDeleteChapter,
   FetchWriteBook,
+  FetchWriteChapter,
 } from "../services/Admin";
 
 export const Context = createContext();
@@ -335,6 +336,31 @@ const ContextProvider = (props) => {
     };
   };
 
+  const WriteChapter = async (data) => {
+    if (settingContext && settingContext.loading) return false;
+    setSettingContext({ loading: true });
+
+    const result = await FetchWriteChapter(data);
+
+    if (result.success) {
+      const writtenChapters = adminContext.writtenChapters;
+      const index = writtenChapters.findIndex((wp) => wp.id === result.post.id);
+      if (index >= 0) {
+        // for edit page
+        writtenChapters.splice(index, 1);
+      }
+      writtenChapters.push(result.chapter);
+      setAdminContext({ ...adminContext, writtenChapters: writtenChapters });
+    }
+
+    setSettingContext({ loading: false });
+
+    return {
+      success: result.success,
+      id: result.success ? result.chapter.id : 0,
+    };
+  };
+
   return (
     <Context.Provider
       value={{
@@ -364,6 +390,7 @@ const ContextProvider = (props) => {
         MakeSubjectDictionary,
         MakeGenreDictionary,
         WriteBook,
+        WriteChapter,
       }}
     >
       {props.children}
