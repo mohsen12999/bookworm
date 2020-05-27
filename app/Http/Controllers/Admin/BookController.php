@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Book;
 use App\Chapter;
+use App\Genre;
 
 class BookController extends Controller
 {
@@ -48,5 +49,96 @@ class BookController extends Controller
         $chapter->save();
 
         return response()->json(['message' => 'delete done!'], 200);
+    }
+
+    public function writeBook(Request $request)
+    {
+        $user = $request->user();
+
+        $id = $request->id;
+        $book = null;
+        if (isset($id) && $id && $id != "undefined") {
+            $find_book = Book::find($id);
+            if ($find_book && ($find_book->user_id == $user->id || $user->id == 100)) {
+                $book = $find_book;
+            }
+        }
+
+        if (!$book) {
+            $book = new Book();
+        }
+
+        if (isset($_FILES["file"])) {
+            $file = $_FILES['file'];
+
+            $fileName = "book_" . $user->id . "_" . time() . "_" . basename($file['name']);
+            $filePath = "/images/book/";
+            $tmp = $file["tmp_name"];
+            $tmp_url = str_replace("\\", "/", $tmp);
+
+            //$moved = move_uploaded_file($tmp_url, $filePath . $fileName);
+            $full_file_path = $filePath . $fileName;
+            $image_resize = Image::make($tmp_url);
+            $image_resize->resize(540, 480);
+            $image_resize->save(public_path($full_file_path));
+
+            if (file_exists(public_path($full_file_path))) {
+                if (isset($book->img) && $book->img && file_exists(public_path($book->img))) {
+                    unlink(public_path($book->img));
+                }
+
+                $book->img = $filePath . $fileName;
+            }
+        }
+
+        $title = $request->title;
+        if (isset($title) && $title && $title != "undefined") {
+            $book->title = $title;
+        }
+
+        $abstract = $request->abstract;
+        if (isset($abstract) && $abstract && $abstract != "undefined") {
+            $book->abstract = $abstract;
+        }
+
+        $foreign_author = $request->foreign_author;
+        if (isset($foreign_author) && $foreign_author && $foreign_author != "undefined") {
+            $book->foreign_author = $foreign_author;
+        }
+
+        $price = $request->price;
+        if (isset($price) && $price && $price != "undefined") {
+            $book->price = $price;
+        }
+
+        $book->publish_status = 0;
+        $published = $request->published;
+        if (isset($published) && $published && $published != "undefined" && $published != "false" && $published != "False") {
+            $book->publish_status  = 10;
+        }
+
+        $genre = $request->genre;
+        if (isset($genre) && $genre && $genre != "undefined") {
+            $genre = trim($genre);
+            $sub = Genre::where("title", "like", '%' . $genre . '%')->first();
+            if (!$sub) {
+                $sub = new Genre();
+                $sub->title = $genre;
+                $sub->save();
+            }
+            $book->genre_id = $sub->id;
+        }
+
+        if (!$book->user_id) {
+            $book->user_id = $user->id;
+        }
+
+        $book->save();
+
+        return response()->json([
+            'token' => $this->generateAccessToken($user),
+            'book' => $book,
+            //'request' => $request->all(),
+        ], 200);
     }
 }
