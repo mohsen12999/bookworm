@@ -125,9 +125,6 @@ class PostController extends Controller
 
         $post->save();
 
-        // pic not save
-        // subject problem
-
         return response()->json([
             'token' => $this->generateAccessToken($user),
             'post' => $post,
