@@ -61,7 +61,7 @@ class PostController extends Controller
         if (isset($_FILES["file"])) {
             $file = $_FILES['file'];
 
-            $fileName = "post_" . $user->id . "_" . basename($file['name']);
+            $fileName = "post_" . $user->id . "_" . time() . "_" . basename($file['name']);
             $filePath = "/images/blog/";
             $tmp = $file["tmp_name"];
             $tmp_url = str_replace("\\", "/", $tmp);
@@ -73,7 +73,7 @@ class PostController extends Controller
             $image_resize->save(public_path($full_file_path));
 
             if (file_exists(public_path($full_file_path))) {
-                if (isset($post->img) && $post->img && file_exists(public_path($post->img)) && $full_file_path != $post->img) {
+                if (isset($post->img) && $post->img && file_exists(public_path($post->img))) {
                     unlink(public_path($post->img));
                 }
 
