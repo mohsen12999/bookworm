@@ -23,7 +23,7 @@ const EditBlog = () => {
     const [description, setDescription] = React.useState();
     const [subject, setSubject] = React.useState();
     const [foreignAuthor, setForeignAuthor] = React.useState();
-    const [published, setPublished] = React.useState(false);
+    const [published, setPublished] = React.useState(undefined);
 
     const [src, setSrc] = React.useState(undefined);
 
@@ -54,11 +54,12 @@ const EditBlog = () => {
                 }
 
                 const writePost = exit => {
-                    if (!writtenPost &&(
-                        !title ||
-                        title.length < 3 ||
-                        !description ||
-                        description.length < 3)
+                    if (
+                        !writtenPost &&
+                        (!title ||
+                            title.length < 3 ||
+                            !description ||
+                            description.length < 3)
                     ) {
                         context.OpenSnackbar("عنوان مقاله و متن اجباری هستند");
                         return;
@@ -218,7 +219,15 @@ const EditBlog = () => {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                checked={published}
+                                                checked={
+                                                    published ??
+                                                    (writtenPost &&
+                                                    writtenPost.publish_status &&
+                                                    writtenPost.publish_status ==
+                                                        10
+                                                        ? true
+                                                        : false)
+                                                }
                                                 onChange={e =>
                                                     setPublished(
                                                         e.target.checked
@@ -237,8 +246,8 @@ const EditBlog = () => {
                                         size="large"
                                         type="submit"
                                         disabled={
-                                            !writtenPost &&(
-                                                !title ||
+                                            !writtenPost &&
+                                            (!title ||
                                                 title.length < 3 ||
                                                 !description ||
                                                 description.length < 3)
@@ -257,8 +266,8 @@ const EditBlog = () => {
                                     color="primary"
                                     size="large"
                                     disabled={
-                                        !writtenPost &&(
-                                            !title ||
+                                        !writtenPost &&
+                                        (!title ||
                                             title.length < 3 ||
                                             !description ||
                                             description.length < 3)
