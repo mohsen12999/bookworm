@@ -101,7 +101,6 @@ class PostController extends Controller
             $post->description = $description;
         }
 
-        //published
         $post->publish_status = 0;
         $published = $request->published;
         if (isset($published) && $published && $published != "undefined" && $published != "false" && $published != "False") {
@@ -111,7 +110,7 @@ class PostController extends Controller
         $subject = $request->subject;
         if (isset($subject) && $subject && $subject != "undefined") {
             $subject = trim($subject);
-            $sub = Subject::where("title", "like", '%' . $subject . '%');
+            $sub = Subject::where("title", "like", '%' . $subject . '%')->first();
             if (!$sub) {
                 $sub = new Subject();
                 $sub->title = $subject;
