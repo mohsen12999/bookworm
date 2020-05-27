@@ -267,6 +267,15 @@ const ContextProvider = props => {
         };
     };
 
+    const MakeSubjectDictionary = () => {
+        const subjects = publicContext.subjects;
+        const subjectsDictionary = subjects.reduce((dictionary, subject) => {
+            dictionary[subject.id] = subject.title;
+            return result;
+        }, {});
+        return subjectsDictionary;
+    };
+
     return (
         <Context.Provider
             value={{
@@ -289,7 +298,8 @@ const ContextProvider = props => {
                 DeletePost,
                 GetWrittenPost,
                 GetWrittenBook,
-                WritePost
+                WritePost,
+                MakeSubjectDictionary
             }}
         >
             {props.children}
