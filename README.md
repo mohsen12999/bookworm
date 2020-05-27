@@ -15,6 +15,7 @@
 
 ## TODO
 
+-   [ ] order of chapter - change order
 -   [ ] change theme [dark/light]
 -   [ ] change font and color
 -   [ ] autocomplete for input in subject and genre
