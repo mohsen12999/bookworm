@@ -89,13 +89,13 @@ const MyBlog = () => {
                         <TableCell component="td" scope="row" align="right">
                           {wp.id}
                         </TableCell>
-                        <TableCell component="td" scope="row" align="right">
+                        <TableCell component="td" scope="row" align="center">
                           {wp.title}
                         </TableCell>
-                        <TableCell component="td" scope="row" align="right">
+                        <TableCell component="td" scope="row" align="center">
                           {subDic[wp.subject_id]}
                         </TableCell>
-                        <TableCell component="td" scope="row" align="right">
+                        <TableCell component="td" scope="row" align="center">
                           {PostPublishStatusDescription(wp.publish_status)}
                         </TableCell>
                         <TableCell component="td" scope="row" align="left">
