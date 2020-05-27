@@ -227,9 +227,16 @@ const ContextProvider = (props) => {
       ? adminContext.writtenBooks.find((book) => book.id === Number(book_id))
       : undefined;
 
-  const GetWrittenChapter = (book_id) =>
-    book_id
+  const GetWrittenChapter = (chapter_id) =>
+    chapter_id
       ? adminContext.writtenChapters.find(
+          (chapter) => chapter.id === Number(chapter_id)
+        )
+      : undefined;
+
+  const GetWrittenBookChapters = (book_id) =>
+    book_id
+      ? adminContext.writtenChapters.filter(
           (chapter) => chapter.book_id === Number(book_id)
         )
       : undefined;
@@ -305,6 +312,7 @@ const ContextProvider = (props) => {
         GetWrittenPost,
         GetWrittenBook,
         GetWrittenChapter,
+        GetWrittenBookChapters,
         WritePost,
         MakeSubjectDictionary,
         MakeGenreDictionary,
