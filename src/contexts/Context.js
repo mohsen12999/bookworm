@@ -216,7 +216,7 @@ const ContextProvider = props => {
         if (result.success) {
             const remainWrittenPosts = adminContext.writtenPosts.filter(
                 post => post.id !== id
-            ):[];
+            );
 
             setAdminContext({
                 ...adminContext,
@@ -248,11 +248,11 @@ const ContextProvider = props => {
 
         const result = await FetchWritePost(data);
 
-        // TODO: is new post / edit => change admin context
         if (result.success) {
             const writtenPosts = adminContext.writtenPosts;
             const index = writtenPosts.findIndex(wp => wp.id == result.post.id);
             if (index >= 0) {
+                // for edit page
                 writtenPosts.splice(index, 1);
             }
             writtenPosts.push(result.post);
@@ -265,6 +265,15 @@ const ContextProvider = props => {
             success: result.success,
             id: result.success ? result.post.id : 0
         };
+    };
+
+    const MakeSubjectDictionary = () => {
+        const subjects = publicContext.subjects;
+        const subjectsDictionary = subjects.reduce((dictionary, subject) => {
+            dictionary[subject.id] = subject.title;
+            return result;
+        }, {});
+        return subjectsDictionary;
     };
 
     return (
@@ -289,7 +298,8 @@ const ContextProvider = props => {
                 DeletePost,
                 GetWrittenPost,
                 GetWrittenBook,
-                WritePost
+                WritePost,
+                MakeSubjectDictionary
             }}
         >
             {props.children}
