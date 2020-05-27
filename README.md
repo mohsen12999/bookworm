@@ -15,7 +15,8 @@
 
 ## TODO
 
--   [ ] renew token every time access via api
+-   [ ] difference table for note[write] and book[publish]
+-   [ ] difference table for blog[write] and post[publish]
 -   [ ] change user password
 -   [ ] user role
 -   [ ] free host
