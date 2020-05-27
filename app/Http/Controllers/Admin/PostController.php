@@ -67,12 +67,13 @@ class PostController extends Controller
             $tmp_url = str_replace("\\", "/", $tmp);
 
             //$moved = move_uploaded_file($tmp_url, $filePath . $fileName);
+            $full_file_path = $filePath . $fileName;
             $image_resize = Image::make($tmp_url);
             $image_resize->resize(540, 480);
-            $image_resize->save(public_path($filePath . $fileName));
+            $image_resize->save(public_path($full_file_path));
 
-            if (file_exists(public_path($filePath . $fileName))) {
-                if (isset($post->img) && $post->img && file_exists(public_path($post->img))) {
+            if (file_exists(public_path($full_file_path))) {
+                if (isset($post->img) && $post->img && file_exists(public_path($post->img)) && $full_file_path != $post->img) {
                     unlink(public_path($post->img));
                 }
 
@@ -101,9 +102,10 @@ class PostController extends Controller
         }
 
         //published
+        $post->publish_status = 0;
         $published = $request->published;
         if (isset($published) && $published && $published != "undefined" && $published != "false" && $published != "False") {
-            $post->publish_status  = 1;
+            $post->publish_status  = 10;
         }
 
         $subject = $request->subject;
