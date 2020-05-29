@@ -82,7 +82,6 @@ const MyBlog = () => {
                             </Typography>
                         ) : (
                             <TableContainer
-                                key={wp.id}
                                 component={Paper}
                                 className="note-table"
                             >
@@ -108,7 +107,7 @@ const MyBlog = () => {
                                     </TableHead>
                                     <TableBody>
                                         {context.admin.writtenPosts.map(wp => (
-                                            <TableRow hover>
+                                            <TableRow key={wp.id} hover>
                                                 <TableCell
                                                     component="td"
                                                     scope="row"
