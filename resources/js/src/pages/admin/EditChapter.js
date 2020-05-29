@@ -30,7 +30,10 @@ const EditChapter = () => {
             {context => {
                 const writtenChapter = context.GetWrittenChapter(chapter_id);
 
-                if (writtenChapter && writtenChapter.book_id !== note_id) {
+                if (
+                    writtenChapter &&
+                    writtenChapter.book_id !== Number(note_id)
+                ) {
                     context.OpenSnackbar("اشکال در ناهماهنگی فصل و کتاب");
                     return <Redirect to={"/chapters/" + note_id} />;
                 }
