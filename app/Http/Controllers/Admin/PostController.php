@@ -20,7 +20,6 @@ class PostController extends Controller
         return $token->accessToken;
     }
 
-
     public function deletePost(Request $request, $id)
     {
         $post = Post::find($id);
@@ -39,7 +38,6 @@ class PostController extends Controller
 
         return response()->json(['message' => 'delete done!'], 200);
     }
-
 
     public function writePost(Request $request)
     {
