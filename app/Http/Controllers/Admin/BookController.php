@@ -158,7 +158,7 @@ class BookController extends Controller
         $chapter = null;
         if (isset($id) && $id && $id != "undefined") {
             $find_chapter = Chapter::find($id);
-            if ($find_chapter && ($find_chapter->user_id == $user->id || $user->id == 100)) {
+            if ($find_chapter && ($find_chapter->book->user_id == $user->id || $user->id == 100)) {
                 $chapter = $find_chapter;
             }
         }
