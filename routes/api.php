@@ -28,9 +28,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/profile', 'Admin\AuthController@updateProfile')->name('update_profile');
 
     Route::delete('/note/{id}', 'Admin\BookController@deleteBook')->name('deleteBook');
-    Route::post('/note', 'Admin\PostController@writeBook')->name('writeBook');
-    Route::delete('/chapter/{id}', 'Admin\PostController@deleteChapter')->name('deleteChapter');
-    Route::post('/chapter', 'Admin\PostController@writeChapter')->name('writeChapter');
+    Route::post('/note', 'Admin\BookController@writeBook')->name('writeBook');
+    Route::delete('/chapter/{id}', 'Admin\BookController@deleteChapter')->name('deleteChapter');
+    Route::post('/chapter', 'Admin\BookController@writeChapter')->name('writeChapter');
 
     Route::delete('/blog/{id}', 'Admin\PostController@deletePost')->name('deletePost');
     Route::post('/blog', 'Admin\PostController@writePost')->name('writePost');
