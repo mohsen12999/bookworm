@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Image;
 
 use App\Book;
 use App\Chapter;
@@ -13,6 +14,13 @@ use App\Genre;
 class BookController extends Controller
 {
     //
+    protected function generateAccessToken($user)
+    {
+        $token = $user->createToken($user->email . '-' . now());
+
+        return $token->accessToken;
+    }
+
     public function deleteBook(Request $request, $id)
     {
         $book = Book::find($id);
