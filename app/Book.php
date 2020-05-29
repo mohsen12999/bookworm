@@ -15,6 +15,11 @@ class Book extends Model
         return $this->hasMany('App\Chapter');
     }
 
+    public function genre()
+    {
+        return $this->belongsTo('App\Genre');
+    }
+
     public function scopePublic_book($query)
     {
         return $query->where('publish_status', 100);
