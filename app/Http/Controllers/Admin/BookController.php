@@ -200,10 +200,16 @@ class BookController extends Controller
             $chapter->description = $description;
         }
 
+
         $chapter->publish_status = 0;
         $published = $request->published;
         if (isset($published) && $published && $published != "undefined" && $published != "false" && $published != "False") {
             $chapter->publish_status  = 10;
+        }
+
+        $book_id = $request->book_id;
+        if (isset($book_id) && $book_id && $book_id != "undefined") {
+            $chapter->book_id = $book_id;
         }
 
         $chapter->save();
