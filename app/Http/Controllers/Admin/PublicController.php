@@ -20,10 +20,10 @@ class PublicController extends Controller
         $authors = User::author_user()->get();
 
         $subjects = Subject::all();
-        $posts = Post::public_post()->get();
+        $posts = Post::public_post()->with('subject:id,title')->get();
 
         $genres = Genre::all();
-        $books = Book::public_book()->get();
+        $books = Book::public_book()->with('genre:id,title')->get();
 
 
         $chapters = Chapter::public_chapter()->get();

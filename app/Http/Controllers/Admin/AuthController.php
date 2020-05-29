@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Image;
-
-use Auth;
 
 use App\User;
 use App\Book;
@@ -20,7 +17,6 @@ use App\Bought;
 
 class AuthController extends Controller
 {
-    //
     protected function generateAccessToken($user)
     {
         $token = $user->createToken($user->email . '-' . now());
@@ -28,6 +24,56 @@ class AuthController extends Controller
         return $token->accessToken;
     }
 
+    protected function getUserDate($user)
+    {
+        $factors = Factor::where('user_id', $user->id)->get();
+        $bought = Bought::where('user_id', $user->id)->get();
+
+        $writtenBooks = Book::where('user_id', $user->id)->with('genre:id,title')->get();
+        $writtenBooks_id = array_map(function ($val) {
+            return $val["id"];
+        }, $writtenBooks->toArray());
+        $writtenChapters = Chapter::whereIn('book_id', $writtenBooks_id);
+        $writtenPosts = Post::where('user_id', $user->id)->with('subject:id,title')->get();
+
+        $chapters = Chapter::public_chapter()->get();
+        $free_books_id = Book::public_book()->free_book()->select('id')->get()->toArray();
+
+        $free_books_id_arr = array_map(function ($val) {
+            return $val["id"];
+        }, $free_books_id);
+
+        $bought_book = $bought->toArray();
+        $bought_book_id_arr = array_map(function ($val) {
+            return $val["id"];
+        }, $bought_book);
+
+        foreach ($chapters as $chapter) {
+            if ($chapter->free_chapter == 0 && !in_array($chapter->book_id, $free_books_id_arr) && !in_array($chapter->book_id, $bought_book_id_arr)) {
+                $chapter->description = NULL; // not send [not-free chapter] and [not-free book chapter] description
+            }
+        }
+
+        return [
+            'token' => $this->generateAccessToken($user),
+            'chapters' => $chapters,
+            'user' => [
+                'isAuthenticated' => true,
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'mobile' => $user->mobile,
+                'avatar' => $user->avatar,
+                'wallet' => $user->wallet,
+                'role' => $user->role,
+                'factors' => $factors,
+                'boughtBooks' => $bought,
+                'writtenBooks' => $writtenBooks,
+                'writtenChapters' => $writtenChapters,
+                'writtenPosts' => $writtenPosts
+            ]
+        ];
+    }
 
     public function register(Request $request)
     {
@@ -45,6 +91,7 @@ class AuthController extends Controller
 
         return response()->json($user);
     }
+
 
     public function login(Request $request)
     {
@@ -85,54 +132,6 @@ class AuthController extends Controller
         $userData = $this->getUserDate($user);
 
         return response()->json($userData, 200);
-    }
-
-    protected function getUserDate($user)
-    {
-        $factors = Factor::where('user_id', $user->id)->get();
-        $bought = Bought::where('user_id', $user->id)->get();
-
-        $writtenBooks = Book::where('user_id', $user->id)->get();
-        $writtenChapters = Chapter::where('user_id', $user->id)->get();
-        $writtenPosts = Post::where('user_id', $user->id)->get();
-
-        $chapters = Chapter::public_chapter()->get();
-        $free_books_id = Book::public_book()->free_book()->select('id')->get()->toArray();
-
-        $free_books_id_arr = array_map(function ($val) {
-            return $val["id"];
-        }, $free_books_id);
-
-        $bought_book = $bought->toArray();
-        $bought_book_id_arr = array_map(function ($val) {
-            return $val["id"];
-        }, $bought_book);
-
-        foreach ($chapters as $chapter) {
-            if ($chapter->free_chapter == 0 && !in_array($chapter->book_id, $free_books_id_arr) && !in_array($chapter->book_id, $bought_book_id_arr)) {
-                $chapter->description = NULL; // not send [not-free chapter] and [not-free book chapter] description
-            }
-        }
-
-        return [
-            'token' => $this->generateAccessToken($user),
-            'chapters' => $chapters,
-            'user' => [
-                'isAuthenticated' => true,
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'mobile' => $user->mobile,
-                'avatar' => $user->avatar,
-                'wallet' => $user->wallet,
-                'role' => $user->role,
-                'factors' => $factors,
-                'boughtBooks' => $bought,
-                'writtenBooks' => $writtenBooks,
-                'writtenChapters' => $writtenChapters,
-                'writtenPosts' => $writtenPosts
-            ]
-        ];
     }
 
     public function updateProfile(Request $request)
