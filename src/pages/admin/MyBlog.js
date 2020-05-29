@@ -68,24 +68,20 @@ const MyBlog = () => {
                 شما هنوز مقاله ای ندارید!
               </Typography>
             ) : (
-              context.admin.writtenPosts.map((wp) => (
-                <TableContainer
-                  key={wp.id}
-                  component={Paper}
-                  className="note-table"
-                >
-                  <Table aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell align="center">کد</TableCell>
-                        <TableCell align="center">عنوان</TableCell>
-                        <TableCell align="center">موضوع</TableCell>
-                        <TableCell align="center">وضعیت نوشته</TableCell>
-                        <TableCell align="center">عملیات</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow hover>
+              <TableContainer component={Paper} className="note-table">
+                <Table aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center">کد</TableCell>
+                      <TableCell align="center">عنوان</TableCell>
+                      <TableCell align="center">موضوع</TableCell>
+                      <TableCell align="center">وضعیت نوشته</TableCell>
+                      <TableCell align="center">عملیات</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {context.admin.writtenPosts.map((wp) => (
+                      <TableRow key={wp.id} hover>
                         <TableCell component="td" scope="row" align="right">
                           {wp.id}
                         </TableCell>
@@ -175,10 +171,10 @@ const MyBlog = () => {
                           </Popper>
                         </TableCell>
                       </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              ))
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             )}
           </div>
         );
