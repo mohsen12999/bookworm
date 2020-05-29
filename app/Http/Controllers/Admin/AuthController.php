@@ -35,7 +35,7 @@ class AuthController extends Controller
         $writtenBooks_id = array_map(function ($val) {
             return $val["id"];
         }, $writtenBooks->toArray());
-        $writtenChapters = Chapter::all()->whereIn('book_id', $writtenBooks_id);
+        $writtenChapters = array_values(Chapter::all()->whereIn('book_id', $writtenBooks_id)->toArray());
         $writtenPosts = Post::where('user_id', $user->id)->with('subject:id,title')->get();
 
         $chapters = Chapter::public_chapter()->get();
