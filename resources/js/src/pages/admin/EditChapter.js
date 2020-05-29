@@ -16,10 +16,10 @@ import "./Profile.css";
 const EditChapter = () => {
     const { note_id, chapter_id } = useParams();
 
-    const [id, setId] = React.useState(undefined);
+    const [id, setId] = React.useState();
     const [title, setTitle] = React.useState();
     const [description, setDescription] = React.useState();
-    const [published, setPublished] = React.useState(undefined);
+    const [published, setPublished] = React.useState();
 
     const [exit2List, setExit2List] = React.useState(false);
 

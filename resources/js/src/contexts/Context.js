@@ -267,7 +267,7 @@ const ContextProvider = props => {
     const GetWrittenBookChapters = book_id =>
         book_id
             ? adminContext.writtenChapters.filter(
-                  chapter => chapter.book_id === Number(book_id)
+                  chapter => Number(chapter.book_id) === Number(book_id)
               )
             : undefined;
 
@@ -359,13 +359,15 @@ const ContextProvider = props => {
         if (result.success) {
             const writtenChapters = adminContext.writtenChapters;
             const index = writtenChapters.findIndex(
-                wp => wp.id === result.post.id
+                wc => wc.id === result.chapter.id
             );
             if (index >= 0) {
                 // for edit page
                 writtenChapters.splice(index, 1);
+                console.log("remove chapter :", result.chapter.id, index);
             }
             writtenChapters.push(result.chapter);
+            console.log("writtenChapters", writtenChapters);
             setAdminContext({
                 ...adminContext,
                 writtenChapters: writtenChapters
