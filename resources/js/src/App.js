@@ -24,6 +24,7 @@ import Wallet from "./pages/admin/Wallet";
 
 import EditNote from "./pages/admin/EditNote";
 import EditBlog from "./pages/admin/EditBlog";
+import NoteChapter from "./pages/admin/NoteChapter";
 import EditChapter from "./pages/admin/EditChapter";
 
 import PrivateRouteLayout from "./components/PrivateRouteLayout";
@@ -45,6 +46,11 @@ function App() {
                             <Route path="/note/:note_id?">
                                 <PrivateRouteLayout>
                                     <EditNote />
+                                </PrivateRouteLayout>
+                            </Route>
+                            <Route path="/chapters/:note_id">
+                                <PrivateRouteLayout>
+                                    <NoteChapter />
                                 </PrivateRouteLayout>
                             </Route>
                             <Route path="/chapter/:note_id/:chapter_id?">
