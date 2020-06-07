@@ -67,3 +67,4 @@
 
 - [react laravel application](https://blog.pusher.com/react-laravel-application/)
 - [Setting up Laravel and React.js the right way (Using user authentication)](https://medium.com/@000kelvin/setting-up-laravel-and-react-js-the-right-way-using-user-authentication-1cfadf3194e)
+- [draftjs as editor](https://draftjs.org/)
