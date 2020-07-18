@@ -18,6 +18,41 @@
 -   [x] `php artisan migrate`
 -   [x] `php artisan passport:install`
 
+## features
+
+-   separate written and publish content
+    -   post -> article
+    -   write -> book
+-   log table - user time action table row_id new_content[json]
+-   show text differences
+    -   https://github.com/BillyNate/PHP-FineDiff
+
+```php
+function highlight_modified_string($actual_string, $modified_string) {
+    $str_array = explode(' ', $actual_string);
+    $str_edited_array = explode(' ', $modified_string);
+    $str_added = array_diff($str_edited_array, $str_array);
+
+    foreach($str_edited_array as &$str_edited_value) {
+        foreach($str_added as $str_added_value) {
+            if($str_added_value == $str_edited_value) {
+                $str_edited_value = '<span style="font-weight: bold">' . $str_edited_value . '</span>';
+            }
+        }
+        unset($str_edited_value);
+    }
+
+    return implode(' ', $str_edited_array);
+}
+
+$str = "These are my comments. They are awesome!";
+$str_edited = "These are my not so great comments. They are awesome! I disagree.";
+$str_modified = highlight_modified_string($str, $str_edited);
+
+echo "<p>{$str}</p>";
+echo "<p>{$str_modified}</p>";
+```
+
 ## Link
 
 -   https://medium.com/i-o-digital/https-medium-com-io-building-progressive-web-apps-with-laravel-57f6bfa3ddb1
