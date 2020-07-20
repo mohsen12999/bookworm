@@ -30,3 +30,14 @@
 -   [ ] comment for book and posts
 -   [ ] ticket, support and report
 -   [ ] show website news
+
+## for deploy in cpanel
+
+-   rename `public` to `public_html`
+-   add this line to `index.php` under app definition
+
+```php
+$app->bind('path.public', function () {
+    return __DIR__;
+});
+```
