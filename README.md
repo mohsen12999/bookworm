@@ -1,4 +1,6 @@
-# Bok worm
+# Book worm
+
+- rewrite front end of app with ReactJS, TypeScript and Redux
 
 ## commands
 
