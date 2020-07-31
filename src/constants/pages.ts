@@ -4,8 +4,9 @@ export enum HomePages {
   BOOKS = "books", // book list
   BOOK = "book", // book info page
   READ = "read", // show single chapter
-  BLOGS = "blogs", // blog list
-  BLOG = "blog",
+  POSTS = "posts", // blog list
+  POST = "post",
+  NOTFOUND = "notfound",
 }
 
 export enum AuthPages {
@@ -21,6 +22,6 @@ export enum AdminPages {
   MY_BOOKS = "mybooks",
   MY_BOOK = "mybook",
   MY_CHAPTER = "mychapter",
-  MY_BLOGS = "myblogs",
-  MY_BLOG = "myblog",
+  MY_POSTS = "myposts",
+  MY_POST = "mypost",
 }
