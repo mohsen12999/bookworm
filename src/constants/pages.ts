@@ -1,5 +1,5 @@
 export enum HomePages {
-  INDEX = "index",
+  INDEX = "",
   ABOUT = "about",
   BOOKS = "books", // book list
   BOOK = "book", // book info page
