@@ -4,7 +4,8 @@
 
 ## TODO
 
-- [ ] 404 page
+- [ ] search page
+- [ ] not found (404) page
 
 ## future feature
 
