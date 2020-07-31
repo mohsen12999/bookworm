@@ -1,20 +1,20 @@
 export interface IPublicState {
-  genres: genre[];
-  books: book[];
-  chapters: chapter[];
-  posts: post[];
-  subjects: subject[];
-  authors: author[];
+  genres: IGenre[];
+  books: IBook[];
+  chapters: IChapter[];
+  posts: IPost[];
+  subjects: ISubject[];
+  authors: IAuthor[];
 }
 
-export interface genre {
+export interface IGenre {
   id: number;
   title: string;
   img: string;
   count: number;
 }
 
-export interface book {
+export interface IBook {
   id: number;
   title: string;
   author: string;
@@ -24,7 +24,7 @@ export interface book {
   date: string;
 }
 
-export interface chapter {
+export interface IChapter {
   id: number;
   title: string;
   free: boolean;
@@ -32,7 +32,7 @@ export interface chapter {
   book_id: number;
 }
 
-export interface post {
+export interface IPost {
   id: number;
   title: string;
   author: string;
@@ -40,12 +40,12 @@ export interface post {
   created_at: string;
 }
 
-export interface subject {
+export interface ISubject {
   id: number;
   title: string;
 }
 
-export interface author {
+export interface IAuthor {
   id: number;
   name: string;
   avatar: string;
