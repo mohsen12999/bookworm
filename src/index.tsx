@@ -21,6 +21,17 @@ import SinglePost from "./pages/public/SinglePost";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Logout from "./pages/auth/Logout";
+import Search from "./pages/public/Search";
+import Dashboard from "./pages/admin/Dashboard";
+import Profile from "./pages/admin/Profile";
+import MyBooks from "./pages/admin/MyBooks";
+import MyPosts from "./pages/admin/MyPosts";
+import MyLibrary from "./pages/admin/MyLibrary";
+import Wallet from "./pages/admin/Wallet";
+import PrivateRouteLayout from "./components/PrivateRouteLayout";
+import EditPost from "./pages/admin/EditPost";
+import EditBook from "./pages/admin/EditBook";
+import EditChapter from "./pages/admin/EditChapter";
 
 const store = configureStore({} /* provide initial state if any */);
 
@@ -48,6 +59,11 @@ ReactDOM.render(
             exact
             path={process.env.PUBLIC_URL + "/" + HomePages.ABOUT}
             component={About}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/" + HomePages.SEARCH}
+            component={Search}
           />
           <Route
             exact
@@ -85,6 +101,76 @@ ReactDOM.render(
             path={process.env.PUBLIC_URL + "/" + AuthPages.LOGOUT}
             component={Logout}
           />
+
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/" + AdminPages.DASHBOARD}
+            component={Dashboard}
+          />
+          <Route exact path={process.env.PUBLIC_URL + "/" + AdminPages.PROFILE}>
+            <PrivateRouteLayout>
+              <Profile />
+            </PrivateRouteLayout>
+          </Route>
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/" + AdminPages.MY_BOOKS}
+          >
+            <PrivateRouteLayout>
+              <MyBooks />
+            </PrivateRouteLayout>
+          </Route>
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/" + AdminPages.MY_POSTS}
+          >
+            <PrivateRouteLayout>
+              <MyPosts />
+            </PrivateRouteLayout>
+          </Route>
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/" + AdminPages.MY_Library}
+          >
+            <PrivateRouteLayout>
+              <MyLibrary />
+            </PrivateRouteLayout>
+          </Route>
+          <Route exact path={process.env.PUBLIC_URL + "/" + AdminPages.WALLET}>
+            <PrivateRouteLayout>
+              <Wallet />
+            </PrivateRouteLayout>
+          </Route>
+
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/" + AdminPages.EDIT_POST + "/:id?"}
+          >
+            <PrivateRouteLayout>
+              <EditPost />
+            </PrivateRouteLayout>
+          </Route>
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/" + AdminPages.EDIT_BOOK + "/:id?"}
+          >
+            <PrivateRouteLayout>
+              <EditBook />
+            </PrivateRouteLayout>
+          </Route>
+          <Route
+            exact
+            path={
+              process.env.PUBLIC_URL +
+              "/" +
+              AdminPages.EDIT_CHAPTER +
+              "/:book_id/:chapter_id?"
+            }
+          >
+            <PrivateRouteLayout>
+              <EditChapter />
+            </PrivateRouteLayout>
+          </Route>
 
           <Route component={NotFound} />
         </Switch>
