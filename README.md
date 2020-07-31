@@ -10,3 +10,7 @@
 - install react router`npm i --save react-router react-router-dom connected-react-router history @types/react-router`
 - install material ui `npm i --save @material-ui/core @material-ui/icons`
 - problem with `"history": :^5.0.0"` revert to `"history": "^4.10.1"`
+
+## link
+
+- https://redux.js.org/recipes/usage-with-typescript
