@@ -1,24 +1,26 @@
-import {
-  TodoState,
-  TodoActionsTypes,
-  CREATE_TODO_REQUEST,
-} from "../types/types";
+export const m = {};
 
-const initialState: TodoState = {
-  data: [],
-};
+// import {
+//   TodoState,
+//   TodoActionsTypes,
+//   CREATE_TODO_REQUEST,
+// } from "../types/types";
 
-export default function todoReducer(
-  state = initialState,
-  action: TodoActionsTypes
-): TodoState {
-  switch (action.type) {
-    case CREATE_TODO_REQUEST:
-      return {
-        data: [...state.data, action.payload.todo],
-      };
+// const initialState: TodoState = {
+//   data: [],
+// };
 
-    default:
-      return state;
-  }
-}
+// export default function todoReducer(
+//   state = initialState,
+//   action: TodoActionsTypes
+// ): TodoState {
+//   switch (action.type) {
+//     case CREATE_TODO_REQUEST:
+//       return {
+//         data: [...state.data, action.payload.todo],
+//       };
+
+//     default:
+//       return state;
+//   }
+// }
