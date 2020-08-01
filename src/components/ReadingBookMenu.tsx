@@ -13,6 +13,10 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Link, useRouteMatch } from "react-router-dom";
 
+import {IBook,IChapter} from "../types/publicTypes.ts"
+import { IAdminState } from "../types/adminType";
+import { IPublicState } from "../types/publicTypes.ts"
+
 // import { Context } from "../contexts/Context";
 //import { getBook, getBookChapters } from "../services/data";
 
@@ -52,25 +56,28 @@ const SubMenuListItemLink = ({ title, book_id, chapter_id, enable }:ISubMenuList
   );
 };
 
-const ReadingBookMenu = () => {
+interface IReadingBookProps{
+	loggedIn:boolean;
+	lastBookId?:number;
+	lastChapterId?: number;
+	books: IBooks[];
+	chapters: IChapter[];
+}
+
+
+const ReadingBookMenu = ({loggedIn,lastBookId,lastChapterId}:IReadingBookProps) => {
   const [openList, setOpenList] = React.useState(true);
   const handleClickOpenList = () => {
     setOpenList(!openList);
   };
 
-  return (
-    <Context.Consumer>
-      {(context) => {
-        if (
-          !context.admin.isAuthenticated ||
-          context.admin.lastBookId === undefined ||
-          context.admin.lastBookId == null
-        ) {
-          return <React.Fragment></React.Fragment>;
-        }
+  if(!loggedIn || !lastBookId || !lastChapterId){
+	return  <React.Fragment></React.Fragment>;
+  }
 
-        const book = context.GetBook(context.admin.lastBookId);
-        const chapters = context.GetChapters(context.admin.lastBookId);
+
+  const lastBook = books.find((bk)=> bk.id==lastBookId);
+  const lastBookChapters = chapters.filter((ch)=>ch.book_id==lastBookId) 
 
         if (!book || !chapters) {
           return <React.Fragment></React.Fragment>;
@@ -88,21 +95,21 @@ const ReadingBookMenu = () => {
               <ListItemIcon>
                 <BookIcon />
               </ListItemIcon>
-              <ListItemText className="menu-item-text" primary={book.title} />
+              <ListItemText className="menu-item-text" primary={lastBook.title} />
               {openList ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openList} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <SubMenuListItemLink title="فهرست" book_id={book.id} />
-                {chapters &&
-                  chapters.map((chapter) => (
+                <SubMenuListItemLink title="فهرست" book_id={lastBook.id} />
+                {
+                  lastBookChapters.map((chapter) => (
                     <SubMenuListItemLink
                       key={chapter.id}
                       title={chapter.title}
-                      book_id={book.id}
+                      book_id={lastBook.id}
                       chapter_id={chapter.id}
                       enable={
-                        Number(context.admin.lastChapterId) === chapter.id
+                        lastChapterId === chapter.id
                       }
                     />
                   ))}
@@ -110,9 +117,16 @@ const ReadingBookMenu = () => {
             </Collapse>
           </React.Fragment>
         );
-      }}
-    </Context.Consumer>
-  );
-};
+                    }
+const mapStateToProps = (State: { admin: IAdminState, public: IPublicState }) => ({
+  loggedIn: State.admin.loggedIn,
+         lastBookId?:State.admin.lastBookId;
+	 lastChapterId?: State.admin.lastChapterId;
 
-export default ReadingBookMenu;
+           books: State.public.books;
+           chapters: State.public.chapters;
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReadingBookMenu);
