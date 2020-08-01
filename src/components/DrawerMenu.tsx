@@ -23,6 +23,7 @@ import ListItemLink from "./ListItemLink";
 import ReadingBookMenu from "./ReadingBookMenu";
 
 import { HomePages, AuthPages, AdminPages } from "../constants/pages";
+import {IAdminState} from "../types/adminType";
 
 interface IMenuItem {
   id: number;

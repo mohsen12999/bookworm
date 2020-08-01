@@ -21,7 +21,8 @@ function ListItemLink({icon, primary, to, enable, exactMatch}:IListItemLinkProps
   const renderLink = React.useMemo(
     () =>
       React.forwardRef((linkProps, ref) => (
-        <Link ref={ref} to={enable ? to : "/login"} {...linkProps} />
+	      {/*<Link ref={ref} to={enable ? to : "/login"} {...linkProps} />*/}
+	      <Link ref={ref as React.MutableRefObject<HTMLInputElement>} to={enable ? to : "/login"} {...linkProps} />
       )),
     [to, enable]
   );

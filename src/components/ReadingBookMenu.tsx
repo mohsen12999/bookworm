@@ -120,11 +120,10 @@ const ReadingBookMenu = ({loggedIn,lastBookId,lastChapterId}:IReadingBookProps) 
                     }
 const mapStateToProps = (State: { admin: IAdminState, public: IPublicState }) => ({
   loggedIn: State.admin.loggedIn,
-         lastBookId?:State.admin.lastBookId;
-	 lastChapterId?: State.admin.lastChapterId;
-
-           books: State.public.books;
-           chapters: State.public.chapters;
+         lastBookId?:State.admin.lastBookId,
+	 lastChapterId?: State.admin.lastChapterId,
+           books: State.public.books,
+           chapters: State.public.chapters,
 });
 
 const mapDispatchToProps = {};
