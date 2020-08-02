@@ -1,19 +1,20 @@
 import React from "react";
+import { connect } from "react-redux";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
+
 import { IAppState } from "../types/appType";
 
-interface IMyBackdropProps{
-	loading:boolean;
+import "./MyBackdrop.css";
+
+interface IMyBackdropProps {
+  loading: boolean;
 }
 
-const MyBackdrop = (props:IMyBackdropProps) => (
-                <Backdrop
-                    style={{ zIndex: 1000, color: "#fff" }}
-                    open={props.loading}
-                >
-                    <CircularProgress color="inherit" />
-                </Backdrop>
+const MyBackdrop = (props: IMyBackdropProps) => (
+  <Backdrop className="backdrop" open={props.loading}>
+    <CircularProgress color="inherit" />
+  </Backdrop>
 );
 
 const mapStateToProps = (State: { app: IAppState }) => ({
