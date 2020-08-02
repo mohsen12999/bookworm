@@ -59,10 +59,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface IMainLayoutProps {
-	    container?: Element;
+  children: React.ReactNode;
+  container?: Element;
 }
 
-const MainLayout = (props:IMainLayoutProps) => {
+const MainLayout = (props: IMainLayoutProps) => {
   const { container } = props;
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
