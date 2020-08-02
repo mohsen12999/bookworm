@@ -1,9 +1,9 @@
 import { Dispatch } from "redux";
 import { AppAction } from "../constants/actionTypes";
 
-export const closeSnackbar = (event: React.MouseEvent) => (
-  dispatch: Dispatch
-) => {
+export const closeSnackbar = (
+  event: React.SyntheticEvent | React.MouseEvent
+) => (dispatch: Dispatch) => {
   event.stopPropagation();
 
   dispatch({
