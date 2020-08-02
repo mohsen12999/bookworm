@@ -12,38 +12,48 @@ import BookmarkIcon from "@material-ui/icons/Bookmark";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Link, useRouteMatch } from "react-router-dom";
+import { connect } from "react-redux";
 
-import {IBook,IChapter} from "../types/publicTypes.ts"
+import { IBook, IChapter } from "../types/publicTypes";
 import { IAdminState } from "../types/adminType";
-import { IPublicState } from "../types/publicTypes.ts"
+import { IPublicState } from "../types/publicTypes";
 
 // import { Context } from "../contexts/Context";
 //import { getBook, getBookChapters } from "../services/data";
 
 import "./ReadingBookMenu.css";
 
-interface ISubMenuListItemLinkProps{
-	title:string; book_id:number; chapter_id:number; enable:boolean;
+interface ISubMenuListItemLinkProps {
+  title: string;
+  book_id: number;
+  chapter_id?: number;
+  enable: boolean;
 }
 
-const SubMenuListItemLink = ({ title, book_id, chapter_id, enable }:ISubMenuListItemLinkProps) => {
-	//  const { title, book_id, chapter_id, enable } = props;
+const SubMenuListItemLink = ({
+  title,
+  book_id,
+  chapter_id,
+  enable,
+}: ISubMenuListItemLinkProps) => {
+  //  const { title, book_id, chapter_id, enable } = props;
   const dest = chapter_id
     ? "/read/" + book_id + "/" + chapter_id
     : "/book/" + book_id;
   const match = useRouteMatch({ path: dest, exact: false });
 
-  const renderLink = React.useMemo(
-    () =>
-      React.forwardRef((linkProps, ref) => (
-        <Link ref={ref} to={dest} {...linkProps} />
-      )),
-    [dest]
-  );
+  // const renderLink = React.useMemo(
+  //   () =>
+  //     React.forwardRef((linkProps, ref) => (
+  //       <Link ref={ref} to={dest} {...linkProps} />
+  //     )),
+  //   [dest]
+  // );
   return (
     <Tooltip title={"خواندن " + title} aria-label={"خواندن " + title}>
       <ListItem
-        component={renderLink}
+        component={Link}
+        to={dest}
         className={"menu-item sub-menu" + (match ? " active-link" : "")}
         button
       >
@@ -56,74 +66,78 @@ const SubMenuListItemLink = ({ title, book_id, chapter_id, enable }:ISubMenuList
   );
 };
 
-interface IReadingBookProps{
-	loggedIn:boolean;
-	lastBookId?:number;
-	lastChapterId?: number;
-	books: IBooks[];
-	chapters: IChapter[];
+interface IReadingBookProps {
+  loggedIn: boolean;
+  lastBookId?: number;
+  lastChapterId?: number;
+  books: IBook[];
+  chapters: IChapter[];
 }
 
-
-const ReadingBookMenu = ({loggedIn,lastBookId,lastChapterId}:IReadingBookProps) => {
+const ReadingBookMenu = ({
+  loggedIn,
+  lastBookId,
+  lastChapterId,
+  books,
+  chapters,
+}: IReadingBookProps) => {
   const [openList, setOpenList] = React.useState(true);
   const handleClickOpenList = () => {
     setOpenList(!openList);
   };
 
-  if(!loggedIn || !lastBookId || !lastChapterId){
-	return  <React.Fragment></React.Fragment>;
+  if (!loggedIn || !lastBookId || !lastChapterId) {
+    return <React.Fragment></React.Fragment>;
   }
 
+  const lastBook = books.find((bk) => bk.id === lastBookId);
+  const lastBookChapters = chapters.filter((ch) => ch.book_id === lastBookId);
 
-  const lastBook = books.find((bk)=> bk.id==lastBookId);
-  const lastBookChapters = chapters.filter((ch)=>ch.book_id==lastBookId) 
+  if (!lastBook || !lastBookChapters) {
+    return <React.Fragment></React.Fragment>;
+  }
 
-        if (!book || !chapters) {
-          return <React.Fragment></React.Fragment>;
-        }
+  return (
+    <React.Fragment>
+      <Divider />
 
-        return (
-          <React.Fragment>
-            <Divider />
-
-            <ListItem
-              className="menu-item"
-              button
-              onClick={handleClickOpenList}
-            >
-              <ListItemIcon>
-                <BookIcon />
-              </ListItemIcon>
-              <ListItemText className="menu-item-text" primary={lastBook.title} />
-              {openList ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={openList} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <SubMenuListItemLink title="فهرست" book_id={lastBook.id} />
-                {
-                  lastBookChapters.map((chapter) => (
-                    <SubMenuListItemLink
-                      key={chapter.id}
-                      title={chapter.title}
-                      book_id={lastBook.id}
-                      chapter_id={chapter.id}
-                      enable={
-                        lastChapterId === chapter.id
-                      }
-                    />
-                  ))}
-              </List>
-            </Collapse>
-          </React.Fragment>
-        );
-                    }
-const mapStateToProps = (State: { admin: IAdminState, public: IPublicState }) => ({
+      <ListItem className="menu-item" button onClick={handleClickOpenList}>
+        <ListItemIcon>
+          <BookIcon />
+        </ListItemIcon>
+        <ListItemText className="menu-item-text" primary={lastBook.title} />
+        {openList ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={openList} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <SubMenuListItemLink
+            title="فهرست"
+            book_id={lastBook.id}
+            enable={false}
+          />
+          {lastBookChapters.map((chapter) => (
+            <SubMenuListItemLink
+              key={chapter.id}
+              title={chapter.title}
+              book_id={lastBook.id}
+              chapter_id={chapter.id}
+              enable={lastChapterId === chapter.id}
+            />
+          ))}
+        </List>
+      </Collapse>
+    </React.Fragment>
+  );
+};
+const mapStateToProps = (State: {
+  admin: IAdminState;
+  public: IPublicState;
+}) => ({
   loggedIn: State.admin.loggedIn,
-         lastBookId?:State.admin.lastBookId,
-	 lastChapterId?: State.admin.lastChapterId,
-           books: State.public.books,
-           chapters: State.public.chapters,
+  lastBookId: State.admin.lastBookId,
+  lastChapterId: State.admin.lastChapterId,
+  books: State.public.books,
+  chapters: State.public.chapters,
 });
 
 const mapDispatchToProps = {};
