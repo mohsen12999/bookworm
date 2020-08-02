@@ -1,39 +1,46 @@
 import React from "react";
+import { connect } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-import {closeSnackbar} from "../actions/appActions.ts"
+import { closeSnackbar } from "../actions/appActions";
+import { IAppState } from "../types/appType";
 
-interface IMySnackbarProps{
-	open: boolean;
-	message: string;
-	time:number;
+interface IMySnackbarProps {
+  open: boolean;
+  message: string;
+  time: number;
 
-	closeSnackbar: Function;
+  closeSnackbar(event: React.SyntheticEvent | React.MouseEvent): void;
 }
 
-const MySnackbar = ({open,message,time,closeSnackbar}:IMySnackbarProps) => (
-                    <Snackbar
-                        anchorOrigin={{
-                            vertical: "bottom",
-                            horizontal: "left"
-                        }}
-                        open={open}
-                        autoHideDuration={time}
-                        onClose={closeSnackbar}
-                        message={message}
-                        action={
-                            <IconButton
-                                size="small"
-                                aria-label="close"
-                                color="inherit"
-                                onClick={closeSnackbar}
-                            >
-                                <CloseIcon fontSize="small" />
-                            </IconButton>
-                        }
-                    />
+const MySnackbar = ({
+  open,
+  message,
+  time,
+  closeSnackbar,
+}: IMySnackbarProps) => (
+  <Snackbar
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "left",
+    }}
+    open={open}
+    autoHideDuration={time}
+    onClose={closeSnackbar}
+    message={message}
+    action={
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={closeSnackbar}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    }
+  />
 );
 
 const mapStateToProps = (State: { app: IAppState }) => ({
@@ -43,7 +50,7 @@ const mapStateToProps = (State: { app: IAppState }) => ({
 });
 
 const mapDispatchToProps = {
-	closeSnackbar,
+  closeSnackbar,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MySnackbar);
