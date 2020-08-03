@@ -21,7 +21,7 @@ interface IIndexProps {
   bestGenres: IGenre[];
   latestPosts: IPost[];
 
-  boughtBooks: number[];
+  boughtBooks?: number[];
 }
 
 const Index = (props: IIndexProps) => (
@@ -160,13 +160,13 @@ const mapStateToProps = (State: {
   newBooks: State.public.books.filter((b) =>
     State.public.newBooks.includes(b.id)
   ),
-  bestAuthors: State.public.books.filter((b) =>
+  bestAuthors: State.public.authors.filter((b) =>
     State.public.bestAuthors.includes(b.id)
   ),
-  bestGenres: State.public.books.filter((b) =>
+  bestGenres: State.public.genres.filter((b) =>
     State.public.bestGenres.includes(b.id)
   ),
-  latestPosts: State.public.books.filter((b) =>
+  latestPosts: State.public.posts.filter((b) =>
     State.public.latestPosts.includes(b.id)
   ),
   boughtBooks: State.admin.boughtBooks,
