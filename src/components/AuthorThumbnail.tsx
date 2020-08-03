@@ -5,8 +5,7 @@ import React from "react";
 
 interface IAuthorThumbnailProps {
   id: number;
-  title: string;
-  author: string;
+  name: string;
   img: string;
   // newAuthor: boolean;
   // bestAuthor: boolean;
@@ -14,8 +13,8 @@ interface IAuthorThumbnailProps {
 
 const AuthorThumbnail = (props: IAuthorThumbnailProps) => (
   <div className="author-thumb">
-    <img src={props.img} alt={props.title + " - " + props.author} />
-    <p>{props.title}</p>
+    <img src={props.img} alt={props.name} />
+    <p>{props.name}</p>
   </div>
 );
 
