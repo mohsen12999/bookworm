@@ -7,4 +7,10 @@ export const publicInitialState: IPublicState = {
   posts: [],
   subjects: [],
   authors: [],
+  //-----------------
+  popBooks: [],
+  newBooks: [],
+  bestAuthors: [],
+  bestGenres: [],
+  latestPosts: [],
 };

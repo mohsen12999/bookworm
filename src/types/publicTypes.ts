@@ -5,6 +5,12 @@ export interface IPublicState {
   posts: IPost[];
   subjects: ISubject[];
   authors: IAuthor[];
+  //-----------------
+  popBooks: number[];
+  newBooks: number[];
+  bestAuthors: number[];
+  bestGenres: number[];
+  latestPosts: number[];
 }
 
 export interface IGenre {
