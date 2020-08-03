@@ -6,6 +6,7 @@
 
 - [ ] search page
 - [ ] not found (404) page
+- [ ] need footer
 
 ## future feature
 
