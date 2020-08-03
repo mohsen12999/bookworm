@@ -22,7 +22,7 @@ interface IBookThumbnailProps {
   // saleBook: boolean;
   // topBook: boolean;
   // trendBook: boolean;
-  owned: boolean;
+  owned?: boolean;
 }
 
 const BookThumbnail = (props: IBookThumbnailProps) => (
