@@ -56,6 +56,13 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "2rem",
     },
   },
+  footerText: {
+    textAlign: "center",
+    color: "gray",
+  },
+  footerLink: {
+    textDecoration: "none",
+  },
 }));
 
 interface IMainLayoutProps {
@@ -96,6 +103,13 @@ const MainLayout = (props: IMainLayoutProps) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {props.children}
+        <hr />
+        <Typography className={classes.footerText}>
+          ایده، ساخت و توسعه توسط{" "}
+          <a className={classes.footerLink} href="http://magiclightteam.ir">
+            تیم مجیک لایت
+          </a>
+        </Typography>
       </main>
 
       <nav className={classes.drawer} aria-label="mailbox folders">
