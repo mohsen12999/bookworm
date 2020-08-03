@@ -6,11 +6,10 @@
 
 - [ ] search page
 - [ ] not found (404) page
-- [ ] need footer
+- [x] need footer
 
 ## future feature
 
-- [ ] footer for index page.
 - [ ] install button if not installed and can installed
 - [ ] blog subject.
 - [ ] user can choose and see favorite book.
