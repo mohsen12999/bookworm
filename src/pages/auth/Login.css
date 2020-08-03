@@ -1,0 +1,30 @@
+.login-page {
+  width: 100%;
+  height: calc(100vh - 112px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page .login-paper {
+  padding: 4rem;
+}
+
+.login-page .login-paper .login-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.login-page .login-paper .login-btn {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.error-message {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.rightText input {
+  text-align: right !important;
+}

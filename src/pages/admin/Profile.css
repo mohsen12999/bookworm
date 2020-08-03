@@ -1,0 +1,48 @@
+.center-item {
+  text-align: center;
+}
+
+.hidden-input {
+  display: none !important;
+}
+
+.center-item.persian-form {
+  margin-top: 1rem;
+}
+
+.center-item.persian-form .max-width {
+  min-width: 70%;
+}
+
+.save-btn-div {
+  margin-top: 2rem;
+}
+
+.avatar-img {
+  max-width: 100%;
+}
+
+.username input {
+  text-align: right !important;
+}
+
+.min-width-70p {
+  min-width: 70%;
+}
+
+.right-text {
+  text-align: right !important;
+}
+
+.right-dir {
+  direction: rtl !important;
+}
+
+input.MuiInputBase-input {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+.mt-2 {
+  margin-top: 2em;
+}

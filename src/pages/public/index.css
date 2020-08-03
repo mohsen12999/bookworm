@@ -1,0 +1,41 @@
+.search-grid {
+  flex-grow: 1;
+  direction: rtl;
+  background: #e8e8e8;
+  padding: 2em;
+  text-align: center;
+  position: relative;
+  margin: -2rem 2rem 0;
+}
+
+@media screen and (max-width: 700px) {
+  .search-grid {
+    margin-right: 0;
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+.section-title {
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  text-align: right;
+}
+
+.main-banner .img-slider {
+  width: 100%;
+}
+
+.search-grid .grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-grid .search-text {
+  width: 98%;
+}
+/* 
+.search-grid .search-btn {
+  margin-top: 2rem;
+} */
