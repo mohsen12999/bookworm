@@ -1,4 +1,3 @@
-import { Reducer } from "redux";
 import { IAdminState } from "../types/adminType";
 import { adminInitialState } from "../constants/adminState";
 

@@ -1,4 +1,3 @@
-import { Reducer } from "redux";
 import { IPublicState } from "../types/publicTypes";
 import { publicInitialState } from "../constants/publicState";
 
