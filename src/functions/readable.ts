@@ -29,13 +29,13 @@ export const readableChapterFromBook = (
 };
 
 export const readableChapter = (
-  chapter: IChapter,
   books: IBook[],
   book_id: number,
-  boughtBook: number[]
+  boughtBook: number[],
+  chapter?: IChapter
 ) => {
   const book = books.find((b) => b.id == book_id);
-  if (!book) return false;
+  if (!book || !chapter) return false;
   if (chapter.free || book.price == 0 || boughtBook.includes(book_id)) {
     return true;
   }
