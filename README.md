@@ -2,6 +2,10 @@
 
 - rewrite front end of app with ReactJS, TypeScript and Redux
 
+## Remind
+
+- bought book, free chapter , free book
+
 ## TODO
 
 - [x] need footer
