@@ -4,9 +4,10 @@
 
 ## TODO
 
-- [ ] search page
-- [ ] not found (404) page
 - [x] need footer
+- [x] searchBar for postList
+- [x] not found (404) page
+- [ ] search page
 
 ## future feature
 
