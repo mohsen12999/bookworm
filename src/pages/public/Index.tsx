@@ -21,7 +21,7 @@ interface IIndexProps {
   bestGenres: IGenre[];
   latestPosts: IPost[];
 
-  boughtBooks?: number[];
+  boughtBooks: number[];
 }
 
 const Index = (props: IIndexProps) => (
@@ -67,7 +67,7 @@ const Index = (props: IIndexProps) => (
     </Typography>
     <Grid container spacing={1}>
       {props.popBooks.map((book) => {
-        const owned = props.boughtBooks && props.boughtBooks.includes(book.id);
+        const owned = props.boughtBooks.includes(book.id);
         return (
           <Grid key={book.id} item xs={6} sm={3}>
             <BookThumbnail
@@ -88,7 +88,7 @@ const Index = (props: IIndexProps) => (
     </Typography>
     <Grid container spacing={1}>
       {props.newBooks.map((book) => {
-        const owned = props.boughtBooks && props.boughtBooks.includes(book.id);
+        const owned = props.boughtBooks.includes(book.id);
         return (
           <Grid key={book.id} item xs={6} sm={3}>
             <BookThumbnail

@@ -5,7 +5,7 @@ export interface IAdminState {
   mobile?: string;
   avatar?: string;
   wallet?: number;
-  boughtBooks?: number[];
+  boughtBooks: number[];
   writtenBooks?: IWrittenBook[];
   writtenPosts?: IWrittenPost[];
   lastBookId?: number;

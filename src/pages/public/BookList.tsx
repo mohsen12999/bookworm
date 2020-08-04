@@ -16,7 +16,7 @@ import "./BookList.css";
 
 interface IBookListProps {
   books: IBook[];
-  boughtBooks?: number[];
+  boughtBooks: number[];
 }
 
 const BookList = (props: IBookListProps) => {
@@ -93,8 +93,7 @@ const BookList = (props: IBookListProps) => {
 
       <Grid container spacing={1} className="all-book-grid">
         {filteredBooks.map((book) => {
-          const owned =
-            props.boughtBooks && props.boughtBooks.includes(book.id);
+          const owned = props.boughtBooks.includes(book.id);
           return (
             <Grid key={book.id} item xs={6} sm={3}>
               <BookThumbnail
