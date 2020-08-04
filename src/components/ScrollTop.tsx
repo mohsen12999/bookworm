@@ -8,7 +8,7 @@ import "./ScrollTop.css";
 
 interface IScrollTopProps {
   target_id: string;
-  window: any; // Window
+  window?: any; // Window
 }
 
 const ScrollTop = ({ window, target_id }: IScrollTopProps) => {
