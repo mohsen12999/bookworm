@@ -1,5 +1,6 @@
 import React from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { RouteComponentProps } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -7,43 +8,75 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 import { useParams, Link, Redirect } from "react-router-dom";
 
-import ScrollTop from "../components/ScrollTop";
+import ScrollTop from "../../components/ScrollTop";
+import { IChapter, IBook, IPublicState } from "../../types/publicTypes";
+import { readableChapter } from "../../functions/readable";
 
 import "./ReadBook.css";
+import { IAdminState } from "../../types/adminType";
+import { SetLastBookReading } from "../../actions/adminAction";
 
 // TODO: not found chapter
 // TODO: back to book page
 
-interface IReadBookProps{
-	loggedIn:boolean;
-	boughtBooks: number[];
-	chapters: IChapter[];
+interface IMatchParams {
+  book_id: string;
+  chapter_id: string;
+}
+
+interface IReadBookProps extends RouteComponentProps<IMatchParams> {
+  loggedIn: boolean;
+  boughtBooks: number[];
+  chapters: IChapter[];
+  books: IBook[];
+
+  lastBookId?: number;
+  lastChapterId?: number;
+
+  SetLastBookReading(
+    book_id: string | number,
+    chapter_id: string | number
+  ): void;
 }
 
 const ReadBook = (props: IReadBookProps) => {
-	const { book_id, chapter_id } = useParams();
+  const { book_id, chapter_id } = useParams();
 
-	const [chapter,setChapter] = React.useState();
-	const [prevChapter,setPrevChapter] = React.useState();
-	const [nextChapter,setNextChapter] = React.useState();
-      
-	React.useEffect(() => {      
-		const anchor = document.querySelector("#chapter-title");
-		if (anchor) {
-			anchor.scrollIntoView({ behavior: "smooth", block: "center" });
-		}
+  const [chapter, setChapter] = React.useState<IChapter | undefined>();
+  const [prevChapter, setPrevChapter] = React.useState<IChapter | undefined>();
+  const [nextChapter, setNextChapter] = React.useState<IChapter | undefined>();
 
-		const (chapter, prevChapter, nextChapter) = getSingleChapter(book_id, chapter_id)
-setChapter(chapter)
-setPrevChapter(prevChapter)
-setNextChapter(nextChapter)
-	}, [book_id,chapter_id]);
+  React.useEffect(() => {
+    const anchor = document.querySelector("#chapter-title");
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
 
-	// get all chapter base on book id
-  const getSingleChapter = (book_id:string, chapter_id:string) => {
-    const chapter =  props.chapters.find(
-      (chap) => chap.id === Number(chapter_id)
+    const { chapter, prevChapter, nextChapter } = getSingleChapter(
+      props.chapters,
+      book_id,
+      chapter_id
     );
+
+    setChapter(chapter);
+    setPrevChapter(prevChapter);
+    setNextChapter(nextChapter);
+
+    if (
+      props.lastBookId != Number(book_id) &&
+      props.lastChapterId != Number(chapter_id)
+    ) {
+      props.SetLastBookReading(book_id, chapter_id);
+    }
+  }, [book_id, chapter_id]);
+
+  // get all chapter base on book id
+  const getSingleChapter = (
+    chapters: IChapter[],
+    book_id: string,
+    chapter_id: string
+  ) => {
+    const chapter = chapters.find((chap) => chap.id === Number(chapter_id));
     if (!chapter || !chapter.book_id || chapter.book_id !== Number(book_id)) {
       return { chapter: undefined };
     }
@@ -57,116 +90,118 @@ setNextChapter(nextChapter)
     return { chapter, prevChapter, nextChapter };
   };
 
+  const readableThisChapter = readableChapter(
+    props.books,
+    Number(book_id),
+    props.boughtBooks,
+    chapter
+  );
+  const readablePrevChapter = readableChapter(
+    props.books,
+    Number(book_id),
+    props.boughtBooks,
+    prevChapter
+  );
+  const readableNextChapter = readableChapter(
+    props.books,
+    Number(book_id),
+    props.boughtBooks,
+    nextChapter
+  );
 
- return (
+  return !readableThisChapter ? (
+    <Redirect to={"/book/" + book_id} />
+  ) : (
+    <div className="chapter-page">
+      {prevChapter &&
+        (readablePrevChapter ? (
+          <Tooltip title={"خواندن فصل قبل با  عنوان: " + prevChapter.title}>
+            <Button
+              variant="outlined"
+              size="large"
+              color="primary"
+              className="chapter-change"
+              component={Link}
+              to={"/read/" + book_id + "/" + prevChapter.id}
+            >
+              فصل قبل - {prevChapter.title}
+            </Button>
+          </Tooltip>
+        ) : (
+          <Tooltip
+            title={"برای دسترسی به فصل قبل می بایست کتاب را خریداری نمائید"}
+          >
+            <Button
+              variant="outlined"
+              size="large"
+              className="chapter-change disabled"
+            >
+              فصل قبل - {prevChapter.title}
+            </Button>
+          </Tooltip>
+        ))}
 
-        const owned = props.loggedIn && 
-          props.boughtBooks &&
-          props.boughtBooks.includes(Number(book_id));
+      <Container maxWidth="sm" className="chapter-content-container">
+        <Typography
+          variant="h4"
+          component="h3"
+          id="chapter-title"
+          className="chapter-title"
+        >
+          {chapter && chapter.title}
+        </Typography>
+        <Typography paragraph className="chapter-paragraph">
+          {chapter && chapter.body}
+        </Typography>
+      </Container>
 
-        if (!(owned || chapter.free)) {
-          return <Redirect to={"/book/" + book_id} />;
-        }
+      {nextChapter &&
+        (readableNextChapter ? (
+          <Tooltip title={"خواندن فصل بعد با  عنوان: " + nextChapter.title}>
+            <Button
+              variant="outlined"
+              size="large"
+              color="primary"
+              className="chapter-change"
+              component={Link}
+              to={"/read/" + book_id + "/" + nextChapter.id}
+            >
+              فصل بعد - {nextChapter.title}
+            </Button>
+          </Tooltip>
+        ) : (
+          <Tooltip
+            title={"برای دسترسی به فصل بعد می بایست کتاب را خریداری نمائید"}
+          >
+            <Button
+              variant="outlined"
+              size="large"
+              className="chapter-change disabled"
+            >
+              فصل بعد - {nextChapter.title}
+            </Button>
+          </Tooltip>
+        ))}
 
-        if (
-          context.lastBookId !== Number(book_id) ||
-          context.lastChapterId !== Number(chapter_id)
-        ) {
-          context.SetLastBookReading(book_id, chapter_id);
-        }
+      <ScrollTop {...props} target_id="chapter-title" />
+    </div>
+  );
+};
 
-        return (
-          <div className="chapter-page">
-            {prev_chapter &&
-              (owned || prev_chapter.free ? (
-                <Tooltip
-                  title={"خواندن فصل قبل با  عنوان: " + prev_chapter.title}
-                >
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    color="primary"
-                    className="chapter-change"
-                    component={Link}
-                    to={"/read/" + book_id + "/" + prev_chapter.id}
-                  >
-                    فصل قبل - {prev_chapter.title}
-                  </Button>
-                </Tooltip>
-              ) : (
-                <Tooltip
-                  title={
-                    "برای دسترسی به فصل قبل می بایست کتاب را خریداری نمائید"
-                  }
-                >
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    className="chapter-change disabled"
-                  >
-                    فصل قبل - {prev_chapter.title}
-                  </Button>
-                </Tooltip>
-              ))}
-
-            <Container maxWidth="sm" className="chapter-content-container">
-              <Typography
-                variant="h4"
-                component="h3"
-                id="chapter-title"
-                className="chapter-title"
-              >
-                {chapter.title}
-              </Typography>
-            </Container>
-
-            {next_chapter &&
-              (owned || next_chapter.free ? (
-                <Tooltip
-                  title={"خواندن فصل بعد با  عنوان: " + next_chapter.title}
-                >
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    color="primary"
-                    className="chapter-change"
-                    component={Link}
-                    to={"/read/" + book_id + "/" + next_chapter.id}
-                  >
-                    فصل بعد - {next_chapter.title}
-                  </Button>
-                </Tooltip>
-              ) : (
-                <Tooltip
-                  title={
-                    "برای دسترسی به فصل بعد می بایست کتاب را خریداری نمائید"
-                  }
-                >
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    className="chapter-change disabled"
-                  >
-                    فصل بعد - {next_chapter.title}
-                  </Button>
-                </Tooltip>
-              ))}
-
-            <ScrollTop {...props} target_id="chapter-title" />
-          </div>
-        );
-      }}
-    </Context.Consumer>
- )
-}
-
-const mapStateToProps = (State: { public: IPublicState, admin: IAdminState }) => ({
-	loggedIn: State.admin.loggedIn,
-boughtBooks: State.admin.boughtbooks,
-chapters: State.public.chapters,
+const mapStateToProps = (State: {
+  public: IPublicState;
+  admin: IAdminState;
+}) => ({
+  loggedIn: State.admin.loggedIn,
+  boughtBooks: State.admin.boughtBooks,
+  chapters: State.public.chapters,
+  books: State.public.books,
+  lastBookId: State.admin.lastBookId,
+  lastChapterId: State.admin.lastChapterId,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  SetLastBookReading,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReadBook);
-~                                                                        
