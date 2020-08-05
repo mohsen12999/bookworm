@@ -4,25 +4,25 @@
   direction: rtl;
 }
 
-.single-blog-page .article-intro {
+.single-blog-page .post-intro {
   text-align: center !important;
 }
 
-.single-blog-page .article-img {
+.single-blog-page .post-img {
   min-width: 50%;
 }
 
-.single-blog-page .article-title,
-.single-blog-page .article-author {
+.single-blog-page .post-title,
+.single-blog-page .post-author {
   margin-top: 1rem;
 }
 
-.single-blog-page .article-abstract,
-.single-blog-page .article-body {
+.single-blog-page .post-abstract,
+.single-blog-page .post-body {
   margin-top: 2rem;
   text-align: justify;
 }
 
-.single-blog-page .article-post-time {
+.single-blog-page .post-time {
   color: gray;
 }
