@@ -43,6 +43,8 @@ export interface IPost {
   title: string;
   author: string;
   img: string;
+  abstract: string;
+  description: string;
   created_at: string;
 }
 
