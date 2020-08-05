@@ -8,6 +8,5 @@ export const closeSnackbar = (
 
   dispatch({
     type: AppActionType.CLOSE_SNACKBAR,
-    payload: {},
   });
 };
