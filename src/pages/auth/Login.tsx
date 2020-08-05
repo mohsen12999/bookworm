@@ -10,20 +10,23 @@ import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 import { Redirect } from "react-router-dom";
 
 import { CheckEmail } from "../../functions/email";
-
-import "./Login.css";
 import { IAdminState } from "../../types/adminType";
 import { IAppState } from "../../types/appType";
+import { tryToLogin } from "../../actions/AuthAction";
+
+import "./Login.css";
 
 interface ILoginProps {
   loggedIn: boolean;
   loading: boolean;
+
+  tryToLogin(email?: string, password?: string): void;
 }
 
 const Login = (props: ILoginProps) => {
-  const [email, setEmail] = React.useState();
-  const [password, setPassword] = React.useState();
-  const [invalidForm, setInvalidForm] = React.useState(true);
+  const [email, setEmail] = React.useState<string | undefined>();
+  const [password, setPassword] = React.useState<string | undefined>();
+  const [invalidForm, setInvalidForm] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     setInvalidForm(!email || !password || !CheckEmail(email));
@@ -36,18 +39,20 @@ const Login = (props: ILoginProps) => {
       className="login-page"
       onSubmit={(e) => {
         e.preventDefault();
-        if (props.loading) {
+        if (props.loading || invalidForm) {
           return;
         }
 
-        context.Login(email, password).then((res) => {
-          if (res) {
-            //setRedirect(true);
-            context.OpenSnackbar("خوش آمدید");
-          } else {
-            context.OpenSnackbar("اشکال در ورود");
-          }
-        });
+        props.tryToLogin(email, password);
+
+        // context.Login(email, password).then((res) => {
+        //   if (res) {
+        //     //setRedirect(true);
+        //     context.OpenSnackbar("خوش آمدید");
+        //   } else {
+        //     context.OpenSnackbar("اشکال در ورود");
+        //   }
+        // });
       }}
     >
       <Paper className="login-paper">
@@ -67,7 +72,7 @@ const Login = (props: ILoginProps) => {
               required
               helperText="ایمیل معتبر"
               error={
-                email &&
+                email != null &&
                 email !== undefined &&
                 email.length < 4 &&
                 !CheckEmail(email)
@@ -87,7 +92,11 @@ const Login = (props: ILoginProps) => {
               onChange={(e) => setPassword(e.target.value)}
               required
               helperText="رمز عبور حداقل 6 حرفی"
-              error={password && password !== undefined && password.length < 6}
+              error={
+                password != null &&
+                password !== undefined &&
+                password.length < 6
+              }
             />
           </Grid>
         </Grid>
@@ -111,6 +120,8 @@ const mapStateToProps = (State: { admin: IAdminState; app: IAppState }) => ({
   loading: State.app.loading,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  tryToLogin,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
