@@ -22,8 +22,8 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ListItemLink from "./ListItemLink";
 import ReadingBookMenu from "./ReadingBookMenu";
 
-import { HomePages, AuthPages, AdminPages } from "../constants/pages";
-import {IAdminState} from "../types/adminType";
+import { PublicPages, AuthPages, AdminPages } from "../constants/pages";
+import { IAdminState } from "../types/adminType";
 
 interface IMenuItem {
   id: number;
@@ -37,28 +37,28 @@ const main_menu: IMenuItem[] = [
   {
     id: 11,
     title: "صفحه اصلی",
-    url: "/"+HomePages.INDEX,
+    url: "/" + PublicPages.INDEX,
     exactMatch: true,
     icon: <ViewStreamIcon />,
   },
   {
     id: 12,
     title: "لیست کتاب ها",
-    url: "/"+HomePages.BOOKS,
+    url: "/" + PublicPages.BOOKS,
     exactMatch: false,
     icon: <LibraryBooksIcon />,
   },
   {
     id: 13,
     title: "لیست مقالات",
-    url: "/"+HomePages.POSTS,
+    url: "/" + PublicPages.POSTS,
     exactMatch: false,
     icon: <CollectionsBookmarkIcon />,
   },
   {
     id: 19,
     title: "درباره ما",
-    url: "/"+HomePages.ABOUT,
+    url: "/" + PublicPages.ABOUT,
     exactMatch: false,
     icon: <StreetviewIcon />,
   },
@@ -68,42 +68,42 @@ const admin_menu = [
   {
     id: 21,
     title: "داشبورد",
-    url: "/"+AdminPages.DASHBOARD,
+    url: "/" + AdminPages.DASHBOARD,
     exactMatch: false,
     icon: <DashboardIcon />,
   },
   {
     id: 22,
     title: "پروفایل",
-    url: "/"+AdminPages.PROFILE,
+    url: "/" + AdminPages.PROFILE,
     exactMatch: false,
     icon: <MenuBookIcon />,
   },
   {
     id: 23,
     title: "کتاب های من",
-    url: "/"+AdminPages.MY_Library,
+    url: "/" + AdminPages.MY_Library,
     exactMatch: false,
     icon: <MenuBookIcon />,
   },
   {
     id: 24,
     title: "نوشته های من",
-    url: "/"+AdminPages.MY_BOOKS,
+    url: "/" + AdminPages.MY_BOOKS,
     exactMatch: false,
     icon: <NoteIcon />,
   },
   {
     id: 25,
     title: "مقاله های من",
-    url: "/"+AdminPages.MY_POSTS,
+    url: "/" + AdminPages.MY_POSTS,
     exactMatch: false,
     icon: <SpeakerNotesIcon />,
   },
   {
     id: 26,
     title: "کیف پول",
-    url: "/"+AdminPages.WALLET,
+    url: "/" + AdminPages.WALLET,
     exactMatch: false,
     icon: <CreditCardIcon />,
   },
@@ -115,7 +115,7 @@ interface IDrawerMenuProps {
   loggedIn: boolean;
 }
 
-const DrawerMenu = (props:IDrawerMenuProps) => (
+const DrawerMenu = (props: IDrawerMenuProps) => (
   <div>
     <List>
       <ListItem>
@@ -157,7 +157,7 @@ const DrawerMenu = (props:IDrawerMenuProps) => (
         <ListItemLink
           icon={<InboxIcon />}
           primary="خروج"
-	  to={"/"+AuthPages.LOGOUT}
+          to={"/" + AuthPages.LOGOUT}
           enable={true}
           exactMatch={false}
         />
@@ -167,14 +167,14 @@ const DrawerMenu = (props:IDrawerMenuProps) => (
         <ListItemLink
           icon={<PersonIcon />}
           primary="ورود"
-          to={"/"+AuthPages.LOGIN}
+          to={"/" + AuthPages.LOGIN}
           enable={true}
           exactMatch={false}
         />
         <ListItemLink
           icon={<PersonAddIcon />}
           primary="عضویت"
-          to={"/"+AuthPages.REGISTER}
+          to={"/" + AuthPages.REGISTER}
           enable={true}
           exactMatch={false}
         />
