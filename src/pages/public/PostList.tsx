@@ -16,7 +16,7 @@ import { FixDate } from "../../functions/date";
 import { IPost, IPublicState } from "../../types/publicTypes";
 
 import "./PostList.css";
-import { HomePages } from "../../constants/pages";
+import { PublicPages } from "../../constants/pages";
 
 interface IPostListProps {
   posts: IPost[];
@@ -111,7 +111,7 @@ const PostList = (props: IPostListProps) => {
                 variant="contained"
                 color="primary"
                 component={Link}
-                to={"/" + HomePages.POST + "/" + post.id}
+                to={"/" + PublicPages.POST + "/" + post.id}
               >
                 خواندن مطلب
               </Button>
