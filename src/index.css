@@ -39,3 +39,12 @@ form.persian-form input {
 .persian-form legend {
   text-align: right !important;
 }
+
+.not-found {
+  margin: 6rem auto;
+  text-align: center;
+}
+
+.not-found * {
+  margin-top: 2rem;
+}
