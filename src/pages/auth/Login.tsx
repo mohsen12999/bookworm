@@ -13,9 +13,11 @@ import { CheckEmail } from "../../functions/email";
 
 import "./Login.css";
 import { IAdminState } from "../../types/adminType";
+import { IAppState } from "../../types/appType";
 
 interface ILoginProps {
   loggedIn: boolean;
+  loading: boolean;
 }
 
 const Login = (props: ILoginProps) => {
@@ -34,6 +36,9 @@ const Login = (props: ILoginProps) => {
       className="login-page"
       onSubmit={(e) => {
         e.preventDefault();
+        if (props.loading) {
+          return;
+        }
 
         context.Login(email, password).then((res) => {
           if (res) {
@@ -101,8 +106,9 @@ const Login = (props: ILoginProps) => {
   );
 };
 
-const mapStateToProps = (State: { admin: IAdminState }) => ({
+const mapStateToProps = (State: { admin: IAdminState; app: IAppState }) => ({
   loggedIn: State.admin.loggedIn,
+  loading: State.app.loading,
 });
 
 const mapDispatchToProps = {};
