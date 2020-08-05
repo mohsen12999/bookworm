@@ -15,16 +15,18 @@ import { readableChapter } from "../../functions/readable";
 import "./ReadBook.css";
 import { IAdminState } from "../../types/adminType";
 import { SetLastBookReading } from "../../actions/adminAction";
+import { PublicPages } from "../../constants/pages";
 
 // TODO: not found chapter
 // TODO: back to book page
 
-interface IMatchParams {
-  book_id: string;
-  chapter_id: string;
-}
+// interface IMatchParams {
+//   book_id: string;
+//   chapter_id: string;
+// }
 
-interface IReadBookProps extends RouteComponentProps<IMatchParams> {
+//interface IReadBookProps extends RouteComponentProps<IMatchParams> {
+interface IReadBookProps {
   loggedIn: boolean;
   boughtBooks: number[];
   chapters: IChapter[];
@@ -63,11 +65,13 @@ const ReadBook = (props: IReadBookProps) => {
     setNextChapter(nextChapter);
 
     if (
-      props.lastBookId != Number(book_id) &&
-      props.lastChapterId != Number(chapter_id)
+      props.lastBookId !== Number(book_id) &&
+      props.lastChapterId !== Number(chapter_id)
     ) {
       props.SetLastBookReading(book_id, chapter_id);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [book_id, chapter_id]);
 
   // get all chapter base on book id
@@ -122,7 +126,7 @@ const ReadBook = (props: IReadBookProps) => {
               color="primary"
               className="chapter-change"
               component={Link}
-              to={"/read/" + book_id + "/" + prevChapter.id}
+              to={"/" + PublicPages.READ + "/" + book_id + "/" + prevChapter.id}
             >
               فصل قبل - {prevChapter.title}
             </Button>
@@ -164,7 +168,7 @@ const ReadBook = (props: IReadBookProps) => {
               color="primary"
               className="chapter-change"
               component={Link}
-              to={"/read/" + book_id + "/" + nextChapter.id}
+              to={"/" + PublicPages.READ + "/" + book_id + "/" + nextChapter.id}
             >
               فصل بعد - {nextChapter.title}
             </Button>
