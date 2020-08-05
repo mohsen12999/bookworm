@@ -220,6 +220,8 @@ export const posts: IPost[] = [
     title: "الهام بخشی طبیعت",
     author: "امیر سالار سلیمانی",
     img: "/images/blog/img-01.jpg",
+    abstract: "",
+    description: "",
     created_at: "2020-01-09T08:16:12.782Z",
   },
   {
@@ -227,6 +229,8 @@ export const posts: IPost[] = [
     title: "فکر آزاد",
     author: "دکتر حسین فراهانی",
     img: "/images/blog/img-02.jpg",
+    abstract: "",
+    description: "",
     created_at: "2020-01-17T12:42:33.782Z",
   },
   {
@@ -234,6 +238,8 @@ export const posts: IPost[] = [
     title: "تاثیر ورزش بر فعالیت ها",
     author: "محسن شعبانیان",
     img: "/images/blog/img-03.jpg",
+    abstract: "",
+    description: "",
     created_at: "2020-02-05T09:06:02.782Z",
   },
   {
@@ -241,6 +247,8 @@ export const posts: IPost[] = [
     title: "هنر رقص در جوامع",
     author: "آرتور مورگان",
     img: "/images/blog/img-04.jpg",
+    abstract: "",
+    description: "",
     created_at: "2020-02-07T13:39:07.782Z",
   },
 ];
