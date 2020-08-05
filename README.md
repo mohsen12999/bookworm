@@ -12,6 +12,7 @@
 - [x] searchBar for postList
 - [x] not found (404) page
 - [ ] search page
+- [ ] enable search in index page
 
 ## future feature
 
