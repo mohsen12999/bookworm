@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { AuthActionType, AppActionType } from "../constants/actionTypes";
 
-export const closeSnackbar = (name: string, password: string) => (
+export const tryToLogin = (email?: string, password?: string) => (
   dispatch: Dispatch
 ) => {
   // loading
