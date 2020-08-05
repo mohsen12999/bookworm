@@ -1,4 +1,4 @@
-export enum HomePages {
+export enum PublicPages {
   INDEX = "",
   ABOUT = "about",
   BOOKS = "books", // book list
