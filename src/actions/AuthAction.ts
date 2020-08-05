@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { AuthActionType, AppActionType } from "../constants/actionTypes";
+import { AppActionType, AdminActionType } from "../constants/actionTypes";
 
 export const tryToLogin = (email?: string, password?: string) => (
   dispatch: Dispatch
@@ -13,15 +13,20 @@ export const tryToLogin = (email?: string, password?: string) => (
 
   // result
   const result = true;
+  dispatch({
+    type: AppActionType.STOP_LOADING,
+    payload: { msg: result ? "خوش آمدید" : "اشکال در ورود" },
+  });
+
   if (result) {
     dispatch({
-      type: AuthActionType.SUCCESS_LOGIN,
-      payload: {},
+      type: AdminActionType.SUCCESS_LOGIN,
+      payload: { data: "" },
     });
   } else {
     dispatch({
-      type: AuthActionType.FAILED_LOGIN,
-      payload: {},
+      type: AdminActionType.FAILED_LOGIN,
+      payload: { error: "" },
     });
   }
 };

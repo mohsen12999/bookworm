@@ -6,12 +6,14 @@ export enum AppActionType {
 
 export enum AdminActionType {
   SET_LAST_BOOK_READING = "setLastBookReading",
+  SUCCESS_LOGIN = "successLogin",
+  FAILED_LOGIN = "failedLogin",
 }
 
 export enum AuthActionType {
   LOGIN = "login",
-  SUCCESS_LOGIN = "successLogin",
-  FAILED_LOGIN = "failedLogin",
+  // SUCCESS_LOGIN = "successLogin",
+  // FAILED_LOGIN = "failedLogin",
 }
 
 interface IAction {
@@ -21,7 +23,7 @@ interface IAction {
 
 export interface IAppAction extends IAction {
   type: AppActionType;
-  payload?: undefined;
+  payload?: undefined | { msg: string };
 }
 
 export interface IAdminAction extends IAction {
