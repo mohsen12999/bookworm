@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router";
 
-import { HomePages, AuthPages, AdminPages } from "../constants/pages";
+import { PublicPages, AuthPages, AdminPages } from "../constants/pages";
 
 import MainLayout from "../components/MainLayout";
 import PrivateRouteLayout from "../components/PrivateRouteLayout";
@@ -37,37 +37,37 @@ function App() {
       <Switch>
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + HomePages.INDEX}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.INDEX}
           component={Index}
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + HomePages.BOOKS}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.BOOKS}
           component={BookList}
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + HomePages.POSTS}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.POSTS}
           component={PostList}
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + HomePages.ABOUT}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.ABOUT}
           component={About}
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + HomePages.SEARCH}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.SEARCH}
           component={Search}
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + HomePages.BOOK + "/:id"}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.BOOK + "/:id"}
           component={SingleBook}
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + HomePages.POST + "/:id"}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.POST + "/:id"}
           component={SinglePost}
         />
         <Route
@@ -75,7 +75,7 @@ function App() {
           path={
             process.env.PUBLIC_URL +
             "/" +
-            HomePages.READ +
+            PublicPages.READ +
             "/:book_id/:chapter_id"
           }
           component={PostList}
