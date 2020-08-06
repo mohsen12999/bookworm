@@ -45,3 +45,155 @@ export const updatingProfile = (data: FormData) => (dispatch: Dispatch) => {
     });
   }
 };
+
+export const tryDeletingMyBook = (id: number) => (dispatch: Dispatch) => {
+  // loading
+  dispatch({
+    type: AppActionType.START_LOADING,
+  });
+
+  // TODO: send deleting request
+
+  // result
+  const result: boolean = Math.random() > 0.5;
+  dispatch({
+    type: AppActionType.STOP_LOADING_AND_MESSAGE,
+    payload: {
+      msg: result ? "این نوشته حذف شد" : "خطا در حذف نوشته",
+    },
+  });
+
+  if (result) {
+    dispatch({
+      type: AdminActionType.SUCCESS_UPDATE_PROFILE,
+      payload: { data: "" },
+    });
+  } else {
+    dispatch({
+      type: AdminActionType.FAILED_UPDATE_PROFILE,
+      payload: { error: "" },
+    });
+  }
+};
+
+export const tryDeletingMyPost = (id: number) => (dispatch: Dispatch) => {
+  // loading
+  dispatch({
+    type: AppActionType.START_LOADING,
+  });
+
+  // TODO: send deleting request
+
+  // result
+  const result: boolean = Math.random() > 0.5;
+  dispatch({
+    type: AppActionType.STOP_LOADING_AND_MESSAGE,
+    payload: {
+      msg: result ? "این مقاله حذف شد" : "خطا در حذف مقاله",
+    },
+  });
+
+  if (result) {
+    dispatch({
+      type: AdminActionType.SUCCESS_UPDATE_PROFILE,
+      payload: { data: "" },
+    });
+  } else {
+    dispatch({
+      type: AdminActionType.FAILED_UPDATE_PROFILE,
+      payload: { error: "" },
+    });
+  }
+};
+
+export const savingBook = (data: FormData) => (dispatch: Dispatch) => {
+  // loading
+  dispatch({
+    type: AppActionType.START_LOADING,
+  });
+
+  // TODO: send deleting request
+
+  // result
+  const result: boolean = Math.random() > 0.5;
+  dispatch({
+    type: AppActionType.STOP_LOADING_AND_MESSAGE,
+    payload: {
+      msg: result ? "نوشته با موفقیت ذخیره شد." : "اشکال در ذخیره نوشته",
+    },
+  });
+
+  if (result) {
+    dispatch({
+      type: AdminActionType.SUCCESS_SAVING_BOOK,
+      payload: { data: "" },
+    });
+  } else {
+    dispatch({
+      type: AdminActionType.FAILED_SAVING_BOOK,
+      payload: { error: "" },
+    });
+  }
+
+  return result;
+};
+
+export const savingPost = (data: FormData) => (dispatch: Dispatch) => {
+  // loading
+  dispatch({
+    type: AppActionType.START_LOADING,
+  });
+
+  // TODO: send deleting request
+
+  // result
+  const result: boolean = Math.random() > 0.5;
+  dispatch({
+    type: AppActionType.STOP_LOADING_AND_MESSAGE,
+    payload: {
+      msg: result ? "مقاله با موفقیت ذخیره شد." : "اشکال در ذخیره مقاله",
+    },
+  });
+
+  if (result) {
+    dispatch({
+      type: AdminActionType.SUCCESS_SAVING_POST,
+      payload: { data: "" },
+    });
+  } else {
+    dispatch({
+      type: AdminActionType.FAILED_SAVING_POST,
+      payload: { error: "" },
+    });
+  }
+};
+
+export const savingChapter = (data: FormData) => (dispatch: Dispatch) => {
+  // loading
+  dispatch({
+    type: AppActionType.START_LOADING,
+  });
+
+  // TODO: send deleting request
+
+  // result
+  const result: boolean = Math.random() > 0.5;
+  dispatch({
+    type: AppActionType.STOP_LOADING_AND_MESSAGE,
+    payload: {
+      msg: result ? "نوشته با موفقیت ذخیره شد." : "اشکال در ذخیره نوشته",
+    },
+  });
+
+  if (result) {
+    dispatch({
+      type: AdminActionType.SUCCESS_SAVING_CHAPTER,
+      payload: { data: "" },
+    });
+  } else {
+    dispatch({
+      type: AdminActionType.FAILED_SAVING_CHAPTER,
+      payload: { error: "" },
+    });
+  }
+};
