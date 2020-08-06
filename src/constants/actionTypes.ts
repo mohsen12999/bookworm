@@ -7,10 +7,16 @@ export enum AppActionType {
 
 export enum AdminActionType {
   SET_LAST_BOOK_READING = "setLastBookReading",
+
   SUCCESS_LOGIN = "successLogin",
   FAILED_LOGIN = "failedLogin",
+
   SUCCESS_REGISTER = "successRegister",
   FAILED_REGISTER = "failedRegister",
+
+  SUCCESS_UPDATE_PROFILE = "successUpdateProfile",
+  FAILED_UPDATE_PROFILE = "failedUpdateProfile",
+
   LOGGING_OUT = "loggingOut",
 }
 
