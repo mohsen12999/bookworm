@@ -35,12 +35,12 @@ export const updatingProfile = (data: FormData) => (dispatch: Dispatch) => {
 
   if (result) {
     dispatch({
-      type: AdminActionType.SUCCESS_REGISTER,
+      type: AdminActionType.SUCCESS_UPDATE_PROFILE,
       payload: { data: "" },
     });
   } else {
     dispatch({
-      type: AdminActionType.FAILED_REGISTER,
+      type: AdminActionType.FAILED_UPDATE_PROFILE,
       payload: { error: "" },
     });
   }
