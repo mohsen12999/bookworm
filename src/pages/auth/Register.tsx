@@ -94,7 +94,7 @@ const Register = (props: IRegisterProps) => {
               onChange={(e) => setName(e.target.value)}
               required
               helperText="حداقل 4 حرفی"
-              error={name != null && name != undefined && name.length < 4}
+              error={name != null && name !== undefined && name.length < 4}
             />
           </Grid>
         </Grid>
@@ -112,7 +112,7 @@ const Register = (props: IRegisterProps) => {
               helperText="ایمیل معتبر"
               error={
                 email != null &&
-                email != undefined &&
+                email !== undefined &&
                 email.length < 4 &&
                 !CheckEmail(email)
               }
@@ -132,7 +132,9 @@ const Register = (props: IRegisterProps) => {
               required
               helperText="رمز عبور حداقل 6 حرفی"
               error={
-                password != null && password != undefined && password.length < 6
+                password != null &&
+                password !== undefined &&
+                password.length < 6
               }
             />
           </Grid>
@@ -151,7 +153,7 @@ const Register = (props: IRegisterProps) => {
               helperText="با رمز عبور یکی نیست"
               error={
                 passwordAgain != null &&
-                passwordAgain != undefined &&
+                passwordAgain !== undefined &&
                 password !== passwordAgain
               }
             />
