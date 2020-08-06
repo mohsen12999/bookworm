@@ -15,7 +15,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-1-580x925.jpg",
     genre: 1,
     price: 2.7,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 2,
@@ -24,7 +25,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-8-580x925.jpg",
     genre: 1,
     price: 3.2,
-    date: "2019-07-21T23:28:56.782Z",
+    created_at: "2019-07-21T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-10-580x925.jpg",
     genre: 3,
     price: 4.1,
-    date: "2020-02-01T11:28:56.782Z",
+    created_at: "2020-02-01T11:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 4,
@@ -42,7 +45,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-21-580x925.jpg",
     genre: 3,
     price: 2.2,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 5,
@@ -51,7 +55,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-20-580x925.jpg",
     genre: 2,
     price: 4.4,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 6,
@@ -60,7 +65,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-17-580x925.jpg",
     genre: 3,
     price: 2.7,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 7,
@@ -69,7 +75,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-16-580x925.jpg",
     genre: 4,
     price: 3.9,
-    date: "2019-07-06T15:28:56.782Z",
+    created_at: "2019-07-06T15:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 8,
@@ -78,7 +85,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-12-580x925.jpg",
     genre: 5,
     price: 4.7,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 9,
@@ -87,7 +95,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-1-580x925.jpg",
     genre: 3,
     price: 2.6,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 10,
@@ -96,7 +105,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-6-580x925.jpg",
     genre: 6,
     price: 2.7,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 11,
@@ -105,7 +115,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-22-580x925.jpg",
     genre: 1,
     price: 3.1,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 12,
@@ -114,7 +125,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-14-580x925.jpg",
     genre: 3,
     price: 4.7,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 13,
@@ -123,7 +135,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-2-580x925.jpg",
     genre: 2,
     price: 1.9,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 14,
@@ -132,7 +145,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-3-580x925.jpg",
     genre: 2,
     price: 1.9,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 15,
@@ -141,7 +155,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-4-580x925.jpg",
     genre: 2,
     price: 3.9,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 16,
@@ -150,7 +165,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-5-580x925.jpg",
     genre: 2,
     price: 2.4,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 17,
@@ -159,7 +175,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-7-580x925.jpg",
     genre: 2,
     price: 1.9,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 18,
@@ -168,7 +185,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-11-580x925.jpg",
     genre: 4,
     price: 1.9,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 19,
@@ -177,7 +195,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-13-580x925.jpg",
     genre: 2,
     price: 3.3,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
   {
     id: 20,
@@ -186,7 +205,8 @@ export const books: IBook[] = [
     img: "/images/book/shop-19-580x925.jpg",
     genre: 2,
     price: 4.9,
-    date: "2020-01-01T23:28:56.782Z",
+    created_at: "2020-01-01T23:28:56.782Z",
+    foreign_author: "",
   },
 ];
 
