@@ -13,6 +13,7 @@
 - [x] not found (404) page
 - [ ] search page
 - [ ] enable search in index page
+- [ ] editor for edit book and edit post: https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/react.html https://github.com/ckeditor/ckeditor5-react
 
 ## future feature
 
