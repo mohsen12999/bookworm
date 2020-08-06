@@ -2,12 +2,16 @@ export enum AppActionType {
   CLOSE_SNACKBAR = "closeSnackbar",
   START_LOADING = "startLoading",
   STOP_LOADING = "stopLoading",
+  STOP_LOADING_AND_MESSAGE = "stopLoadingAndMessage",
 }
 
 export enum AdminActionType {
   SET_LAST_BOOK_READING = "setLastBookReading",
   SUCCESS_LOGIN = "successLogin",
   FAILED_LOGIN = "failedLogin",
+  SUCCESS_REGISTER = "successRegister",
+  FAILED_REGISTER = "failedRegister",
+  LOGGING_OUT = "loggingOut",
 }
 
 export enum AuthActionType {
