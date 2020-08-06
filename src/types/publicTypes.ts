@@ -24,10 +24,11 @@ export interface IBook {
   id: number;
   title: string;
   author: string;
+  foreign_author: string;
   img: string;
   genre: number;
   price: number;
-  date: string;
+  created_at: string;
 }
 
 export interface IChapter {
