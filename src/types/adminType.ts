@@ -8,6 +8,7 @@ export interface IAdminState {
   boughtBooks: number[];
   writtenBooks?: IWrittenBook[];
   writtenPosts?: IWrittenPost[];
+  invoices?: IInvoice[];
   lastBookId?: number;
   lastChapterId?: number;
 }
@@ -30,4 +31,12 @@ export interface IWrittenPost {
   img: string;
   created_at: string;
   save_status: number;
+}
+
+export interface IInvoice {
+  id: number;
+  title: string;
+  price: number;
+  created_at: string;
+  bank_code: string;
 }
