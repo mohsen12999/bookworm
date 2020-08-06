@@ -44,15 +44,6 @@ const Login = (props: ILoginProps) => {
         }
 
         props.tryToLogin(email, password);
-
-        // context.Login(email, password).then((res) => {
-        //   if (res) {
-        //     //setRedirect(true);
-        //     context.OpenSnackbar("خوش آمدید");
-        //   } else {
-        //     context.OpenSnackbar("اشکال در ورود");
-        //   }
-        // });
       }}
     >
       <Paper className="login-paper">
