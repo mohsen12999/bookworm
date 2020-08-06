@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AdminUrl } from "../constants/apiURL";
+import { AdminUrl } from "../constants/apiUrl";
 import { AddToken, GetToken } from "./localStorage";
 
 export const FetchUpdateProfile = async (data: string) => {

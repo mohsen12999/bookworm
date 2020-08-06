@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetDateUrl } from "../constants/apiURL";
+import { GetDateUrl } from "../constants/apiUrl";
 import {
   GetToken,
   SavePublicDataToLocalStorage,

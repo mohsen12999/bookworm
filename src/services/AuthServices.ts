@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AuthUrl } from "../constants/apiURL";
+import { AuthUrl } from "../constants/apiUrl";
 import { AddToken } from "./localStorage";
 
 export const FetchLogin = async (email: string, password: string) => {
