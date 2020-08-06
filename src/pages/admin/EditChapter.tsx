@@ -1,5 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const EditChapter = () => <div></div>;
+interface IEditChapterProps {}
 
-export default EditChapter;
+const EditChapter = (props: IEditChapterProps) => {
+  return <div></div>;
+};
+
+const mapStateToProps = (State: any) => ({});
+const mapDispatchToProps = {};
+export default connect(mapStateToProps, mapDispatchToProps)(EditChapter);
