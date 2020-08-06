@@ -6,14 +6,18 @@ import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import SaveIcon from "@material-ui/icons/Save";
 import TextField from "@material-ui/core/TextField";
 
-import "./Profile.css";
 import { IAdminState } from "../../types/adminType";
+import { updatingProfile } from "../../actions/adminAction";
+
+import "./Profile.css";
 
 interface IProfileProps {
   name?: string;
   email?: string;
   mobile?: string;
   avatar?: string;
+
+  updatingProfile(data: FormData): void;
 }
 
 const Profile = (props: IProfileProps) => {
@@ -56,19 +60,24 @@ const Profile = (props: IProfileProps) => {
           data.append("email", email ?? "");
           data.append("mobile", mobile ?? "");
 
+          props.updatingProfile(data);
           // console.log(file, name, email, mobile, data);
-          context.UpdateProfile(data).then((res) => {
-            if (res) {
-              context.OpenSnackbar("پروفایل با موفقیت بروزرسانی شد.");
-            } else {
-              context.OpenSnackbar("اشکال در بروزرسانی پروفایل");
-            }
-          });
+          // context.UpdateProfile(data).then((res) => {
+          //   if (res) {
+          //     context.OpenSnackbar("پروفایل با موفقیت بروزرسانی شد.");
+          //   } else {
+          //     context.OpenSnackbar("اشکال در بروزرسانی پروفایل");
+          //   }
+          // });
         }}
       >
         <div className="center-item">
           <img
-            src={src ?? props.avatar ?? "/images/user/default-profile.jpg"}
+            src={
+              (src as string) ??
+              props.avatar ??
+              "/images/user/default-profile.jpg"
+            }
             // src={src ? src : context.avatar? context.avatar:"/images/user/default-profile.jpg"}
             alt={props.name}
             className="avatar-img"
@@ -147,5 +156,7 @@ const mapStateToProps = (State: { admin: IAdminState }) => ({
   mobile: State.admin.mobile,
   avatar: State.admin.avatar,
 });
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  updatingProfile,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
