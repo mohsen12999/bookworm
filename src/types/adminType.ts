@@ -16,12 +16,15 @@ export interface IAdminState {
 export interface IWrittenBook {
   id: number;
   title: string;
+  abstract: string;
   author: string;
+  foreign_author: string;
   img: string;
-  genre: number;
+  genre_id: number;
   price: number;
   date: string;
   save_status: number;
+  created_at: string;
 }
 
 export interface IWrittenPost {
@@ -31,6 +34,7 @@ export interface IWrittenPost {
   img: string;
   created_at: string;
   save_status: number;
+  subject_id: number;
 }
 
 export interface IInvoice {
