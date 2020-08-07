@@ -26,7 +26,7 @@ import { Link } from "react-router-dom";
 import { FixDate } from "../../functions/date";
 import { FixPrice } from "../../functions/price";
 import { IAdminState, IWrittenBook } from "../../types/adminType";
-import { BookWriteStatusDescription } from "../../functions/writeStatus";
+import { writeStatusDescription } from "../../functions/writeStatus";
 import { tryDeletingMyBook } from "../../actions/adminAction";
 
 import "./MyBooks.css";
@@ -36,6 +36,8 @@ interface IMyBooksProps {
   writtenBooks?: IWrittenBook[];
   tryDeletingMyBook(id: number): void;
 }
+
+// TODO: button for eery book chapter
 
 const MyBooks = (props: IMyBooksProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -102,7 +104,7 @@ const MyBooks = (props: IMyBooksProps) => {
                     {FixDate(wb.created_at)}
                   </TableCell>
                   <TableCell component="td" scope="row" align="center">
-                    {BookWriteStatusDescription(wb.save_status)}
+                    {writeStatusDescription(wb.save_status)}
                   </TableCell>
                   <TableCell component="td" scope="row" align="left">
                     <Tooltip title="فصل‌های کتاب">
@@ -110,7 +112,7 @@ const MyBooks = (props: IMyBooksProps) => {
                         color="primary"
                         aria-label="chapter list"
                         component={Link}
-                        to={"/chapters/" + wb.id}
+                        to={"/" + AdminPages.MY_CHAPTER + "/" + wb.id}
                       >
                         <ListAltIcon />
                       </IconButton>
@@ -119,13 +121,14 @@ const MyBooks = (props: IMyBooksProps) => {
                     <Tooltip title="تغییر نوشته">
                       <IconButton
                         color="primary"
-                        aria-label="edit note"
+                        aria-label="edit my book"
                         component={Link}
-                        to={"/note/" + wb.id}
+                        to={"/" + AdminPages.EDIT_BOOK + "/" + wb.id}
                       >
                         <EditIcon />
                       </IconButton>
                     </Tooltip>
+
                     <Tooltip title="حذف نوشته">
                       <IconButton
                         color="primary"
