@@ -114,7 +114,7 @@ const ReadBook = (props: IReadBookProps) => {
   );
 
   return !readableThisChapter ? (
-    <Redirect to={"/book/" + book_id} />
+    <Redirect to={"/" + PublicPages.BOOK + "/" + book_id} />
   ) : (
     <div className="chapter-page">
       {prevChapter &&

@@ -7,6 +7,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 import "./BookThumbnail.css";
 import { FixPrice } from "../functions/price";
+import { AdminPages, PublicPages } from "../constants/pages";
 
 // TODO: new book banner
 // TODO: sale banner
@@ -26,7 +27,7 @@ interface IBookThumbnailProps {
 }
 
 const BookThumbnail = (props: IBookThumbnailProps) => (
-  <Link to={"/book/" + props.id} className="book-thumb">
+  <Link to={"/" + PublicPages.BOOK + "/" + props.id} className="book-thumb">
     {props.owned && (
       <Tooltip title="شما صاحب این کتاب هستید" aria-label="owned">
         <Fab

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./ArticleThumbnail.css";
+import { PublicPages } from "../constants/pages";
 
 // TODO: new article banner
 
@@ -14,7 +15,7 @@ interface IArticleThumbnailProps {
 }
 
 const ArticleThumbnail = (props: IArticleThumbnailProps) => (
-  <Link className="author-thumb" to={"/blog/" + props.id}>
+  <Link className="author-thumb" to={"/" + PublicPages.POST + "/" + props.id}>
     <img src={props.img} alt={props.title + " - " + props.author} />
     <p>{props.title}</p>
     <p>{props.author}</p>

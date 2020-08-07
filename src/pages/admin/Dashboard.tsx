@@ -158,7 +158,7 @@ const Dashboard = (props: IDashboardProps) => (
               color="primary"
               startIcon={<CreditCardIcon className="button-icon" />}
               component={Link}
-              to={"/wallet"}
+              to={"/" + AdminPages.WALLET}
             >
               عملکرد مالی شما
             </Button>
