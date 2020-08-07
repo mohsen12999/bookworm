@@ -29,6 +29,8 @@ export const tryToLogin = (email?: string, password?: string) => (
       payload: { error: "" },
     });
   }
+
+  return result;
 };
 
 export const tryToRegister = (
