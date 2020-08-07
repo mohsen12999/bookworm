@@ -26,9 +26,9 @@ export interface IBook {
   author: string;
   foreign_author: string;
   img: string;
-  genre: number;
   price: number;
   created_at: string;
+  genre_id: number;
 }
 
 export interface IChapter {
@@ -47,6 +47,7 @@ export interface IPost {
   abstract: string;
   description: string;
   created_at: string;
+  subject_id: number;
 }
 
 export interface ISubject {
