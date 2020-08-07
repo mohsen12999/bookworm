@@ -35,5 +35,3 @@ export const FetchRegister = async (
     return { success: false, error };
   }
 };
-
-// const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
