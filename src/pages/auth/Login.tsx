@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
-import { Redirect } from "react-router-dom";
+import { push } from "connected-react-router";
 
 import { CheckEmail } from "../../functions/email";
 import { IAdminState } from "../../types/adminType";
@@ -15,12 +15,14 @@ import { IAppState } from "../../types/appType";
 import { tryToLogin } from "../../actions/AuthAction";
 
 import "./Login.css";
+import { AdminPages } from "../../constants/pages";
 
 interface ILoginProps {
   loggedIn: boolean;
   loading: boolean;
 
-  tryToLogin(email?: string, password?: string): void;
+  tryToLogin(email?: string, password?: string): boolean;
+  changePage: Function;
 }
 
 const Login = (props: ILoginProps) => {
@@ -32,9 +34,10 @@ const Login = (props: ILoginProps) => {
     setInvalidForm(!email || !password || !CheckEmail(email));
   }, [email, password]);
 
-  return props.loggedIn ? (
-    <Redirect to={"/dashboard"} />
-  ) : (
+  return (
+    // props.loggedIn ? (
+    //   <Redirect to={"/dashboard"} />
+    // ) : (
     <form
       className="login-page"
       onSubmit={(e) => {
@@ -43,7 +46,10 @@ const Login = (props: ILoginProps) => {
           return;
         }
 
-        props.tryToLogin(email, password);
+        var result = props.tryToLogin(email, password);
+        if (result) {
+          props.changePage("/" + AdminPages.DASHBOARD);
+        }
       }}
     >
       <Paper className="login-paper">
@@ -113,6 +119,7 @@ const mapStateToProps = (State: { admin: IAdminState; app: IAppState }) => ({
 
 const mapDispatchToProps = {
   tryToLogin,
+  changePage: (url: string) => push(url),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
