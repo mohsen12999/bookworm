@@ -65,12 +65,12 @@ export const tryDeletingMyBook = (id: number) => (dispatch: Dispatch) => {
 
   if (result) {
     dispatch({
-      type: AdminActionType.SUCCESS_UPDATE_PROFILE,
+      type: AdminActionType.SUCCESS_DELETING_BOOK,
       payload: { data: "" },
     });
   } else {
     dispatch({
-      type: AdminActionType.FAILED_UPDATE_PROFILE,
+      type: AdminActionType.FAILED_DELETING_BOOK,
       payload: { error: "" },
     });
   }
@@ -95,12 +95,42 @@ export const tryDeletingMyPost = (id: number) => (dispatch: Dispatch) => {
 
   if (result) {
     dispatch({
-      type: AdminActionType.SUCCESS_UPDATE_PROFILE,
+      type: AdminActionType.SUCCESS_DELETING_POST,
       payload: { data: "" },
     });
   } else {
     dispatch({
-      type: AdminActionType.FAILED_UPDATE_PROFILE,
+      type: AdminActionType.FAILED_DELETING_POST,
+      payload: { error: "" },
+    });
+  }
+};
+
+export const tryDeletingMyChapter = (id: number) => (dispatch: Dispatch) => {
+  // loading
+  dispatch({
+    type: AppActionType.START_LOADING,
+  });
+
+  // TODO: send deleting request
+
+  // result
+  const result: boolean = Math.random() > 0.5;
+  dispatch({
+    type: AppActionType.STOP_LOADING_AND_MESSAGE,
+    payload: {
+      msg: result ? "این فصل حذف شد" : "خطا در حذف فصل",
+    },
+  });
+
+  if (result) {
+    dispatch({
+      type: AdminActionType.SUCCESS_DELETING_CHAPTER,
+      payload: { data: "" },
+    });
+  } else {
+    dispatch({
+      type: AdminActionType.FAILED_DELETING_CHAPTER,
       payload: { error: "" },
     });
   }
@@ -166,6 +196,8 @@ export const savingPost = (data: FormData) => (dispatch: Dispatch) => {
       payload: { error: "" },
     });
   }
+
+  return result;
 };
 
 export const savingChapter = (data: FormData) => (dispatch: Dispatch) => {
@@ -181,7 +213,7 @@ export const savingChapter = (data: FormData) => (dispatch: Dispatch) => {
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
-      msg: result ? "نوشته با موفقیت ذخیره شد." : "اشکال در ذخیره نوشته",
+      msg: result ? "فصل با موفقیت ذخیره شد." : "اشکال در ذخیره فصل",
     },
   });
 
@@ -196,4 +228,6 @@ export const savingChapter = (data: FormData) => (dispatch: Dispatch) => {
       payload: { error: "" },
     });
   }
+
+  return result;
 };
