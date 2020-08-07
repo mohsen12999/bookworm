@@ -7,6 +7,7 @@ export interface IAdminState {
   wallet?: number;
   boughtBooks: number[];
   writtenBooks?: IWrittenBook[];
+  writtenChapters?: IWrittenChapter[];
   writtenPosts?: IWrittenPost[];
   invoices?: IInvoice[];
   lastBookId?: number;
@@ -23,8 +24,10 @@ export interface IWrittenBook {
   genre_id: number;
   price: number;
   date: string;
-  save_status: number;
   created_at: string;
+  //---------------------
+  save_status: number;
+  save_problem_description: string;
 }
 
 export interface IWrittenPost {
@@ -32,9 +35,25 @@ export interface IWrittenPost {
   title: string;
   author: string;
   img: string;
+  abstract: string;
+  description: string;
+  foreign_author: string;
   created_at: string;
-  save_status: number;
   subject_id: number;
+  //------------------
+  save_status: number;
+  save_problem_description: string;
+}
+
+export interface IWrittenChapter {
+  id: number;
+  title: string;
+  free: boolean;
+  body: string;
+  writtenBook_id: number;
+  //----------------------
+  save_status: number;
+  save_problem_description: string;
 }
 
 export interface IInvoice {
