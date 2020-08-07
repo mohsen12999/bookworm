@@ -26,6 +26,15 @@ export enum AdminActionType {
   SUCCESS_SAVING_CHAPTER = "successSavingChapter",
   FAILED_SAVING_CHAPTER = "failedSavingChapter",
 
+  SUCCESS_DELETING_BOOK = "successDeletingBook",
+  FAILED_DELETING_BOOK = "failedDeletingBook",
+
+  SUCCESS_DELETING_POST = "successDeletingPost",
+  FAILED_DELETING_POST = "failedDeletingPost",
+
+  SUCCESS_DELETING_CHAPTER = "successDeletingChapter",
+  FAILED_DELETING_CHAPTER = "failedDeletingChapter",
+
   LOGGING_OUT = "loggingOut",
 }
 
