@@ -10,6 +10,7 @@ import { IAdminState } from "../../types/adminType";
 import { IPublicState, IBook } from "../../types/publicTypes";
 
 import "../public/BookList.css";
+import { PublicPages } from "../../constants/pages";
 
 interface IMyLibraryProps {
   boughtBooks: number[];
@@ -34,7 +35,7 @@ const MyLibrary = (props: IMyLibraryProps) => {
               variant="outlined"
               color="primary"
               component={Link}
-              to={"/books"}
+              to={"/" + PublicPages.BOOKS}
             >
               انتخاب کتاب
             </Button>
