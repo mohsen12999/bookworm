@@ -7,7 +7,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 import "./BookThumbnail.css";
 import { FixPrice } from "../functions/price";
-import { AdminPages, PublicPages } from "../constants/pages";
+import { PublicPages } from "../constants/pages";
 
 // TODO: new book banner
 // TODO: sale banner
