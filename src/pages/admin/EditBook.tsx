@@ -8,7 +8,8 @@ import TextField from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { push } from "connected-react-router";
 
 import { AdminPages } from "../../constants/pages";
 import { IAdminState, IWrittenBook } from "../../types/adminType";
@@ -19,8 +20,10 @@ import "./Profile.css";
 
 interface IEditBookProps {
   writtenBooks?: IWrittenBook[];
-  savingBook(data: FormData): boolean;
   genres: IGenre[];
+
+  savingBook(data: FormData): boolean;
+  changePage: Function;
 }
 
 const EditBook = (props: IEditBookProps) => {
@@ -34,12 +37,10 @@ const EditBook = (props: IEditBookProps) => {
   const [foreignAuthor, setForeignAuthor] = React.useState<
     string | undefined
   >();
-  const [published, setPublished] = React.useState<boolean | undefined>(
-    undefined
-  );
+  const [published, setPublished] = React.useState<boolean>(false);
 
   const [src, setSrc] = React.useState<string | ArrayBuffer | null>();
-  const [exit2List, setExit2List] = React.useState<boolean>(false);
+  // const [exit2List, setExit2List] = React.useState<boolean>(false);
 
   const handleInputFileChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -61,7 +62,7 @@ const EditBook = (props: IEditBookProps) => {
     reader.readAsDataURL(imgFile);
   };
 
-  const writeNote = (exit: boolean) => {
+  const writeBook = (exit: boolean) => {
     // if (!writtenBook && (!title || title.length < 3)) {
     //   context.OpenSnackbar("عنوان نوشته اجباری هستند");
     //   return;
@@ -81,7 +82,10 @@ const EditBook = (props: IEditBookProps) => {
     );
 
     const result = props.savingBook(data);
-    setExit2List(result && exit);
+    // setExit2List(result && exit);
+    if (result && exit) {
+      props.changePage("/" + AdminPages.MY_BOOKS);
+    }
   };
 
   const writtenBook = props.writtenBooks?.find((wb) => wb.id === Number(id));
@@ -97,14 +101,15 @@ const EditBook = (props: IEditBookProps) => {
     setPublished(writtenBook.save_status === 10);
   }
 
-  return exit2List ? (
-    <Redirect to={"/" + AdminPages.MY_BOOKS} />
-  ) : (
+  return (
+    // exit2List ? (
+    //   <Redirect to={"/" + AdminPages.MY_BOOKS} />
+    // ) :
     <React.Fragment>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          writeNote(false);
+          writeBook(false);
         }}
       >
         <Container maxWidth="sm">
@@ -221,6 +226,7 @@ const EditBook = (props: IEditBookProps) => {
               type="submit"
               disabled={!writtenBook && (!title || title.length < 3)}
               startIcon={<SaveIcon />}
+              onClick={() => writeBook(false)}
             >
               ذخیره
             </Button>
@@ -235,7 +241,7 @@ const EditBook = (props: IEditBookProps) => {
             size="large"
             disabled={!writtenBook && (!title || title.length < 3)}
             startIcon={<SaveIcon />}
-            onClick={() => writeNote(true)}
+            onClick={() => writeBook(true)}
           >
             ذخیره و خروج
           </Button>
@@ -255,6 +261,7 @@ const mapStateToProps = (State: {
 
 const mapDispatchToProps = {
   savingBook,
+  changePage: (url: string) => push(url),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditBook);
