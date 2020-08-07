@@ -8,12 +8,8 @@ interface IPrivateRouteLayoutProps {
   children: any;
 }
 
-const PrivateRouteLayout = (
-  props: IPrivateRouteLayoutProps
-) => {
-  console.log(props);
-  return props.loggedIn ? props.children : <Redirect to={"login"} />;
-};
+const PrivateRouteLayout = (props: IPrivateRouteLayoutProps) =>
+  props.loggedIn ? props.children : <Redirect to={"login"} />;
 
 const mapStateToProps = (State: { admin: IAdminState }) => ({
   loggedIn: State.admin.loggedIn,
