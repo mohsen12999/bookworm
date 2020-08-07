@@ -23,12 +23,12 @@ import CardContent from "@material-ui/core/CardContent";
 import { Link } from "react-router-dom";
 
 import { IAdminState, IWrittenPost } from "../../types/adminType";
-import { PostWriteStatusDescription } from "../../functions/writeStatus";
+import { writeStatusDescription } from "../../functions/writeStatus";
 import { tryDeletingMyPost } from "../../actions/adminAction";
 
 import "./MyBooks.css";
 import { IPublicState, ISubject } from "../../types/publicTypes";
-import { AdminPages } from "../../constants/pages";
+import { AdminPages, PublicPages } from "../../constants/pages";
 
 interface IMyPostsProps {
   writtenPosts?: IWrittenPost[];
@@ -105,7 +105,7 @@ const MyPosts = (props: IMyPostsProps) => {
                     {subjectsDictionary[wp.subject_id]}
                   </TableCell>
                   <TableCell component="td" scope="row" align="center">
-                    {PostWriteStatusDescription(wp.save_status)}
+                    {writeStatusDescription(wp.save_status)}
                   </TableCell>
                   <TableCell component="td" scope="row" align="left">
                     <Tooltip title="تغییر مقاله">
@@ -113,7 +113,7 @@ const MyPosts = (props: IMyPostsProps) => {
                         color="primary"
                         aria-label="edit note"
                         component={Link}
-                        to={"/blog/" + wp.id}
+                        to={"/" + PublicPages.POST + "/" + wp.id}
                       >
                         <EditIcon />
                       </IconButton>

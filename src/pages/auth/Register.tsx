@@ -8,22 +8,27 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
-import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router";
+import { push } from "connected-react-router";
 
 import { CheckEmail } from "../../functions/email";
 import { IAdminState } from "../../types/adminType";
 import { tryToRegister } from "../../actions/AuthAction";
 
 import "./Login.css";
+import { AuthPages, AdminPages } from "../../constants/pages";
 
 interface IRegisterProps {
   loggedIn: boolean;
+
   tryToRegister(
     name?: string,
     email?: string,
     password?: string,
     password_confirmation?: string
   ): Boolean;
+
+  changePage: Function;
 }
 
 const Register = (props: IRegisterProps) => {
@@ -34,8 +39,6 @@ const Register = (props: IRegisterProps) => {
     string | undefined
   >();
   const [invalidForm, setInvalidForm] = React.useState(true);
-
-  const [redirect, setRedirect] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     setInvalidForm(
@@ -50,9 +53,7 @@ const Register = (props: IRegisterProps) => {
   }, [name, email, password, passwordAgain]);
 
   return props.loggedIn ? (
-    <Redirect to={"/dashboard"} />
-  ) : redirect ? (
-    <Redirect to={"/login"} />
+    <Redirect to={"/" + AdminPages.DASHBOARD} />
   ) : (
     <form
       className="login-page"
@@ -64,18 +65,10 @@ const Register = (props: IRegisterProps) => {
           password,
           passwordAgain
         );
-        console.log("tryToRegister result: ", result);
-        setRedirect(result as boolean);
-        //   context
-        //     .Register(name, email, password, passwordAgain)
-        //     .then((res) => {
-        //       if (res) {
-        //         setRedirect(true);
-        //         context.OpenSnackbar("ثبت نام موفق بود، لطفا وارد شوید");
-        //       } else {
-        //         context.OpenSnackbar("اشکال در ثبت نام");
-        //       }
-        //     });
+
+        if (result) {
+          props.changePage("/" + AuthPages.LOGIN);
+        }
       }}
     >
       <Paper className="login-paper">
@@ -180,5 +173,6 @@ const mapStateToProps = (State: { admin: IAdminState }) => ({
 
 const mapDispatchToProps = {
   tryToRegister,
+  changePage: (url: string) => push(url),
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
