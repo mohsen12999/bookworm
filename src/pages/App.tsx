@@ -20,6 +20,7 @@ import Search from "./public/Search";
 import Dashboard from "./admin/Dashboard";
 import Profile from "./admin/Profile";
 import MyBooks from "./admin/MyBooks";
+import MyChapters from "./admin/MyChapters";
 import MyPosts from "./admin/MyPosts";
 import MyLibrary from "./admin/MyLibrary";
 import Wallet from "./admin/Wallet";
@@ -145,6 +146,14 @@ function App() {
         >
           <PrivateRouteLayout>
             <EditBook />
+          </PrivateRouteLayout>
+        </Route>
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/" + AdminPages.MY_CHAPTER + "/:id"}
+        >
+          <PrivateRouteLayout>
+            <MyChapters />
           </PrivateRouteLayout>
         </Route>
         <Route
