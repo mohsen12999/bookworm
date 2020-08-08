@@ -1,5 +1,14 @@
 import { Dispatch } from "redux";
 import { AdminActionType, AppActionType } from "../constants/actionTypes";
+import {
+  FetchUpdateProfile,
+  FetchDeleteNote,
+  FetchDeletePost,
+  FetchDeleteChapter,
+  FetchWriteBook,
+  FetchWritePost,
+  FetchWriteChapter,
+} from "../services/AdminServices";
 
 export const SetLastBookReading = (
   book_id: number | string,
@@ -14,16 +23,19 @@ export const SetLastBookReading = (
   });
 };
 
-export const updatingProfile = (data: FormData) => (dispatch: Dispatch) => {
+export const updatingProfile = (data: FormData) => async (
+  dispatch: Dispatch
+) => {
   // loading
   dispatch({
     type: AppActionType.START_LOADING,
   });
 
-  // TODO: Sending
+  // try to fetch
+  const output = await FetchUpdateProfile(data);
 
   // result
-  const result: boolean = Math.random() > 0.5;
+  const result: boolean = output.success;
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
@@ -36,26 +48,27 @@ export const updatingProfile = (data: FormData) => (dispatch: Dispatch) => {
   if (result) {
     dispatch({
       type: AdminActionType.SUCCESS_UPDATE_PROFILE,
-      payload: { data: "" },
+      payload: { data: output.data },
     });
   } else {
     dispatch({
       type: AdminActionType.FAILED_UPDATE_PROFILE,
-      payload: { error: "" },
+      payload: { error: output.error },
     });
   }
 };
 
-export const tryDeletingMyBook = (id: number) => (dispatch: Dispatch) => {
+export const tryDeletingMyBook = (id: number) => async (dispatch: Dispatch) => {
   // loading
   dispatch({
     type: AppActionType.START_LOADING,
   });
 
-  // TODO: send deleting request
+  // send deleting request
+  const output = await FetchDeleteNote(id);
 
   // result
-  const result: boolean = Math.random() > 0.5;
+  const result: boolean = output.success;
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
@@ -66,26 +79,27 @@ export const tryDeletingMyBook = (id: number) => (dispatch: Dispatch) => {
   if (result) {
     dispatch({
       type: AdminActionType.SUCCESS_DELETING_BOOK,
-      payload: { data: "" },
+      payload: { data: output.data },
     });
   } else {
     dispatch({
       type: AdminActionType.FAILED_DELETING_BOOK,
-      payload: { error: "" },
+      payload: { error: output.error },
     });
   }
 };
 
-export const tryDeletingMyPost = (id: number) => (dispatch: Dispatch) => {
+export const tryDeletingMyPost = (id: number) => async (dispatch: Dispatch) => {
   // loading
   dispatch({
     type: AppActionType.START_LOADING,
   });
 
-  // TODO: send deleting request
+  // send deleting request
+  const output = await FetchDeletePost(id);
 
   // result
-  const result: boolean = Math.random() > 0.5;
+  const result: boolean = output.success;
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
@@ -96,26 +110,29 @@ export const tryDeletingMyPost = (id: number) => (dispatch: Dispatch) => {
   if (result) {
     dispatch({
       type: AdminActionType.SUCCESS_DELETING_POST,
-      payload: { data: "" },
+      payload: { data: output.data },
     });
   } else {
     dispatch({
       type: AdminActionType.FAILED_DELETING_POST,
-      payload: { error: "" },
+      payload: { error: output.error },
     });
   }
 };
 
-export const tryDeletingMyChapter = (id: number) => (dispatch: Dispatch) => {
+export const tryDeletingMyChapter = (id: number) => async (
+  dispatch: Dispatch
+) => {
   // loading
   dispatch({
     type: AppActionType.START_LOADING,
   });
 
-  // TODO: send deleting request
+  // send deleting request
+  const output = await FetchDeleteChapter(id);
 
   // result
-  const result: boolean = Math.random() > 0.5;
+  const result: boolean = output.success;
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
@@ -126,26 +143,27 @@ export const tryDeletingMyChapter = (id: number) => (dispatch: Dispatch) => {
   if (result) {
     dispatch({
       type: AdminActionType.SUCCESS_DELETING_CHAPTER,
-      payload: { data: "" },
+      payload: { data: output.data },
     });
   } else {
     dispatch({
       type: AdminActionType.FAILED_DELETING_CHAPTER,
-      payload: { error: "" },
+      payload: { error: output.error },
     });
   }
 };
 
-export const savingBook = (data: FormData) => (dispatch: Dispatch) => {
+export const savingBook = (data: FormData) => async (dispatch: Dispatch) => {
   // loading
   dispatch({
     type: AppActionType.START_LOADING,
   });
 
   // TODO: send deleting request
+  const output = await FetchWriteBook(data);
 
   // result
-  const result: boolean = Math.random() > 0.5;
+  const result: boolean = output.success;
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
@@ -156,28 +174,29 @@ export const savingBook = (data: FormData) => (dispatch: Dispatch) => {
   if (result) {
     dispatch({
       type: AdminActionType.SUCCESS_SAVING_BOOK,
-      payload: { data: "" },
+      payload: { data: output.data },
     });
   } else {
     dispatch({
       type: AdminActionType.FAILED_SAVING_BOOK,
-      payload: { error: "" },
+      payload: { error: output.error },
     });
   }
 
   return result;
 };
 
-export const savingPost = (data: FormData) => (dispatch: Dispatch) => {
+export const savingPost = (data: FormData) => async (dispatch: Dispatch) => {
   // loading
   dispatch({
     type: AppActionType.START_LOADING,
   });
 
   // TODO: send deleting request
+  const output = await FetchWritePost(data);
 
   // result
-  const result: boolean = Math.random() > 0.5;
+  const result: boolean = output.success;
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
@@ -188,28 +207,29 @@ export const savingPost = (data: FormData) => (dispatch: Dispatch) => {
   if (result) {
     dispatch({
       type: AdminActionType.SUCCESS_SAVING_POST,
-      payload: { data: "" },
+      payload: { data: output.data },
     });
   } else {
     dispatch({
       type: AdminActionType.FAILED_SAVING_POST,
-      payload: { error: "" },
+      payload: { error: output.error },
     });
   }
 
   return result;
 };
 
-export const savingChapter = (data: FormData) => (dispatch: Dispatch) => {
+export const savingChapter = (data: FormData) => async (dispatch: Dispatch) => {
   // loading
   dispatch({
     type: AppActionType.START_LOADING,
   });
 
-  // TODO: send deleting request
+  // send deleting request
+  const output = await FetchWriteChapter(data);
 
   // result
-  const result: boolean = Math.random() > 0.5;
+  const result: boolean = output.success;
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
@@ -220,12 +240,12 @@ export const savingChapter = (data: FormData) => (dispatch: Dispatch) => {
   if (result) {
     dispatch({
       type: AdminActionType.SUCCESS_SAVING_CHAPTER,
-      payload: { data: "" },
+      payload: { data: output.data },
     });
   } else {
     dispatch({
       type: AdminActionType.FAILED_SAVING_CHAPTER,
-      payload: { error: "" },
+      payload: { error: output.error },
     });
   }
 
