@@ -45,6 +45,7 @@ export interface IPost {
   author: string;
   img: string;
   abstract: string;
+  foreign_author: string;
   description: string;
   created_at: string;
   subject_id: number;
