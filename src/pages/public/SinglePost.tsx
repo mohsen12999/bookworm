@@ -34,7 +34,7 @@ const SinglePost = (props: ISinglePostProps) => {
     </div>
   ) : (
     <Paper className="single-blog-page">
-      <div className="article-intro">
+      <div className="post-intro">
         <img
           id="post-img"
           className="post-img"
