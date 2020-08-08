@@ -1,7 +1,8 @@
 import { Dispatch } from "redux";
 import { AppActionType, AdminActionType } from "../constants/actionTypes";
+import { FetchRegister, FetchLogin } from "../services/AuthServices";
 
-export const tryToLogin = (email?: string, password?: string) => (
+export const tryToLogin = (email?: string, password?: string) => async (
   dispatch: Dispatch
 ) => {
   // loading
@@ -9,10 +10,10 @@ export const tryToLogin = (email?: string, password?: string) => (
     type: AppActionType.START_LOADING,
   });
 
-  // TODO: try to login
-
+  // try to login
+  const output = await FetchLogin(email, password);
   // result
-  const result: boolean = Math.random() > 0.5;
+  const result: boolean = output.success;
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: { msg: result ? "خوش آمدید" : "اشکال در ورود" },
@@ -38,16 +39,23 @@ export const tryToRegister = (
   email?: string,
   password?: string,
   password_confirmation?: string
-) => (dispatch: Dispatch) => {
+) => async (dispatch: Dispatch) => {
   // loading
   dispatch({
     type: AppActionType.START_LOADING,
   });
 
-  // TODO: try to register
+  // try to register
+  var output = await FetchRegister(
+    name,
+    email,
+    password,
+    password_confirmation
+  );
 
-  //
-  const result: boolean = Math.random() > 0.5;
+  // result
+  const result: boolean = output.success;
+
   dispatch({
     type: AppActionType.STOP_LOADING_AND_MESSAGE,
     payload: {
@@ -58,12 +66,12 @@ export const tryToRegister = (
   if (result) {
     dispatch({
       type: AdminActionType.SUCCESS_REGISTER,
-      payload: { data: "" },
+      payload: { data: output.data },
     });
   } else {
     dispatch({
       type: AdminActionType.FAILED_REGISTER,
-      payload: { error: "" },
+      payload: { error: output.error },
     });
   }
 
