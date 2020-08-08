@@ -19,7 +19,7 @@ import { AdminPages } from "../../constants/pages";
 interface IEditChapterProps {
   writtenChapters?: IWrittenChapter[];
 
-  savingChapter(data: FormData): boolean;
+  savingChapter(data: FormData): Promise<boolean>;
   changePage: Function;
 }
 
@@ -54,11 +54,11 @@ const EditChapter = (props: IEditChapterProps) => {
     data.append("published", published ? "1" : "0");
     data.append("free", free ? "1" : "0");
 
-    const result = props.savingChapter(data);
-
-    if (result && exit) {
-      props.changePage("/" + AdminPages + "/" + book_id);
-    }
+    props.savingChapter(data).then((result) => {
+      if (result && exit) {
+        props.changePage("/" + AdminPages + "/" + book_id);
+      }
+    });
   };
 
   return (

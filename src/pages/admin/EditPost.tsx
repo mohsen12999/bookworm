@@ -22,7 +22,7 @@ interface IEditPostProps {
   writtenPosts?: IWrittenPost[];
   subjects: ISubject[];
 
-  savingPost(data: FormData): boolean;
+  savingPost(data: FormData): Promise<boolean>;
   changePage: Function;
 }
 
@@ -75,10 +75,11 @@ const EditPost = (props: IEditPostProps) => {
       String(Number(published !== undefined && published === true))
     );
 
-    const result = props.savingPost(data);
-    if (result && exit) {
-      props.changePage("/" + AdminPages.MY_POSTS);
-    }
+    props.savingPost(data).then((result) => {
+      if (result && exit) {
+        props.changePage("/" + AdminPages.MY_POSTS);
+      }
+    });
   };
 
   const writtenPost = props.writtenPosts?.find((wp) => wp.id === Number(id));

@@ -22,7 +22,7 @@ interface IEditBookProps {
   writtenBooks?: IWrittenBook[];
   genres: IGenre[];
 
-  savingBook(data: FormData): boolean;
+  savingBook(data: FormData): Promise<boolean>;
   changePage: Function;
 }
 
@@ -81,11 +81,12 @@ const EditBook = (props: IEditBookProps) => {
       String(Number(published !== undefined && published === true))
     );
 
-    const result = props.savingBook(data);
+    props.savingBook(data).then((result) => {
+      if (result && exit) {
+        props.changePage("/" + AdminPages.MY_BOOKS);
+      }
+    });
     // setExit2List(result && exit);
-    if (result && exit) {
-      props.changePage("/" + AdminPages.MY_BOOKS);
-    }
   };
 
   const writtenBook = props.writtenBooks?.find((wb) => wb.id === Number(id));

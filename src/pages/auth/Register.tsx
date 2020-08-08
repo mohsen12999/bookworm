@@ -26,7 +26,7 @@ interface IRegisterProps {
     email?: string,
     password?: string,
     password_confirmation?: string
-  ): Boolean;
+  ): Promise<Boolean>;
 
   changePage: Function;
 }
@@ -59,16 +59,13 @@ const Register = (props: IRegisterProps) => {
       className="login-page"
       onSubmit={(e) => {
         e.preventDefault();
-        const result = props.tryToRegister(
-          name,
-          email,
-          password,
-          passwordAgain
-        );
-
-        if (result) {
-          props.changePage("/" + AuthPages.LOGIN);
-        }
+        props
+          .tryToRegister(name, email, password, passwordAgain)
+          .then((result) => {
+            if (result) {
+              props.changePage("/" + AuthPages.LOGIN);
+            }
+          });
       }}
     >
       <Paper className="login-paper">

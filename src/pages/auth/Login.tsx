@@ -21,7 +21,7 @@ interface ILoginProps {
   loggedIn: boolean;
   loading: boolean;
 
-  tryToLogin(email?: string, password?: string): boolean;
+  tryToLogin(email?: string, password?: string): Promise<boolean>;
   changePage: Function;
 }
 
@@ -46,10 +46,11 @@ const Login = (props: ILoginProps) => {
           return;
         }
 
-        var result = props.tryToLogin(email, password);
-        if (result) {
-          props.changePage("/" + AdminPages.DASHBOARD);
-        }
+        props.tryToLogin(email, password).then((result) => {
+          if (result) {
+            props.changePage("/" + AdminPages.DASHBOARD);
+          }
+        });
       }}
     >
       <Paper className="login-paper">
