@@ -7,12 +7,13 @@ import Grid from "@material-ui/core/Grid";
 
 import BookThumbnail from "../../components/BookThumbnail";
 import AuthorThumbnail from "../../components/AuthorThumbnail";
-import ArticleThumbnail from "../../components/ArticleThumbnail";
+import PostThumbnail from "../../components/PostThumbnail";
 
-import "./index.css";
 import { IPublicState } from "../../types/publicTypes";
 import { IBook, IAuthor, IGenre, IPost } from "../../types/publicTypes";
 import { IAdminState } from "../../types/adminType";
+
+import "./index.css";
 
 interface IIndexProps {
   popBooks: IBook[];
@@ -143,7 +144,7 @@ const Index = (props: IIndexProps) => {
       <Grid container spacing={1}>
         {props.latestPosts.map((post) => (
           <Grid key={post.id} item xs={6} sm={4}>
-            <ArticleThumbnail
+            <PostThumbnail
               id={post.id}
               title={post.title}
               img={post.img}
