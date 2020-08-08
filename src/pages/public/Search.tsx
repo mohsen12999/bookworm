@@ -69,15 +69,7 @@ const Search = (props: ISearchProps) => {
         {findGenres.length !== 0 && (
           <React.Fragment>
             <Typography variant="h5" component="h3" className="section-title">
-              پر بازدیدترین کتاب ها
-            </Typography>
-          </React.Fragment>
-        )}
-
-        {findSubjects.length !== 0 && (
-          <React.Fragment>
-            <Typography variant="h5" component="h3" className="section-title">
-              پر بازدیدترین کتاب ها
+              موضوع ها
             </Typography>
           </React.Fragment>
         )}
@@ -85,21 +77,31 @@ const Search = (props: ISearchProps) => {
         {findAuthors.length !== 0 && (
           <React.Fragment>
             <Typography variant="h5" component="h3" className="section-title">
-              پر بازدیدترین کتاب ها
+              نویسندگان کتاب ها
             </Typography>
           </React.Fragment>
         )}
+
         {findBooks.length !== 0 && (
           <React.Fragment>
             <Typography variant="h5" component="h3" className="section-title">
-              پر بازدیدترین کتاب ها
+              کتاب ها
             </Typography>
           </React.Fragment>
         )}
+
+        {findSubjects.length !== 0 && (
+          <React.Fragment>
+            <Typography variant="h5" component="h3" className="section-title">
+              موضوع مقاله ها
+            </Typography>
+          </React.Fragment>
+        )}
+
         {findPosts.length !== 0 && (
           <React.Fragment>
             <Typography variant="h5" component="h3" className="section-title">
-              پر بازدیدترین کتاب ها
+              مقاله ها
             </Typography>
           </React.Fragment>
         )}
