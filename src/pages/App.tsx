@@ -58,7 +58,7 @@ function App() {
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + PublicPages.SEARCH}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.SEARCH + "/:search"}
           component={Search}
         />
         <Route
