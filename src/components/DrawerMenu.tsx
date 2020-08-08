@@ -43,7 +43,7 @@ const main_menu: IMenuItem[] = [
   },
   {
     id: 12,
-    title: "لیست کتاب ها",
+    title: "لیست کتاب‌ها",
     url: "/" + PublicPages.BOOKS,
     exactMatch: false,
     icon: <LibraryBooksIcon />,
@@ -81,21 +81,21 @@ const admin_menu = [
   },
   {
     id: 23,
-    title: "کتاب های من",
+    title: "کتابخانه من",
     url: "/" + AdminPages.MY_Library,
     exactMatch: false,
     icon: <MenuBookIcon />,
   },
   {
     id: 24,
-    title: "نوشته های من",
+    title: "نوشته‌های من",
     url: "/" + AdminPages.MY_BOOKS,
     exactMatch: false,
     icon: <NoteIcon />,
   },
   {
     id: 25,
-    title: "مقاله های من",
+    title: "مقاله‌های من",
     url: "/" + AdminPages.MY_POSTS,
     exactMatch: false,
     icon: <SpeakerNotesIcon />,
