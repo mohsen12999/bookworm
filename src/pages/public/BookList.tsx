@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -20,9 +21,20 @@ interface IBookListProps {
 }
 
 const BookList = (props: IBookListProps) => {
+  let { search } = useParams();
+
   const [sort, setSort] = React.useState("new");
   const [filter, setFilter] = React.useState("");
   const [filteredBooks, setFilteredBooks] = React.useState<IBook[]>([]);
+
+  React.useEffect(() => {
+    if (search != null || search !== undefined) {
+      const searchText = search as string;
+      if (searchText.length > 0) {
+        setFilter(searchText);
+      }
+    }
+  }, [search]);
 
   React.useEffect(() => {
     setFilteredBooks(filterBook(props.books, sort, filter));
