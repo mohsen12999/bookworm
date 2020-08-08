@@ -43,7 +43,7 @@ function App() {
         />
         <Route
           exact
-          path={process.env.PUBLIC_URL + "/" + PublicPages.BOOKS}
+          path={process.env.PUBLIC_URL + "/" + PublicPages.BOOKS + "/:search?"}
           component={BookList}
         />
         <Route
