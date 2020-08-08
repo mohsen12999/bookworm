@@ -244,6 +244,7 @@ export const posts: IPost[] = [
     description: "",
     created_at: "2020-01-09T08:16:12.782Z",
     subject_id: 4,
+    foreign_author: "",
   },
   {
     id: 2,
@@ -254,6 +255,7 @@ export const posts: IPost[] = [
     description: "",
     created_at: "2020-01-17T12:42:33.782Z",
     subject_id: 4,
+    foreign_author: "",
   },
   {
     id: 3,
@@ -264,6 +266,7 @@ export const posts: IPost[] = [
     description: "",
     created_at: "2020-02-05T09:06:02.782Z",
     subject_id: 4,
+    foreign_author: "",
   },
   {
     id: 4,
@@ -274,6 +277,7 @@ export const posts: IPost[] = [
     description: "",
     created_at: "2020-02-07T13:39:07.782Z",
     subject_id: 4,
+    foreign_author: "",
   },
 ];
 
