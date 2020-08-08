@@ -2,7 +2,7 @@ import axios from "axios";
 import { AuthUrl } from "../constants/apiUrl";
 import { AddToken } from "./localStorage";
 
-export const FetchLogin = async (email: string, password: string) => {
+export const FetchLogin = async (email?: string, password?: string) => {
   try {
     const response = await axios.post(AuthUrl.LOGIN_URL, { email, password });
     const data = response.data;
@@ -16,10 +16,10 @@ export const FetchLogin = async (email: string, password: string) => {
 };
 
 export const FetchRegister = async (
-  name: string,
-  email: string,
-  password: string,
-  password_confirmation: string
+  name?: string,
+  email?: string,
+  password?: string,
+  password_confirmation?: string
 ) => {
   try {
     const response = await axios.post(AuthUrl.REG_URL, {

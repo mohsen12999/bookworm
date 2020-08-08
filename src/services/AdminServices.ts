@@ -2,7 +2,7 @@ import axios from "axios";
 import { AdminUrl } from "../constants/apiUrl";
 import { AddToken, GetToken } from "./localStorage";
 
-export const FetchUpdateProfile = async (data: string) => {
+export const FetchUpdateProfile = async (data: FormData) => {
   try {
     const response = await axios.post(AdminUrl.PROFILE_URL, data, {
       headers: {
@@ -78,7 +78,7 @@ export const FetchDeleteChapter = async (postId: number) => {
   }
 };
 
-export const FetchWritePost = async (data: string) => {
+export const FetchWritePost = async (data: FormData) => {
   try {
     const response = await axios.post(AdminUrl.BLOG_URL, data, {
       headers: {
@@ -100,7 +100,7 @@ export const FetchWritePost = async (data: string) => {
   }
 };
 
-export const FetchWriteBook = async (data: string) => {
+export const FetchWriteBook = async (data: FormData) => {
   try {
     const response = await axios.post(AdminUrl.NOTE_URL, data, {
       headers: {
@@ -122,7 +122,7 @@ export const FetchWriteBook = async (data: string) => {
   }
 };
 
-export const FetchWriteChapter = async (data: string) => {
+export const FetchWriteChapter = async (data: FormData) => {
   try {
     const response = await axios.post(AdminUrl.CHAPTER_URL, data, {
       headers: {
