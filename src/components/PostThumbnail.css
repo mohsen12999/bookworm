@@ -1,4 +1,4 @@
-.author-thumb {
+.post-thumb {
   text-align: center;
   background-color: white;
   box-shadow: 0 0 2px #e6e6e6;
@@ -7,7 +7,7 @@
   display: block;
 }
 
-.author-thumb:hover {
+.post-thumb:hover {
   box-shadow: 0 0 4px lightslategray;
   transition: all 500ms;
 }

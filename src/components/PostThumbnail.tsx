@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./ArticleThumbnail.css";
 import { PublicPages } from "../constants/pages";
+
+import "./PostThumbnail.css";
 
 // TODO: new article banner
 
-interface IArticleThumbnailProps {
+interface IPostThumbnailProps {
   id: number;
   title: string;
   author: string;
@@ -14,12 +15,12 @@ interface IArticleThumbnailProps {
   // newArticle: boolean
 }
 
-const ArticleThumbnail = (props: IArticleThumbnailProps) => (
-  <Link className="author-thumb" to={"/" + PublicPages.POST + "/" + props.id}>
+const PostThumbnail = (props: IPostThumbnailProps) => (
+  <Link className="post-thumb" to={"/" + PublicPages.POST + "/" + props.id}>
     <img src={props.img} alt={props.title + " - " + props.author} />
     <p>{props.title}</p>
     <p>{props.author}</p>
   </Link>
 );
 
-export default ArticleThumbnail;
+export default PostThumbnail;
